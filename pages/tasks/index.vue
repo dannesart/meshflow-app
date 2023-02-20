@@ -1,28 +1,30 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Tasks
-        </Headline>
+        </UIHeadline>
 
         <div class="flex gap-6">
-            <Filter @filterChange="filterChange" @sortChange="sortChange"></Filter>
+            <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
+            </ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <Add type="task" @onAdd="onAdd" @onCancel="onCancel"></Add>
+            <ModulesAdd type="task" @onAdd="onAdd" @onCancel="onCancel">
+            </ModulesAdd>
         </div>
 
         <div class="flex md:gap-6 flex-col md:flex-row">
             <div class="flex-1 flex flex-col gap-3" v-for="status in TASK_STATUSES">
-                <Headline size="h3" :class="{ 'capitalize': true }">
+                <UIHeadline size="h3" :class="{ 'capitalize': true }">
                     {{ status }}
-                </Headline>
-                <Droppable :status=status :list="tasks">
+                </UIHeadline>
+                <UIDroppable :status=status :list="tasks">
                     <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl"
                         v-for="(task, index) in tasks.filter((task) => task.status === status)" draggable="true"
                         @dragstart="startDrag($event, task)">
-                        <Card :title="task.title" :body="task.description"
-                            @favorite="handleFavorite($event, task.title)"></Card>
+                        <ModulesCard :title="task.title" :body="task.description"
+                            @favorite="handleFavorite($event, task.title)"></ModulesCard>
                     </NuxtLink>
-                </Droppable>
+                </UIDroppable>
             </div>
         </div>
     </NuxtLayout>

@@ -1,27 +1,27 @@
 <template>
     <NuxtLayout>
 
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Dashboard
-        </Headline>
+        </UIHeadline>
         <div class="flex gap-5 flex-col md:flex-row">
-            <Stat label="Active tasks" :number="tasksStore.allTasks.length"></Stat>
-            <Stat label="Data" number="2000" errors="3"></Stat>
-            <Stat label="Users" number="45"></Stat>
-            <Stat label="Rules" number="14"></Stat>
+            <ModulesStat label="Active tasks" :number="tasksStore.allTasks.length"></ModulesStat>
+            <ModulesStat label="Data" number="2000" errors="3"></ModulesStat>
+            <ModulesStat label="Users" number="45"></ModulesStat>
+            <ModulesStat label="Rules" number="14"></ModulesStat>
         </div>
 
         <div class="flex gap-5 flex-col md:flex-row">
             <div class="flex flex-col gap-4 md:w-1/2">
-                <Headline size="h3">
+                <UIHeadline size="h3">
                     Latest comments
-                </Headline>
+                </UIHeadline>
                 <div class="flex gap-4">
                     <ul class="w-full flex flex-col gap-5 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="comment in commentsStore.comments" class="border-b last:border-b-0">
-                            <ExtendedLink :label="comment.message" :sub-label="('Added by @' + comment.from)"
+                            <ModulesExtendedLink :label="comment.message" :sub-label="('Added by @' + comment.from)"
                                 :route="('/comments/' + comment.id)">
-                            </ExtendedLink>
+                            </ModulesExtendedLink>
                         </li>
                         <li v-if="!commentsStore.comments.length">
                             <small>
@@ -38,9 +38,9 @@
             </div>
             <div class="flex flex-col gap-4 md:w-1/2">
                 <div class="flex justify-between">
-                    <Headline size="h3">
+                    <UIHeadline size="h3">
                         Latests tasks
-                    </Headline>
+                    </UIHeadline>
                     <NuxtLink to="/tasks/add" class="text-blue-600">
                         + Create new task
                     </NuxtLink>
@@ -51,9 +51,9 @@
                 <div class=" flex gap-5 ">
                     <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="task in latest" class="border-b last:border-b-0">
-                            <ExtendedLink :label="task.title" :sub-label="('Added by @' + task.createdBy)"
+                            <ModulesExtendedLink :label="task.title" :sub-label="('Added by @' + task.createdBy)"
                                 :route="('/tasks/' + task.id)">
-                            </ExtendedLink>
+                            </ModulesExtendedLink>
                         </li>
                     </ul>
                 </div>

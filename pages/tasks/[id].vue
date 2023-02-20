@@ -1,39 +1,40 @@
 <template>
     <NuxtLayout>
         <header class="flex gap-4">
-            <Headline size="h1">
+            <UIHeadline size="h1">
                 {{ task?.title }}
-            </Headline>
-            <Button data-favorite :type="task?.favorite ? 'love' : 'dead'" size="round"
+            </UIHeadline>
+            <UIButton data-favorite :type="task?.favorite ? 'love' : 'dead'" size="round"
                 @click="event => toggleFavorite()">
-                <Icons name="heart"></Icons>
-            </Button>
+                <UIIcons name="heart">
+                </UIIcons>
+            </UIButton>
 
         </header>
         <div class="flex gap-6">
-            <Form :class="'flex-1'">
-                <Input type="text-lg" :value="task.description">
-                Description
-                </Input>
-            </Form>
+            <UIForm :class="'flex-1'">
+                <UIInput type="text-lg" :value="task.description">
+                    Description
+                </UIInput>
+            </UIForm>
             <aside class="w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
-                <Input type="select" :values="TASK_STATUSES" :value="task?.status"
+                <UIInput type="select" :values="TASK_STATUSES" :value="task?.status"
                     @value-update="event => updateStatus(event)">
-                Status</Input>
+                    Status</UIInput>
 
                 <div class="flex gap-3 flex-col">
                     <label>Tags</label>
-                    <TagsList color="white" can-add="true" @add="addNewTag">
-                        <Tag v-for="(tag, index) in task?.tags" :can-edit="true" :value="tag"
+                    <ModulesTagsList color="white" can-add="true" @add="addNewTag">
+                        <UITag v-for="(tag, index) in task?.tags" :can-edit="true" :value="tag"
                             @save="updateTag($event, index)">
                             {{ tag }}
-                        </Tag>
-                    </TagsList>
+                        </UITag>
+                    </ModulesTagsList>
                 </div>
 
-                <Input type="date" :value="task.deadline">
-                Deadline
-                </Input>
+                <UIInput type="date" :value="task.deadline">
+                    Deadline
+                </UIInput>
 
 
 
@@ -42,9 +43,9 @@
         </div>
 
         <footer>
-            <Button type="add">
+            <UIButton type="add">
                 Save
-            </Button>
+            </UIButton>
         </footer>
 
 

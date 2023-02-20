@@ -1,25 +1,25 @@
 <template>
     <NuxtLayout>
 
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Block types
-        </Headline>
+        </UIHeadline>
         <div class="flex gap-6">
-            <Filter @filterChange="filterChange" @sortChange="sortChange"></Filter>
+            <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <Add type="block" @onAdd="onAdd" @onCancel="onCancel">
-                <Form>
-                    <Input type="text" :value="newBlockForm.name" @valueUpdate="newBlockForm.name = $event">
-                    Name
-                    </Input>
-                </Form>
-            </Add>
+            <ModulesAdd type="block" @onAdd="onAdd" @onCancel="onCancel">
+                <UIForm>
+                    <UIInput type="text" :value="newBlockForm.name" @valueUpdate="newBlockForm.name = $event">
+                        Name
+                    </UIInput>
+                </UIForm>
+            </ModulesAdd>
         </div>
         <div class="flex md:gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/blocks/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
-                <Card :title="item.title" :body="item.body" :favorite="item.favorite"
-                    @favorite="event => updateFavorite(event, index)"></Card>
+                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
+                    @favorite="event => updateFavorite(event, index)"></ModulesCard>
             </NuxtLink>
 
         </div>

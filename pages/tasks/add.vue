@@ -1,10 +1,11 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Add new task
-        </Headline>
+        </UIHeadline>
 
-        <AddTask></AddTask>
+        <ModulesAddTask>
+        </ModulesAddTask>
         <footer class="flex gap-4">
             <Button type="add">Complete</Button>
             <Button type="nevermind">Nevermind</Button>

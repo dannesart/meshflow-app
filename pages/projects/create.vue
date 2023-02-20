@@ -2,9 +2,9 @@
 
     <NuxtLayout :name="layout">
         <template #header>
-            <Headline size="h1">
+            <UIHeadline size="h1">
                 Create new project
-            </Headline>
+            </UIHeadline>
         </template>
         <template #left>
             <div class="flex gap-4">
@@ -13,13 +13,13 @@
         </template>
         <template #right>
             <div class="w-96 flex flex-col gap-6 px-6 self-center justify-self-center place-self-center">
-                <Input>
-                Project name
-                </Input>
+                <UIInput>
+                    Project name
+                </UIInput>
 
-                <Button type="add">
+                <UIButton type="add">
                     Create
-                </Button>
+                </UIButton>
                 <NuxtLink to="/" class="px-6 py-3 text-center text-red-600">
                     Nevermind
                 </NuxtLink>

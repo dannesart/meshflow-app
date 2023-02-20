@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { CONFIG } from "~~/server/api/config";
 
 export const useSettingsStore = defineStore("SettingStore", {
   state: () => ({ web: false, dark: false }),
@@ -16,7 +17,7 @@ export const useSettingsStore = defineStore("SettingStore", {
     },
     async fetchSettings() {
       try {
-        const response = await axios.get("http://localhost:3000/api/settings");
+        const response = await axios.get(CONFIG.path + "/api/settings");
         this.web = response.data.web;
       } catch (error) {
         //TODO: Handle error

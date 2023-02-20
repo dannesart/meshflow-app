@@ -1,36 +1,36 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Settings
-        </Headline>
+        </UIHeadline>
 
-        <Headline size="h2">
+        <UIHeadline size="h2">
             General
-        </Headline>
+        </UIHeadline>
         <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
 
-            <ExtendedLink :label="'System'" :sub-label="('Set system as web or data/model')"
+            <ModulesExtendedLink :label="'System'" :sub-label="('Set system as web or data/model')"
                 :route="('/settings/general/system')">
-            </ExtendedLink>
+            </ModulesExtendedLink>
 
-            <ExtendedLink :label="'Grejs'" :sub-label="('Set system as web or data/model')"
+            <ModulesExtendedLink :label="'Grejs'" :sub-label="('Set system as web or data/model')"
                 :route="('/settings/general/system')">
-            </ExtendedLink>
+            </ModulesExtendedLink>
 
 
         </section>
-        <Headline size="h2">
+        <UIHeadline size="h2">
             Tasks
-        </Headline>
+        </UIHeadline>
         <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
             <div class="flex flex-col gap-3">
                 <label>Statuses</label>
-                <TagsList color="white" can-add="true" @add="addNewTag">
-                    <Tag v-for="(status, idx) in taskStatuses" class="cursor-pointer" can-edit="true" :value="status"
+                <ModulesTagsList color="white" can-add="true" @add="addNewTag">
+                    <UITag v-for="(status, idx) in taskStatuses" class="cursor-pointer" can-edit="true" :value="status"
                         @save="event => updateTag(event, idx)">{{
     status
-                        }}</Tag>
-                </TagsList>
+                        }}</UITag>
+                </ModulesTagsList>
             </div>
         </section>
     </NuxtLayout>

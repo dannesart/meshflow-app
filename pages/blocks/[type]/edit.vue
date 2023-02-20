@@ -1,9 +1,9 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
 
             Edit {{ type }}
-        </Headline>
+        </UIHeadline>
 
         <div class="flex gap-4">
             <Button :type="active === 'general' ? 'expand' : 'system'" @click="active = 'general'">

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TUser } from "~~/models/user";
+import { CONFIG } from "~~/server/api/config";
 
 const MOCK_USER: TUser = {
   name: "Danne",
@@ -22,7 +23,7 @@ export const useUserStore = defineStore("UserStore", {
     },
     async fetchUser() {
       try {
-        const response = await axios.get("http://localhost:3000/api/user");
+        const response = await axios.get(CONFIG.path + "/api/user");
         this.user = response.data;
       } catch (error) {
         //TODO: Handle error

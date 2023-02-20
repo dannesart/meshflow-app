@@ -1,9 +1,9 @@
 <template>
     <NuxtLayout>
 
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Notifications
-        </Headline>
+        </UIHeadline>
 
         <div class="flex md:gap-6 flex-col md:flex-row">
 

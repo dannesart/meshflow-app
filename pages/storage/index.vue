@@ -1,9 +1,9 @@
 <template>
 
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Storage
-        </Headline>
+        </UIHeadline>
     </NuxtLayout>
 </template>
 <script setup lang="ts"></script>

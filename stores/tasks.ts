@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TTask, TASK_STATUSES } from "~~/models/task";
+import { CONFIG } from "~~/server/api/config";
 
 const MOCK_TASK: TTask = {
   title: "Ge anna rätt roll",
@@ -55,7 +56,7 @@ export const useTasksStore = defineStore("TasksStore", {
 
     async fetchTasks() {
       try {
-        const response = await axios.get("http://localhost:3000/api/tasks");
+        const response = await axios.get(CONFIG.path + "/api/tasks");
         this.allTasks = response.data;
       } catch (error) {
         //TODO: Handle error

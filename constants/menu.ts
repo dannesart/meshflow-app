@@ -1,3 +1,5 @@
+import { BLOCKS, DATA, PAGES } from "./services";
+
 export const Menu = [
   {
     label: "",
@@ -14,25 +16,31 @@ export const Menu = [
     items: [
       {
         label: "Blocks",
-        icon: "block",
-        route: "/blocks",
-        webOnly: true,
+        icon: BLOCKS.icon,
+        route: BLOCKS.route,
+        webOnly: BLOCKS.webOnly,
       },
       {
         label: "Pages",
-        icon: "pages",
-        route: "/pages",
-        webOnly: true,
+        icon: PAGES.icon,
+        route: PAGES.route,
+        webOnly: PAGES.webOnly,
       },
       {
         label: "Data",
-        icon: "data",
-        route: "/data",
+        icon: DATA.icon,
+        route: DATA.route,
+        webOnly: DATA.webOnly,
       },
       {
-        label: "Models",
-        icon: "model",
-        route: "/models",
+        icon: "storage",
+        label: "Storage",
+        route: "/storage",
+      },
+      {
+        icon: "rocket",
+        label: "Api's",
+        route: "/apis",
       },
       {
         label: "Rules",
@@ -68,11 +76,6 @@ export const Menu = [
         icon: "tasks",
         label: "Tasks",
         route: "/tasks",
-      },
-      {
-        icon: "storage",
-        label: "Storage",
-        route: "/storage",
       },
     ],
   },

@@ -1,19 +1,19 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             {{ id }}
-        </Headline>
+        </UIHeadline>
 
 
         <div class="flex flex-col gap-3 bg-white rounded-xl shadow-lg p-6">
             <label>Set system as</label>
-            <Input type="select" :value="settingsStore.isWeb ? 'Web' : values[0]" :values="values"
-                @value-update="updateType"></Input>
+            <UIInput type="select" :value="settingsStore.isWeb ? 'Web' : values[0]" :values="values"
+                @value-update="updateType"></UIInput>
         </div>
         <div class="flex flex-col gap-3 bg-white rounded-xl shadow-lg p-6">
             <label>Mode</label>
-            <Input type="select" :value="settingsStore.isDark ? 'Dark' : modes[0]" :values="modes"
-                @value-update="updateMode"></Input>
+            <UIInput type="select" :value="settingsStore.isDark ? 'Dark' : modes[0]" :values="modes"
+                @value-update="updateMode"></UIInput>
         </div>
     </NuxtLayout>
 </template>

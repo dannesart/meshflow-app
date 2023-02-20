@@ -1,13 +1,15 @@
 <template>
     <NuxtLayout>
 
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Data types
-        </Headline>
+        </UIHeadline>
         <div class="flex gap-6">
-            <Filter @filterChange="filterChange" @sortChange="sortChange"></Filter>
+            <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
+            </ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <Add type="data"></Add>
+            <ModulesAdd type="data">
+            </ModulesAdd>
         </div>
         <div class="flex md:gap-6 flex-col md:flex-row">
 

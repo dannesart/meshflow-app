@@ -1,8 +1,8 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             {{ id }}
-        </Headline>
+        </UIHeadline>
         <div class="flex gap-6">
             Block with a type of {{ type }} and id {{ id }}
         </div>

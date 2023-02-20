@@ -1,9 +1,9 @@
 <template>
 
     <NuxtLayout :name="layout">
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Create new project
-        </Headline>
+        </UIHeadline>
     </NuxtLayout>
 
 </template>

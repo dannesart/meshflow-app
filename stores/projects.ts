@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { TProject } from "~~/models/project";
+import { CONFIG } from "~~/server/api/config";
 
 type TProjectsState = {
   _activeProjectId: string | null;
@@ -19,7 +20,7 @@ export const useProjectStore = defineStore("ProjectsStore", {
     },
     async fetchProjects() {
       try {
-        const response = await axios.get("http://localhost:3000/api/projects");
+        const response = await axios.get(CONFIG.path + "/api/projects");
         this._projects = response.data;
       } catch (error) {
         //TODO: Handle error

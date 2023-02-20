@@ -9,6 +9,7 @@ declare module 'nitropack' {
     '/api/models': Awaited<ReturnType<typeof import('../../server/api/models').default>>
     '/api': Awaited<ReturnType<typeof import('../../server/api/index').default>>
     '/api/data': Awaited<ReturnType<typeof import('../../server/api/data').default>>
+    '/api/config': Awaited<ReturnType<typeof import('../../server/api/config').default>>
     '/__nuxt_error': Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
   }
 }

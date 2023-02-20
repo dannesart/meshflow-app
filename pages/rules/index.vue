@@ -1,8 +1,8 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
             Rules
-        </Headline>
+        </UIHeadline>
         ...
     </NuxtLayout>
 </template>

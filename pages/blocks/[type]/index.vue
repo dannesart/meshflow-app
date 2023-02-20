@@ -1,19 +1,22 @@
 <template>
     <NuxtLayout>
-        <Headline size="h1">
+        <UIHeadline size="h1">
 
             {{ type }}
-        </Headline>
+        </UIHeadline>
         <div class="flex gap-6">
-            <Filter @filterChange="filterChange" @sortChange="sortChange"></Filter>
+            <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
+            </ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
             <NuxtLink :to="('/blocks/' + type + '/edit')"
                 class="px-6 py-3 rounded-lg flex items-center gap-3 hover:shadow-lg bg-white shadow-md text-slate-700">
-                <Icons name="setting"></Icons>
+                <UIIcons name="setting">
+                </UIIcons>
                 Edit
             </NuxtLink>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <Add :type="type"></Add>
+            <ModulesAdd :type="type">
+            </ModulesAdd>
         </div>
         <div class="flex md:gap-6 flex-col md:flex-row">
 
