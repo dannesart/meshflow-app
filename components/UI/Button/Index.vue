@@ -2,7 +2,9 @@
 
     <button class=" flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center"
         :class="getClasses(type, size || 'normal')" :name="name" :disabled="disabled">
-        <slot />
+        <UILoader v-if="isLoading"></UILoader>
+        <slot v-else />
+
     </button>
 
 </template>

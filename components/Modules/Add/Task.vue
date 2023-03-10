@@ -1,6 +1,6 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
-        <UIInput @valueUpdate="valueChange($event, 'title')" :value="newTask.title">
+        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :value="newTask.title">
             <label>
                 Title
             </label>

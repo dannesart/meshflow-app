@@ -12,6 +12,7 @@ type TTask = {
   createdBy: string;
   created: Date;
   tags?: string[];
+  subTasks?: TTask[];
 };
 
 const TaskValidator = Joi.object({

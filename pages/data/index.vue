@@ -14,8 +14,8 @@
         <div class="flex md:gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/data/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
-                <Card :title="item.title" :body="item.body" :favorite="item.favorite"
-                    @favorite="event => updateFavorite(event, index)"></Card>
+                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
+                    @favorite="event => updateFavorite(event, index)"></ModulesCard>
             </NuxtLink>
 
         </div>

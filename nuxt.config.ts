@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   css: ["~~/assets/css/main.css", "~~/assets/css/tailwind.css"],
   imports: {},
   modules: [
+    "@sidebase/nuxt-auth",
     "@nuxtjs/tailwindcss",
     [
       "@pinia/nuxt",
@@ -15,6 +16,12 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  auth: {
+    origin: "http://localhost:3000",
+    enableGlobalAppMiddleware: true,
+    defaultProvider: "auth0",
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},

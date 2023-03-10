@@ -11,20 +11,14 @@
         </UIHeadline>
         <div class="flex flex-col gap-3 " v-if="layer.classes && availableClasses">
             <div class="flex flex-col gap-2" v-for="cssClass in availableClasses">
-                <label>
+                <UIInput :type="cssClass.type" :values="cssClass.values"
+                    :value="layer.classes[cssClass.name] || cssClass.values[0]">
                     {{ cssClass.name }}
-                </label>
-                <select @change="setValue($event, cssClass.name)"
-                    :value="layer.classes[cssClass.name] || cssClass.values[0]"
-                    class="border border-slate-400 p-3 rounded-lg">
-                    <option v-for="value in cssClass.values" :class="value">
-                        {{ value }}
-                    </option>
-                </select>
+                </UIInput>
             </div>
-            <ModulesAddLayer :layers="layer.layers" :parentName="layer.name">
-            </ModulesAddLayer>
-            <Button type="delete" @click="deleteLayer">Remove layer</Button>
+            <AddLayer :layers="layer.layers" :parentName="layer.name">
+            </AddLayer>
+            <UIButton type="delete" @click="deleteLayer">Remove layer</UIButton>
         </div>
     </div>
 

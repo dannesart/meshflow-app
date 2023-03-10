@@ -1,6 +1,8 @@
 <template>
     <NuxtLayout>
 
+
+
         <UIHeadline size="h1">
             Block types
         </UIHeadline>

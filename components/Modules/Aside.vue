@@ -17,7 +17,7 @@
                     <li v-for="item in group.items">
                         <NuxtLink :to=item.route v-if="(item.webOnly && settingsStore.isWeb) || !item.webOnly"
                             class="text-lg text-gray-800 rounded-lg hover:bg-gray-100 py-3 px-5 flex gap-3 items-center"
-                            activeClass="font-bold">
+                            activeClass="font-bold text-blue-500">
                             <UIIcons :name="item.icon" v-if="item.icon && showIcons"></UIIcons>
                             {{ item.label }}
 

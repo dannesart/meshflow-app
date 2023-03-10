@@ -13,7 +13,7 @@
         </template>
         <template #right>
             <div class="w-96 flex flex-col gap-6 px-6 self-center justify-self-center place-self-center">
-                <UIInput>
+                <UIInput type="text">
                     Project name
                 </UIInput>
 

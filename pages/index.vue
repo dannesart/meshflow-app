@@ -68,7 +68,7 @@
         <div class="text-xs">
             Fungus is more than just a tool to organize and publish your website's content.
             It's a powerful tool to unleash your creativity, bring your vision to life and connect with your audience in
-            a meaningful way. With a Fungus, the possibilities are endless: you can create engaging blog posts, dynamic
+            a meaningful way. With Fungus, the possibilities are endless: you can create engaging blog posts, dynamic
             web
             pages, and interactive experiences that captivate and inspire your audience. So dream big, let your
             imagination run wild, and use your Fungus to make a positive impact on the world, one website at a time.
@@ -80,9 +80,9 @@
 
 
 
+
 import { useTasksStore } from "~~/stores/tasks";
 import { useCommentsStore } from "~~/stores/comments";
-
 
 const tasksStore = useTasksStore();
 const commentsStore = useCommentsStore();

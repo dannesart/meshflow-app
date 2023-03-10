@@ -21,7 +21,7 @@
                     <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl"
                         v-for="(task, index) in tasks.filter((task) => task.status === status)" draggable="true"
                         @dragstart="startDrag($event, task)">
-                        <ModulesCard :title="task.title" :body="task.description"
+                        <ModulesCard :title="task.title" :body="task.description" :class="'mb-0'"
                             @favorite="handleFavorite($event, task.title)"></ModulesCard>
                     </NuxtLink>
                 </UIDroppable>

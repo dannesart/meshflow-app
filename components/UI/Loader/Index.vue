@@ -1,5 +1,5 @@
 <template>
-    <svg width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+    <svg :width="width" :height="height" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
         <g fill="none" fill-rule="evenodd">
             <g transform="translate(1 1)" stroke-width="2">
                 <circle cx="5" cy="50" r="5">
@@ -25,4 +25,16 @@
     </svg>
 </template>
 
-<script setup></script>
+<script setup lang=ts>
+
+const { size }: { size?: string } = defineProps(['size']);
+
+const SIZES: { [key: string]: string } = {
+    base: '24',
+    lg: '40'
+}
+const width = SIZES[size || 'base'];
+const height = SIZES[size || 'base'];
+const viewBox = `0 0 57 57`
+
+</script>

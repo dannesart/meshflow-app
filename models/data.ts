@@ -1,6 +1,6 @@
 export type TData = {
-  title: String;
-  id: String;
+  title: string;
+  id: string;
   favorite: Boolean;
   modelId: String;
   createdBy: String;

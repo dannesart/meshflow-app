@@ -16,6 +16,8 @@
                 <UIInput type="text-lg" :value="task.description">
                     Description
                 </UIInput>
+
+                <ModulesTodo></ModulesTodo>
             </UIForm>
             <aside class="w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
                 <UIInput type="select" :values="TASK_STATUSES" :value="task?.status"

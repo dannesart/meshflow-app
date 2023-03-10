@@ -2,7 +2,7 @@
 	<header class="py-4 px-10 gap-6 h-full flex flex-row justify-between">
 		<div class="h-full flex-1">
 
-			<UIButton type="back" @click.prevent="$router.back()" v-if="id || category">
+			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type">
 				<UIIcons name="arrow-left"></UIIcons>
 				Back
 			</UIButton>
@@ -19,38 +19,44 @@
 					{{ notifications }}</div>
 			</div>
 
-			<UIUserInfo @click="openMenu" :name="currentUser.name" role="developer"></UIUserInfo>
+			<UIUserInfo @click="openMenu" :name="data?.user?.name" role="developer"></UIUserInfo>
 
-			<div class="w-96 bg-white outline-none shadow-xl px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-30 transition-transform translate-x-full focus-within:translate-x-0"
+			<div class="w-96 bg-white outline-none shadow-xl justify-between px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-30 transition-transform translate-x-full focus-within:translate-x-0"
 				ref="menuRef" tabindex="0" @focusin="isMenuActive = true" @focusout="isMenuActive = false">
-				<UIUserInfo :class="'self-end'" :name="currentUser.name" role="developer"></UIUserInfo>
-				<UIHeadline size="h3">
-					Projects
-				</UIHeadline>
-				<UIList>
-					<UIListItem v-for="project in projectStore.projects" :class="{ 'justify-between': true, }"
-						@click="selectProject(project.id)">
-						<UIHeadline size="h4" :class="{ 'text-sky-200': projectStore.activeId === project.id }">
-							{{ project.name }}
-						</UIHeadline>
+				<div class="flex gap-4 flex-col">
+					<UIUserInfo :class="'self-end'" :name="data?.user?.name" role="developer"></UIUserInfo>
+					<UIHeadline size="h3">
+						Projects
+					</UIHeadline>
+					<UIList>
+						<UIListItem v-for="project in projectStore.projects" :class="{ 'justify-between': true, }"
+							@click="selectProject(project.id)">
+							<UIHeadline size="h4" :class="{ 'text-sky-200': projectStore.activeId === project.id }">
+								{{ project.name }}
+							</UIHeadline>
 
 
-						<div class="relative">
-							<div
-								class="absolute -top-2 right-0 w-10 h-10 rounded-full bg-sky-600 text-white flex justify-center items-center border-2 border-white">
-								D
+							<div class="relative">
+								<div
+									class="absolute -top-2 right-0 w-10 h-10 rounded-full bg-sky-600 text-white flex justify-center items-center border-2 border-white">
+									D
+								</div>
+								<div
+									class="absolute -top-2 right-4 w-10 h-10 rounded-full bg-purple-600 text-white flex justify-center items-center border-2 border-white">
+									D
+								</div>
 							</div>
-							<div
-								class="absolute -top-2 right-4 w-10 h-10 rounded-full bg-purple-600 text-white flex justify-center items-center border-2 border-white">
-								D
-							</div>
-						</div>
-					</UIListItem>
-				</UIList>
+						</UIListItem>
+					</UIList>
 
-				<NuxtLink class="text-blue-600 text-right cursor-pointer" to="/projects/create">
-					Create new project
-				</NuxtLink>
+					<NuxtLink class="text-blue-600 text-right cursor-pointer" to="/projects/create">
+						Create new project
+					</NuxtLink>
+				</div>
+
+				<UIButton type="nevermind" class="" @click="logout">
+					Log me out, please
+				</UIButton>
 
 			</div>
 
@@ -82,9 +88,10 @@ import { useProjectStore } from "~~/stores/projects";
 // Check if route contains Id param.
 // Then we know it's not a "root" page. 
 // We can then show back button.
-const { id, category } = useRoute().params;
+const { id, type } = useRoute().params;
 const { currentUser } = useUserStore();
 const projectStore = useProjectStore();
+const { status, data, signIn, signOut } = useSession()
 
 const isMenuActive = ref(false);
 const menuRef = ref();
@@ -97,6 +104,11 @@ const openNotificationMenu = () => notificationMenuRef.value.focus();
 const selectProject = (projectId: string) => projectStore.setActive(projectId)
 
 const notifications = 3;
+
+const logout = () => {
+	// navigateTo('/')
+	signOut();
+}
 
 
 </script>

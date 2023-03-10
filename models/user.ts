@@ -4,6 +4,7 @@ type TUser = {
   name: string;
   email: string;
   id: string;
+  nickname: string;
 };
 
 const UserValidator = Joi.object({

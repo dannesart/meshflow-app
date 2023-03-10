@@ -1,8 +1,8 @@
 <template>
 
-    <div class="p-6 bg-slate-100 rounded-xl" @drop="dropEvent($event)" @dragenter="dragEnter($event)"
-        @dragover="dragOver($event)" @dragleave="dragLeave($event)" @dragend="dragEnd($event)"
-        @dragexit="dragExit($event)" :class="{ 'pt-20' : hoverState }">
+    <div class="p-6 bg-slate-100 rounded-xl flex flex-col gap-6" @drop="dropEvent($event)"
+        @dragenter="dragEnter($event)" @dragover="dragOver($event)" @dragleave="dragLeave($event)"
+        @dragend="dragEnd($event)" @dragexit="dragExit($event)" :class="{ 'pt-20' : hoverState }">
 
         <slot />
 

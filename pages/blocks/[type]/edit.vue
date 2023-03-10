@@ -6,19 +6,19 @@
         </UIHeadline>
 
         <div class="flex gap-4">
-            <Button :type="active === 'general' ? 'expand' : 'system'" @click="active = 'general'">
+            <UIButton :type="active === 'general' ? 'expand' : 'system'" @click="active = 'general'">
                 General
-            </Button>
-            <Button :type="active === 'visual' ? 'expand' : 'system'" @click="active = 'visual'">
+            </UIButton>
+            <UIButton :type="active === 'visual' ? 'expand' : 'system'" @click="active = 'visual'">
                 Visual
-            </Button>
+            </UIButton>
         </div>
 
         <div v-if="active === 'general'">
             Edit info
         </div>
 
-        <VisualEditor v-if="active === 'visual'"></VisualEditor>
+        <ModulesVisualEditor v-if="active === 'visual'"></ModulesVisualEditor>
 
     </NuxtLayout>
 </template>
