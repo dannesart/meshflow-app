@@ -11,8 +11,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/head/runtime/lib/vueuse-head.plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/router").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client").default> &
-  InjectionType<typeof import("../../node_modules/@sidebase/nuxt-auth/dist/runtime/plugin").default> &
-  InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/payload.client").default>
+  InjectionType<typeof import("../../node_modules/@sidebase/nuxt-auth/dist/runtime/plugin").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }

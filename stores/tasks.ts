@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TTask } from "~~/models/task";
-import { CONFIG } from "~~/server/api/config";
+import { useRuntimeConfig } from "#app";
 
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
@@ -49,7 +49,10 @@ export const useTasksStore = defineStore("TasksStore", {
 
     async fetchTasks() {
       try {
-        const response = await axios.get(CONFIG.path + "/api/tasks");
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/tasks"
+        );
         this.allTasks = response.data;
       } catch (error) {
         //TODO: Handle error

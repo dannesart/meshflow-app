@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TUser } from "~~/models/user";
-import { CONFIG } from "~~/server/api/config";
+import { useRuntimeConfig } from "#app";
 
 export const useUserStore = defineStore("UserStore", {
   state: () =>
@@ -21,9 +21,12 @@ export const useUserStore = defineStore("UserStore", {
           // const { user } = useAuth0();
           // this.setUser(user.value as TUser);
         }
+        const config = useRuntimeConfig();
         // const { email, nickname, name, picture } = useAuth0().user.value;
         // console.log({ email, nickname, name, picture });
-        const response = await axios.get(CONFIG.path + "/api/user");
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/user"
+        );
         // if (email && name && nickname)
         //   this.setUser({ email, nickname, name, id: "324234" });
       } catch (error) {

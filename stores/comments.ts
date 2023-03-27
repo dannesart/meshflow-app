@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { TComment } from "~~/models/comments";
+import { useRuntimeConfig } from "#app";
 
 type TCommentsState = {
   _comments: TComment[];
@@ -18,7 +19,10 @@ export const useCommentsStore = defineStore("CommentsStore", {
   actions: {
     async fetchComments() {
       try {
-        const response = await axios.get("http://localhost:3000/api/comments");
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/comments"
+        );
         this._comments = response.data;
       } catch (error) {
         //TODO: Handle error

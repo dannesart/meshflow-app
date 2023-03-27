@@ -42,6 +42,8 @@ declare module 'nuxt/schema' {
    },
   }
   interface PublicRuntimeConfig {
+   REDIRECT_URI: string,
+
    auth: {
       isEnabled: boolean,
 

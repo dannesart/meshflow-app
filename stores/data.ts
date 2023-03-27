@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TData } from "~~/models/data";
-import { CONFIG } from "~~/server/api/config";
+import { useRuntimeConfig } from "#app";
 
 export const useDataStore = defineStore("DataStore", {
   state: () =>
@@ -46,7 +46,10 @@ export const useDataStore = defineStore("DataStore", {
 
     async fetchData() {
       try {
-        const response = await axios.get(CONFIG.path + "/api/data");
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/data"
+        );
         this._allData = response.data;
       } catch (error) {
         //TODO: Handle error

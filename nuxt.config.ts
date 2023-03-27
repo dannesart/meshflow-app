@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   css: ["~~/assets/css/main.css", "~~/assets/css/tailwind.css"],
   imports: {},
+
   modules: [
     "@sidebase/nuxt-auth",
     "@nuxtjs/tailwindcss",
@@ -16,8 +17,13 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  runtimeConfig: {
+    public: {
+      REDIRECT_URI: process.env.REDIRECT_URI,
+    },
+  },
   auth: {
-    origin: "http://localhost:3000",
+    origin: process.env.REDIRECT_URI,
     enableGlobalAppMiddleware: true,
     defaultProvider: "auth0",
   },

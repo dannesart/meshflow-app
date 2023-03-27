@@ -1,7 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { TProject } from "~~/models/project";
-import { CONFIG } from "~~/server/api/config";
+import { useRuntimeConfig } from "#app";
 
 type TProjectsState = {
   _activeProjectId: string | null;
@@ -20,7 +20,10 @@ export const useProjectStore = defineStore("ProjectsStore", {
     },
     async fetchProjects() {
       try {
-        const response = await axios.get(CONFIG.path + "/api/projects");
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/projects"
+        );
         this._projects = response.data;
       } catch (error) {
         //TODO: Handle error

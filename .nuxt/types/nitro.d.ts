@@ -23,11 +23,11 @@ declare module 'nitropack' {
     '/api/data': {
       'default': Awaited<ReturnType<typeof import('../../server/api/data').default>>
     }
-    '/api/config': {
-      'default': Awaited<ReturnType<typeof import('../../server/api/config').default>>
-    }
     '/api/auth/**': {
       'default': Awaited<ReturnType<typeof import('../../server/api/auth/[...]').default>>
+    }
+    '/__nuxt_error': {
+      'default': Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
     }
   }
 }
