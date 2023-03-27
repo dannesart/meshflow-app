@@ -21,7 +21,7 @@
                     <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl"
                         v-for="(task, index) in tasks.filter((task) => task.status === status)" draggable="true"
                         @dragstart="startDrag($event, task)">
-                        <ModulesCard :title="task.title" :body="task.description" :class="'mb-0'"
+                        <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
                             @favorite="handleFavorite($event, task.title)"></ModulesCard>
                     </NuxtLink>
                 </UIDroppable>
@@ -37,14 +37,15 @@ import { TTask, TASK_STATUSES } from '~~/models/task';
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 
-const { setNotification } = useNotificationStore();
+const notificationsStore = useNotificationStore();
+const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
-const { tasks } = tasksStore;
+const { tasks, addTask } = tasksStore;
 
 const handleFavorite = (isFavorite: boolean, title: string) => {
     console.log(isFavorite)
-    if (isFavorite) {
-        setNotification('Pelle has liked', title)
+    if (!isFavorite) {
+        setNotification('Pelle has liked', title, "liked")
     }
 }
 
@@ -71,8 +72,9 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
 }
 
 
-const onAdd = () => {
-
+const onAdd = (task: TTask) => {
+    setNotification("Task created", "Your task was successfully created", "success")
+    addTask(task)
 }
 
 const onCancel = () => {

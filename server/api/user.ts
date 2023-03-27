@@ -1,5 +1,6 @@
 import { TUser } from "~~/models/user";
 
 export default defineEventHandler(async (e) => {
-  return {};
+  const sessions = e.context.sessions;
+  return e.context;
 });

@@ -1,25 +1,21 @@
-import Joi from "Joi";
+import { z } from "zod";
 
 const TASK_STATUSES: string[] = ["todo", "doing", "on hold", "done"];
 
-type TTask = {
-  title: string;
-  description: string;
-  deadline?: Date;
-  status: string;
-  id: string;
-  favorite: boolean;
-  createdBy: string;
-  created: Date;
-  tags?: string[];
-  subTasks?: TTask[];
-};
+const TaskSchema = z
+  .object({
+    title: z.string().min(3).max(50),
+    description: z.string().min(0).max(300).optional(),
+    deadline: z.date().optional(),
+    status: z.string(),
+    id: z.string(),
+    createdBy: z.string(),
+    created: z.date(),
+    tags: z.array(z.string()),
+    subTasks: z.array(z.string()).optional(),
+  })
+  .strict();
 
-const TaskValidator = Joi.object({
-  title: Joi.string().min(3).max(30).required(),
-  description: Joi.string().min(10).max(300).required(),
-  deadline: Joi.date(),
-  status: Joi.string().required(),
-});
+type TTask = z.infer<typeof TaskSchema>;
 
-export { TaskValidator, TTask, TASK_STATUSES };
+export { TaskSchema, TTask, TASK_STATUSES };

@@ -7,18 +7,18 @@ export default defineEventHandler(async (e) => {
       description: "Hon ska ha admin",
       status: TASK_STATUSES[0],
       id: "3244324",
-      favorite: false,
       created: new Date(),
       createdBy: "danne",
+      tags: ["Role", "grejs"],
     },
     {
       title: "Skapa en nyhetskomponent",
       description: "Måste innehålla titel, beskriving och bild",
       status: TASK_STATUSES[1],
       id: "3424352",
-      favorite: false,
       created: new Date("2022-12-17"),
       createdBy: "anna",
+      tags: [],
     },
   ];
   return tasks;

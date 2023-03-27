@@ -5,6 +5,12 @@
                 {{ label }}
             </strong>
             <small>{{ subLabel }}</small>
+
+            <ModulesTagsList :can-add="false" v-if="tags">
+                <UITag v-for="tag in tags" class="px-2 py-0.5 text-sm">
+                    {{ tag }}
+                </UITag>
+            </ModulesTagsList>
         </div>
         <div class="">
             <button class="w-8 h-8 bg-blue-600 flex justify-center items-center rounded-full text-white">
@@ -17,6 +23,6 @@
 </template>
 
 <script setup>
-const { label, subLabel, route, isLast } = defineProps(['label', 'subLabel', 'route', 'isLast']);
+const { label, subLabel, route, isLast, tags } = defineProps(['label', 'subLabel', 'route', 'isLast', 'tags']);
 
 </script>

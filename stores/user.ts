@@ -23,11 +23,7 @@ export const useUserStore = defineStore("UserStore", {
         }
         // const { email, nickname, name, picture } = useAuth0().user.value;
         // console.log({ email, nickname, name, picture });
-        // const response = await axios.get(CONFIG.path + "/api/user", {
-        //   headers: {
-        //     email,
-        //   },
-        // });
+        const response = await axios.get(CONFIG.path + "/api/user");
         // if (email && name && nickname)
         //   this.setUser({ email, nickname, name, id: "324234" });
       } catch (error) {

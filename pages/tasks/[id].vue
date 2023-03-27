@@ -4,11 +4,12 @@
             <UIHeadline size="h1">
                 {{ task?.title }}
             </UIHeadline>
-            <UIButton data-favorite :type="task?.favorite ? 'love' : 'dead'" size="round"
+            <!-- <UIButton data-favorite :type="task?.favorite ? 'love' : 'dead'" size="round"
                 @click="event => toggleFavorite()">
                 <UIIcons name="heart">
                 </UIIcons>
-            </UIButton>
+            </UIButton> -->
+            <ModulesFavorite @favorite="toggleFavorite" :class="'relative top-auto right-auto'"></ModulesFavorite>
 
         </header>
         <div class="flex gap-6">
@@ -59,15 +60,20 @@
 <script setup lang="ts">
 import { TTask, TASK_STATUSES } from '~~/models/task';
 import { useTasksStore } from "~~/stores/tasks";
+import { useNotificationStore } from "~~/stores/notifications";
 
 const tasksStore = useTasksStore();
+const notificationStore = useNotificationStore();
+const { setNotification } = notificationStore;
 const { taskById, updateTask } = tasksStore;
 const { id } = useRoute().params;
 const task: TTask = taskById(id as string) as TTask;
 
 const toggleFavorite = () => {
     if (task) {
+        setNotification("Liked task", "Danne liked you task")
         task.favorite = !task?.favorite;
+
     }
 }
 

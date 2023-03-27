@@ -70,7 +70,7 @@ const toggleFilterOptions = () => {
     showingSort.value = false;
     showingFilter.value = !showingFilter.value
 };
-const filters = ref<ModulesFilters>({
+const filters = ref({
     favorites: false
 });
 const setFilter = async (key: string, value: boolean) => {

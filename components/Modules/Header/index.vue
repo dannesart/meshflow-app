@@ -68,9 +68,14 @@
 					Notifications
 				</UIHeadline>
 				<UIList>
-					<UIListItem :class="'flex-col'">
-						<UIHeadline size="h4">Title</UIHeadline>
-						<p>Something...</p>
+					<UIListItem :class="'flex-row'">
+						<div class="w-10 h-10 rounded-lg bg-red-100 text-pink-500 flex items-center justify-center">
+							<UIIcons name="notifications"></UIIcons>
+						</div>
+						<div class="flex-col gap-3">
+							<UIHeadline size="h4">Title</UIHeadline>
+							<p>Something...</p>
+						</div>
 					</UIListItem>
 				</UIList>
 				<UIButton :type="'link'">

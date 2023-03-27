@@ -5,14 +5,7 @@
             Edit {{ type }}
         </UIHeadline>
 
-        <div class="flex gap-4">
-            <UIButton :type="active === 'general' ? 'expand' : 'system'" @click="active = 'general'">
-                General
-            </UIButton>
-            <UIButton :type="active === 'visual' ? 'expand' : 'system'" @click="active = 'visual'">
-                Visual
-            </UIButton>
-        </div>
+        <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
 
         <div v-if="active === 'general'">
             Edit info
@@ -25,8 +18,22 @@
 
 
 <script setup lang="ts">
+import { TTab } from '~~/components/UI/Tabs/tabs.model';
+
 
 const { type } = useRoute().params;
-const active = ref('general');
+const active = ref('model');
+const tabs: TTab[] = [
+    {
+        name: 'model',
+        label: 'Model'
+    }, {
+        name: 'visual',
+        label: 'Visual'
+    }
+]
+const setActiveTab = (tab: TTab) => {
+    active.value = tab.name;
+}
 
 </script>

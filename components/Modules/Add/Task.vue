@@ -1,6 +1,6 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
-        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :value="newTask.title">
+        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :value="newTask?.title">
             <label>
                 Title
             </label>
@@ -10,7 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { TaskValidator, TASK_STATUSES, TTask } from '~~/models/task';
+import { TaskSchema, TASK_STATUSES, TTask } from '~~/models/task';
+import { useSession } from "#imports";
+const { data } = useSession();
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = TASK_STATUSES;
@@ -19,12 +21,11 @@ let newTask: TTask = {
     title: '',
     description: '',
     status: statuses[0],
-    id: '324234',
-    favorite: false,
+    id: (Math.random() * 1000).toString(),
+    tags: [],
     created: new Date(),
-    createdBy: 'Daniel'
+    createdBy: data.value?.user?.name || ''
 }
-
 
 const valueChange = (event: string, key: string) => {
     (newTask as any)[key] = event;
@@ -33,11 +34,12 @@ const valueChange = (event: string, key: string) => {
 }
 
 const validate = async (newTask: TTask) => {
-    const { error, value } = await TaskValidator.validate(newTask);
-    if (error && error.details && error.details.length) {
-        events('onError', error)
+    const validated = await TaskSchema.safeParse(newTask);
+
+    if (!validated.success) {
+        events('onError', validated.error)
     } else {
-        events('onValid')
+        events('onValid', validated.data)
     }
 }
 

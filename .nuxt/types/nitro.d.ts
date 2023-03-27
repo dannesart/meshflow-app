@@ -29,9 +29,6 @@ declare module 'nitropack' {
     '/api/auth/**': {
       'default': Awaited<ReturnType<typeof import('../../server/api/auth/[...]').default>>
     }
-    '/__nuxt_error': {
-      'default': Awaited<ReturnType<typeof import('../../node_modules/nuxt/dist/core/runtime/nitro/renderer').default>>
-    }
   }
 }
 declare global {

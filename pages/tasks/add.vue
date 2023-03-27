@@ -7,8 +7,8 @@
         <ModulesAddTask>
         </ModulesAddTask>
         <footer class="flex gap-4">
-            <Button type="add">Complete</Button>
-            <Button type="nevermind">Nevermind</Button>
+            <UIButton type="add">Complete</UIButton>
+            <UIButton type="nevermind">Nevermind</UIButton>
         </footer>
     </NuxtLayout>
 </template>

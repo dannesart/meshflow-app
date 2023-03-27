@@ -1,17 +1,12 @@
-import Joi from "Joi";
+import { z } from "zod";
 
-type TUser = {
-  name: string;
-  email: string;
-  id: string;
-  nickname: string;
-};
-
-const UserValidator = Joi.object({
-  title: Joi.string().min(3).max(30).required(),
-  description: Joi.string().min(10).max(300).required(),
-  deadline: Joi.date(),
-  status: Joi.string().required(),
+const UserSchema = z.object({
+  name: z.string().min(1).max(100),
+  email: z.string().email(),
+  id: z.string(),
+  nickname: z.string().min(1),
 });
 
-export { UserValidator, TUser };
+type TUser = z.infer<typeof UserSchema>;
+
+export { UserSchema, TUser };

@@ -14,7 +14,6 @@
         <ModulesAddTask v-if="type === 'task'" @on-valid="setValid" @on-error="setInvalid"></ModulesAddTask>
 
         <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
-            {{ isValid }}
             <UIButton type="add" @click="complete()" :disabled="!isValid">
                 Complete
             </UIButton>
@@ -32,14 +31,16 @@
 const { type } = defineProps(['type']);
 const emitEvents = defineEmits(['onAdd', 'onCancel']);
 let showModal = ref(false);
-let isValid = false;
+let isValid = ref(false);
+let addData = ref();
 
-const setValid = (object: any) => {
-    isValid = true;
+const setValid = (validData: any) => {
+    isValid.value = true;
+    addData.value = validData
 }
 
 const setInvalid = (object: any) => {
-    isValid = false;
+    isValid.value = false;
 }
 
 const addNewData = () => {
@@ -49,7 +50,7 @@ const addNewData = () => {
 }
 const complete = () => {
     if (!isValid) false;
-    emitEvents("onAdd")
+    emitEvents("onAdd", addData.value)
     showModal.value = false;
 }
 const cancelNewData = () => {

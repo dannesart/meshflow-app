@@ -1,23 +1,13 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { TTask, TASK_STATUSES } from "~~/models/task";
+import { TTask } from "~~/models/task";
 import { CONFIG } from "~~/server/api/config";
-
-const MOCK_TASK: TTask = {
-  title: "Ge anna rätt roll",
-  description: "Hon ska ha admin",
-  status: TASK_STATUSES[0],
-  id: "3244324",
-  favorite: false,
-  created: new Date(),
-  createdBy: "danne",
-};
 
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
     <{ allTasks: TTask[]; task: TTask | null; isEditing: boolean }>{
       isEditing: false,
-      allTasks: [MOCK_TASK],
+      allTasks: [],
       task: null,
     },
   getters: {
@@ -52,6 +42,9 @@ export const useTasksStore = defineStore("TasksStore", {
     },
     setCurrentTask(task: TTask) {
       this.task = task;
+    },
+    addTask(task: TTask) {
+      this.allTasks.push(task);
     },
 
     async fetchTasks() {

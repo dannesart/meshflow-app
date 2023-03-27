@@ -9,4 +9,5 @@ export default NuxtAuthHandler({
       issuer: "https://dannesart.eu.auth0.com",
     }),
   ],
+  secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
 });

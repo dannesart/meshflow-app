@@ -15,6 +15,9 @@ export const useNotificationStore = defineStore("NotificationStore", {
     notification: (state) => state._notification as TNotification | null,
   },
   actions: {
+    setNotifications(notifications: TNotification[]) {
+      this._notifications = notifications;
+    },
     setNotification(title: string, body: string, type?: string) {
       if (this._notification) {
         this._queue.unshift({ title, body, type });
