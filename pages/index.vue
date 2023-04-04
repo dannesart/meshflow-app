@@ -41,12 +41,8 @@
                     <UIHeadline size="h3">
                         Latests tasks
                     </UIHeadline>
-                    <NuxtLink to="/tasks/add" class="text-blue-600">
-                        + Create new task
-                    </NuxtLink>
-                    <!-- <Button type="link" @click="triggerAddNewTask">
-                        
-                    </Button> -->
+                    <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
+                    </ModulesAdd>
                 </div>
                 <div class=" flex gap-5 ">
                     <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
@@ -65,28 +61,31 @@
             </div>
         </div>
 
-        <div class="text-xs">
-            Fungus is more than just a tool to organize and publish your website's content.
-            It's a powerful tool to unleash your creativity, bring your vision to life and connect with your audience in
-            a meaningful way. With Fungus, the possibilities are endless: you can create engaging blog posts, dynamic
-            web
-            pages, and interactive experiences that captivate and inspire your audience. So dream big, let your
-            imagination run wild, and use your Fungus to make a positive impact on the world, one website at a time.
-        </div>
     </NuxtLayout>
 </template>
 
-<script setup>
-
-
-
+<script setup lang=ts>
 
 import { useTasksStore } from "~~/stores/tasks";
 import { useCommentsStore } from "~~/stores/comments";
+import { TTask, TASK_STATUSES } from '~~/models/task';
+import { useNotificationStore } from "~~/stores/notifications";
 
+const notificationsStore = useNotificationStore();
+const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
 const commentsStore = useCommentsStore();
-const { latest } = tasksStore;
+const { latest, tasks, addTask } = tasksStore;
+
+const onAdd = (task: TTask) => {
+    setNotification("Task created", "Your task was successfully created", "success")
+    addTask(task);
+    //useRouter().push('/tasks')
+}
+
+const onCancel = () => {
+
+}
 
 
 </script>

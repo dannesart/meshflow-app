@@ -29,7 +29,7 @@ const classes = [
   },
   {
     name: "Background",
-    type: "color",
+    type: "select",
     values: ["none", "bg-white", "bg-green-400", "bg-purple-400", "bg-red-400"],
   },
 ];

@@ -1,8 +1,8 @@
 <template>
-    <div class="flex rounded-lg bg-white shadow-lg overflow-hidden">
+    <div class="flex gap-3 overflow-hidden">
         <div v-for="tab in tabs" @click="change(tab)" name="tab"
-            class="px-6 py-3 cursor-pointer flex-1 text-center border-r last:border-r-0"
-            :class="{ 'text-white bg-blue-600': active === tab.name }">
+            class="px-6 py-3 cursor-pointer flex-1 text-center rounded-lg"
+            :class="{ ' bg-slate-100 font-semibold': active === tab.name }">
             {{ tab.label }}
         </div>
     </div>

@@ -1,8 +1,8 @@
 
 <template>
 
-    <UIButton type="add" name="add-button" @click="addNewData()">
-        Add
+    <UIButton :type="asLink ? 'link' : 'add'" name="add-button" @click="addNewData()">
+        {{ label || 'Add' }}
     </UIButton>
 
     <UIModal :show-modal="showModal" @on-close="cancelNewData()">
@@ -28,7 +28,7 @@
 <script setup lang="ts">
 
 
-const { type } = defineProps(['type']);
+const { type, asLink, label } = defineProps(['type', 'asLink', 'label']);
 const emitEvents = defineEmits(['onAdd', 'onCancel']);
 let showModal = ref(false);
 let isValid = ref(false);

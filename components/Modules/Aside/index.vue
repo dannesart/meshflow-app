@@ -6,7 +6,7 @@
             <button class="md:hidden px-3 py-3 -ml-3" @click="toggleMenu()">
                 <UIIcons :name="menuState ? 'close' : 'menu'"></UIIcons>
             </button>
-            Meshflow
+            meshflow
         </div>
         <nav class="flex flex-col gap-3" v-bind:class="{ 'hidden md:flex': !menuState }">
             <div v-for="group in Menu">

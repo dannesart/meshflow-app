@@ -3,9 +3,15 @@ import axios from "axios";
 import { TTask } from "~~/models/task";
 import { useRuntimeConfig } from "#app";
 
+type TState = {
+  allTasks: TTask[];
+  task: TTask | null;
+  isEditing: boolean;
+};
+
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
-    <{ allTasks: TTask[]; task: TTask | null; isEditing: boolean }>{
+    <TState>{
       isEditing: false,
       allTasks: [],
       task: null,

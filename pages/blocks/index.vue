@@ -41,13 +41,13 @@ const newBlockForm = ref({
 const data = ref([
     {
         title: "Projects",
-        body: "23",
+        body: "23 active projects",
         id: "projects",
         favorite: true
     },
     {
         title: "Companies",
-        body: "6",
+        body: "6 active companies",
         id: "companies",
         favorite: false
     }
