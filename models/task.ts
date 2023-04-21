@@ -1,6 +1,14 @@
 import { z } from "zod";
 
-const TASK_STATUSES: string[] = ["todo", "doing", "on hold", "done"];
+const TASK_STATUSES: string[] = [
+  "backlog",
+  "todo",
+  "doing",
+  "reviewing",
+  "on hold",
+  "testing",
+  "done",
+];
 
 const TaskSchema = z
   .object({

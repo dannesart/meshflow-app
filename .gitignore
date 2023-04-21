@@ -5,4 +5,8 @@ dist
 .vscode
 .env
 coverage
-coverage/
+coverage/*
+./coverage/**
+coverage/*.html
+coverage/*.css
+coverage/*.js

@@ -6,7 +6,6 @@
             </label>
         </UIInput>
     </UIForm>
-
 </template>
 
 <script setup lang="ts">

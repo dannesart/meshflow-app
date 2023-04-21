@@ -4,17 +4,12 @@
             <UIHeadline size="h1">
                 {{ task?.title }}
             </UIHeadline>
-            <!-- <UIButton data-favorite :type="task?.favorite ? 'love' : 'dead'" size="round"
-                @click="event => toggleFavorite()">
-                <UIIcons name="heart">
-                </UIIcons>
-            </UIButton> -->
             <ModulesFavorite @favorite="toggleFavorite" :class="'relative top-auto right-auto'"></ModulesFavorite>
 
         </header>
         <div class="flex gap-6">
-            <UIForm :class="'flex-1'">
-                <UIInput type="text-lg" :value="task.description">
+            <UIForm :class="'flex-1 flex flex-col gap-6'">
+                <UIInput type="text-lg" :value="task?.description">
                     Description
                 </UIInput>
 
@@ -46,7 +41,7 @@
         </div>
 
         <footer>
-            <UIButton type="add">
+            <UIButton type="add" @click="save()">
                 Save
             </UIButton>
         </footer>
@@ -72,7 +67,7 @@ const task: TTask = taskById(id as string) as TTask;
 const toggleFavorite = () => {
     if (task) {
         setNotification("Liked task", "Danne liked you task")
-        task.favorite = !task?.favorite;
+        //task.favorite = !task?.favorite;
 
     }
 }
@@ -91,6 +86,10 @@ const addNewTag = () => {
 
     task.tags.push('tag ' + task.tags.length)
 
+}
+
+const save = () => {
+    updateTask(task, { ...task });
 }
 
 

@@ -19,12 +19,15 @@
 					{{ notifications }}</div>
 			</div>
 
-			<UIUserInfo @click="openMenu" :name="data?.user?.name" role="developer"></UIUserInfo>
+			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" role="developer"></UIUserInfo>
 
 			<div class="w-96 bg-white outline-none shadow-xl justify-between px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-30 transition-transform translate-x-full focus-within:translate-x-0"
 				ref="menuRef" tabindex="0" @focusin="isMenuActive = true" @focusout="isMenuActive = false">
 				<div class="flex gap-4 flex-col">
-					<UIUserInfo :class="'self-end'" :name="data?.user?.name" role="developer"></UIUserInfo>
+					<UIUserInfo :class="'self-end'" :image="data?.user?.image" :name="data?.user?.name" role="developer">
+					</UIUserInfo>
+
+
 					<UIHeadline size="h3">
 						Projects
 					</UIHeadline>
@@ -54,9 +57,16 @@
 					</NuxtLink>
 				</div>
 
-				<UIButton type="nevermind" class="" @click="logout">
-					Log me out, please
-				</UIButton>
+				<div class="flex flex-col gap-3">
+					<NuxtLink
+						class="text-blue-600 text-center border border-blue-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
+						to="/user">
+						Go to profile
+					</NuxtLink>
+					<UIButton type="nevermind" class="" @click="logout">
+						Log me out, please
+					</UIButton>
+				</div>
 
 			</div>
 

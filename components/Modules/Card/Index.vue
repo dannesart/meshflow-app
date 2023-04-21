@@ -1,9 +1,8 @@
 <template>
-
     <div class="rounded-xl shadow-lg bg-white relative hover:shadow-xl hover:cursor-pointer"
         :class="{ 'p-6 py-4': size === 'small', 'p-10 py-8': size !== 'small' }">
 
-        <UIHeadline size="h3" data-title>
+        <UIHeadline size="h3" data-title :class="'pr-12'">
             {{ title }}
         </UIHeadline>
 
@@ -19,7 +18,6 @@
         </ModulesTagsList>
 
     </div>
-
 </template>
 
 <script setup lang=ts>

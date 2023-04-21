@@ -40,11 +40,13 @@
     "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
     "@pinia/nuxt": "^0.4.6",
     "axios": "^1.2.3",
+    "click-outside-vue3": "^4.0.1",
     "joi": "^17.7.0",
     "mongoose": "^6.8.4",
     "pinia": "^2.0.28",
     "typescript": "^4.9.3",
     "vite": "^4.1.4",
+    "vuedraggable": "^4.1.0",
     "zod": "^3.21.4"
   }
 }

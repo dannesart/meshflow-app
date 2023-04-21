@@ -17,7 +17,7 @@ html {
 
 @screen md {
   .layout {
-    grid-template-columns: 20rem 1fr;
+    grid-template-columns: 20rem minmax(1px, 1fr);
     grid-template-rows: 6rem 1fr;
     grid-template-areas:
       "aside header"
@@ -33,4 +33,22 @@ main {
 }
 aside {
   grid-area: aside;
+}
+
+/**
+* Resets
+*/
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eee;
+  border-radius: 999999px;
 }

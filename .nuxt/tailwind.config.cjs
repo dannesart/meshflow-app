@@ -6165,11 +6165,28 @@ module.exports = {
     "transform": {}
   },
   "mode": "aot",
+  "safelist": [
+    "safelisted",
+    {
+      "pattern": {}
+    },
+    {
+      "pattern": {}
+    },
+    {
+      "pattern": {}
+    },
+    {
+      "pattern": {}
+    },
+    {
+      "pattern": {}
+    }
+  ],
   "presets": [],
   "darkMode": "media",
   "prefix": "",
   "important": false,
   "separator": ":",
-  "safelist": [],
   "blocklist": []
 }

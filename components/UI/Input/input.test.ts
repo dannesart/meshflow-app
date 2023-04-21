@@ -26,15 +26,16 @@ describe("Input", () => {
     expect(component.find("input").element.value).toBe("1");
   });
 
-  it("Should render an input of type number if passing in type number", () => {
+  it("Should render an input of type email if passing in type email. And should also set value", () => {
+    const props = {
+      type: "email",
+      value: "danne@meshflow.app",
+    };
     const component = mount(Input, {
-      props: {
-        type: "email",
-        value: "danne@fungus.se",
-      },
+      props,
     });
 
     expect(component.find("input[type=email]").exists()).toBe(true);
-    expect(component.find("input").element.value).toBe("danne@fungus.se");
+    expect(component.find("input").element.value).toBe(props.value);
   });
 });

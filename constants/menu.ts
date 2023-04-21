@@ -15,16 +15,16 @@ export const Menu = [
     label: "Content",
     items: [
       {
-        label: "Blocks",
-        icon: BLOCKS.icon,
-        route: BLOCKS.route,
-        webOnly: BLOCKS.webOnly,
-      },
-      {
         label: "Pages",
         icon: PAGES.icon,
         route: PAGES.route,
         webOnly: PAGES.webOnly,
+      },
+      {
+        label: "Blocks",
+        icon: BLOCKS.icon,
+        route: BLOCKS.route,
+        webOnly: BLOCKS.webOnly,
       },
       {
         label: "Data",

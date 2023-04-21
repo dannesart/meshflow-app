@@ -3,7 +3,7 @@ import { TUtil } from "~~/models/layer";
 const utilities = <TUtil[]>[
   {
     name: "container",
-    defaultClasses: "p-4",
+    defaultClasses: "",
   },
   {
     name: "button",

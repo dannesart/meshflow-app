@@ -1,17 +1,20 @@
 const classes = [
   {
     name: "Display",
-    type: "select",
+    type: "radio",
     values: ["block", "flex", "flex flex-col", "inline-flex", "grid"],
+    icon: "boxes",
   },
   {
     name: "Width",
-    type: "range",
-    values: ["none", "w-full", "w-1/2", "w-1/3", "w-1/4"],
+    type: "radio",
+    values: ["w-1/2", "w-full"],
+    icon: "chevron-left-right",
   },
   {
     name: "Round",
     type: "radio",
+    icon: "box",
     values: [
       "none",
       "rounded-sm",
@@ -24,13 +27,19 @@ const classes = [
   },
   {
     name: "Padding",
-    type: "range",
-    values: ["none", "p-10", "p-5", "p-3", "p-1"],
+    type: "radio",
+    icon: "expand",
+    values: ["none", "p-1", "p-3", "p-5", "p-10"],
   },
   {
     name: "Background",
-    type: "select",
-    values: ["none", "bg-white", "bg-green-400", "bg-purple-400", "bg-red-400"],
+    type: "bg-color",
+    values: [],
+  },
+  {
+    name: "Text",
+    type: "text-color",
+    values: [],
   },
 ];
 

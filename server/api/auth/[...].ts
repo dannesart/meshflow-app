@@ -3,10 +3,10 @@ import Auth0Provider from "next-auth/providers/auth0";
 export default NuxtAuthHandler({
   providers: [
     Auth0Provider.default({
-      clientId: "8ymQ12zu64tchY5qmFytUYFUpA2BoWSb",
+      clientId: "wYKLHxV9LPWMzvwZmmro7wemafsO4dsU",
       clientSecret:
-        "8heQTsUaqYjTviiQMcaMb6RxHZPmVclCbqC0tOJY4t-AlauDBm4D-aL1JRv2Buan",
-      issuer: "https://dannesart.eu.auth0.com",
+        "GrNNZ7EsS-N9nS_G7wkaFtEtkqTvDTHsjo-13GBuJFa0Cnt40MmcOf5hVk--SkV9",
+      issuer: "https://meshflow.eu.auth0.com",
     }),
   ],
   secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",

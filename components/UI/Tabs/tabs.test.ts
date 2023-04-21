@@ -20,8 +20,8 @@ describe("Tabs", () => {
         active: TABS_MOCK.name,
       },
     });
-    expect(
-      component.find("[name=tab]").classes().includes("bg-slate-100")
-    ).toBe(true);
+    expect(component.find("[name=tab]").classes().includes("bg-white")).toBe(
+      true
+    );
   });
 });

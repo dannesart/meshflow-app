@@ -6,7 +6,7 @@
             <UIHeadline size="h4">
                 {{ label }}
             </UIHeadline>
-            <p class="text-4xl  text-gray-900">
+            <p class="text-4xl font-semibold text-sky-800">
                 {{ number }}
             </p>
             <div class="absolute top-0 left-0 right-0 bottom-0 bg-white/70 flex items-center justify-center"

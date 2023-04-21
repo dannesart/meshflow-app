@@ -1,12 +1,10 @@
 <template>
-
     <button class=" flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center"
         :class="getClasses(type, size || 'normal')" :name="name" :disabled="disabled">
         <UILoader v-if="isLoading"></UILoader>
         <slot v-else />
 
     </button>
-
 </template>
 
 
@@ -15,7 +13,7 @@
 const { type, name, size, isLoading, disabled }: { type?: string, name?: string, size?: string, isLoading?: boolean, disabled?: boolean } = defineProps(["type", "name", "size", "isLoading", "disabled"]);
 
 type TClassType = {
-    [key: string]: { normal: string, round?: string, inverted?: string }
+    [key: string]: { normal: string, round?: string, inverted?: string, "round-small"?: string, small?: string }
 }
 
 const classes: TClassType = {
@@ -26,11 +24,13 @@ const classes: TClassType = {
         normal: 'bg-transparent text-red-500 px-6 py-3 rounded-lg'
     },
     add: {
-        normal: "bg-blue-600 text-white px-6 py-3 rounded-lg"
+        normal: "bg-blue-600 text-white px-6 py-3 rounded-lg",
+        small: "bg-blue-600 text-white px-4 py-2 rounded-lg",
     },
     love: {
         normal: "text-green-500 bg-green-200 px-6 py-3 rounded-lg",
-        round: "bg-green-200 text-green-500 p-3 rounded-full"
+        round: "bg-green-200 text-green-500 p-3 rounded-full",
+        small: "bg-green-200 text-green-500 px-4 py-2 rounded-lg",
     },
     dead: {
         normal: "text-gray-500 bg-gray-200 px-6 py-3 rounded-lg",
@@ -46,13 +46,15 @@ const classes: TClassType = {
     system: {
         normal: "bg-white shadow-md text-slate-700 px-6 py-3 rounded-lg",
         round: "bg-slate-200 text-slate-700 px-3 py-6 rounded-full",
+        small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
     },
     link: {
         normal: 'text-blue-700 hover:shadow-none hover:text-blue-500'
     },
     icon: {
         normal: "bg-slate-200 text-slate-700 p-3 rounded-lg",
-        round: "bg-slate-200 text-slate-700 p-3 rounded-full"
+        round: "bg-slate-200 text-slate-700 p-3 rounded-full",
+        "round-small": "bg-slate-200 text-slate-700 h-10 w-10 rounded-full"
     }
 }
 

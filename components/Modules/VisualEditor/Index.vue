@@ -1,24 +1,36 @@
 <template>
     <div ref="editor">
+        <Tools :layer="layerStore.layer" @onChange="setClass">
+
+            <div class="ml-auto flex gap-3">
+                <p class="flex items-center p-3 text-sm text-slate-300">
+                    Selected layer: {{ layerStore.layer?.name }}
+                </p>
+                <UIButton type="icon" size="round-small" @click="addNewLayer()">
+                    <UIIcons name="add"></UIIcons>
+                </UIButton>
+                <UIButton type="icon" size="round-small" @click="toggleLayerNames()">
+                    <UIIcons :name="layerStore.showingLayerNames ? 'show' : 'hide'"></UIIcons>
+                </UIButton>
+            </div>
+        </Tools>
         <div class="bg-slate-100 p-10 flex-1 rounded-lg relative">
 
             <Layer v-for="layer in layers" :layer="layer"></Layer>
         </div>
 
-        <LayerEditor :show="layerStore.editing" :layer="layerStore.layer"
-            v-if="layerStore.layer && layerStore.layer.type" @set-class="setClass"></LayerEditor>
     </div>
-
-
 </template>
+
 
 <script setup lang="ts">
 
 import { defaultUtility } from "~~/constants/services/blocks";
 import { TLayer } from "~~/models/layer";
-import LayerEditor from "./LayerEditor.vue";
+import Tools from "./Tools.vue";
 import Layer from "./Layer.vue";
 import { useLayerStore } from "~~/stores/layer";
+import { COLORS } from "~~/constants/colors";
 
 const editor = ref()
 const layerStore = useLayerStore()
@@ -30,7 +42,11 @@ const layers = ref<TLayer[]>([
         type: defaultUtility,
         name: '1',
         layers: [],
-        classes: {}
+        classes: {
+            "Background": `bg-${COLORS[0]}`,
+            "Padding": "p-5",
+            "Round": "rounded-xl"
+        }
     }
 ]);
 
@@ -40,22 +56,22 @@ const setClass = ({ name, value }: { name: string, value: string }) => {
     layerStore.setLayer(layer);
 }
 
-const addOutsideClick = () => {
-
-
-    document.addEventListener('click', (e: Event) => {
-        const target = e.target as HTMLInputElement;
-        const wrapper = editor.value as HTMLInputElement;
-        if (wrapper) {
-            if (!wrapper.contains(target)) {
-                layerStore.active(false);
-            }
-        }
-    })
-
+const toggleLayerNames = () => {
+    layerStore.toggleShowLayerNames();
+    layerStore.toggleShowLayerBorders();
 }
 
-addOutsideClick();
+const addNewLayer = () => {
+    layerStore.addNewLayer();
+}
+
+const initLayer = () => {
+
+    layerStore.setLayer(layers.value[0]);
+
+
+}
+initLayer();
 
 
 </script>

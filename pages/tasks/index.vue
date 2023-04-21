@@ -12,26 +12,30 @@
             </ModulesAdd>
         </div>
 
-        <div class="flex md:gap-6 flex-col md:flex-row">
-            <div class="flex-1 flex flex-col gap-3" v-for="status in TASK_STATUSES">
+        <div class="flex md:gap-6 flex-col overflow-x-scroll pb-4 scroll-smooth snap-x md:flex-row">
+            <div class="w-96 flex flex-col gap-3 flex-none snap-center" v-for="status in TASK_STATUSES">
                 <UIHeadline size="h3" :class="{ 'capitalize': true }">
                     {{ status }}
                 </UIHeadline>
-                <UIDroppable :status=status :list="tasks">
-                    <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl"
-                        v-for="(task, index) in tasks.filter((task) => task.status === status)" draggable="true"
-                        @dragstart="startDrag($event, task)">
-                        <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
-                            @favorite="handleFavorite($event, task.title)"></ModulesCard>
-                    </NuxtLink>
-                </UIDroppable>
+                <client-only>
+                    <draggable :list="tasks.filter((a) => a.status === status)" group="tasks"
+                        :component-data="{ class: 'flex flex-col gap-4' }" item-key="id"
+                        @change="dragChange($event, status)" @end="dragEnd($event, status)">
+                        <template #item="{ element: task }">
+                            <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl">
+                                <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
+                                    @favorite="handleFavorite($event, task.title)"></ModulesCard>
+                            </NuxtLink>
+                        </template>
+                    </draggable>
+                </client-only>
             </div>
         </div>
     </NuxtLayout>
 </template>
 
 
-<script setup lang="ts">
+<script lang="ts">
 
 import { TTask, TASK_STATUSES } from '~~/models/task';
 import { useTasksStore } from "~~/stores/tasks";
@@ -42,43 +46,42 @@ const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
 const { tasks, addTask } = tasksStore;
 
-const handleFavorite = (isFavorite: boolean, title: string) => {
-    console.log(isFavorite)
-    if (!isFavorite) {
-        setNotification('Pelle has liked', title, "liked")
-    }
-}
-
-const startDrag = (event: DragEvent, item: TTask) => {
-    const { id } = item;
-    if (event) {
-        if (event.dataTransfer) {
-            event.dataTransfer.dropEffect = 'move'
-            event.dataTransfer.effectAllowed = 'move'
-            event.dataTransfer.setData('itemId', id);
+export default {
+    data() {
+        return {
+            filters: ref({}),
+            sorts: ref({}),
+            tasks,
+            TASK_STATUSES
         }
+    },
+    methods: {
+        handleFavorite: (isFavorite: boolean, title: string) => {
+            if (!isFavorite) {
+                setNotification('Pelle has liked', title, "liked");
+            }
+        },
+        dragChange(event: any, status: string) {
+            if (event.added) {
+                event.added.element.status = status;
+            }
+        },
+        dragEnd(event: any, status: string) {
+            //this.tasks[event.newIndex].status = status;
+            //this.move(this.tasks, event.oldIndex, event.newIndex);
+        },
+        async filterChange(_filters: { [key: string]: any }) {
+            this.filters = { ...this.filters, ..._filters };
+        },
+        async sortChange(_sorts: { [key: string]: any }) {
+            this.sorts = { ...this.sorts, ..._sorts };
+        },
+        onAdd: (task: TTask) => {
+            setNotification("Task created", "Your task was successfully created", "success");
+            addTask(task);
+        },
+        onCancel: () => { }
     }
-}
-
-const filters = ref({});
-const sorts = ref({});
-
-const filterChange = async (_filters: { [key: string]: any }) => {
-    filters.value = { ...filters.value, ..._filters }
-}
-
-const sortChange = async (_sorts: { [key: string]: any }) => {
-    sorts.value = { ...sorts.value, ..._sorts }
-}
-
-
-const onAdd = (task: TTask) => {
-    setNotification("Task created", "Your task was successfully created", "success")
-    addTask(task)
-}
-
-const onCancel = () => {
-
 }
 
 
