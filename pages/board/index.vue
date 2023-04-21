@@ -1,14 +1,14 @@
 <template>
     <NuxtLayout>
         <UIHeadline size="h1">
-            Tasks
+            Board
         </UIHeadline>
 
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
             </ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd type="task" @onAdd="onAdd" @onCancel="onCancel">
+            <ModulesAdd type="task" :label="'Add task'" @onAdd="onAdd" @onCancel="onCancel">
             </ModulesAdd>
         </div>
 
@@ -22,7 +22,7 @@
                         :component-data="{ class: 'flex flex-col gap-4' }" item-key="id"
                         @change="dragChange($event, status)" @end="dragEnd($event, status)">
                         <template #item="{ element: task }">
-                            <NuxtLink :to="('/tasks/' + task.id)" class="flex-1 md:max-w-xl">
+                            <NuxtLink :to="('/board/' + task.id)" class="flex-1 md:max-w-xl">
                                 <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
                                     @favorite="handleFavorite($event, task.title)"></ModulesCard>
                             </NuxtLink>

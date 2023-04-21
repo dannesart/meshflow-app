@@ -20,17 +20,27 @@
 
         </section>
         <UIHeadline size="h2">
-            Tasks
+            Board
         </UIHeadline>
         <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
             <div class="flex flex-col gap-3">
                 <label>Statuses</label>
                 <ModulesTagsList color="white" can-add="true" @add="addNewTag">
-                    <UITag v-for="(status, idx) in taskStatuses" class="cursor-pointer" can-edit="true" :value="status"
-                        @save="event => updateTag(event, idx)">{{
-    status
-                        }}</UITag>
+                    <draggable :list="taskStatuses" item-key="id" :component-data="{ class: 'flex gap-3' }">
+                        <template #item="{ element: status }">
+                            <UITag class="cursor-pointer" can-edit="true" :value="status" @save="event => updateTag(event)">
+                                {{
+                                    status
+                                }}</UITag>
+                        </template>
+                    </draggable>
                 </ModulesTagsList>
+            </div>
+            <div class="flex flex-col gap-3">
+
+                <UIInput type="checkbox">
+                    <label>Allow sprints</label>
+                </UIInput>
             </div>
         </section>
     </NuxtLayout>
@@ -45,8 +55,8 @@ const values = ['Data & model', 'Web']
 const settingsStore = useSettingsStore();
 let taskStatuses = ref([...TASK_STATUSES]);
 
-const updateTag = (value: string, tagIdx: number) => {
-    taskStatuses.value[tagIdx] = value;
+const updateTag = (value: string) => {
+    //taskStatuses.value[tagIdx] = value;
 }
 
 const addNewTag = () => {

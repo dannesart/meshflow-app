@@ -74,8 +74,8 @@ export const Menu = [
       },
       {
         icon: "tasks",
-        label: "Tasks",
-        route: "/tasks",
+        label: "Board",
+        route: "/board",
       },
     ],
   },

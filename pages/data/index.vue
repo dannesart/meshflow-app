@@ -8,7 +8,7 @@
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
             </ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd type="data">
+            <ModulesAdd type="data" label="Add data type">
             </ModulesAdd>
         </div>
         <div class="flex md:gap-6 flex-col md:flex-row">

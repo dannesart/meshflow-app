@@ -1,6 +1,5 @@
 
 <template>
-
     <UIButton :type="asLink ? 'link' : 'add'" name="add-button" @click="addNewData()">
         {{ label || 'Add' }}
     </UIButton>
@@ -15,14 +14,13 @@
 
         <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
             <UIButton type="add" @click="complete()" :disabled="!isValid">
-                Complete
+                Create {{ type }}
             </UIButton>
             <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">
                 Nevermind
             </UIButton>
         </footer>
     </UIModal>
-
 </template>
 
 <script setup lang="ts">
