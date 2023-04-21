@@ -6,7 +6,7 @@
         </UIHeadline>
         <div class="flex gap-5 flex-col md:flex-row">
             <ModulesStat label="Active tasks" :number="tasksStore.allTasks.length"></ModulesStat>
-            <ModulesStat label="Data" number="2000" errors="3"></ModulesStat>
+            <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
             <ModulesStat label="Users" number="45"></ModulesStat>
             <ModulesStat label="Rules" number="14"></ModulesStat>
         </div>
@@ -67,6 +67,7 @@
 <script setup lang=ts>
 
 import { useTasksStore } from "~~/stores/tasks";
+import { usePagesStore } from "~~/stores/pages";
 import { useCommentsStore } from "~~/stores/comments";
 import { TTask, TASK_STATUSES } from '~~/models/task';
 import { useNotificationStore } from "~~/stores/notifications";
@@ -76,6 +77,7 @@ const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
 const commentsStore = useCommentsStore();
 const { latest, tasks, addTask } = tasksStore;
+const { pages } = usePagesStore();
 
 const onAdd = (task: TTask) => {
     setNotification("Task created", "Your task was successfully created", "success")

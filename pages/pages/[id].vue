@@ -2,19 +2,22 @@
     <NuxtLayout>
 
         <UIHeadline size="h1">
-            {{ id }}
+            {{ page.title }}
         </UIHeadline>
 
 
         <div class="flex gap-6">
-            Data with an type and id {{ id }}
+            {{ page.body }}
         </div>
     </NuxtLayout>
 </template>
 
 <script setup>
+import { usePagesStore } from '~~/stores/pages';
 
 const { id } = useRoute().params;
+const { getPageById } = usePagesStore()
+const page = getPageById(id);
 
     // Fetch data based on id.
 

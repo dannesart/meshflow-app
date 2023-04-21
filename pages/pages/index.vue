@@ -6,12 +6,12 @@
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd></ModulesAdd>
+            <ModulesAdd label="Add new page" type="page"></ModulesAdd>
         </div>
         <div class="flex md:gap-6 flex-col md:flex-row">
 
-            <NuxtLink :to="('/pages/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
-                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
+            <NuxtLink :to="('/pages/' + page.id)" class="flex-1 md:max-w-md" v-for="(page, index) in pages">
+                <ModulesCard :title="page.title" :body="page.body" :favorite="page.favorite"
                     @favorite="event => updateFavorite(event, index)"></ModulesCard>
             </NuxtLink>
 
@@ -23,27 +23,16 @@
 
 <script setup lang=ts>
 
+import { usePagesStore } from '~~/stores/pages';
+
 const filters = ref({});
 const sorts = ref({});
-const data = ref([
-    {
-        title: "Projects",
-        body: "23 active projects",
-        id: "projects",
-        favorite: true
-    },
-    {
-        title: "Companies",
-        body: "6 active companies",
-        id: "companies",
-        favorite: false
-    }
-])
+const { pages } = usePagesStore();
 
 const updateFavorite = (favorite: any, itemIdx: number) => {
-    const newData = [...data.value]
-    newData[itemIdx] = { ...newData[itemIdx], favorite }
-    data.value = newData;
+    // const newData = [...pages.value]
+    // newData[itemIdx] = { ...newData[itemIdx], favorite }
+    // page = newData;
 }
 
 const filterChange = async (_filters: { [key: string]: any }) => {
