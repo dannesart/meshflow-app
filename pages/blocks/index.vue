@@ -9,7 +9,7 @@
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd type="block" @onAdd="onAdd" @onCancel="onCancel">
+            <ModulesAdd type="block" label="Add new type" @onAdd="onAdd" @onCancel="onCancel">
                 <UIForm>
                     <UIInput type="text" :value="newBlockForm.name" @valueUpdate="newBlockForm.name = $event">
                         Name
@@ -17,7 +17,7 @@
                 </UIForm>
             </ModulesAdd>
         </div>
-        <div class="flex md:gap-6 flex-col md:flex-row">
+        <div class="flex gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/blocks/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
                 <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"

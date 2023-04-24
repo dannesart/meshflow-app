@@ -9,7 +9,7 @@ html {
   overflow-y: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 4rem 1fr;
+  grid-template-rows: 6rem 1fr;
   grid-template-areas:
     "aside header"
     "main main";

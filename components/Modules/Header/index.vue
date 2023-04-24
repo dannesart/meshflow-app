@@ -1,5 +1,5 @@
 <template>
-	<header class="py-4 px-10 gap-6 h-full flex flex-row justify-between">
+	<header class="py-4 px-6 lg:px-10 gap-3 lg:gap-6 h-full flex flex-row lg:justify-between">
 		<div class="h-full flex-1">
 
 			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type">
@@ -7,7 +7,7 @@
 				Back
 			</UIButton>
 		</div>
-		<div class="flex gap-10">
+		<div class="flex gap-3 lg:gap-10">
 
 			<div class="text-xl w-14 h-14 flex justify-center items-center rounded-full relative cursor-pointer hover:shadow-xl"
 				@click="openNotificationMenu"

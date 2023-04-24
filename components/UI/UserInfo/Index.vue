@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-row gap-5 cursor-pointer">
-        <div class="text-right">
+        <div class="text-right hidden lg:block">
             <p class="text-base text-gray-400 capitalize" name="user-info-role">{{ role }}</p>
             <p class="font-medium text-lg" name="user-info-name">@{{ name }}</p>
         </div>

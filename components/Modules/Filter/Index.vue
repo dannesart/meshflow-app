@@ -5,10 +5,10 @@
         <div class="relative z-20">
             <UIButton name="sort-btn" @click="toggleSortOptions()" type="system">
                 <UIIcons name="sort"></UIIcons>
-                Sort
+                <span class="hidden lg:block">Sort</span>
             </UIButton>
-            <div class="bg-white shadow-lg rounded-lg p-5 absolute top-full w-64 flex flex-col gap-4"
-                name="sort-options" v-bind:class="{ 'hidden': !showingSort }">
+            <div class="bg-white shadow-lg rounded-lg p-5 absolute top-full w-64 flex flex-col gap-4" name="sort-options"
+                v-bind:class="{ 'hidden': !showingSort }">
                 <label class="flex justify-center gap-2 flex-col">
 
                     <UIInput type="select" :value="sortTypes[0]" :values="sortTypes"
@@ -31,7 +31,7 @@
             <UIButton name="filter-btn" @click="toggleFilterOptions()" type="system">
                 <UIIcons name="filter"></UIIcons>
 
-                Filter
+                <span class="hidden lg:block">Filter</span>
             </UIButton>
 
             <div class="bg-white shadow-lg rounded-lg p-5 absolute top-full w-64 " name="filter-options"

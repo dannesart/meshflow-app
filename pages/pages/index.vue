@@ -8,7 +8,7 @@
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
             <ModulesAdd label="Add new page" type="page"></ModulesAdd>
         </div>
-        <div class="flex md:gap-6 flex-col md:flex-row">
+        <div class="flex gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/pages/' + page.id)" class="flex-1 md:max-w-md" v-for="(page, index) in pages">
                 <ModulesCard :title="page.title" :body="page.body" :favorite="page.favorite"
