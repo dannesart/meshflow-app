@@ -18,12 +18,16 @@
 					v-if="notifications">
 					{{ notifications }}</div>
 			</div>
+			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" role="developer">
+			</UIUserInfo>
 
-			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" role="developer"></UIUserInfo>
-
-			<div class="w-96 bg-white outline-none shadow-xl justify-between px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-30 transition-transform translate-x-full focus-within:translate-x-0"
+			<div class="w-96 bg-white outline-none shadow-xl justify-between px-6 md:px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-50 transition-transform translate-x-full focus-within:translate-x-0"
 				ref="menuRef" tabindex="0" @focusin="isMenuActive = true" @focusout="isMenuActive = false">
 				<div class="flex gap-4 flex-col">
+
+					<UIButton class="absolute top-6 left-6 md:hidden" @click="closeMenu">Close
+					</UIButton>
+
 					<UIUserInfo :class="'self-end'" :image="data?.user?.image" :name="data?.user?.name" role="developer">
 					</UIUserInfo>
 
@@ -32,7 +36,7 @@
 						Projects
 					</UIHeadline>
 					<UIList>
-						<UIListItem v-for="project in projectStore.projects" :class="{ 'justify-between': true, }"
+						<UIListItem v-for=" project  in  projectStore.projects " :class="{ 'justify-between': true, }"
 							@click="selectProject(project.id)">
 							<UIHeadline size="h4" :class="{ 'text-sky-200': projectStore.activeId === project.id }">
 								{{ project.name }}
@@ -98,19 +102,26 @@
 </template>
 
 <script setup lang=ts>
-import { useUserStore } from "~~/stores/user";
 import { useProjectStore } from "~~/stores/projects";
 // Check if route contains Id param.
 // Then we know it's not a "root" page. 
 // We can then show back button.
 const { id, type } = useRoute().params;
-const { currentUser } = useUserStore();
 const projectStore = useProjectStore();
 const { status, data, signIn, signOut } = useSession()
 
 const isMenuActive = ref(false);
 const menuRef = ref();
 const openMenu = () => menuRef.value.focus();
+const closeMenu = (e: Event) => {
+	e.preventDefault();
+	e.stopPropagation();
+	setTimeout(() => {
+		menuRef.value.blur();
+		isMenuActive.value = false
+	}, 100)
+
+};
 
 const isNotificationMenuActive = ref(false);
 const notificationMenuRef = ref();

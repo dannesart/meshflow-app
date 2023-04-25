@@ -6,5 +6,5 @@ export default defineEventHandler(async (e) => {
   if (session && session.user) {
     return session.user;
   }
-  return e.context;
+  return false;
 });

@@ -21,8 +21,8 @@
         <div class="flex md:gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/blocks/' + type + '/' + item.id)" class="flex-1 max-w-md" v-for="(item, index) in data">
-                <Card :title="item.title" :body="item.body" :favorite="item.favorite"
-                    @favorite="event => updateFavorite(event, index)"></Card>
+                <ModulesCard :title="item.title" :body="item.body" @favorite="event => updateFavorite(event, index)">
+                </ModulesCard>
             </NuxtLink>
 
         </div>
@@ -37,6 +37,18 @@
 const { type } = useRoute().params;
 
 // Fetch data based on type.
+
+const updateFavorite = (event, index) => {
+
+}
+
+const filterChange = () => {
+
+}
+
+const sortChange = () => {
+
+}
 
 // Show data.
 const data = ref([

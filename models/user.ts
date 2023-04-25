@@ -5,6 +5,7 @@ const UserSchema = z.object({
   email: z.string().email(),
   id: z.string(),
   nickname: z.string().min(1),
+  image: z.string().optional(),
 });
 
 type TUser = z.infer<typeof UserSchema>;
