@@ -1,5 +1,5 @@
 
-import { defuFn } from '/Users/Daniel/Documents/GitHub/fungus/node_modules/defu/dist/defu.mjs'
+import { defuFn } from '/Users/Daniel/Documents/GitHub/meshflow-app/node_modules/defu/dist/defu.mjs'
 
 const inlineConfig = {}
 

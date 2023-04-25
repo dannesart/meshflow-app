@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { NuxtLayout } from '~~/.nuxt/components';
+
 import { usePagesStore } from '~~/stores/pages';
 
 const { id } = useRoute().params;

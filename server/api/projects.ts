@@ -37,7 +37,7 @@ const newProject = (name: string) => {
 
 export default defineEventHandler(async (e) => {
   const { req, res } = e.node;
-  const body = await readBody(e);
+  //const body = await readBody(e);
   // const valid = body
   //   ? await ProjectSchema.safeParse(newProject(body.name))
   //   : true;
