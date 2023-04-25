@@ -1,8 +1,8 @@
 <template>
 	<header class="py-4 px-6 lg:px-10 gap-3 lg:gap-6 h-full flex flex-row lg:justify-between">
-		<div class="h-full flex-1 hidden md:block">
+		<div class="h-full flex-1 ">
 
-			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type">
+			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type" class="hidden md:block">
 				<UIIcons name="arrow-left"></UIIcons>
 				Back
 			</UIButton>
@@ -27,7 +27,7 @@
 
 
 
-					<UIUserInfo :class="'self-end hidden md:block'" :image="data?.user?.image" :name="data?.user?.name"
+					<UIUserInfo :class="'self-end hidden md:flex'" :image="data?.user?.image" :name="data?.user?.name"
 						role="developer">
 					</UIUserInfo>
 
