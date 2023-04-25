@@ -2,7 +2,7 @@
 	<header class="py-4 px-6 lg:px-10 gap-3 lg:gap-6 h-full flex flex-row lg:justify-between">
 		<div class="h-full flex-1 ">
 
-			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type" class="hidden md:block">
+			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type" class="max-md:hidden">
 				<UIIcons name="arrow-left"></UIIcons>
 				Back
 			</UIButton>
