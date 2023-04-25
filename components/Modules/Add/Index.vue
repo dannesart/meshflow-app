@@ -11,6 +11,7 @@
         <slot></slot>
 
         <ModulesAddTask v-if="type === 'task'" @on-valid="setValid" @on-error="setInvalid"></ModulesAddTask>
+        <ModulesAddPage v-if="type === 'page'" @on-valid="setValid" @on-error="setInvalid"></ModulesAddPage>
 
         <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
             <UIButton type="add" @click="complete()" :disabled="!isValid">

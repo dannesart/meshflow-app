@@ -22,10 +22,20 @@ export default {
         "vitest",
       ],
       resolvers: [ElementPlusResolver()],
-      dirs: ["components", "composables"],
+      dirs: [
+        "components",
+        "composables",
+        "components/ui",
+        "components/modules",
+      ],
     }),
     Components({
-      dirs: ["components", "composables"],
+      dirs: [
+        "components",
+        "composables",
+        "components/ui",
+        "components/modules",
+      ],
       resolvers: [ElementPlusResolver()],
       directoryAsNamespace: true,
     }),

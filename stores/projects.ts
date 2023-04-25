@@ -18,6 +18,22 @@ export const useProjectStore = defineStore("ProjectsStore", {
     setActive(id: string) {
       this._activeProjectId = id;
     },
+    async createProject(name: string) {
+      try {
+        const config = useRuntimeConfig();
+        const response = await axios.post(
+          config.public.REDIRECT_URI + "/api/projects",
+          {
+            name,
+          }
+        );
+
+        await this.fetchProjects();
+        //this._projects = response.data;
+      } catch (error) {
+        //TODO: Handle error
+      }
+    },
     async fetchProjects() {
       try {
         const config = useRuntimeConfig();

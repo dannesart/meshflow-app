@@ -1,10 +1,15 @@
 <template>
-    <div name="layer"
-        :class="{ [cssClasses(layer.type.defaultClasses, layer.classes)]: true, 'hover:border-cyan-600': layerStore.currentLayer?.name !== layer.name, 'border-green-300': layerStore.currentLayer?.name === layer.name, 'border-none': !layerStore.showingLayerBorders }"
-        class="relative border-2 border-white  cursor-pointer" tabindex="0" @click="setFocus($event)">
+    <div name="layer" :class="{
+        [cssClasses(layer.type.defaultClasses, layer.classes)]: true,
+        'hover:border-cyan-600': layerStore.currentLayer?.name !== layer.name,
+        'border-green-300': layerStore.currentLayer?.name === layer.name,
+        'border-none': !layerStore.showingLayerBorders,
+        'border-white': layerStore.currentLayer?.name !== layer.name
+    }" class="relative border-2  cursor-pointer" tabindex="0" @click="setFocus($event)">
         <div v-if="layerStore.showingLayerNames" class="text-xs p-1 px-2 rounded-md text-slate-400 inline-flex">
             {{ `Layer ` + layer.name }}
         </div>
+
         <Layer v-for="sublayer in layer.layers" :layer="sublayer" :class="'z-index-40'"></Layer>
 
     </div>

@@ -2,6 +2,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     'ModulesAdd': typeof import("../components/Modules/Add/Index.vue")['default']
+    'ModulesAddPage': typeof import("../components/Modules/Add/Page.vue")['default']
     'ModulesAddTask': typeof import("../components/Modules/Add/Task.vue")['default']
     'ModulesAside': typeof import("../components/Modules/Aside/index.vue")['default']
     'ModulesCard': typeof import("../components/Modules/Card/Index.vue")['default']
@@ -59,6 +60,7 @@ declare module 'vue' {
     'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyModulesAdd': typeof import("../components/Modules/Add/Index.vue")['default']
+    'LazyModulesAddPage': typeof import("../components/Modules/Add/Page.vue")['default']
     'LazyModulesAddTask': typeof import("../components/Modules/Add/Task.vue")['default']
     'LazyModulesAside': typeof import("../components/Modules/Aside/index.vue")['default']
     'LazyModulesCard': typeof import("../components/Modules/Card/Index.vue")['default']
@@ -119,6 +121,7 @@ declare module 'vue' {
 }
 
 export const ModulesAdd: typeof import("../components/Modules/Add/Index.vue")['default']
+export const ModulesAddPage: typeof import("../components/Modules/Add/Page.vue")['default']
 export const ModulesAddTask: typeof import("../components/Modules/Add/Task.vue")['default']
 export const ModulesAside: typeof import("../components/Modules/Aside/index.vue")['default']
 export const ModulesCard: typeof import("../components/Modules/Card/Index.vue")['default']
@@ -176,6 +179,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyModulesAdd: typeof import("../components/Modules/Add/Index.vue")['default']
+export const LazyModulesAddPage: typeof import("../components/Modules/Add/Page.vue")['default']
 export const LazyModulesAddTask: typeof import("../components/Modules/Add/Task.vue")['default']
 export const LazyModulesAside: typeof import("../components/Modules/Aside/index.vue")['default']
 export const LazyModulesCard: typeof import("../components/Modules/Card/Index.vue")['default']

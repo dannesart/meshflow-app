@@ -1,24 +1,25 @@
 import axios from "axios";
 import { defineStore } from "pinia";
+import { TPage } from "~~/models/page";
 
 type TState = {
   isEditing: boolean;
-  pages: any[];
+  allPages: TPage[];
 };
 
 const state = () =>
   <TState>{
     isEditing: false,
-    pages: [],
+    allPages: [],
   };
 
 const getters = {
   editing: (state: TState) => state.isEditing,
-  getPages: (state: TState) => state.pages,
-  getAmountOfPages: (state: TState) => state.pages.length,
+  pages: (state: TState) => state.allPages,
+  getAmountOfPages: (state: TState) => state.allPages.length,
   getPageById: (state: TState) => {
     return (id: string) => {
-      return state.pages.find((page) => page.id === id);
+      return state.allPages.find((page) => page.id === id);
     };
   },
 };
@@ -27,13 +28,17 @@ export const usePagesStore = defineStore("PagesStore", {
   state,
   getters,
   actions: {
+    async addPage(page: TPage) {
+      // Stuff
+      this.allPages.push(page);
+    },
     async fetchPages() {
       try {
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/pages"
         );
-        this.pages = response.data;
+        this.allPages = response.data;
       } catch (error) {
         //TODO: Handle error
       }

@@ -1,0 +1,50 @@
+<template>
+    <UIForm :class="'flex flex-col gap-4'" name="new-page-form">
+
+        <UIInput @valueUpdate="valueChange($event, 'title')" :name="'title'" type="text" :value="newPage?.title">
+            <label>
+                Title
+            </label>
+        </UIInput>
+
+        <div class="p-3 px-4 rounded-lg bg-gray-100">This will not be public once it's created</div>
+    </UIForm>
+</template>
+
+<script setup lang="ts">
+import { PageSchema, PAGE_STATUSES, TPage } from '~~/models/page';
+import { useSession } from "#imports";
+const { data } = useSession();
+const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
+const errors = ref();
+const statuses = PAGE_STATUSES;
+
+let newPage: TPage = {
+    title: '',
+    status: statuses[1],
+    id: (Math.random() * 1000).toString(),
+    tags: [],
+    blocks: [],
+    created: new Date(),
+    createdBy: data.value?.user?.name || '',
+    updated: new Date(),
+    updatedBy: data.value?.user?.name || ''
+}
+
+const valueChange = (event: string, key: string) => {
+    (newPage as any)[key] = event;
+    events('valueUpdate', newPage);
+    validate(newPage);
+}
+
+const validate = async (_newPage: TPage) => {
+    const validated = await PageSchema.safeParse(_newPage);
+
+    if (!validated.success) {
+        events('onError', validated.error)
+    } else {
+        events('onValid', validated.data)
+    }
+}
+
+</script>

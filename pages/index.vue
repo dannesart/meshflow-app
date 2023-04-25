@@ -48,13 +48,13 @@
                     <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="task in latest" class="border-b last:border-b-0">
                             <ModulesExtendedLink :label="task.title" :sub-label="('Added by @' + task.createdBy)"
-                                :tags="task.tags" :route="('/tasks/' + task.id)">
+                                :tags="task.tags" :route="('/board/' + task.id)">
                             </ModulesExtendedLink>
                         </li>
                     </ul>
                 </div>
                 <div class="flex justify-end">
-                    <NuxtLink to="/tasks">
+                    <NuxtLink to="/board">
                         View all tasks
                     </NuxtLink>
                 </div>

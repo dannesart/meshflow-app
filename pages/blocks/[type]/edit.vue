@@ -4,6 +4,9 @@
 
             Edit {{ type }}
         </UIHeadline>
+        <UIHeadline size="h5">
+            Block type
+        </UIHeadline>
 
         <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
 

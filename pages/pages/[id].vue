@@ -1,18 +1,19 @@
 <template>
     <NuxtLayout>
-
-        <UIHeadline size="h1">
+        <UIHeadline size="h1" v-if="page">
             {{ page.title }}
         </UIHeadline>
 
 
-        <div class="flex gap-6">
-            {{ page.body }}
+        <div class="flex gap-6" v-if="page">
+            {{ page.status }}
         </div>
+
     </NuxtLayout>
 </template>
 
 <script setup>
+import { NuxtLayout } from '~~/.nuxt/components';
 import { usePagesStore } from '~~/stores/pages';
 
 const { id } = useRoute().params;

@@ -28,7 +28,7 @@ type TTodo = {
     done: boolean;
 }
 
-const todos = ref([]);
+const todos = ref<TTodo[]>([]);
 
 const add = ($event: Event) => {
     $event.preventDefault();

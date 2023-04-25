@@ -3,53 +3,55 @@
         <slot />
         <input v-if="type === 'text' || type === 'number' || type === 'email' || type === 'date'" :required="required"
             :value="valueRef" @input="updateValue($event)" :type="type || 'text'"
-            class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg bg-white"
+            class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg bg-white" :name="name"
             placeholder="ex. Sunny weather or Benjamin" />
         <!-- Tag modal -->
         <div class="absolute bottom-full mb-10 p-4" v-if="isTagging">
-            <UIInput type="text" @value-update="setTaggingValue($event)"></UIInput>
+            <UIInput :name="name" type="text" @value-update="setTaggingValue($event)"></UIInput>
             <UIButton @click="doneTagging()">Done</UIButton>
         </div>
-        <textarea ref="textAreaRef" :value="valueRef" v-if="type === 'text-lg'" @keyup="checkForTagging($event)"
-            @input="updateValue($event); " class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg"
+        <textarea :name="name" ref="textAreaRef" :value="valueRef" v-if="type === 'text-lg'"
+            @keyup="checkForTagging($event)" @input="updateValue($event); "
+            class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg"
             placeholder="ex. It was a warm summer day.."></textarea>
 
-        <div class="flex wrap gap-3" v-if="type === 'color'">
-            <div @click="updateColor('white')"
+        <div class="flex wrap gap-3" v-if=" type === 'color' ">
+            <div @click=" updateColor('white') " :name=" name "
                 class="w-10 h-10 cursor-pointer rounded-full bg-white shadow-lg hover:shadow-xl"></div>
         </div>
 
-        <div v-if="type === 'range'">
-            <input type="range" :min="0" :max="values.length" step="1" :list="'markers-' + id" class="w-full"
-                @change="updateSlider($event)" />
-            <datalist :id="'markers-' + id">
-                <option v-for="value of values" :value="value" :label="value"></option>
+        <div v-if=" type === 'range' ">
+            <input type="range" :name=" name " :min=" 0 " :max=" values.length " step="1" :list=" 'markers-' + id " class="w-full"
+                @change=" updateSlider($event) " />
+            <datalist :id=" 'markers-' + id ">
+                <option v-for=" value  of  values " :value=" value " :label=" value "></option>
             </datalist>
         </div>
 
-        <div v-if="type === 'checkbox'" class="flex items-center">
-            <input type="checkbox" class="w-6 h-6 rounded-lg" :checked="value" />
+        <div v-if=" type === 'checkbox' " class="flex items-center">
+            <input type="checkbox" class="w-6 h-6 rounded-lg" :name=" name " :checked=" value " />
         </div>
 
-        <div v-if="type === 'radio'" class="flex gap-2 flex-wrap">
-            <div v-for="v of values" :class="{ 'bg-blue-400 text-white': v === value }"
+        <div v-if=" type === 'radio' " class="flex gap-2 flex-wrap" :name=" name ">
+            <div v-for=" v  of  values " :class=" { 'bg-blue-400 text-white': v === value } "
                 class="px-3 py-1 rounded-lg bg-slate-100 justify-center items-center flex cursor-pointer"
-                @click="updateRadio(v)">
+                @click=" updateRadio(v) ">
                 {{ v }}
             </div>
         </div>
 
         <div class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
-            v-if="type === 'select'" tabindex="0" @focusin="isToggled = true" @focusout="handleFocusOut" ref="selectRef">
+            v-if=" type === 'select' " :name=" name " tabindex="0" @focusin=" isToggled = true " @focusout=" handleFocusOut "
+            ref="selectRef">
 
             <div class="flex justify-between gap-3 capitalize">
                 {{ valueRef }}
-                <UIIcons :name="isToggled ? 'chevron-up' : 'chevron-down'">
+                <UIIcons :name=" isToggled ? 'chevron-up' : 'chevron-down' ">
                 </UIIcons>
             </div>
-            <div v-if="isToggled"
+            <div v-if=" isToggled "
                 class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20">
-                <div v-for="option in values" @click="e => selectOption(e, option)"
+                <div v-for=" option  in  values " @click=" e => selectOption(e, option) "
                     class="cursor-pointer py-1 hover:font-bold capitalize">
                     {{ option }}
                 </div>
@@ -61,7 +63,7 @@
 <script setup lang="ts">
 
 
-const { type, value, values, required } = defineProps(['type', 'value', 'values', 'required']);
+const { type, value, values, required, name } = defineProps(['type', 'value', 'values', 'required', 'name']);
 const eventEmit = defineEmits(['valueUpdate'])
 const valueRef = ref(value);
 const selectRef = ref();
