@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-3 relative">
-        <slot />
+        <slot v-if="type !== 'checkbox'" />
         <input v-if="type === 'text' || type === 'number' || type === 'email' || type === 'date'" :required="required"
             :value="valueRef" @input="updateValue($event)" :type="type || 'text'"
             class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg bg-white" :name="name"
@@ -21,19 +21,20 @@
         </div>
 
         <div v-if=" type === 'range' ">
-            <input type="range" :name=" name " :min=" 0 " :max=" values.length " step="1" :list=" 'markers-' + id " class="w-full"
-                @change=" updateSlider($event) " />
+            <input type="range" :name=" name " :min=" 0 " :max=" values.length " step="1" :list=" 'markers-' + id "
+                class="w-full" @change=" updateSlider($event) " />
             <datalist :id=" 'markers-' + id ">
-                <option v-for=" value  of  values " :value=" value " :label=" value "></option>
+                <option v-for="   value    of    values   " :value=" value " :label=" value "></option>
             </datalist>
         </div>
 
-        <div v-if=" type === 'checkbox' " class="flex items-center">
+        <div v-if=" type === 'checkbox' " class="flex gap-3 items-center">
             <input type="checkbox" class="w-6 h-6 rounded-lg" :name=" name " :checked=" value " />
+            <slot />
         </div>
 
         <div v-if=" type === 'radio' " class="flex gap-2 flex-wrap" :name=" name ">
-            <div v-for=" v  of  values " :class=" { 'bg-blue-400 text-white': v === value } "
+            <div v-for="   v    of    values   " :class=" { 'bg-blue-400 text-white': v === value } "
                 class="px-3 py-1 rounded-lg bg-slate-100 justify-center items-center flex cursor-pointer"
                 @click=" updateRadio(v) ">
                 {{ v }}
@@ -41,8 +42,8 @@
         </div>
 
         <div class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
-            v-if=" type === 'select' " :name=" name " tabindex="0" @focusin=" isToggled = true " @focusout=" handleFocusOut "
-            ref="selectRef">
+            v-if=" type === 'select' " :name=" name " tabindex="0" @focusin=" isToggled = true "
+            @focusout=" handleFocusOut " ref="selectRef">
 
             <div class="flex justify-between gap-3 capitalize">
                 {{ valueRef }}
@@ -51,7 +52,7 @@
             </div>
             <div v-if=" isToggled "
                 class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20">
-                <div v-for=" option  in  values " @click=" e => selectOption(e, option) "
+                <div v-for="   option    in    values   " @click=" e => selectOption(e, option) "
                     class="cursor-pointer py-1 hover:font-bold capitalize">
                     {{ option }}
                 </div>

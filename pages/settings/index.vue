@@ -37,7 +37,7 @@
                 </ModulesTagsList>
             </div>
             <div class="flex flex-col gap-3">
-
+                <label>Sprints</label>
                 <UIInput type="checkbox">
                     <label>Allow sprints</label>
                 </UIInput>
