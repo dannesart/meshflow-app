@@ -71,7 +71,7 @@
 					<UIButton type="nevermind" class="" @click="logout">
 						Log me out, please
 					</UIButton>
-					<UIButton type="system" @click="closeMenu">Close
+					<UIButton type="system" @click="closeMenu" class="md:hidden">Close
 					</UIButton>
 				</div>
 
@@ -101,8 +101,8 @@
 						All notifications
 					</UIButton>
 				</div>
-				<div class="flex flex-col gap-3">
-					<UIButton type="system" @click="closeMenu">Close
+				<div class="flex flex-col gap-3 ">
+					<UIButton type="system" @click="closeMenu" class="md:hidden">Close
 					</UIButton>
 				</div>
 			</div>
