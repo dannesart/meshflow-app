@@ -1,9 +1,9 @@
 <template>
     <div class="relative">
         <!-- Color -->
-        <div v-if="type === 'text-color' || type === 'bg-color'" class="relative inline-flex  rounded-xl"
+        <div v-if="type === 'text-color' || type === 'bg-color'" class="relative inline-flex rounded-xl"
             @focusin="setFocus()" @blur="setBlured()" tabindex="0" ref="input" name="color-tool">
-            <div class="w-10 h-10 border-2 border-white rounded-full cursor-pointer flex items-center justify-center"
+            <div class="w-10 h-10 border-2 border-white rounded-full cursor-pointer flex items-center justify-center  hover:shadow-lg"
                 :class="`bg-${valueRef}`">
                 <p class="text-sm">
                     {{ type === "text-color" ? 'txt' : 'bg' }}
@@ -24,7 +24,7 @@
         <!-- Range -->
         <div v-else-if="type === 'range'" name="range-tool" class="relative inline-flex rounded-xl"
             @focusin="setRangeFocus()" tabindex="0" ref="input">
-            <div class="w-10 h-10 flex items-center justify-center bg-white rounded-full cursor-pointer">
+            <div class="w-10 h-10 flex items-center justify-center bg-white rounded-full cursor-pointer  hover:shadow-lg">
                 <UIIcons name="range"></UIIcons>
             </div>
             <div class="absolute top-full mt-2 flex flex-col gap-3 p-3 bg-white shadow-xl rounded-lg" v-if="inputFocused">
@@ -36,17 +36,21 @@
         <!-- Radio -->
         <div v-else-if="type === 'radio'" name="radio-tool" class="relative inline-flex rounded-xl" @focusin="setFocus()"
             @blur="setBlured()" tabindex="0" ref="input">
-            <div class="w-10 h-10 flex items-center justify-center bg-white rounded-full cursor-pointer">
+            <div name="radio-toggler"
+                class="w-10 h-10 flex items-center justify-center bg-white rounded-full cursor-pointer  hover:shadow-lg">
                 <UIIcons :name="icon || 'options'"></UIIcons>
             </div>
-            <div class="absolute top-full mt-2 flex flex-col gap-3 p-3 bg-white shadow-xl rounded-lg" v-if="inputFocused">
+            <div name="radio-wrappers" class="absolute top-full mt-2 flex flex-col gap-3 p-3 bg-white shadow-xl rounded-lg"
+                v-if="inputFocused">
 
                 <p class="flex-none w-full text-xs text-slate-300">{{ label }}</p>
                 <div class="flex gap-3 w-40 flex-col flex-wrap">
-                    <div v-for="value in values" class="flex gap-3 cursor-pointer items-center text-sm capitalize"
+                    <div name="radio-value" v-for="value in values"
+                        class="flex gap-3 cursor-pointer items-center text-sm capitalize"
                         @click="pickRadioValue(value, label)">
                         <div class="w-7 h-7 shadow-lg rounded-full flex items-center justify-center">
-                            <div class="w-4 h-4 bg-blue-600 rounded-full" v-if="value === valueRef"></div>
+                            <div name="radio-value-selected" class="w-4 h-4 bg-blue-600 rounded-full"
+                                v-if="value === valueRef"></div>
                         </div>
                         {{ value }}
                     </div>

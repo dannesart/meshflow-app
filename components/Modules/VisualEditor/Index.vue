@@ -44,8 +44,10 @@ const layers = ref<TLayer[]>([
         layers: [],
         classes: {
             "Background": `bg-${COLORS[0]}`,
+            "Text": `text-${COLORS[4]}`,
             "Padding": "p-5",
-            "Round": "rounded-xl"
+            "Round": "rounded-xl",
+            "Display": "block"
         }
     }
 ]);
