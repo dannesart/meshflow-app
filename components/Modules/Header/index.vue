@@ -1,6 +1,6 @@
 <template>
 	<header class="py-4 px-6 lg:px-10 gap-3 lg:gap-6 h-full flex flex-row lg:justify-between">
-		<div class="h-full flex-1">
+		<div class="h-full flex-1 hidden md:block">
 
 			<UIButton type="back" @click.prevent="$router.back()" v-if="id || type">
 				<UIIcons name="arrow-left"></UIIcons>
@@ -25,10 +25,10 @@
 				ref="menuRef" tabindex="0" @focusin="isMenuActive = true" @focusout="isMenuActive = false">
 				<div class="flex gap-4 flex-col">
 
-					<UIButton class="absolute top-6 left-6 md:hidden" @click="closeMenu">Close
-					</UIButton>
 
-					<UIUserInfo :class="'self-end'" :image="data?.user?.image" :name="data?.user?.name" role="developer">
+
+					<UIUserInfo :class="'self-end hidden md:block'" :image="data?.user?.image" :name="data?.user?.name"
+						role="developer">
 					</UIUserInfo>
 
 
@@ -62,6 +62,7 @@
 				</div>
 
 				<div class="flex flex-col gap-3">
+
 					<NuxtLink
 						class="text-blue-600 text-center border border-blue-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
 						to="/user">
@@ -70,31 +71,40 @@
 					<UIButton type="nevermind" class="" @click="logout">
 						Log me out, please
 					</UIButton>
+					<UIButton type="system" @click="closeMenu">Close
+					</UIButton>
 				</div>
 
 			</div>
 
-			<div class="w-96 bg-white outline-none shadow-xl px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-30 transition-transform translate-x-full focus-within:translate-x-0"
+			<div class="w-96 bg-white outline-none shadow-xl justify-between px-6 md:px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-50 transition-transform translate-x-full focus-within:translate-x-0"
 				ref="notificationMenuRef" tabindex="0" @focusin="isNotificationMenuActive = true"
 				@focusout="isNotificationMenuActive = false">
 
-				<UIHeadline size="h3">
-					Notifications
-				</UIHeadline>
-				<UIList>
-					<UIListItem :class="'flex-row'">
-						<div class="w-10 h-10 rounded-lg bg-red-100 text-pink-500 flex items-center justify-center">
-							<UIIcons name="notifications"></UIIcons>
-						</div>
-						<div class="flex-col gap-3">
-							<UIHeadline size="h4">Title</UIHeadline>
-							<p>Something...</p>
-						</div>
-					</UIListItem>
-				</UIList>
-				<UIButton :type="'link'">
-					All notifications
-				</UIButton>
+				<div class="flex gap-4 flex-col">
+					<UIHeadline size="h3">
+						Notifications
+					</UIHeadline>
+					<UIList>
+						<UIListItem :class="'flex-row'">
+							<div class="w-10 h-10 rounded-lg bg-red-100 text-pink-500 flex items-center justify-center">
+								<UIIcons name="notifications"></UIIcons>
+							</div>
+							<div class="flex-col gap-3">
+								<UIHeadline size="h4">Title</UIHeadline>
+								<p>Something...</p>
+							</div>
+						</UIListItem>
+					</UIList>
+
+					<UIButton :type="'link'">
+						All notifications
+					</UIButton>
+				</div>
+				<div class="flex flex-col gap-3">
+					<UIButton type="system" @click="closeMenu">Close
+					</UIButton>
+				</div>
 			</div>
 
 		</div>
