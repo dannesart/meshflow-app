@@ -33,7 +33,7 @@ import { useLayerStore } from "~~/stores/layer";
 import { COLORS } from "~~/constants/colors";
 
 const editor = ref()
-const layerStore = useLayerStore()
+const layerStore = useLayerStore();
 
 const { component } = defineProps(['component']);
 const layers = ref<TLayer[]>([

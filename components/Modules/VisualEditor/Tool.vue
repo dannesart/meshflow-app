@@ -4,7 +4,7 @@
         <div v-if="type === 'text-color' || type === 'bg-color'" class="relative inline-flex rounded-xl"
             @focusin="setFocus()" @blur="setBlured()" tabindex="0" ref="input" name="color-tool">
             <div class="w-10 h-10 border-2 border-white rounded-full cursor-pointer flex items-center justify-center  hover:shadow-lg"
-                :class="`bg-${valueRef}`">
+                :class="`bg-${value}`">
                 <p class="text-sm">
                     {{ type === "text-color" ? 'txt' : 'bg' }}
                 </p>
@@ -13,7 +13,7 @@
                 <p class="flex-none w-full text-xs text-slate-300">{{ label }}</p>
                 <div class="flex gap-3">
                     <div v-for="color in COLORS" class="w-7 h-7 shadow-lg rounded-full cursor-pointer"
-                        :class="{ 'border-2 border-blue-500': ((type === 'text-color' ? 'text-' : 'bg-') + color) === valueRef, [`bg-${color}`]: true }"
+                        :class="{ 'border-2 border-blue-500': ((type === 'text-color' ? 'text-' : 'bg-') + color) === value, [`bg-${color}`]: true }"
                         @click="pickColor(color)">
                     </div>
                 </div>
@@ -45,14 +45,14 @@
 
                 <p class="flex-none w-full text-xs text-slate-300">{{ label }}</p>
                 <div class="flex gap-3 w-40 flex-col flex-wrap">
-                    <div name="radio-value" v-for="value in values"
+                    <div name="radio-value" v-for="radioValue in values"
                         class="flex gap-3 cursor-pointer items-center text-sm capitalize"
-                        @click="pickRadioValue(value, label)">
+                        @click="pickRadioValue(radioValue, label)">
                         <div class="w-7 h-7 shadow-lg rounded-full flex items-center justify-center">
                             <div name="radio-value-selected" class="w-4 h-4 bg-blue-600 rounded-full"
-                                v-if="value === valueRef"></div>
+                                v-if="radioValue === value"></div>
                         </div>
-                        {{ value }}
+                        {{ radioValue }}
                     </div>
                 </div>
             </div>
@@ -70,7 +70,6 @@ import { COLORS } from "~~/constants/colors";
 const { type, value, values, disabled, max, min, label, icon } = defineProps(['type', 'value', 'values', 'disabled', 'max', 'min', 'label', 'icon']);
 
 const events = defineEmits(["onChange"])
-const valueRef = ref(value);
 const inputFocused = ref(false);
 const input = ref();
 const rangeInput = ref();
@@ -89,17 +88,15 @@ const setBlured = () => {
     inputFocused.value = false;
 }
 const pickColor = (color: string) => {
-    valueRef.value = color;
     input.value.blur();
     events("onChange", `${type === 'text-color' ? 'text-' : 'bg-'}${color}`)
 }
 const pickValue = (value: string, key: string) => {
-    valueRef.value = value;
     input.value.blur()
     events("onChange", value)
 }
-const pickRadioValue = (value: string, key: string) => {
-    valueRef.value = value;
-    events("onChange", value)
+const pickRadioValue = (radioValue: string, key: string) => {
+
+    events("onChange", radioValue)
 }
 </script>

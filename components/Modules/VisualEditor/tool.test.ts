@@ -93,16 +93,6 @@ describe("Tool", () => {
       await component.findAll("[name=radio-value]")[0].trigger("click");
 
       /**
-       * Expect n to be selected
-       */
-      expect(
-        component
-          .findAll("[name=radio-value]")[0]
-          .find("[name=radio-value-selected]")
-          .exists()
-      ).toBe(true);
-
-      /**
        * Expect new value to be emitted
        */
       const emitted = component.emitted();

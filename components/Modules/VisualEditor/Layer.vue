@@ -34,7 +34,7 @@ const setFocus = (event: MouseEvent) => {
     event.stopPropagation();
     event.preventDefault();
     layerStore.active(true);
-    layerStore.setLayer(layer)
+    layerStore.setLayer(layer);
 
 }
 
