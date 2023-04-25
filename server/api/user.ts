@@ -1,6 +1,10 @@
 import { TUser } from "~~/models/user";
+import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {
-  const sessions = e.context.sessions;
+  const session = await getServerSession(e);
+  if (session && session.user) {
+    return session.user;
+  }
   return e.context;
 });

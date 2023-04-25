@@ -27,6 +27,7 @@ export const useUserStore = defineStore("UserStore", {
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/user"
         );
+        this.setUser(response.data);
         // if (email && name && nickname)
         //   this.setUser({ email, nickname, name, id: "324234" });
       } catch (error) {
