@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "meshflow",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
