@@ -102,7 +102,7 @@
 					</UIButton>
 				</div>
 				<div class="flex flex-col gap-3 ">
-					<UIButton type="system" @click="closeMenu" class="md:hidden">Close
+					<UIButton type="system" @click="closeNotificationMenu" class="md:hidden">Close
 					</UIButton>
 				</div>
 			</div>
@@ -136,6 +136,15 @@ const closeMenu = (e: Event) => {
 const isNotificationMenuActive = ref(false);
 const notificationMenuRef = ref();
 const openNotificationMenu = () => notificationMenuRef.value.focus();
+const closeNotificationMenu = (e: Event) => {
+	e.preventDefault();
+	e.stopPropagation();
+	setTimeout(() => {
+		notificationMenuRef.value.blur();
+		isNotificationMenuActive.value = false
+	}, 100)
+
+};
 
 const selectProject = (projectId: string) => projectStore.setActive(projectId)
 

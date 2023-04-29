@@ -1,6 +1,6 @@
 <template>
     <article
-        class="w-full md:w-1/4 p-5 flex gap-5 flex-col md:flex-row rounded-lg shadow-lg bg-white relative overflow-hidden">
+        class="w-full p-5 flex flex-none md:flex-1 snap-center gap-5 flex-col md:flex-row rounded-lg shadow-lg bg-white relative overflow-hidden">
         <div class="flex flex-col gap-3 flex-1 ">
 
             <UIHeadline size="h4">
