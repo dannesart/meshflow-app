@@ -2,7 +2,7 @@
     <aside
         class="h-full py-4 px-6 lg:px-10 flex flex-col gap-10 transition-transform z-40 bg-white md:inset-auto md:relative"
         v-bind:class="{ 'absolute inset-0 ': menuState }">
-        <div class="w-3/4 text-green-400 h-full text-3xl font-bold md:px-4 rounded-full flex items-center">
+        <div class="w-3/4 text-green-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14 ">
             <button class="md:hidden px-3 py-3 -ml-3" @click="toggleMenu()">
                 <UIIcons :name="menuState ? 'close' : 'menu'"></UIIcons>
             </button>
