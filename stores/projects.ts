@@ -1,11 +1,11 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { TProject } from "~~/models/project";
+import { Project } from "~~/models/project";
 import { useRuntimeConfig } from "#app";
 
 type TProjectsState = {
   _activeProjectId: string | null;
-  _projects: TProject[];
+  _projects: Project[];
 };
 
 export const useProjectStore = defineStore("ProjectsStore", {
@@ -28,8 +28,8 @@ export const useProjectStore = defineStore("ProjectsStore", {
           }
         );
 
-        await this.fetchProjects();
-        //this._projects = response.data;
+        this._projects = [...this._projects, response.data];
+        //await this.fetchProjects();
       } catch (error) {
         //TODO: Handle error
       }
@@ -41,6 +41,10 @@ export const useProjectStore = defineStore("ProjectsStore", {
           config.public.REDIRECT_URI + "/api/projects"
         );
         this._projects = response.data;
+
+        if (!this._projects || !this._projects.length) {
+          useRouter().push("/projects/create");
+        }
       } catch (error) {
         //TODO: Handle error
       }

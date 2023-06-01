@@ -17,6 +17,8 @@ declare module 'nuxt/schema' {
       cdnURL: string,
    },
 
+   mongoUrl: string,
+
    auth: {
       isEnabled: boolean,
 

@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ["~~/assets/css/main.css", "~~/assets/css/tailwind.css"],
+
   imports: {},
 
   modules: [
@@ -18,9 +19,13 @@ export default defineNuxtConfig({
     ],
   ],
   runtimeConfig: {
+    mongoUrl: process.env.MONGO_URL,
     public: {
       REDIRECT_URI: process.env.REDIRECT_URI,
     },
+  },
+  nitro: {
+    plugins: ["~/server/index.ts"],
   },
   auth: {
     origin: process.env.REDIRECT_URI,
