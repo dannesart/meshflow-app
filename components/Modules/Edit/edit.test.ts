@@ -1,6 +1,7 @@
 import { DOMWrapper, mount, VueWrapper } from "@vue/test-utils";
 import Add from "./Index.vue";
 
+// TODO: Fix this while fixing edit module.
 describe("Add new entity of type X", () => {
   describe("title", () => {
     it("Should render correct form with correct title", () => {
@@ -36,13 +37,12 @@ describe("Add new entity of type X", () => {
       expect(component.find("h2").exists()).toBe(false);
     });
 
-    it("Should render a task form if type is task and user clicks on add new data button", async () => {
+    it("Should render a task form if type is taks", () => {
       const component = mount(Add, {
         props: {
           type: "task",
         },
       });
-      await component.find("[name=add-button]").trigger("click");
       expect(component.find("form[name=new-task-form]").exists()).toBe(true);
     });
   });

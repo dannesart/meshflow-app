@@ -38,8 +38,11 @@
 					<UIList>
 						<UIListItem v-for=" project  in  projectStore.projects " :class="{ 'justify-between': true, }"
 							@click="selectProject(project.id)">
-							<UIHeadline size="h4" :class="{ 'text-sky-200': projectStore.activeId === project.id }">
+							<UIHeadline size="h4">
 								{{ project.name }}
+								<span class="text-sm text-gray-400">
+									{{ projectStore.activeId === project.id ? '(current)' : '' }}
+								</span>
 							</UIHeadline>
 
 

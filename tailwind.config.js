@@ -17,7 +17,7 @@ module.exports = {
   safelist: [
     "safelisted",
     {
-      pattern: /bg-(red|green|blue|purple|white)-(400)/,
+      pattern: /bg-(red|green|blue|purple|white|sky)-(400|200)/,
     },
     {
       pattern: /bg-(black)/,

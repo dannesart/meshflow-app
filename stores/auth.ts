@@ -3,7 +3,7 @@ import axios from "axios";
 import { TUser } from "~~/models/user";
 import { useRuntimeConfig } from "#app";
 
-export const useUserStore = defineStore("UserStore", {
+export const useAuthStore = defineStore("AuthStore", {
   state: () =>
     <{ user: TUser }>{
       user: {},
@@ -25,7 +25,7 @@ export const useUserStore = defineStore("UserStore", {
         // const { email, nickname, name, picture } = useAuth0().user.value;
         // console.log({ email, nickname, name, picture });
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/user"
+          config.public.REDIRECT_URI + `/api/user`
         );
         if (response.data) {
           this.setUser(response.data);

@@ -45,6 +45,8 @@ export const useProjectStore = defineStore("ProjectsStore", {
         if (!this._projects || !this._projects.length) {
           useRouter().push("/projects/create");
         }
+
+        this.setActive(this._projects[0].id);
       } catch (error) {
         //TODO: Handle error
       }

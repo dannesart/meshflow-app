@@ -6,7 +6,10 @@
             <button class="md:hidden px-3 py-3 -ml-3" @click="toggleMenu()">
                 <UIIcons :name="menuState ? 'close' : 'menu'"></UIIcons>
             </button>
-            <span class="text-xl lg:text-2xl">meshflow</span>
+            <NuxtLink to="/">
+                <span class="text-xl lg:text-2xl">meshflow</span>
+            </NuxtLink>
+
         </div>
         <nav class="flex flex-col gap-3" v-bind:class="{ 'hidden md:flex': !menuState }">
             <div v-for="group in Menu">

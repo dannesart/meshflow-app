@@ -1,16 +1,16 @@
 import { BLOCKS, DATA, PAGES } from "./services";
 
 export const Menu = [
-  {
-    label: "",
-    items: [
-      {
-        icon: "dashboard",
-        label: "Dashboard",
-        route: "/",
-      },
-    ],
-  },
+  // {
+  //   label: "",
+  //   items: [
+  //     {
+  //       icon: "dashboard",
+  //       label: "Dashboard",
+  //       route: "/",
+  //     },
+  //   ],
+  // },
   {
     label: "Content",
     items: [
