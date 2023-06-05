@@ -3,7 +3,7 @@
     <UIButton :type="asLink ? 'link' : buttonStyle || 'add'" name="add-button"
         :size="buttonStyle === 'icon' ? 'round' : 'normal'" @click="addNewData()">
 
-        <UIIcons v-if="icon && buttonStyle === 'icon'" :name="icon"></UIIcons>
+        <UIIcons v-if="icon && buttonStyle === 'icon'" :size="size || 6" :name="icon"></UIIcons>
         <span v-else>
             {{ label || 'Add' }}
         </span>
@@ -13,12 +13,15 @@
         <UIHeadline size="h1" v-if="type" :class="'mb-6'">
             Add new {{ type }}
         </UIHeadline>
-        <slot></slot>
+
 
         <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddTask>
         <ModulesAddPage v-if="type === 'page' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddPage>
         <ModulesAddField v-if="type === 'field' && showModal" @on-valid="setValid" @on-error="setInvalid">
         </ModulesAddField>
+        <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddBlock>
+
+        <slot v-if="showModal"></slot>
 
         <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
             <UIButton type="add" @click="complete()" :disabled="!isValid">
@@ -35,7 +38,7 @@
 
 
 
-const { type, asLink, label, buttonStyle, icon } = defineProps(['type', 'asLink', 'label', 'buttonStyle', 'icon']);
+const { type, asLink, label, buttonStyle, icon, size } = defineProps(['type', 'asLink', 'label', 'buttonStyle', 'icon', 'size']);
 const emitEvents = defineEmits(['onAdd', 'onCancel']);
 let showModal = ref(false);
 let isValid = ref(false);

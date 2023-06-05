@@ -1,8 +1,6 @@
 <template>
     <NuxtLayout>
 
-
-
         <UIHeadline size="h1">
             Block types
         </UIHeadline>
@@ -10,11 +8,7 @@
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
             <ModulesAdd type="block" label="Add new type" @onAdd="onAdd" @onCancel="onCancel">
-                <UIForm>
-                    <UIInput type="text" :value="newBlockForm.name" @valueUpdate="newBlockForm.name = $event">
-                        Name
-                    </UIInput>
-                </UIForm>
+
             </ModulesAdd>
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
@@ -34,9 +28,7 @@
 
 const filters = ref({});
 const sorts = ref({});
-const newBlockForm = ref({
-    name: ''
-})
+
 
 const data = ref([
     {
@@ -67,8 +59,8 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts }
 }
 
-const onAdd = () => {
-    console.log("Add new block", newBlockForm.value)
+const onAdd = (newData: any) => {
+    console.log("Add new block", newData)
 }
 const onCancel = () => {
     console.log("Cancel new block")

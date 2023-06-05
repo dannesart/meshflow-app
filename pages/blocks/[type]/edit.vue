@@ -8,7 +8,8 @@
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
-            <ModulesAdd @on-add="onAddNewField" type="field" icon="add" v-if="active === 'model'" button-style="icon">
+            <ModulesAdd @on-add="onAddNewField" type="field" :size="6" icon="add" v-if="active === 'model'"
+                button-style="icon">
             </ModulesAdd>
         </div>
         <div v-if="active === 'model'">
@@ -27,7 +28,8 @@
                                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
                             </div>
                             <div class="flex items-center justify-center mr-0 ml-auto">
-                                <UIIcons name="dots" :size="4"></UIIcons>
+                                <ModulesEdit type="block" icon="dots" :size="4" button-style="icon"></ModulesEdit>
+                                <!-- <UIIcons name="dots" :size="4"></UIIcons> -->
                             </div>
                         </div>
                     </template>

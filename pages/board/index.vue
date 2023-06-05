@@ -19,7 +19,7 @@
                 </UIHeadline>
                 <client-only>
                     <draggable :list="tasks.filter((a) => a.status === status)" group="tasks"
-                        :component-data="{ class: 'flex flex-col gap-4' }" item-key="id"
+                        :component-data="{ class: 'flex flex-col gap-4 h-full' }" item-key="id"
                         @change="dragChange($event, status)" @end="dragEnd($event, status)">
                         <template #item="{ element: task }">
                             <NuxtLink :to="('/board/' + task.id)" class="flex-1 md:max-w-xl">

@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     Loader: typeof import('./components/Loader/Index.vue')['default']
     Modal: typeof import('./components/Modal/Index.vue')['default']
     ModulesAdd: typeof import('./components/Modules/Add/Index.vue')['default']
+    ModulesAddBlock: typeof import('./components/Modules/Add/Block.vue')['default']
     ModulesAddField: typeof import('./components/Modules/Add/Field.vue')['default']
     ModulesAddPage: typeof import('./components/Modules/Add/Page.vue')['default']
     ModulesAddTask: typeof import('./components/Modules/Add/Task.vue')['default']

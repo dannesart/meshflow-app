@@ -3,14 +3,21 @@
         <div v-if="step === 1">
             <section class="flex gap-6" name="model-types">
                 <div v-for="type in ModelTypes"
-                    class="p-10 rounded-xl shadow-xl flex flex-col gap-4 w-full hover:shadow-2xl cursor-pointer"
-                    name="model-type" @click="selectType(type)">
-                    <UIHeadline :size="'h3'" :class="['mb-0']">
-                        {{ type.name }}
-                    </UIHeadline>
-                    <p class="text-sm text-gray-400">
-                        {{ type.description }}
-                    </p>
+                    class="p-10 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer" name="model-type"
+                    @click="selectType(type)">
+
+                    <div>
+                        <UIIcons :name="type.icon"></UIIcons>
+                    </div>
+                    <div class="flex flex-col">
+
+                        <UIHeadline :size="'h3'">
+                            {{ type.name }}
+                        </UIHeadline>
+                        <p class="text-sm text-gray-400">
+                            {{ type.description }}
+                        </p>
+                    </div>
                 </div>
             </section>
         </div>
@@ -40,20 +47,27 @@
                     Required
                 </UIInput>
 
-                <UIInput type="checkbox" name="character-count" v-if="field.type.name === ModelTypes[0].name"
-                    :value="field.validations.minMax.use" @value-update="e => field.validations.minMax.use = e">
-                    Limit character count
-                </UIInput>
-                <div class="flex gap-4" v-if="field.validations.minMax.use">
-                    <UIInput type="text" :value="field.validations.minMax.min"
-                        @value-update="e => field.validations.minMax.min = e">
-                        Min
+                <div class="flex flex-col gap-4" v-if="field.type.name === ModelTypes[0].name">
+                    <UIInput type="checkbox" name="character-count" :value="field.validations.minMax.use"
+                        @value-update="e => field.validations.minMax.use = e">
+                        Limit character count
                     </UIInput>
-                    <UIInput type="text" :value="field.validations.minMax.max"
-                        @value-update="e => field.validations.minMax.max = e">
-                        Max
-                    </UIInput>
+                    <div class="flex gap-4 items-end" v-if="field.validations.minMax.use"
+                        :class="{ 'bg-blue-50 p-6 rounded-xl': field.validations.minMax.use }">
+                        <UIInput type="text" :value="field.validations.minMax.min"
+                            @value-update="e => handleMinMax(e, true)">
+                            Min
+                        </UIInput>
+                        <div class="pb-4">
+                            -
+                        </div>
+                        <UIInput type="text" :value="field.validations.minMax.max"
+                            @value-update="e => handleMinMax(e, false)">
+                            Max
+                        </UIInput>
+                    </div>
                 </div>
+
             </div>
         </div>
     </UIForm>
@@ -78,6 +92,23 @@ const field = ref<ModelField>({
         }
     }
 })
+
+const handleMinMax = (value: number, isMin: boolean) => {
+    if (isMin) {
+        if ((field.value.validations.minMax.max || 0) < value) {
+            field.value.validations.minMax.max = value < 0 ? 0 : value;
+        }
+        field.value.validations.minMax.min = value < 0 ? 0 : value;
+    }
+    if (!isMin) {
+        if ((field.value.validations.minMax.min || 0) > value) {
+            field.value.validations.minMax.min = value < 0 ? 0 : value;
+        }
+        field.value.validations.minMax.max = value < 0 ? 0 : value;
+
+    }
+
+}
 
 const selectType = (type: ModelType) => {
     field.value.type = type;

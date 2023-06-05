@@ -33,6 +33,17 @@ declare module 'nitropack' {
     '/api/data': {
       'default': Awaited<ReturnType<typeof import('../../server/api/data').default>>
     }
+    '/api/blocks': {
+      'post': Awaited<ReturnType<typeof import('../../server/api/blocks/index.post').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/blocks/index.get').default>>
+    }
+    '/api/blocks/:type': {
+      'post': Awaited<ReturnType<typeof import('../../server/api/blocks/[type]/index.post').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/blocks/[type]/index.get').default>>
+    }
+    '/api/blocks/:type/:id': {
+      'get': Awaited<ReturnType<typeof import('../../server/api/blocks/[type]/[id]/index.get').default>>
+    }
     '/api/auth/**': {
       'default': Awaited<ReturnType<typeof import('../../server/api/auth/[...]').default>>
     }

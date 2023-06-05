@@ -2,16 +2,19 @@
     <div class="flex flex-col gap-3 relative">
         <slot v-if="type !== 'checkbox'" />
         <input v-if="type === 'text' || type === 'number' || type === 'email' || type === 'date'" :required="required"
-            :value="value" @input="updateValue($event)" :type="type || 'text'" :disabled="disabled"
-            class="py-3 px-5 border rounded-lg shadow-sm  bg-white disabled:bg-slate-100"
+            :value="value" @input="updateValue($event)" :type="type || 'text'" :disabled="disabled" :minlength="min"
+            :maxlength="max" class="py-3 px-5 border rounded-lg shadow-sm  bg-white disabled:bg-slate-100"
             :class="{ 'hover:shadow-lg': !disabled }" :name="name" placeholder="ex. Sunny weather or Benjamin" />
+        <div class="absolute -bottom-6 text-gray-400 text-sm right-0" v-if="max">
+            {{ value.length }} / {{ max }}
+        </div>
         <!-- Tag modal -->
         <div class="absolute bottom-full mb-10 p-4" v-if="isTagging">
             <UIInput :name="name" type="text" @value-update="setTaggingValue($event)"></UIInput>
             <UIButton @click="doneTagging()">Done</UIButton>
         </div>
         <textarea :name="name" ref="textAreaRef" :value="valueRef" v-if="type === 'text-lg'"
-            @keyup="checkForTagging($event)" @input="updateValue($event);"
+            @keyup="checkForTagging($event)" @input="updateValue($event);" :maxlength="max" :minlength="min"
             class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg"
             placeholder="ex. It was a warm summer day.."></textarea>
 
@@ -65,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-const { type, value, values, required, name, disabled } = defineProps(['type', 'value', 'values', 'required', 'name', 'disabled']);
+const { type, value, values, required, name, disabled, max, min } = defineProps(['type', 'value', 'values', 'required', 'name', 'disabled', 'max', 'min']);
 const eventEmit = defineEmits(['valueUpdate'])
 const valueRef = ref(value);
 const selectRef = ref();
