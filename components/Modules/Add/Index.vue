@@ -15,11 +15,14 @@
         </UIHeadline>
 
 
-        <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddTask>
-        <ModulesAddPage v-if="type === 'page' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddPage>
+        <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid">
+        </ModulesAddTask>
+        <ModulesAddPage v-if="type === 'page' && showModal" @on-valid="setValid" @on-error="setInvalid">
+        </ModulesAddPage>
         <ModulesAddField v-if="type === 'field' && showModal" @on-valid="setValid" @on-error="setInvalid">
         </ModulesAddField>
-        <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid"></ModulesAddBlock>
+        <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid">
+        </ModulesAddBlock>
 
         <slot v-if="showModal"></slot>
 

@@ -8,13 +8,15 @@
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
-            <ModulesAdd @on-add="onAddNewField" type="field" :size="6" icon="add" v-if="active === 'model'"
-                button-style="icon">
-            </ModulesAdd>
+            <div>
+                <ModulesAdd @on-add="onAddNewField" type="field" :size="6" icon="add" v-if="active === 'model'"
+                    button-style="icon">
+                </ModulesAdd>
+            </div>
         </div>
         <div v-if="active === 'model'">
             <div v-if="model.fields.length" class="flex flex-col gap-6">
-                <draggable :list="model.fields" group="fields" item-key="id"
+                <draggable :list="model.fields" group="fields" item-key="id" ghost-class="ghost"
                     :component-data="{ class: 'flex flex-col gap-4' }">
                     <template #item="{ element: field }">
                         <div class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer">
@@ -60,6 +62,7 @@
 import { TTab } from '~~/components/UI/Tabs/tabs.model';
 import { Model } from '~~/models/model';
 
+const dragging = ref(false)
 const isLoading = ref(false);
 const { type } = useRoute().params;
 
@@ -99,4 +102,11 @@ const setActiveTab = (tab: TTab) => {
     active.value = tab.name;
 }
 
+
 </script>
+
+<style scoped>
+.ghost {
+    opacity: 0.5;
+}
+</style>

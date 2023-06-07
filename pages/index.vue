@@ -41,8 +41,10 @@
                     <UIHeadline size="h3">
                         Latests tasks
                     </UIHeadline>
-                    <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
-                    </ModulesAdd>
+                    <div>
+                        <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
+                        </ModulesAdd>
+                    </div>
                 </div>
                 <div class=" flex gap-5 ">
                     <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
