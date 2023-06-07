@@ -8,11 +8,10 @@
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
-            <div>
-                <ModulesAdd @on-add="onAddNewField" type="field" :size="6" icon="add" v-if="active === 'model'"
-                    button-style="icon">
-                </ModulesAdd>
-            </div>
+
+            <ModulesAdd @on-add="onAddNewField" type="field" :size="6" icon="add" v-if="active === 'model'"
+                button-style="icon">
+            </ModulesAdd>
         </div>
         <div v-if="active === 'model'">
             <div v-if="model.fields.length" class="flex flex-col gap-6">

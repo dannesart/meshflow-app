@@ -1,40 +1,42 @@
 
 <template>
-    <UIButton :type="asLink ? 'link' : buttonStyle || 'add'" name="add-button"
-        :size="buttonStyle === 'icon' ? 'round' : 'normal'" @click="addNewData()">
+    <div>
+        <UIButton :type="asLink ? 'link' : buttonStyle || 'add'" name="add-button"
+            :size="buttonStyle === 'icon' ? 'round' : 'normal'" @click="addNewData()">
 
-        <UIIcons v-if="icon && buttonStyle === 'icon'" :size="size || 6" :name="icon"></UIIcons>
-        <span v-else>
-            {{ label || 'Add' }}
-        </span>
-    </UIButton>
+            <UIIcons v-if="icon && buttonStyle === 'icon'" :size="size || 6" :name="icon"></UIIcons>
+            <span v-else>
+                {{ label || 'Add' }}
+            </span>
+        </UIButton>
 
-    <UIModal :show-modal="showModal" @on-close="cancelNewData()">
-        <UIHeadline size="h1" v-if="type" :class="'mb-6'">
-            Add new {{ type }}
-        </UIHeadline>
+        <UIModal :show-modal="showModal" @on-close="cancelNewData()">
+            <UIHeadline size="h1" v-if="type" :class="'mb-6'">
+                Add new {{ type }}
+            </UIHeadline>
 
 
-        <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid">
-        </ModulesAddTask>
-        <ModulesAddPage v-if="type === 'page' && showModal" @on-valid="setValid" @on-error="setInvalid">
-        </ModulesAddPage>
-        <ModulesAddField v-if="type === 'field' && showModal" @on-valid="setValid" @on-error="setInvalid">
-        </ModulesAddField>
-        <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid">
-        </ModulesAddBlock>
+            <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid">
+            </ModulesAddTask>
+            <ModulesAddPage v-if="type === 'page' && showModal" @on-valid="setValid" @on-error="setInvalid">
+            </ModulesAddPage>
+            <ModulesAddField v-if="type === 'field' && showModal" @on-valid="setValid" @on-error="setInvalid">
+            </ModulesAddField>
+            <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid">
+            </ModulesAddBlock>
 
-        <slot v-if="showModal"></slot>
+            <slot v-if="showModal"></slot>
 
-        <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
-            <UIButton type="add" @click="complete()" :disabled="!isValid">
-                Create {{ type }}
-            </UIButton>
-            <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">
-                Nevermind
-            </UIButton>
-        </footer>
-    </UIModal>
+            <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
+                <UIButton type="add" @click="complete()" :disabled="!isValid">
+                    Create {{ type }}
+                </UIButton>
+                <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">
+                    Nevermind
+                </UIButton>
+            </footer>
+        </UIModal>
+    </div>
 </template>
 
 <script setup lang="ts">
