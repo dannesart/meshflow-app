@@ -15,6 +15,7 @@ const ModelFieldSchema = z.object({
   name: z.string().min(3),
   type: ModelTypeSchema,
   linkType: z.string().optional(),
+  isMain: z.boolean().default(() => false),
   validations: z.object({
     required: z.boolean().default(() => false),
     minMax: z.object({

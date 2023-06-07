@@ -261,6 +261,12 @@
         <path stroke-linecap="round" stroke-linejoin="round"
             d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
     </svg>
+
+    <svg v-if="name.toLowerCase() === 'crown'" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+        :class="getSize(size || 6)" viewBox="0 0 24 24" stroke-width="1.5">
+        <path
+            d="M22.766,4.566A1.994,1.994,0,0,0,20.586,5L18,7.586,13.414,3a2,2,0,0,0-2.828,0L6,7.586,3.414,5A2,2,0,0,0,0,6.414V17a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6.414A2,2,0,0,0,22.766,4.566ZM22,17a3,3,0,0,1-3,3H5a3,3,0,0,1-3-3V6.414L5.293,9.707a1,1,0,0,0,1.414,0L12,4.414l5.293,5.293a1,1,0,0,0,1.414,0L22,6.414Z" />
+    </svg>
 </template>
 
 <script setup lang="ts">

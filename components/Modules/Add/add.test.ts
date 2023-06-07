@@ -42,6 +42,7 @@ describe("Add new entity of type X", () => {
           type: "task",
         },
       });
+
       await component.find("[name=add-button]").trigger("click");
       expect(component.find("form[name=new-task-form]").exists()).toBe(true);
     });

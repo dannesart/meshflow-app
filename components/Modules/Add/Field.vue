@@ -37,7 +37,7 @@
                 </UIInput>
             </div>
             <div class="mb-12" v-if="field.type.name === ModelTypes[0].name">
-                <UIInput type="checkbox" name="main-title">
+                <UIInput type="checkbox" name="main-title" :value="field.isMain" @value-update="e => field.isMain = e">
                     This represent main title
                 </UIInput>
             </div>
@@ -83,6 +83,7 @@ const field = ref<ModelField>({
     id: '',
     name: '',
     type: ModelTypes[0],
+    isMain: false,
     validations: {
         required: false,
         minMax: {

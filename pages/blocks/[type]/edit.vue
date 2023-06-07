@@ -18,18 +18,23 @@
                     :component-data="{ class: 'flex flex-col gap-4' }">
                     <template #item="{ element: field }">
                         <div class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer">
-                            <div class="flex items-center justify-center">
+                            <div class="flex items-center justify-center relative">
+                                <span class="text-amber-500 absolute top-1 -left-2 -rotate-45" v-if="field.isMain">
+                                    <UIIcons name="crown" :size="4"></UIIcons>
+                                </span>
                                 <UIIcons :name="field.type.name" :size="6"></UIIcons>
                             </div>
                             <div class="flex flex-col gap-1">
-                                <UIHeadline size="h4">
+
+                                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
                                     {{ field.name }}
+
                                 </UIHeadline>
                                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
                             </div>
-                            <div class="flex items-center justify-center mr-0 ml-auto">
-                                <ModulesEdit type="block" icon="dots" :size="4" button-style="icon"></ModulesEdit>
-                                <!-- <UIIcons name="dots" :size="4"></UIIcons> -->
+                            <div class="flex items-center justify-center mr-0 ml-auto ">
+                                <ModulesEdit type="block" icon="dots" :size="4" button-style="icon">
+                                </ModulesEdit>
                             </div>
                         </div>
                     </template>
@@ -55,11 +60,10 @@
 import { TTab } from '~~/components/UI/Tabs/tabs.model';
 import { Model } from '~~/models/model';
 
-
 const isLoading = ref(false);
 const { type } = useRoute().params;
 
-const model = ref<Model>({
+const model = ref<any>({
     name: type as string,
     id: (Math.floor(Math.random() * 100000000) + 1) + "",
     description: '',
