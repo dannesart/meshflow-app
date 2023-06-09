@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed  z-[100] left-1/2 -translate-x-1/2 bg-white rounded-xl p-4 px-8 shadow-xl transition-transform flex gap-3"
+    <div class="fixed  z-[100] left-5 right-5 md:right-auto md:left-1/2 md:-translate-x-1/2 bg-white rounded-xl p-4 px-8 shadow-xl transition-transform flex gap-3"
         :class="{ 'translate-y-0': notificationStore.notification, 'translate-y-full': !notificationStore.notification, 'bottom-4': notificationStore.notification, '-bottom-full': !notificationStore.notification }">
         <div class="w-10 h-10 rounded-lg bg-red-100 text-red-500 flex items-center justify-center">
             <UIIcons name="tasks"></UIIcons>
