@@ -1,10 +1,10 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-field-form">
         <div v-if="step === 1">
-            <section class="flex gap-6" name="model-types">
+            <section class="flex gap-6 flex-col md:flex-row" name="model-types">
                 <div v-for="type in ModelTypes"
-                    class="p-10 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer" name="model-type"
-                    @click="selectType(type)">
+                    class="p-5 md:p-10 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer"
+                    name="model-type" @click="selectType(type)">
 
                     <div>
                         <UIIcons :name="type.icon"></UIIcons>
