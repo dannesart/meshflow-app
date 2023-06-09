@@ -9,7 +9,12 @@ declare module 'nitropack' {
       'get': Awaited<ReturnType<typeof import('../../server/api/user/[id].get').default>>
     }
     '/api/tasks': {
-      'default': Awaited<ReturnType<typeof import('../../server/api/tasks').default>>
+      'post': Awaited<ReturnType<typeof import('../../server/api/tasks/index.post').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/tasks/index.get').default>>
+    }
+    '/api/tasks/:id': {
+      'patch': Awaited<ReturnType<typeof import('../../server/api/tasks/[id].patch').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/tasks/[id].get').default>>
     }
     '/api/settings': {
       'default': Awaited<ReturnType<typeof import('../../server/api/settings').default>>

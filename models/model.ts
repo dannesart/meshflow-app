@@ -1,4 +1,3 @@
-import { Schema } from "mongoose";
 import { z } from "zod";
 
 const ModelTypeSchema = z.object({
@@ -41,23 +40,7 @@ const ModelSchema = z.object({
 });
 type Model = z.infer<typeof ModelSchema>;
 
-// This is the DB schema. Based on project type
-const ModelDbSchema: Schema<Model> = new Schema({
-  name: String,
-  description: String,
-  id: { type: String, unique: true },
-  fields: [],
-  projectId: { type: Schema.Types.ObjectId, ref: "projects" },
-  createdBy: String,
-  created: { type: Date, default: Date.now },
-  updatedBy: String,
-  updated: { type: Date, default: Date.now },
-  serviceType: String,
-});
-
 // Types
 export { ModelType, ModelField, Model };
 // Schemas for validation
 export { ModelTypeSchema, ModelFieldSchema, ModelSchema };
-// DB Schemas
-export { ModelDbSchema };

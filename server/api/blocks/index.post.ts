@@ -1,4 +1,4 @@
-import { Model, ModelDbSchema, ModelSchema } from "~~/models/model";
+import { Model, ModelSchema } from "~~/models/model";
 import { getServerSession } from "#auth";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
@@ -30,16 +30,16 @@ export default defineEventHandler(async (e) => {
   const body = await readBody(e);
   if (ModelSchema.safeParse(body)) {
     const { name, projectId, description } = body;
-    const newDoc = new ModelDbSchema({
-      name,
-      createdBy: session.user.email,
-      updatedBy: session.user.email,
-      projectId,
-      description,
-      fields: [],
-      id: uuidv4(),
-      serviceType: "block",
-    });
+    // const newDoc = new ModelDbModel({
+    //   name,
+    //   createdBy: session.user.email,
+    //   updatedBy: session.user.email,
+    //   projectId,
+    //   description,
+    //   fields: [],
+    //   id: uuidv4(),
+    //   serviceType: "block",
+    // });
   }
 
   return false;

@@ -37,7 +37,7 @@
 
 <script lang="ts">
 
-import { TTask, TASK_STATUSES } from '~~/models/task';
+import { Task, TASK_STATUSES } from '~~/models/tasks';
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 
@@ -76,7 +76,7 @@ export default {
         async sortChange(_sorts: { [key: string]: any }) {
             this.sorts = { ...this.sorts, ..._sorts };
         },
-        onAdd: (task: TTask) => {
+        onAdd: (task: Task) => {
             setNotification("Task created", "Your task was successfully created", "success");
             addTask(task);
         },

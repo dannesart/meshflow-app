@@ -9,14 +9,14 @@
 </template>
 
 <script setup lang="ts">
-import { TaskSchema, TASK_STATUSES, TTask } from '~~/models/task';
+import { TaskSchema, TASK_STATUSES } from '~~/models/tasks';
 import { useSession } from "#imports";
 const { data } = useSession();
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = TASK_STATUSES;
 
-let newTask: TTask = {
+let newTask = {
     title: '',
     description: '',
     status: statuses[0],
@@ -32,7 +32,7 @@ const valueChange = (event: string, key: string) => {
     validate(newTask);
 }
 
-const validate = async (newTask: TTask) => {
+const validate = async (newTask: any) => {
     const validated = await TaskSchema.safeParse(newTask);
 
     if (!validated.success) {

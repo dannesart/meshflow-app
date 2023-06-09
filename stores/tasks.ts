@@ -1,17 +1,17 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { TTask } from "~~/models/task";
+import { Task } from "~~/models/tasks";
 import { useRuntimeConfig } from "#app";
 
-type TState = {
-  allTasks: TTask[];
-  task: TTask | null;
+type State = {
+  allTasks: Task[];
+  task: Task | null;
   isEditing: boolean;
 };
 
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
-    <TState>{
+    <State>{
       isEditing: false,
       allTasks: [],
       task: null,
@@ -38,18 +38,18 @@ export const useTasksStore = defineStore("TasksStore", {
     active(open: boolean) {
       this.isEditing = open;
     },
-    updateTask(task: TTask, patch: { [key: string]: any }) {
+    updateTask(task: Task, patch: { [key: string]: any }) {
       const idx = this.taskByIdx(task.id);
       const update = { ...task, ...patch };
       this.allTasks[idx] = update;
     },
-    setTasks(tasks: TTask[]) {
+    setTasks(tasks: Task[]) {
       this.allTasks = tasks;
     },
-    setCurrentTask(task: TTask) {
+    setCurrentTask(task: Task) {
       this.task = task;
     },
-    addTask(task: TTask) {
+    addTask(task: Task) {
       this.allTasks.push(task);
     },
 

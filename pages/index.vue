@@ -69,7 +69,7 @@
 import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
 import { useCommentsStore } from "~~/stores/comments";
-import { TTask, TASK_STATUSES } from '~~/models/task';
+import { Task, TASK_STATUSES } from '~~/models/tasks';
 import { useNotificationStore } from "~~/stores/notifications";
 
 const notificationsStore = useNotificationStore();
@@ -79,7 +79,7 @@ const commentsStore = useCommentsStore();
 const { latest, tasks, addTask } = tasksStore;
 const { pages } = usePagesStore();
 
-const onAdd = (task: TTask) => {
+const onAdd = (task: Task) => {
     setNotification("Task created", "Your task was successfully created", "success")
     addTask(task);
     //useRouter().push('/tasks')

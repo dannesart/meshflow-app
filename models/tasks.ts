@@ -19,11 +19,13 @@ const TaskSchema = z
     id: z.string(),
     createdBy: z.string(),
     created: z.date(),
+    updatedBy: z.string(),
+    updated: z.date().default(() => new Date()),
     tags: z.array(z.string()),
     subTasks: z.array(z.string()).optional(),
   })
   .strict();
 
-type TTask = z.infer<typeof TaskSchema>;
+type Task = z.infer<typeof TaskSchema>;
 
-export { TaskSchema, TTask, TASK_STATUSES };
+export { TaskSchema, Task, TASK_STATUSES };

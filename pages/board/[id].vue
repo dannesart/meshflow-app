@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { TTask, TASK_STATUSES } from '~~/models/task';
+import { Task, TASK_STATUSES } from '~~/models/tasks';
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 
@@ -62,7 +62,7 @@ const notificationStore = useNotificationStore();
 const { setNotification } = notificationStore;
 const { taskById, updateTask } = tasksStore;
 const { id } = useRoute().params;
-const task: TTask = taskById(id as string) as TTask;
+const task: Task = taskById(id as string) as Task;
 
 const toggleFavorite = () => {
     if (task) {
