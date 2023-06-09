@@ -18,7 +18,7 @@
             <ModulesAdd :type="type">
             </ModulesAdd>
         </div>
-        <div class="flex md:gap-6 flex-col md:flex-row">
+        <div class="flex gap-6 flex-col md:flex-row">
 
             <NuxtLink :to="('/blocks/' + type + '/' + item.id)" class="flex-1 max-w-md" v-for="(item, index) in data">
                 <ModulesCard :title="item.title" :body="item.body" @favorite="event => updateFavorite(event, index)">
