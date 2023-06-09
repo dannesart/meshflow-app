@@ -6,7 +6,7 @@
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd label="Add new page" type="page" @onAdd="onAdd" @onCancel="onCancel"></ModulesAdd>
+            <ModulesAdd label="Add page" type="page" @onAdd="onAdd" @onCancel="onCancel"></ModulesAdd>
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
             <client-only>

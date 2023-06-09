@@ -2,13 +2,16 @@
     <aside
         class="h-full py-4 px-6 lg:px-10 flex flex-col gap-10 transition-transform z-40 bg-white md:inset-auto md:relative"
         v-bind:class="{ 'absolute inset-0 ': menuState }">
-        <div class="w-3/4 text-green-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14 ">
-            <button class="md:hidden px-3 py-3 -ml-3" @click="toggleMenu()">
-                <UIIcons :name="menuState ? 'close' : 'menu'"></UIIcons>
-            </button>
-            <NuxtLink to="/">
-                <span class="text-xl lg:text-2xl">meshflow</span>
+        <div class="w-3/4 text-green-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14">
+            <NuxtLink to="/" class="flex gap-6 items-center">
+
+                <UILogo :size="50"></UILogo>
+                <span class="hidden md:block text-xl lg:text-2xl">meshflow</span>
             </NuxtLink>
+            <button class="md:hidden px-3 py-3 ml-3" @click="toggleMenu()">
+                <UIIcons :name="menuState ? 'close' : 'menu'" :size="8"></UIIcons>
+            </button>
+
 
         </div>
         <nav class="flex flex-col gap-3" v-bind:class="{ 'hidden md:flex': !menuState }">

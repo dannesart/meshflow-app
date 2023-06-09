@@ -7,7 +7,7 @@
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd type="block" label="Add new type" @onAdd="onAdd" @onCancel="onCancel">
+            <ModulesAdd type="block" label="Add type" @onAdd="onAdd" @onCancel="onCancel">
 
             </ModulesAdd>
         </div>

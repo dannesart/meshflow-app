@@ -91,6 +91,7 @@ declare module '@vue/runtime-core' {
     UIListItem: typeof import('./components/UI/List/Item.vue')['default']
     UiLoader: typeof import('./components/ui/Loader/Index.vue')['default']
     UILoader: typeof import('./components/UI/Loader/Index.vue')['default']
+    UILogo: typeof import('./components/UI/Logo/index.vue')['default']
     UiModal: typeof import('./components/ui/Modal/Index.vue')['default']
     UIModal: typeof import('./components/UI/Modal/Index.vue')['default']
     UIStat: typeof import('./components/UI/Stat/Index.vue')['default']

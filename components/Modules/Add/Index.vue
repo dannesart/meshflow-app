@@ -12,7 +12,7 @@
 
         <UIModal :show-modal="showModal" @on-close="cancelNewData()">
             <UIHeadline size="h1" v-if="type" :class="'mb-6'">
-                Add new {{ type }}
+                Add {{ type }}
             </UIHeadline>
 
 
