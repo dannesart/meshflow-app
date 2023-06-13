@@ -59,7 +59,8 @@
 						</UIListItem>
 					</UIList>
 
-					<NuxtLink class="text-blue-600 text-right cursor-pointer" to="/projects/create">
+					<NuxtLink class="text-blue-600 text-right cursor-pointer" to="/projects/create"
+						v-if="projectStore.projects.length < MAX_PROJECTS">
 						Create new project
 					</NuxtLink>
 				</div>
@@ -123,12 +124,15 @@ const { id, type } = useRoute().params;
 const projectStore = useProjectStore();
 const { status, data, signIn, signOut } = useSession()
 
+const MAX_PROJECTS = 2;
 const isMenuActive = ref(false);
 const menuRef = ref();
 const openMenu = () => menuRef.value.focus();
-const closeMenu = (e: Event) => {
-	e.preventDefault();
-	e.stopPropagation();
+const closeMenu = (e?: Event) => {
+	if (e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
 	setTimeout(() => {
 		menuRef.value.blur();
 		isMenuActive.value = false
@@ -149,7 +153,10 @@ const closeNotificationMenu = (e: Event) => {
 
 };
 
-const selectProject = (projectId: string) => projectStore.setActive(projectId)
+const selectProject = (projectId: string) => {
+	projectStore.setActive(projectId);
+	closeMenu()
+}
 
 const notifications = 3;
 

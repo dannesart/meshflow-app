@@ -9,7 +9,7 @@
         </header>
         <div class="flex gap-6 flex-col md:flex-row">
             <UIForm :class="'flex-1 flex flex-col gap-6'">
-                <UIInput type="text-lg" :value="task?.description">
+                <UIInput type="text-lg" :max="300" :value="task?.description" @value-update="e => task.description = e">
                     Description
                 </UIInput>
 
@@ -39,7 +39,6 @@
             </aside>
 
         </div>
-
         <footer>
             <UIButton type="add" @click="save()">
                 Save
@@ -62,10 +61,11 @@ const notificationStore = useNotificationStore();
 const { setNotification } = notificationStore;
 const { taskById, updateTask } = tasksStore;
 const { id } = useRoute().params;
-const task: Task = taskById(id as string) as Task;
+const task = ref<Task>(taskById(id as string) as Task);
+
 
 const toggleFavorite = () => {
-    if (task) {
+    if (task.value) {
         setNotification("Liked task", "Danne liked you task")
         //task.favorite = !task?.favorite;
 
@@ -73,23 +73,22 @@ const toggleFavorite = () => {
 }
 
 const updateStatus = (status: any) => {
-    updateTask(task, { status });
+    //updateTask(task.value, { status });
+    task.value.status = status;
 }
 
 const updateTag = (value: string, tagIdx: number) => {
-    if (!task.tags) task.tags = [];
-    task.tags[tagIdx || 0] = value;
+    task.value.tags[tagIdx || 0] = value;
 }
 
 const addNewTag = () => {
-    if (!task.tags) task.tags = [];
-
-    task.tags.push('tag ' + task.tags.length)
+    task.value.tags.push('tag ' + task.value.tags.length)
 
 }
 
-const save = () => {
-    updateTask(task, { ...task });
+const save = async () => {
+    await updateTask(task.value, { ...task });
+    setNotification("Task updated", "The tasks was successfully updated!")
 }
 
 

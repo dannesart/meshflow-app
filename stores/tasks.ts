@@ -8,18 +8,21 @@ type State = {
   task: Task | null;
   isEditing: boolean;
   errors: string[];
+  loading: boolean;
 };
 
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
     <State>{
       isEditing: false,
+      loading: true,
       allTasks: [],
       task: null,
       errors: [],
     },
   getters: {
     editing: (state) => state.isEditing,
+    isLoading: (state) => state.loading,
     currentTask: (state) => state.task,
     tasks: (state) => state.allTasks,
     latest: (state) => {
@@ -40,7 +43,13 @@ export const useTasksStore = defineStore("TasksStore", {
     active(open: boolean) {
       this.isEditing = open;
     },
-    updateTask(task: Task, patch: { [key: string]: any }) {
+    async updateTask(task: Task, patch: { [key: string]: any }) {
+      const config = useRuntimeConfig();
+      const response = await axios.patch(
+        config.public.REDIRECT_URI + "/api/tasks/" + task.id,
+        task
+      );
+
       const idx = this.taskByIdx(task.id);
       const update = { ...task, ...patch };
       this.allTasks[idx] = update;
@@ -53,23 +62,26 @@ export const useTasksStore = defineStore("TasksStore", {
     },
     async addTask(task: Task) {
       try {
+        this.loading = true;
         const config = useRuntimeConfig();
         const response = await axios.post(
           config.public.REDIRECT_URI + "/api/tasks",
           task
         );
+        this.loading = false;
         await this.fetchTasks();
       } catch (error) {
         //TODO: Handle error
       }
     },
-
     async fetchTasks() {
+      this.loading = true;
       try {
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/tasks"
         );
+        this.loading = false;
         if (response.data) {
           if (response.data.error) {
             this.errors = [response.data.error];
@@ -78,6 +90,7 @@ export const useTasksStore = defineStore("TasksStore", {
           this.allTasks = response.data;
         }
       } catch (error) {
+        this.loading = false;
         //TODO: Handle error
       }
     },

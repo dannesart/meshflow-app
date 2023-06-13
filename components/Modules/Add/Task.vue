@@ -1,6 +1,7 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
-        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :min="3" :max="100" :value="newTask?.title">
+
+        <UIInput @valueUpdate="$event => newTask.title = $event" type="text" :min="3" :max="100" :value="newTask?.title">
             <label>
                 Title
             </label>
@@ -16,7 +17,7 @@ const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = TASK_STATUSES;
 
-let newTask = {
+const newTask = ref({
     title: '',
     description: '',
     status: statuses[0],
@@ -26,7 +27,7 @@ let newTask = {
     createdBy: data.value?.user?.name || '',
     updated: new Date(),
     updatedBy: data.value?.user?.name || ''
-}
+})
 
 const valueChange = (event: string, key: string) => {
     (newTask as any)[key] = event;
@@ -35,7 +36,7 @@ const valueChange = (event: string, key: string) => {
 }
 
 const validate = async (newTask: any) => {
-    const validated = await TaskSchema.safeParse(newTask);
+    const validated = await TaskSchema.safeParse(newTask.value);
 
     if (!validated.success) {
         events('onError', validated.error)

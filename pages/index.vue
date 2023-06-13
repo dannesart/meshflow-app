@@ -44,8 +44,11 @@
                     <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
                     </ModulesAdd>
                 </div>
-                <div class=" flex gap-5 ">
-                    <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
+                <div class=" flex gap-5">
+                    <div v-if="tasksStore.isLoading">
+                        <UILoader></UILoader>
+                    </div>
+                    <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="task in latest" class="border-b last:border-b-0">
                             <ModulesExtendedLink :label="task.title" :sub-label="('Added by @' + task.createdBy)"
                                 :tags="task.tags" :route="('/board/' + task.id)">
@@ -69,6 +72,7 @@
 import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
 import { useCommentsStore } from "~~/stores/comments";
+import { useUsersStore } from "~~/stores/users";
 import { Task, TASK_STATUSES } from '~~/models/tasks';
 import { useNotificationStore } from "~~/stores/notifications";
 
@@ -78,6 +82,11 @@ const tasksStore = useTasksStore();
 const commentsStore = useCommentsStore();
 const { latest, tasks, addTask } = tasksStore;
 const { pages } = usePagesStore();
+
+const getUserByEmail = async (email: string) => {
+    const user = useUsersStore().getUserByEmail(email);
+    return user || email;
+}
 
 const onAdd = (task: Task) => {
     setNotification("Task created", "Your task was successfully created", "success")

@@ -3,10 +3,11 @@ import axios from "axios";
 import { useRuntimeConfig } from "#app";
 
 export const useSettingsStore = defineStore("SettingStore", {
-  state: () => ({ web: false, dark: false }),
+  state: () => ({ web: false, dark: false, useSprints: false }),
   getters: {
     isWeb: (state) => state.web,
     isDark: (state) => state.dark,
+    isUsingSprints: (state) => state.useSprints,
   },
   actions: {
     setIsWeb(open: boolean) {
@@ -14,6 +15,9 @@ export const useSettingsStore = defineStore("SettingStore", {
     },
     setIsDark(dark: boolean) {
       this.dark = dark;
+    },
+    setUseSprints(use: boolean) {
+      this.useSprints = use;
     },
     async fetchSettings() {
       try {

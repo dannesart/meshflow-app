@@ -5,16 +5,14 @@
             :value="value" @input="updateValue($event)" :type="type || 'text'" :disabled="disabled" :minlength="min"
             :maxlength="max" class="py-3 px-5 border rounded-lg shadow-sm  bg-white disabled:bg-slate-100"
             :class="{ 'hover:shadow-lg': !disabled }" :name="name" placeholder="ex. Sunny weather or Benjamin" />
-        <div class="absolute -bottom-6 text-gray-400 text-sm right-0" v-if="max">
-            {{ value.length }} / {{ max }}
-        </div>
+
         <!-- Tag modal -->
         <div class="absolute bottom-full mb-10 p-4" v-if="isTagging">
             <UIInput :name="name" type="text" @value-update="setTaggingValue($event)"></UIInput>
             <UIButton @click="doneTagging()">Done</UIButton>
         </div>
-        <textarea :name="name" ref="textAreaRef" :value="valueRef" v-if="type === 'text-lg'"
-            @keyup="checkForTagging($event)" @input="updateValue($event);" :maxlength="max" :minlength="min"
+        <textarea :name="name" ref="textAreaRef" :value="value" v-if="type === 'text-lg'" @keyup="checkForTagging($event)"
+            @input="updateValue($event);" :maxlength="max" :minlength="min"
             class="py-3 px-5 border rounded-lg shadow-sm hover:shadow-lg"
             placeholder="ex. It was a warm summer day.."></textarea>
 
@@ -64,6 +62,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="absolute -bottom-6 text-gray-400 text-sm right-0" v-if="max">
+            {{ value?.length || 0 }} / {{ max }}
+        </div>
     </div>
 </template>
 
@@ -106,9 +108,9 @@ const updateColor = (value: string) => {
 }
 
 const updateValue = (event: Event) => {
-    const newValue = (event.target as { value?: string }).value
-    eventEmit('valueUpdate', newValue)
-    valueRef.value = newValue
+    const newValue = (event.target as { value?: string }).value;
+    console.log(newValue)
+    eventEmit('valueUpdate', newValue);
 }
 
 const selectOption = (e: Event, option: string) => {
