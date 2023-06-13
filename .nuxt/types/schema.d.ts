@@ -36,8 +36,12 @@ declare module 'nuxt/schema' {
 
       defaultProvider: string,
 
+      addDefaultCallbackUrl: boolean,
+
       globalMiddlewareOptions: {
          allow404WithoutAuth: boolean,
+
+         addDefaultCallbackUrl: boolean,
       },
 
       isOriginSet: boolean,
@@ -63,8 +67,12 @@ declare module 'nuxt/schema' {
 
       defaultProvider: string,
 
+      addDefaultCallbackUrl: boolean,
+
       globalMiddlewareOptions: {
          allow404WithoutAuth: boolean,
+
+         addDefaultCallbackUrl: boolean,
       },
    },
   }

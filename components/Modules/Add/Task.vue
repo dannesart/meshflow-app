@@ -1,6 +1,6 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
-        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :value="newTask?.title">
+        <UIInput @valueUpdate="valueChange($event, 'title')" type="text" :min="3" :max="100" :value="newTask?.title">
             <label>
                 Title
             </label>
@@ -23,7 +23,9 @@ let newTask = {
     id: (Math.random() * 1000).toString(),
     tags: [],
     created: new Date(),
-    createdBy: data.value?.user?.name || ''
+    createdBy: data.value?.user?.name || '',
+    updated: new Date(),
+    updatedBy: data.value?.user?.name || ''
 }
 
 const valueChange = (event: string, key: string) => {

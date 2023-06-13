@@ -7,6 +7,7 @@ type State = {
   allTasks: Task[];
   task: Task | null;
   isEditing: boolean;
+  errors: string[];
 };
 
 export const useTasksStore = defineStore("TasksStore", {
@@ -15,6 +16,7 @@ export const useTasksStore = defineStore("TasksStore", {
       isEditing: false,
       allTasks: [],
       task: null,
+      errors: [],
     },
   getters: {
     editing: (state) => state.isEditing,
@@ -49,8 +51,17 @@ export const useTasksStore = defineStore("TasksStore", {
     setCurrentTask(task: Task) {
       this.task = task;
     },
-    addTask(task: Task) {
-      this.allTasks.push(task);
+    async addTask(task: Task) {
+      try {
+        const config = useRuntimeConfig();
+        const response = await axios.post(
+          config.public.REDIRECT_URI + "/api/tasks",
+          task
+        );
+        await this.fetchTasks();
+      } catch (error) {
+        //TODO: Handle error
+      }
     },
 
     async fetchTasks() {
@@ -59,7 +70,13 @@ export const useTasksStore = defineStore("TasksStore", {
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/tasks"
         );
-        this.allTasks = response.data;
+        if (response.data) {
+          if (response.data.error) {
+            this.errors = [response.data.error];
+            return;
+          }
+          this.allTasks = response.data;
+        }
       } catch (error) {
         //TODO: Handle error
       }

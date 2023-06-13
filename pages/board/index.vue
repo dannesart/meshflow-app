@@ -17,18 +17,17 @@
                 <UIHeadline size="h3" :class="{ 'capitalize': true }">
                     {{ status }}
                 </UIHeadline>
-                <client-only>
-                    <draggable :list="tasks.filter((a) => a.status === status)" group="tasks"
-                        :component-data="{ class: 'flex flex-col gap-4 h-full' }" item-key="id"
-                        @change="dragChange($event, status)" @end="dragEnd($event, status)">
-                        <template #item="{ element: task }">
-                            <NuxtLink :to="('/board/' + task.id)" class="flex-1 md:max-w-xl">
-                                <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
-                                    @favorite="handleFavorite($event, task.title)"></ModulesCard>
-                            </NuxtLink>
-                        </template>
-                    </draggable>
-                </client-only>
+
+                <draggable :list="tasks.filter((a) => a.status === status)" group="tasks"
+                    :component-data="{ class: 'flex flex-col gap-4 h-full' }" item-key="id"
+                    @change="dragChange($event, status)" @end="dragEnd($event, status)">
+                    <template #item="{ element: task }">
+                        <NuxtLink :to="('/board/' + task.id)" class="flex-1 md:max-w-xl">
+                            <ModulesCard :title="task.title" :body="task.description" :tags="task.tags" :class="'mb-0'"
+                                @favorite="handleFavorite($event, task.title)"></ModulesCard>
+                        </NuxtLink>
+                    </template>
+                </draggable>
             </div>
         </div>
     </NuxtLayout>
@@ -51,7 +50,7 @@ export default {
         return {
             filters: ref({}),
             sorts: ref({}),
-            tasks,
+            tasks: tasks || [],
             TASK_STATUSES
         }
     },
@@ -76,9 +75,9 @@ export default {
         async sortChange(_sorts: { [key: string]: any }) {
             this.sorts = { ...this.sorts, ..._sorts };
         },
-        onAdd: (task: Task) => {
+        async onAdd(task: Task) {
             setNotification("Task created", "Your task was successfully created", "success");
-            addTask(task);
+            await addTask(task);
         },
         onCancel: () => { }
     }

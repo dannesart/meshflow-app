@@ -1,9 +1,9 @@
-import { Task, TaskSchema } from "~~/models/tasks";
-import { getServerSession } from "#auth";
-import { v4 as uuidv4 } from "uuid";
+import { TaskSchema, Task } from "~~/models/tasks";
 import { TaskModel } from "~~/models/tasks.db";
+import { v4 as uuidv4 } from "uuid";
+import { getServerSession } from "#auth";
 
-const newProject = (
+const newTask = (
   title: string,
   createdBy: string,
   status: string,
@@ -29,17 +29,22 @@ export default defineEventHandler(async (e) => {
   }
 
   const body = await readBody(e);
-  const newTaskObject = newProject(
+  const newTaskObject = newTask(
     body.title,
     session.user.email || "",
     body.status,
     body.tags
   );
-  const valid = body ? await TaskSchema.safeParse(newTaskObject) : false;
-  if (valid) {
-    const taskDoc = new TaskModel(newTaskObject);
-    await taskDoc.save();
-    return newTaskObject;
+  const valid = await TaskSchema.safeParse(newTaskObject);
+  if (valid.success) {
+    try {
+      const taskDoc = new TaskModel(newTaskObject);
+      await taskDoc.save();
+      return newTaskObject;
+    } catch (error) {
+      return error;
+    }
+  } else {
+    return valid.error; // or handle the validation error accordingly
   }
-  return false;
 });

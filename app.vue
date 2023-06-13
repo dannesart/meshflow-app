@@ -25,7 +25,4 @@ await fetchTasks();
 await fetchData();
 await fetchPages();
 
-
-
-
 </script>

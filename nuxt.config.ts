@@ -5,7 +5,14 @@ export default defineNuxtConfig({
   imports: {},
 
   modules: [
-    "@sidebase/nuxt-auth",
+    [
+      "@sidebase/nuxt-auth",
+      {
+        origin: process.env.REDIRECT_URI,
+        enableGlobalAppMiddleware: true,
+        defaultProvider: "auth0",
+      },
+    ],
     "@nuxtjs/tailwindcss",
     [
       "@pinia/nuxt",
@@ -26,11 +33,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     plugins: ["~/server/index.ts"],
-  },
-  auth: {
-    origin: process.env.REDIRECT_URI,
-    enableGlobalAppMiddleware: true,
-    defaultProvider: "auth0",
   },
 
   postcss: {

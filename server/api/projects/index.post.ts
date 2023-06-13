@@ -4,11 +4,12 @@ import {
   ProjectSchema,
   ProjectModel,
 } from "~~/models/project";
+import { v4 as uuidv4 } from "uuid";
 import { getServerSession } from "#auth";
 
 const newProject = (name: string, createdBy: string) => {
   const project = {
-    id: Math.floor(Math.random() * 1000000) + "",
+    id: uuidv4(),
     name,
     status: PROJECT_STATUSES[0],
     createdBy,
@@ -27,7 +28,7 @@ export default defineEventHandler(async (e) => {
 
   const body = await readBody(e);
   const newProjectObject = newProject(body.name, session.user.email || "");
-  const valid = body ? await ProjectSchema.safeParse(newProject) : false;
+  const valid = body ? await ProjectSchema.safeParse(newProjectObject) : false;
   if (valid) {
     const projectDoc = new ProjectModel(newProjectObject);
     await projectDoc.save();
