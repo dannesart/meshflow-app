@@ -18,7 +18,7 @@
                     {{ status }}
                 </UIHeadline>
 
-                <draggable :list="tasks.filter((a) => a.status === status)" group="tasks"
+                <draggable :list="(tasksStore.tasks || []).filter((a) => a.status === status)" group="tasks"
                     :component-data="{ class: 'flex flex-col gap-4 h-full' }" item-key="id"
                     @change="dragChange($event, status)" @end="dragEnd($event, status)">
                     <template #item="{ element: task }">
@@ -43,14 +43,14 @@ import { useNotificationStore } from "~~/stores/notifications";
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
-const { tasks, addTask } = tasksStore;
+const { addTask } = tasksStore;
 
 export default {
     data() {
         return {
             filters: ref({}),
             sorts: ref({}),
-            tasks: tasks || [],
+            tasksStore,
             TASK_STATUSES
         }
     },
