@@ -30,7 +30,7 @@
                     </ModulesTagsList>
                 </div>
 
-                <UIInput type="date" :value="task.deadline">
+                <UIInput type="date" :value="task?.deadline">
                     Deadline
                 </UIInput>
 
