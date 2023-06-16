@@ -7,16 +7,17 @@
             <ModulesFavorite @favorite="toggleFavorite" :class="'relative top-auto right-auto'"></ModulesFavorite>
 
         </header>
-        <div class="flex gap-6 flex-col md:flex-row">
+        <div class="flex gap-6 flex-col md:flex-row" v-if="task">
             <UIForm :class="'flex-1 flex flex-col gap-6'">
-                <UIInput type="text-lg" :max="300" :value="task?.description" @value-update="e => task.description = e">
+
+                <UIInput type="text-lg" :max="300" :value="task.description" @value-update="e => task.description = e">
                     Description
                 </UIInput>
 
                 <ModulesTodo></ModulesTodo>
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
-                <UIInput type="select" :values="TASK_STATUSES" :value="task?.status"
+                <UIInput type="select" :values="TASK_STATUSES" :value="task.status"
                     @value-update="event => updateStatus(event)">
                     Status</UIInput>
 

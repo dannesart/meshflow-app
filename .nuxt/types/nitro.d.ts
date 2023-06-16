@@ -7,6 +7,7 @@ declare module 'nitropack' {
     }
     '/api/user': {
       'get': Awaited<ReturnType<typeof import('../../server/api/user/index.get').default>>
+      'default': Awaited<ReturnType<typeof import('../../server/api/user').default>>
     }
     '/api/user/:id': {
       'get': Awaited<ReturnType<typeof import('../../server/api/user/[id].get').default>>
