@@ -10,9 +10,7 @@ describe("Add new entity of type X", () => {
         },
       });
 
-      expect(component.find("h1").text().toLowerCase()).toContain(
-        "add new block"
-      );
+      expect(component.find("h1").text().toLowerCase()).toContain("add block");
     });
 
     it("Should not be correct with incorrect type", () => {
@@ -23,7 +21,7 @@ describe("Add new entity of type X", () => {
       });
 
       expect(component.find("h1").text().toLowerCase()).not.toContain(
-        "add new block"
+        "add block"
       );
     });
 

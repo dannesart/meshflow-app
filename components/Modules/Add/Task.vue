@@ -1,7 +1,8 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
 
-        <UIInput @valueUpdate="$event => newTask.title = $event" type="text" :min="3" :max="100" :value="newTask?.title">
+        <UIInput @valueUpdate="$event => valueChange($event, 'title')" type="text" :min="3" :max="100"
+            :value="newTask?.title">
             <label>
                 Title
             </label>
@@ -30,14 +31,13 @@ const newTask = ref({
 })
 
 const valueChange = (event: string, key: string) => {
-    (newTask as any)[key] = event;
-    events('valueUpdate', newTask);
+    (newTask as any).value[key] = event;
+    events('valueUpdate', newTask.value);
     validate(newTask);
 }
 
 const validate = async (newTask: any) => {
     const validated = await TaskSchema.safeParse(newTask.value);
-
     if (!validated.success) {
         events('onError', validated.error)
     } else {

@@ -17,6 +17,11 @@
                 <ModulesTodo></ModulesTodo>
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
+
+                <div class="flex  gap-3 flex-col">
+                    Created by
+                    <UIUserTag :id="task.createdBy"></UIUserTag>
+                </div>
                 <UIInput type="select" :values="TASK_STATUSES" :value="task.status"
                     @value-update="event => updateStatus(event)">
                     Status</UIInput>

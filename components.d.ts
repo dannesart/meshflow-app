@@ -103,6 +103,7 @@ declare module '@vue/runtime-core' {
     UIToaster: typeof import('./components/UI/Toaster/Index.vue')['default']
     UiUserInfo: typeof import('./components/ui/UserInfo/Index.vue')['default']
     UIUserInfo: typeof import('./components/UI/UserInfo/Index.vue')['default']
+    UIUserTag: typeof import('./components/UI/UserTag/Index.vue')['default']
     UserInfo: typeof import('./components/UserInfo/Index.vue')['default']
     VisualEditor: typeof import('./components/VisualEditor/Index.vue')['default']
     VisualEditorAdd: typeof import('./components/VisualEditor/Add.vue')['default']
