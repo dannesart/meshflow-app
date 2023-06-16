@@ -110,7 +110,6 @@ const updateColor = (value: string) => {
 
 const updateValue = (event: Event) => {
     const newValue = (event.target as { value?: string }).value;
-    console.log(newValue)
     eventEmit('valueUpdate', newValue);
 }
 

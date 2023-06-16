@@ -9,3 +9,13 @@ vi.mock("#imports", () => {
     },
   };
 });
+
+vi.mock("#app", () => {
+  return {
+    useSession: () => {
+      return {
+        data: {},
+      };
+    },
+  };
+});
