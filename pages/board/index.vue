@@ -60,9 +60,10 @@ export default {
                 setNotification('Pelle has liked', title, "liked");
             }
         },
-        dragChange(event: any, status: string) {
+        async dragChange(event: any, status: string) {
             if (event.added) {
                 event.added.element.status = status;
+                await this.tasksStore.updateTask(event.added.element, {});
             }
         },
         dragEnd(event: any, status: string) {
