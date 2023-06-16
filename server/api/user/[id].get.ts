@@ -21,7 +21,6 @@ const getToken = async () => {
 };
 
 export default defineEventHandler(async (e) => {
-  debugger;
   const token = await getToken();
   const body = await readBody(e);
   var options = {

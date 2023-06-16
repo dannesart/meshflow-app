@@ -78,6 +78,7 @@ export const useTasksStore = defineStore("TasksStore", {
       this.loading = true;
       try {
         const config = useRuntimeConfig();
+
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/tasks"
         );

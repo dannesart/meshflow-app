@@ -50,8 +50,9 @@
                     </div>
                     <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="task in latest" class="border-b last:border-b-0">
-                            <ModulesExtendedLink :label="task.title" :sub-label="('Added by @' + task.createdBy)"
-                                :tags="task.tags" :route="('/board/' + task.id)">
+                            <ModulesExtendedLink :label="task.title"
+                                :sub-label="('Added by @' + getUserByEmail(task.createdBy).nickname)" :tags="task.tags"
+                                :route="('/board/' + task.id)">
                             </ModulesExtendedLink>
                         </li>
                     </ul>
@@ -83,8 +84,8 @@ const commentsStore = useCommentsStore();
 const { latest, tasks, addTask } = tasksStore;
 const { pages } = usePagesStore();
 
-const getUserByEmail = async (email: string) => {
-    const user = useUsersStore().getUserByEmail(email);
+const getUserByEmail = (email: string) => {
+    const user = useUsersStore().userById(email);
     return user || email;
 }
 
