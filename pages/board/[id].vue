@@ -15,13 +15,20 @@
                 </UIInput>
 
                 <ModulesTodo></ModulesTodo>
+
+                <div class="flex gap-6 mt-10">
+                    <UIButton type="add" @click="save()">
+                        Save
+                    </UIButton>
+                    <UIButton type="delete" @click="handleDelete">
+                        Delete task
+                    </UIButton>
+
+                </div>
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
 
-                <div class="flex  gap-3 flex-col">
-                    Created by
-                    <UIUserTag :id="task.createdBy"></UIUserTag>
-                </div>
+
                 <UIInput type="select" :values="TASK_STATUSES" :value="task.status"
                     @value-update="event => updateStatus(event)">
                     Status</UIInput>
@@ -39,19 +46,30 @@
                 <UIInput type="date" :value="task?.deadline">
                     Deadline
                 </UIInput>
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-3">
+                        Created by
+                        <div class="flex items-center gap-3">
+                            <UIUserTag :id="task.createdBy"></UIUserTag>
+                            <UIDate :date="task.created"></UIDate>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        Updated by
+                        <div class="flex items-center gap-3">
+                            <UIUserTag :id="task.updatedBy"></UIUserTag>
+                            <UIDate :date="task.updated"></UIDate>
+                        </div>
+                    </div>
+                </div>
 
-                <UIButton type="delete" @click="handleDelete">
-                    Delete task
-                </UIButton>
+
+
+
 
             </aside>
 
         </div>
-        <footer>
-            <UIButton type="add" @click="save()">
-                Save
-            </UIButton>
-        </footer>
 
 
 

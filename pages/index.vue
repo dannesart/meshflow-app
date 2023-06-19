@@ -50,9 +50,11 @@
                     </div>
                     <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
                         <li v-for="task in latest" class="border-b last:border-b-0">
-                            <ModulesExtendedLink :label="task.title"
-                                :sub-label="('Added by @' + getUserByEmail(task.createdBy).nickname)" :tags="task.tags"
+                            <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
                                 :route="('/board/' + task.id)">
+                                <div class="mt-2 flex gap-3 items-center text-sm text-gray-400">
+                                    Added by <UIUserTag :id="task.createdBy"></UIUserTag>
+                                </div>
                             </ModulesExtendedLink>
                         </li>
                     </ul>
@@ -92,7 +94,7 @@ const getUserByEmail = (email: string) => {
 const onAdd = (task: Task) => {
     setNotification("Task created", "Your task was successfully created", "success")
     addTask(task);
-    //useRouter().push('/tasks')
+    useRouter().push('/board')
 }
 
 const onCancel = () => {

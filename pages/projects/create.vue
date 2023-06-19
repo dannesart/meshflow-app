@@ -1,17 +1,18 @@
 <template>
     <NuxtLayout :name="layout">
         <template #header>
-            <UIHeadline size="h1">
-                Create new project
-            </UIHeadline>
+
         </template>
         <template #left>
-            <div class="flex gap-4">
-                <img src="~~/assets/images/team.svg" class=" bg-white rounded-xl p-6 h-full" />
+            <div class="flex gap-4 scale-90 ">
+                <img src="~~/assets/images/city-wallpaper.png" class=" bg-white rounded-xl h-full " />
             </div>
         </template>
         <template #right>
-            <div class="w-96 flex flex-col gap-6 px-6 self-center justify-self-center place-self-center">
+            <div class="w-full flex flex-col gap-6 px-6 self-center justify-self-center place-self-center justify-center ">
+                <UIHeadline size="h1" class="mb-6">
+                    New project
+                </UIHeadline>
                 <UIInput type="text" @value-update="updateName">
                     Project name
                 </UIInput>

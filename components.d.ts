@@ -73,6 +73,7 @@ declare module '@vue/runtime-core' {
     UiButton: typeof import('./components/ui/Button/Index.vue')['default']
     UIButton: typeof import('./components/UI/Button/Index.vue')['default']
     UICard: typeof import('./components/UI/Card/Index.vue')['default']
+    UIDate: typeof import('./components/UI/Date/index.vue')['default']
     UiDroppable: typeof import('./components/ui/Droppable/Index.vue')['default']
     UIDroppable: typeof import('./components/UI/Droppable/Index.vue')['default']
     UIExtendedLink: typeof import('./components/UI/ExtendedLink/Index.vue')['default']
