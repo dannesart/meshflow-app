@@ -18,6 +18,7 @@ declare module 'nitropack' {
     '/api/tasks/:id': {
       'patch': Awaited<ReturnType<typeof import('../../server/api/tasks/[id].patch').default>>
       'get': Awaited<ReturnType<typeof import('../../server/api/tasks/[id].get').default>>
+      'delete': Awaited<ReturnType<typeof import('../../server/api/tasks/[id].delete').default>>
     }
     '/api/settings': {
       'default': Awaited<ReturnType<typeof import('../../server/api/settings').default>>

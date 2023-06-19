@@ -43,6 +43,15 @@ export const useTasksStore = defineStore("TasksStore", {
     active(open: boolean) {
       this.isEditing = open;
     },
+    async deleteTask(task: Task) {
+      try {
+        const config = useRuntimeConfig();
+        const response = await axios.delete(
+          config.public.REDIRECT_URI + "/api/tasks/" + task.id
+        );
+        this.fetchTasks();
+      } catch (error) {}
+    },
     async updateTask(task: Task, patch: { [key: string]: any }) {
       const config = useRuntimeConfig();
       const response = await axios.patch(

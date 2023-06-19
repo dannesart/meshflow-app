@@ -40,7 +40,9 @@
                     Deadline
                 </UIInput>
 
-
+                <UIButton type="delete" @click="handleDelete">
+                    Delete task
+                </UIButton>
 
             </aside>
 
@@ -65,7 +67,7 @@ import { useNotificationStore } from "~~/stores/notifications";
 const tasksStore = useTasksStore();
 const notificationStore = useNotificationStore();
 const { setNotification } = notificationStore;
-const { taskById, updateTask } = tasksStore;
+const { taskById, updateTask, deleteTask } = tasksStore;
 const { id } = useRoute().params;
 const task = ref<Task>(taskById(id as string) as Task);
 
@@ -90,6 +92,13 @@ const updateTag = (value: string, tagIdx: number) => {
 const addNewTag = () => {
     task.value.tags.push('tag ' + task.value.tags.length)
 
+}
+
+const handleDelete = async () => {
+    if (confirm("Are you sure you want to delete this task?")) {
+        await deleteTask(task.value);
+        useRouter().push('/board')
+    }
 }
 
 const save = async () => {
