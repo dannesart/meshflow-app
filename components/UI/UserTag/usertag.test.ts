@@ -22,7 +22,7 @@ describe("User tag", () => {
       email: "324234234234",
       name: "Daniel Mårtensson",
     };
-    usersStore.users = [testUser];
+    usersStore.users[testUser.id] = testUser;
 
     const component = mount(UserTag, {
       props: {

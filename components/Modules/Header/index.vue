@@ -117,12 +117,17 @@
 
 <script setup lang=ts>
 import { useProjectStore } from "~~/stores/projects";
+import { useUsersStore } from "~~/stores/users";
 // Check if route contains Id param.
 // Then we know it's not a "root" page. 
 // We can then show back button.
 const { id, type } = useRoute().params;
 const projectStore = useProjectStore();
 const { status, data, signIn, signOut } = useSession()
+
+const user = (email: string) => {
+	return useUsersStore().userByEmail(email);
+}
 
 const MAX_PROJECTS = 2;
 const isMenuActive = ref(false);

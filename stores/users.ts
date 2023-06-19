@@ -4,19 +4,24 @@ import { useRuntimeConfig } from "#app";
 
 type State = {
   token: string | null;
-  users: any[];
+  users: { [id: string]: any };
 };
 
 export const useUsersStore = defineStore("UsersStore", {
   state: () =>
     <State>{
       token: null,
-      users: [],
+      users: {},
     },
   getters: {
     userById: (state) => {
+      return (id: string) => {
+        return state.users[id];
+      };
+    },
+    userByEmail: (state) => {
       return (email: string) => {
-        return state.users.find((user) => user.email === email);
+        return state.users[email];
       };
     },
   },
@@ -41,9 +46,47 @@ export const useUsersStore = defineStore("UsersStore", {
         console.log(error);
       }
     },
+    async fetchUserById(id: string) {
+      try {
+        const token = await this.getToken();
+
+        var options = {
+          method: "GET",
+          url: "https://meshflow.eu.auth0.com/api/v2/users/" + id,
+          headers: { authorization: `Bearer ${token}` },
+        };
+        try {
+          const response = await axios.request(options);
+          this.users.push(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      } catch (error) {
+        //TODO: Handle error
+      }
+    },
+    async fetchUserByEmail(email: string) {
+      try {
+        const token = await this.getToken();
+
+        var options = {
+          method: "GET",
+          url: "https://meshflow.eu.auth0.com/api/v2/users-by-email",
+          params: { email: email },
+          headers: { authorization: `Bearer ${token}` },
+        };
+        try {
+          const response = await axios.request(options);
+          this.users = response.data;
+        } catch (error) {
+          console.log(error);
+        }
+      } catch (error) {
+        //TODO: Handle error
+      }
+    },
     async fetchUserMap() {
       try {
-        const config = useRuntimeConfig();
         const token = await this.getToken();
 
         var options = {
@@ -53,7 +96,9 @@ export const useUsersStore = defineStore("UsersStore", {
         };
         try {
           const response = await axios.request(options);
-          this.users = response.data;
+          response.data.map((user: any) => {
+            this.users[user.user_id] = user;
+          });
         } catch (error) {
           console.log(error);
         }

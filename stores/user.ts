@@ -15,6 +15,7 @@ export const useUserStore = defineStore("UserStore", {
     setUser(user: TUser) {
       this.user = user;
     },
+
     async fetchUser() {
       try {
         if (process.client) {
