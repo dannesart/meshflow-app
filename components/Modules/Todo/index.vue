@@ -21,14 +21,15 @@
 
 <script setup lang=ts>
 
-
+const { value } = defineProps(['value']);
+const emits = defineEmits(['onAdd', 'onDone']);
 
 type TTodo = {
     title: string;
     done: boolean;
 }
 
-const todos = ref<TTodo[]>([]);
+const todos = ref<TTodo[]>(value || []);
 
 const add = ($event: Event) => {
     $event.preventDefault();
@@ -36,10 +37,12 @@ const add = ($event: Event) => {
         title: 'Todo ' + (todos.value.length + 1),
         done: false
     })
+    emits('onAdd', todos.value)
 }
 
 const setToDone = (todo: TTodo) => {
     todo.done = !todo.done
+    emits('onDone', todo, todos.value)
 }
 
 </script>

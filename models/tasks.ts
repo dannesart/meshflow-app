@@ -15,6 +15,7 @@ const TaskSchema = z
     title: z.string().min(3).max(50),
     description: z.string().min(0).max(300).optional(),
     deadline: z.date().optional(),
+    assignedTo: z.string().optional(),
     status: z.string(),
     id: z.string(),
     createdBy: z.string(),
@@ -22,7 +23,14 @@ const TaskSchema = z
     updatedBy: z.string(),
     updated: z.date().default(() => new Date()),
     tags: z.array(z.string()),
-    subTasks: z.array(z.string()).optional(),
+    subTasks: z
+      .array(
+        z.object({
+          title: z.string(),
+          done: z.boolean(),
+        })
+      )
+      .optional(),
   })
   .strict();
 

@@ -4,10 +4,10 @@
         <UIHeadline size="h1">
             Dashboard
         </UIHeadline>
-        <div class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x min-h-[10rem] ">
+        <div class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x min-h-[8rem] ">
             <ModulesStat label="Active tasks" :number="tasksStore.allTasks.length"></ModulesStat>
             <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
-            <ModulesStat label="Users" number="45"></ModulesStat>
+            <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
             <ModulesStat label="Rules" number="14"></ModulesStat>
         </div>
 
@@ -18,7 +18,7 @@
                 </UIHeadline>
                 <div class="flex gap-4">
                     <ul class="w-full flex flex-col gap-5 p-5 rounded-lg shadow-lg bg-white">
-                        <li v-for="comment in commentsStore.comments" class="border-b last:border-b-0">
+                        <li v-for="comment in commentsStore.comments" class="border-b pb-5 last:pb-0 last:border-b-0">
                             <ModulesExtendedLink :label="comment.message" :sub-label="('Added by @' + comment.from)"
                                 :route="('/comments/' + comment.id)">
                             </ModulesExtendedLink>
@@ -49,10 +49,10 @@
                         <UILoader></UILoader>
                     </div>
                     <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
-                        <li v-for="task in latest" class="border-b last:border-b-0">
+                        <li v-for="task in latest" class="border-b last:border-b-0 pb-5 last:pb-0">
                             <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
                                 :route="('/board/' + task.id)">
-                                <div class="mt-2 flex gap-3 items-center text-sm text-gray-400">
+                                <div class="mb-2 flex gap-3 items-center text-sm text-gray-400">
                                     Added by <UIUserTag :id="task.createdBy"></UIUserTag>
                                 </div>
                             </ModulesExtendedLink>
@@ -85,11 +85,7 @@ const tasksStore = useTasksStore();
 const commentsStore = useCommentsStore();
 const { latest, tasks, addTask } = tasksStore;
 const { pages } = usePagesStore();
-
-const getUserByEmail = (email: string) => {
-    const user = useUsersStore().userById(email);
-    return user || email;
-}
+const { usersAmount } = useUsersStore();
 
 const onAdd = (task: Task) => {
     setNotification("Task created", "Your task was successfully created", "success")

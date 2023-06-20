@@ -1,18 +1,18 @@
 <template>
-    <NuxtLink :to="route" class=" pb-5 flex flex-row items-center justify-between border-b last:border-b-0">
+    <NuxtLink :to="route" class=" flex flex-row items-center justify-between">
         <div class="flex flex-col gap-2">
             <UIHeadline size="h4">
                 {{ label }}
+
             </UIHeadline>
+
+
             <small>{{ subLabel }}</small>
 
-            <slot />
+            <div class="flex gap-10">
 
-            <ModulesTagsList :can-add="false" v-if="tags">
-                <UITag v-for="tag in tags" class="px-2 py-0.5 text-sm">
-                    {{ tag }}
-                </UITag>
-            </ModulesTagsList>
+                <slot />
+            </div>
         </div>
         <div class="">
             <button class="w-8 h-8 bg-blue-600 flex justify-center items-center rounded-full text-white">

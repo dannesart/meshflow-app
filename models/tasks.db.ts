@@ -1,4 +1,5 @@
 import { model, Model, Schema } from "mongoose";
+import { string } from "zod";
 import { Task } from "./tasks";
 
 const TaskDbSchema: Schema<Task> = new Schema({
@@ -12,7 +13,12 @@ const TaskDbSchema: Schema<Task> = new Schema({
   updatedBy: String,
   updated: { type: Date, default: Date.now },
   tags: [String],
-  subTasks: [String],
+  subTasks: [
+    {
+      done: Boolean,
+      title: String,
+    },
+  ],
 });
 
 const TaskModel: Model<Task> = model("tasks", TaskDbSchema);

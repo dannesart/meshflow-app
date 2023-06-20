@@ -6,7 +6,7 @@
             <UIUserInfo :name="fullUser.nickname" :image="fullUser.picture" :direction="'right'" :size="'small'"
                 role="Developer"></UIUserInfo>
         </div>
-        <div class="p-3 py-1 rounded-full w-fit text-blue-600 bg-blue-100 inline-block hover:cursor-pointer hover:shadow-md"
+        <div class="p-3 py-1 rounded-full w-fit text-blue-600 bg-blue-100 inline-block hover:cursor-pointer "
             data-test="user-tag" v-if="fullUser" @mouseenter="hovering = true" @mouseleave="hovering = false">
             {{ fullUser.name }}
         </div>

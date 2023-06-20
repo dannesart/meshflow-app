@@ -24,6 +24,9 @@ export const useUsersStore = defineStore("UsersStore", {
         return state.users[email];
       };
     },
+    usersAmount: (state) => {
+      return Object.keys(state.users).length;
+    },
   },
   actions: {
     async getToken() {

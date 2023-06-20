@@ -8,16 +8,17 @@
 
         </header>
         <div class="flex gap-6 flex-col md:flex-row" v-if="task">
+
             <UIForm :class="'flex-1 flex flex-col gap-6'">
 
                 <UIInput type="text-lg" :max="300" :value="task.description" @value-update="e => task.description = e">
                     Description
                 </UIInput>
 
-                <ModulesTodo></ModulesTodo>
+                <ModulesTodo :value="task.subTasks" @on-add="e => task.subTasks = e"></ModulesTodo>
 
                 <div class="flex gap-6 mt-10">
-                    <UIButton type="add" @click="save()">
+                    <UIButton type="add" @click="save" :is-loading="tasksStore.isLoading">
                         Save
                     </UIButton>
                     <UIButton type="delete" @click="handleDelete">
@@ -27,6 +28,8 @@
                 </div>
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
+
+                <UIInput type="user" :value="task.assignedTo"></UIInput>
 
 
                 <UIInput type="select" :values="TASK_STATUSES" :value="task.status"
@@ -54,19 +57,7 @@
                             <UIDate :date="task.created"></UIDate>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-3">
-                        Updated by
-                        <div class="flex items-center gap-3">
-                            <UIUserTag :id="task.updatedBy"></UIUserTag>
-                            <UIDate :date="task.updated"></UIDate>
-                        </div>
-                    </div>
                 </div>
-
-
-
-
-
             </aside>
 
         </div>
@@ -112,14 +103,16 @@ const addNewTag = () => {
 
 }
 
-const handleDelete = async () => {
+const handleDelete = async (e: Event) => {
+    e.preventDefault()
     if (confirm("Are you sure you want to delete this task?")) {
         await deleteTask(task.value);
         useRouter().push('/board')
     }
 }
 
-const save = async () => {
+const save = async (e: Event) => {
+    e.preventDefault();
     await updateTask(task.value, { ...task });
     setNotification("Task updated", "The tasks was successfully updated!")
 }

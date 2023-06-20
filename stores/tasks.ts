@@ -53,15 +53,19 @@ export const useTasksStore = defineStore("TasksStore", {
       } catch (error) {}
     },
     async updateTask(task: Task, patch: { [key: string]: any }) {
-      const config = useRuntimeConfig();
-      const response = await axios.patch(
-        config.public.REDIRECT_URI + "/api/tasks/" + task.id,
-        task
-      );
+      try {
+        this.loading = true;
+        const config = useRuntimeConfig();
 
-      const idx = this.taskByIdx(task.id);
-      const update = { ...task, ...patch };
-      this.allTasks[idx] = update;
+        const response = await axios.patch(
+          config.public.REDIRECT_URI + "/api/tasks/" + task.id,
+          task
+        );
+        this.loading = false;
+        // const idx = this.taskByIdx(task.id);
+        // const update = { ...task, ...patch };
+        // this.allTasks[idx] = update;
+      } catch (error) {}
     },
     setTasks(tasks: Task[]) {
       this.allTasks = tasks;
