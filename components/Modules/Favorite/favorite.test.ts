@@ -31,9 +31,9 @@ describe("Favorite", () => {
         favorite: false,
       },
     });
+    const button = component.find("button");
+    await button.trigger("click");
 
-    await component.trigger("click");
-
-    expect(component.find("button").classes().includes(activeClass)).toBe(true);
+    expect(button.classes().includes(activeClass)).toBe(true);
   });
 });
