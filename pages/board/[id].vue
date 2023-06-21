@@ -12,9 +12,9 @@
 
             <UIForm :class="'flex-1 flex flex-col gap-6'">
 
-                <UIInput type="text-lg" :max="300" :value="task.description" @value-update="e => task.description = e">
+                <ModulesInput type="text-lg" :max="300" :value="task.description" @value-update="e => task.description = e">
                     Description
-                </UIInput>
+                </ModulesInput>
 
                 <ModulesTodo :value="task.subTasks" @on-add="e => task.subTasks = e"></ModulesTodo>
 
@@ -30,12 +30,12 @@
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
 
-                <UIInput type="user" :value="task.assignedTo"></UIInput>
+                <ModulesInput type="user" :value="task.assignedTo"></ModulesInput>
 
 
-                <UIInput type="select" :values="TASK_STATUSES" :value="task.status"
+                <ModulesInput type="select" :values="TASK_STATUSES" :value="task.status"
                     @value-update="event => updateStatus(event)">
-                    Status</UIInput>
+                    Status</ModulesInput>
 
                 <div class="flex gap-3 flex-col">
                     <label>Tags</label>
@@ -47,9 +47,9 @@
                     </ModulesTagsList>
                 </div>
 
-                <UIInput type="date" :value="task?.deadline">
+                <ModulesInput type="date" :value="task?.deadline">
                     Deadline
-                </UIInput>
+                </ModulesInput>
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-col gap-3">
                         Created by

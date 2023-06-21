@@ -1,16 +1,16 @@
 <template>
     <UIForm :class="'flex flex-col gap-6'" name="new-block-form">
 
-        <UIInput type="text" :max="50" :value="newBlockForm.name" @valueUpdate="$event => valueChange($event, 'name')">
+        <ModulesInput type="text" :max="50" :value="newBlockForm.name" @valueUpdate="$event => valueChange($event, 'name')">
             Name
-        </UIInput>
+        </ModulesInput>
 
-        <UIInput type="text-lg" :max="100" :value="newBlockForm.description"
+        <ModulesInput type="text-lg" :max="100" :value="newBlockForm.description"
             @valueUpdate="$event => valueChange($event, 'description')">
             <label>
                 Description <span class="text-sm text-gray-400">Optional</span>
             </label>
-        </UIInput>
+        </ModulesInput>
 
 
         <div name="new-block-error" class="flex gap-4 bg-red-50 p-4 rounded-lg mt-6" v-for="error in errors">

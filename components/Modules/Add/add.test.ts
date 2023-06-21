@@ -1,7 +1,9 @@
 import { DOMWrapper, mount, VueWrapper } from "@vue/test-utils";
+import { createPinia, setActivePinia } from "pinia";
 import Add from "./Index.vue";
 
 describe("Add new entity of type X", () => {
+  setActivePinia(createPinia());
   describe("title", () => {
     it("Should render correct form with correct title", () => {
       const component = mount(Add, {

@@ -11,17 +11,17 @@
                 v-bind:class="{ 'hidden': !showingSort }">
                 <label class="flex justify-center gap-2 flex-col">
 
-                    <UIInput type="select" :value="sortTypes[0]" :values="sortTypes"
+                    <ModulesInput type="select" :value="sortTypes[0]" :values="sortTypes"
                         @value-update="event => setSort('type', event)">
                         <label>Sort by</label>
-                    </UIInput>
+                    </ModulesInput>
                 </label>
                 <label class="flex justify-center gap-2 flex-col">
 
-                    <UIInput type="select" :value="sortDirections[0]" :values="sortDirections"
+                    <ModulesInput type="select" :value="sortDirections[0]" :values="sortDirections"
                         @value-update="event => setSort('direction', event)">
                         <label>Direction</label>
-                    </UIInput>
+                    </ModulesInput>
                 </label>
             </div>
         </div>

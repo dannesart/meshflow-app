@@ -8,7 +8,7 @@
 
         <!-- Tag modal -->
         <div class="absolute bottom-full mb-10 p-4" v-if="isTagging">
-            <UIInput :name="name" type="text" @value-update="setTaggingValue($event)"></UIInput>
+            <ModulesInput :name="name" type="text" @value-update="setTaggingValue($event)"></ModulesInput>
             <UIButton @click="doneTagging()">Done</UIButton>
         </div>
         <textarea :name="name" ref="textAreaRef" :value="value" v-if="type === 'text-lg'" @keyup="checkForTagging($event)"

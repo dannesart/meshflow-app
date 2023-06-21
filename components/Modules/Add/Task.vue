@@ -1,12 +1,12 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-task-form">
 
-        <UIInput @valueUpdate="$event => valueChange($event, 'title')" type="text" :min="3" :max="100"
+        <ModulesInput @valueUpdate="$event => valueChange($event, 'title')" type="text" :min="3" :max="100"
             :value="newTask?.title">
             <label>
                 Title
             </label>
-        </UIInput>
+        </ModulesInput>
     </UIForm>
 </template>
 

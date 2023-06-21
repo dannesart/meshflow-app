@@ -13,9 +13,9 @@
                 <UIHeadline size="h1" class="mb-6">
                     New project
                 </UIHeadline>
-                <UIInput type="text" @value-update="updateName">
+                <ModulesInput type="text" @value-update="updateName">
                     Project name
-                </UIInput>
+                </ModulesInput>
 
                 <UIButton type="add" @click="createNewProject">
                     Create

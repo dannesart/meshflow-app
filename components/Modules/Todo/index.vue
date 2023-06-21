@@ -6,7 +6,7 @@
         </UIHeadline>
         <div class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
             @click="setToDone(todo)" v-for="todo in todos">
-            <UIInput type="checkbox" :value="todo.done"></UIInput>
+            <ModulesInput type="checkbox" :value="todo.done"></ModulesInput>
             {{ todo?.title }}
 
         </div>

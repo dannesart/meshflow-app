@@ -29,42 +29,42 @@
                 <UIHeadline size="h3" name="selected-model-type">{{ field.type.name }}</UIHeadline>
             </div>
             <div class="flex gap-6 mb-6">
-                <UIInput :type="'text'" :value="field.name" @value-update="e => handleOnName(e)" class="w-96">
+                <ModulesInput :type="'text'" :value="field.name" @value-update="e => handleOnName(e)" class="w-96">
                     Name
-                </UIInput>
-                <UIInput :type="'text'" :value="field.id" :disabled="true" class="w-96">
+                </ModulesInput>
+                <ModulesInput :type="'text'" :value="field.id" :disabled="true" class="w-96">
                     Id
-                </UIInput>
+                </ModulesInput>
             </div>
             <div class="mb-12" v-if="field.type.name === ModelTypes[0].name">
-                <UIInput type="checkbox" name="main-title" :value="field.isMain" @value-update="e => field.isMain = e">
+                <ModulesInput type="checkbox" name="main-title" :value="field.isMain" @value-update="e => field.isMain = e">
                     This represent main title
-                </UIInput>
+                </ModulesInput>
             </div>
             <UIHeadline size="h3">Validations</UIHeadline>
             <div class="flex flex-col gap-4">
-                <UIInput type="checkbox" name="required">
+                <ModulesInput type="checkbox" name="required">
                     Required
-                </UIInput>
+                </ModulesInput>
 
                 <div class="flex flex-col gap-4" v-if="field.type.name === ModelTypes[0].name">
-                    <UIInput type="checkbox" name="character-count" :value="field.validations.minMax.use"
+                    <ModulesInput type="checkbox" name="character-count" :value="field.validations.minMax.use"
                         @value-update="e => field.validations.minMax.use = e">
                         Limit character count
-                    </UIInput>
+                    </ModulesInput>
                     <div class="flex gap-4 items-end" v-if="field.validations.minMax.use"
                         :class="{ 'bg-blue-50 p-6 rounded-xl': field.validations.minMax.use }">
-                        <UIInput type="text" :value="field.validations.minMax.min"
+                        <ModulesInput type="text" :value="field.validations.minMax.min"
                             @value-update="e => handleMinMax(e, true)">
                             Min
-                        </UIInput>
+                        </ModulesInput>
                         <div class="pb-4">
                             -
                         </div>
-                        <UIInput type="text" :value="field.validations.minMax.max"
+                        <ModulesInput type="text" :value="field.validations.minMax.max"
                             @value-update="e => handleMinMax(e, false)">
                             Max
-                        </UIInput>
+                        </ModulesInput>
                     </div>
                 </div>
 

@@ -38,10 +38,10 @@
             </div>
             <div class="flex flex-col gap-3">
                 <label>Sprints</label>
-                <UIInput type="checkbox" name="allow-sprints" :value="settingsStore.isUsingSprints"
+                <ModulesInput type="checkbox" name="allow-sprints" :value="settingsStore.isUsingSprints"
                     @value-update="e => settingsStore.setUseSprints(e)">
                     Allow sprints
-                </UIInput>
+                </ModulesInput>
             </div>
         </section>
     </NuxtLayout>

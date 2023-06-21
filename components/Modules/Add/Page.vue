@@ -1,11 +1,11 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-page-form">
 
-        <UIInput @valueUpdate="valueChange($event, 'title')" :name="'title'" type="text" :value="newPage?.title">
+        <ModulesInput @valueUpdate="valueChange($event, 'title')" :name="'title'" type="text" :value="newPage?.title">
             <label>
                 Title
             </label>
-        </UIInput>
+        </ModulesInput>
 
         <div class="p-3 px-4 rounded-lg bg-gray-100">This will not be public once it's created</div>
     </UIForm>
