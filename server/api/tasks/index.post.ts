@@ -8,7 +8,8 @@ const newTask = (
   title: string,
   createdBy: string,
   status: string,
-  tags: string[]
+  tags: string[],
+  projectId: string
 ) => {
   const task: Task = {
     id: uuidv4(),
@@ -19,6 +20,7 @@ const newTask = (
     updatedBy: createdBy,
     updated: new Date(),
     tags,
+    projectId,
   };
   return task;
 };
@@ -35,7 +37,8 @@ export default defineEventHandler(async (e) => {
     body.title,
     token.sub || "",
     body.status,
-    body.tags
+    body.tags,
+    body.projectId
   );
   const valid = await TaskSchema.safeParse(newTaskObject);
   if (valid.success) {

@@ -1,7 +1,13 @@
 import { mount } from "@vue/test-utils";
+import { createPinia, setActivePinia } from "pinia";
+import { useProjectStore } from "~~/stores/projects";
 import Task from "./Task.vue";
 
 describe("New task form", () => {
+  setActivePinia(createPinia());
+  const projectStore = useProjectStore();
+  projectStore.setActive("324243");
+
   it("Should render a form with required inputs", () => {
     const component = mount(Task);
     expect(component.findAll("input").length).toBe(1);

@@ -1,11 +1,5 @@
 import { mount } from "@vue/test-utils";
-import {
-  createPinia,
-  PiniaCustomStateProperties,
-  setActivePinia,
-  Store,
-  StoreDefinition,
-} from "pinia";
+import { createPinia, setActivePinia } from "pinia";
 import { useUsersStore } from "~~/stores/users";
 import UserTag from "./Index.vue";
 

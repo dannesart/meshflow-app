@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { TaskSchema, TASK_STATUSES } from '~~/models/tasks';
 import { useSession } from "#imports";
+import { useProjectStore } from '~~/stores/projects';
 const { data } = useSession();
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
@@ -24,6 +25,7 @@ const newTask = ref({
     status: statuses[0],
     id: (Math.random() * 1000).toString(),
     tags: [],
+    projectId: useProjectStore().activeId,
     created: new Date(),
     createdBy: data.value?.user?.name || '',
     updated: new Date(),

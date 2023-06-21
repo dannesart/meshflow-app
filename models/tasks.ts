@@ -18,6 +18,7 @@ const TaskSchema = z
     assignedTo: z.string().optional(),
     status: z.string(),
     id: z.string(),
+    projectId: z.string(),
     createdBy: z.string(),
     created: z.date(),
     updatedBy: z.string(),

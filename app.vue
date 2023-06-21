@@ -21,8 +21,8 @@ const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
 
 await fetchUser();
-await fetchUserMap();
 await fetchProjects();
+await fetchUserMap();
 await fetchSettings();
 await fetchTasks();
 await fetchData();
