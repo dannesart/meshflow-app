@@ -1,7 +1,9 @@
 import { mount } from "@vue/test-utils";
+import { createPinia, setActivePinia } from "pinia";
 import AddPage from "./Page.vue";
 
 describe("Add page", () => {
+  setActivePinia(createPinia());
   it("Should be able to render correctly with a text field", () => {
     const component = mount(AddPage);
     expect(component.findAll("input").length).toBe(1);

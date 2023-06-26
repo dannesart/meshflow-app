@@ -27,6 +27,7 @@ export const useUsersStore = defineStore("UsersStore", {
     usersAmount: (state) => {
       return Object.keys(state.users).length;
     },
+    allUsers: (state) => state.users,
   },
   actions: {
     async getToken() {

@@ -1,8 +1,10 @@
 import { mount, VueWrapper } from "@vue/test-utils";
-import { ModelTypes } from "~~/constants/model";
+import { createPinia, setActivePinia } from "pinia";
 import AddBlock from "./Block.vue";
 
 describe("Add block", () => {
+  setActivePinia(createPinia());
+
   let component: VueWrapper;
   beforeEach(() => {
     component = mount(AddBlock);

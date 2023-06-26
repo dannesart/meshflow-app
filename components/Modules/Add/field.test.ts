@@ -1,9 +1,11 @@
 import { mount, VueWrapper } from "@vue/test-utils";
-import { Model } from "mongoose";
+import { createPinia, setActivePinia } from "pinia";
 import { ModelTypes } from "~~/constants/model";
 import AddField from "./Field.vue";
 
 describe("Add field", () => {
+  setActivePinia(createPinia());
+
   let component: VueWrapper;
   beforeEach(() => {
     component = mount(AddField);

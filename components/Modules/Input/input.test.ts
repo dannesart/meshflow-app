@@ -1,7 +1,9 @@
 import { mount } from "@vue/test-utils";
+import { createPinia, setActivePinia } from "pinia";
 import Input from "./Index.vue";
 
 describe("Input", () => {
+  setActivePinia(createPinia());
   it("Should render a textarea if passing in type text-lg", () => {
     const component = mount(Input, {
       props: {

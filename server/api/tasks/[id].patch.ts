@@ -16,18 +16,22 @@ export default defineEventHandler(async (e) => {
     createdBy,
     updatedBy,
     id,
+    assignedTo,
+    projectId,
     description,
     status,
     subTasks,
     tags,
     title,
   } = body;
-  const newObject = {
+  const newObject: Task = {
     created: new Date(created),
     updated: new Date(),
     description,
     createdBy,
     updatedBy,
+    assignedTo,
+    projectId,
     id,
     status,
     subTasks,

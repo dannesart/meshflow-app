@@ -30,8 +30,9 @@
             </UIForm>
             <aside class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl">
 
-                <ModulesInput type="user" :value="task.assignedTo"></ModulesInput>
-
+                <ModulesInput type="user" :value="task.assignedTo" @value-update="event => updateAssigned(event)">
+                    Assigned to
+                </ModulesInput>
 
                 <ModulesInput type="select" :values="TASK_STATUSES" :value="task.status"
                     @value-update="event => updateStatus(event)">
@@ -88,6 +89,10 @@ const toggleFavorite = () => {
         //task.favorite = !task?.favorite;
 
     }
+}
+
+const updateAssigned = (userId: string) => {
+    task.value.assignedTo = userId;
 }
 
 const updateStatus = (status: any) => {
