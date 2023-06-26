@@ -44,6 +44,36 @@
                 </ModulesInput>
             </div>
         </section>
+        <UIHeadline size="h2">
+            Shut down
+        </UIHeadline>
+        <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
+            <div class="flex flex-col gap-3">
+                <label>Leave this project</label>
+                <p class="text-sm text-gray-400">
+                    Leaving this project means that the project will stay alive. <br />You can't leave if you are the
+                    creator of
+                    this project.
+                    <br />But you can transfer the ownership to any other user.
+                </p>
+                <div>
+
+                    <UIButton type="nevermind" class="flex-0">Leave</UIButton>
+                </div>
+            </div>
+            <div class="flex flex-col gap-3">
+                <label>Delete this project</label>
+                <p class="text-sm text-gray-400">
+                    Deleting this project will remove all data connected to this project.
+                    <br />Users, data, blocks, pages,
+                    settings, rules, roles and storage.
+                </p>
+                <div>
+
+                    <UIButton type="nevermind" class="flex-0">Delete</UIButton>
+                </div>
+            </div>
+        </section>
     </NuxtLayout>
 </template>
 
