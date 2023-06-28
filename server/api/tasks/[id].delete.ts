@@ -9,7 +9,7 @@ export default defineEventHandler(async (e) => {
 
   const id = e.context?.params?.id;
   try {
-    const taskDoc = TaskModel.findOneAndDelete({ id });
+    const taskDoc = TaskModel.findOneAndDelete({ _id: id });
     return taskDoc;
   } catch (error) {
     return error;
