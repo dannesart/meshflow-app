@@ -65,14 +65,14 @@
 
         <div v-if="type === 'user'" tabindex="0" @focusin=" isToggled = true" @focusout="handleFocusOut" ref="userSelectRef"
             class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none">
-            <div class="flex justify-between gap-3 capitalize h-6 items-center">
+            <div class="flex justify-between gap-3 capitalize h-6 items-center ">
 
                 <div v-if="selectedUser">
                     <UIUserTag :id="selectedUser"></UIUserTag>
                 </div>
                 <input type="search" placeholder="Select user" v-else
                     class="bg-transparent cursor-pointer outline-none  absolute inset-0 py-3 px-5" />
-                <div class="z-50 absolute right-5" tabindex="0">
+                <div class="z-10 absolute right-5" tabindex="0">
                     <UIIcons :name="isToggled ? 'chevron-up' : 'chevron-down'">
                     </UIIcons>
                 </div>

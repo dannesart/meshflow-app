@@ -31,7 +31,8 @@ declare module 'nitropack' {
       'get': Awaited<ReturnType<typeof import('../../server/api/projects/[id].get').default>>
     }
     '/api/pages': {
-      'default': Awaited<ReturnType<typeof import('../../server/api/pages').default>>
+      'post': Awaited<ReturnType<typeof import('../../server/api/pages/index.post').default>>
+      'get': Awaited<ReturnType<typeof import('../../server/api/pages/index.get').default>>
     }
     '/api/models': {
       'default': Awaited<ReturnType<typeof import('../../server/api/models').default>>

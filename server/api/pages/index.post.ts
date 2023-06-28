@@ -1,26 +1,29 @@
-import { TaskSchema, Task } from "~~/models/tasks";
-import { TaskModel } from "~~/models/tasks.db";
+import { v4 as uuidv4 } from "uuid";
 import { getServerSession, getToken } from "#auth";
 import { AuthToken } from "~~/models/auth";
+import { Page, PageSchema } from "~~/models/page";
+import { PageModel } from "~~/models/page.db";
 
-const newTask = (
+const newPage = (
   title: string,
   createdBy: string,
   status: string,
   tags: string[],
+  blocks: string[],
   projectId: string
 ) => {
-  const task: Task = {
+  const page: Page = {
     title,
     status,
     createdBy,
+    blocks,
     created: new Date(),
     updatedBy: createdBy,
     updated: new Date(),
     tags,
     projectId,
   };
-  return task;
+  return page;
 };
 
 export default defineEventHandler(async (e) => {
@@ -31,19 +34,20 @@ export default defineEventHandler(async (e) => {
   }
 
   const body = await readBody(e);
-  const newTaskObject = newTask(
+  const newPageObject = newPage(
     body.title,
     token.sub || "",
     body.status,
     body.tags,
+    body.blocks,
     body.projectId
   );
-  const valid = await TaskSchema.safeParse(newTaskObject);
+  const valid = await PageSchema.safeParse(newPageObject);
   if (valid.success) {
     try {
-      const taskDoc = new TaskModel(newTaskObject);
-      await taskDoc.save();
-      return newTaskObject;
+      const pageDoc = new PageModel(newPageObject);
+      await pageDoc.save();
+      return newPageObject;
     } catch (error) {
       return error;
     }

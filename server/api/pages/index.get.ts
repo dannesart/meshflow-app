@@ -1,4 +1,4 @@
-import { TaskModel } from "~~/models/tasks.db";
+import { PageModel } from "~~/models/page.db";
 import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {
@@ -6,13 +6,13 @@ export default defineEventHandler(async (e) => {
   if (!session || !session.user) {
     return { error: "Need to be authenticated" };
   }
-  const tasks = await TaskModel.find({});
+  const pages = await PageModel.find({});
 
   return (
-    tasks.map((task) => {
+    pages.map((page) => {
       return {
-        ...task.toJSON(),
-        id: task._id,
+        ...page.toJSON(),
+        id: page._id,
       };
     }) || []
   );

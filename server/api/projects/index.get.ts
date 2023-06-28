@@ -12,7 +12,12 @@ export default defineEventHandler(async (e) => {
       createdBy: session.user.email,
     });
 
-    return projects;
+    return projects.map((project) => {
+      return {
+        ...project.toJSON(),
+        id: project._id,
+      };
+    });
   }
   return [];
 });

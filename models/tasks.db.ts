@@ -4,10 +4,9 @@ import { Task } from "./tasks";
 const TaskDbSchema: Schema<Task> = new Schema({
   title: String,
   description: String,
-  id: { type: String, unique: true },
   status: String,
   deadline: { type: Date },
-  projectId: String,
+  projectId: { type: Schema.Types.ObjectId, ref: "projects" },
   createdBy: String,
   created: { type: Date, default: Date.now },
   updatedBy: String,

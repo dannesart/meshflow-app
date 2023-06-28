@@ -23,7 +23,6 @@ const newTask = ref({
     title: '',
     description: '',
     status: statuses[0],
-    id: (Math.random() * 1000).toString(),
     tags: [],
     projectId: useProjectStore().activeId,
     created: new Date(),

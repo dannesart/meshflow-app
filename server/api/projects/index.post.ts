@@ -1,15 +1,12 @@
 import {
-  Project,
   PROJECT_STATUSES,
   ProjectSchema,
   ProjectModel,
 } from "~~/models/project";
-import { v4 as uuidv4 } from "uuid";
 import { getServerSession } from "#auth";
 
 const newProject = (name: string, createdBy: string) => {
   const project = {
-    id: uuidv4(),
     name,
     status: PROJECT_STATUSES[0],
     createdBy,
