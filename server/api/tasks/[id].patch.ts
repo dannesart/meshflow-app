@@ -15,16 +15,16 @@ export default defineEventHandler(async (e) => {
     updated,
     createdBy,
     updatedBy,
-    id,
     assignedTo,
     projectId,
     description,
     status,
+    id,
     subTasks,
     tags,
     title,
   } = body;
-  const newObject: Task = {
+  const updatedObject: Task = {
     created: new Date(created),
     updated: new Date(),
     description,
@@ -32,16 +32,15 @@ export default defineEventHandler(async (e) => {
     updatedBy,
     assignedTo,
     projectId,
-    id,
     status,
     subTasks,
     tags,
     title,
   };
-  const valid = await TaskSchema.safeParse(newObject);
+  const valid = await TaskSchema.safeParse(updatedObject);
   if (valid.success) {
     try {
-      const taskDoc = TaskModel.findOneAndUpdate({ id }, newObject, {
+      const taskDoc = TaskModel.findOneAndUpdate({ _id: id }, updatedObject, {
         upsert: true,
       });
       return taskDoc;
