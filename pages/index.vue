@@ -87,10 +87,16 @@ const { latest, tasks, addTask } = tasksStore;
 const { pages } = usePagesStore();
 const { usersAmount } = useUsersStore();
 
-const onAdd = (task: Task) => {
-    setNotification("Task created", "Your task was successfully created", "success")
-    addTask(task);
-    useRouter().push('/board')
+const onAdd = async (task: Task) => {
+
+    if (await addTask(task)) {
+
+        useRouter().push('/board')
+        setNotification("Task created", "Your task was successfully created", "success")
+    } else {
+        setNotification("Task not created", "Your task could not be created", "fail")
+    }
+
 }
 
 const onCancel = () => {
