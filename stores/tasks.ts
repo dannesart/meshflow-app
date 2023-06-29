@@ -62,10 +62,11 @@ export const useTasksStore = defineStore("TasksStore", {
           task
         );
         this.loading = false;
-        // const idx = this.taskByIdx(task.id);
-        // const update = { ...task, ...patch };
-        // this.allTasks[idx] = update;
-      } catch (error) {}
+        return true;
+      } catch (error) {
+        this.loading = false;
+        return false;
+      }
     },
     setTasks(tasks: Task[]) {
       this.allTasks = tasks;
@@ -83,8 +84,11 @@ export const useTasksStore = defineStore("TasksStore", {
         );
         this.loading = false;
         await this.fetchTasks();
+        return true;
       } catch (error) {
         //TODO: Handle error
+        this.loading = false;
+        return false;
       }
     },
     async fetchTasks() {

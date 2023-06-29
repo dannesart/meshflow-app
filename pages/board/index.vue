@@ -77,8 +77,12 @@ export default {
             this.sorts = { ...this.sorts, ..._sorts };
         },
         async onAdd(task: Task) {
-            setNotification("Task created", "Your task was successfully created", "success");
-            await addTask(task);
+
+            if (await addTask(task)) {
+                setNotification("Task created", "Your task was successfully created", "success");
+            } else {
+                setNotification("Task not created", "Your task could not be created", "fail");
+            }
         },
         onCancel: () => { }
     }
