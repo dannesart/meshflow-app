@@ -7,13 +7,15 @@
                 {{ label }}
             </UIHeadline>
             <p class="text-4xl font-semibold text-sky-800">
-                {{ number }}
+                {{ number }} <span class="text-sm text-gray-400">/ 10</span>
             </p>
             <div class="absolute top-0 left-0 right-0 bottom-0 bg-white/70 flex items-center justify-center"
                 v-if="isLoading">
                 <UILoader></UILoader>
             </div>
         </div>
+
+        <UIDiagram :max="10" :min="0" :value="number" v-if="number"></UIDiagram>
 
         <div class="" v-if="errors">
             <p class="text-red-600 cursor-pointer">{{ errors }} errors</p>

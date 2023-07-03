@@ -8,34 +8,55 @@
             <ModulesStat label="Active tasks" :number="tasksStore.allTasks.length"></ModulesStat>
             <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
             <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
-            <ModulesStat label="Rules" number="14"></ModulesStat>
+            <ModulesStat label="Rules" number="9"></ModulesStat>
+        </div>
+
+        <div class="flex flex-col gap-4">
+            <UIHeadline size="h3">
+                Latest signed in
+            </UIHeadline>
+            <div class="flex gap-4">
+                <ul class="w-full flex gap-5">
+                    <li v-for="(user, userId) in allUsers">
+                        <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
+                    </li>
+                    <li v-if="!usersAmount">
+                        <small>
+                            No activity yet
+                        </small>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex justify-end">
+                <NuxtLink to="/">
+                    View latest activity
+                </NuxtLink>
+            </div>
         </div>
 
         <div class="flex gap-5 flex-col md:flex-row">
             <div class="flex flex-col gap-4 md:w-1/2">
                 <UIHeadline size="h3">
-                    Latest signed in
+                    Latest comments
                 </UIHeadline>
                 <div class="flex gap-4">
-                    <ul class="w-full flex gap-5">
-                        <li v-for="(user, userId) in allUsers"
-                            class="border-b last:border-b-0 bg-white shadow-lg rounded-lg p-5 w-52 ">
+                    <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
+                        <li v-for="comment in comments" class="border-b last:border-b-0 pb-5 last:pb-0">
 
-                            <ModulesExtendedLink :label="user.name" :style="'small'"
-                                :sub-label="useTimeAgo(user.last_login)" :route="('/users/' + userId)"
-                                :image="user.picture">
+                            <ModulesExtendedLink :label="comment.message" :sub-label="'from @' + comment.from"
+                                :route="('/comments/' + comment.id)">
                             </ModulesExtendedLink>
                         </li>
-                        <li v-if="!usersAmount">
+                        <li v-if="!comments.length">
                             <small>
-                                No activity yet
+                                No comments yet
                             </small>
                         </li>
                     </ul>
                 </div>
                 <div class="flex justify-end">
-                    <NuxtLink to="/">
-                        View latest activity
+                    <NuxtLink to="/comments">
+                        View all comments
                     </NuxtLink>
                 </div>
             </div>
@@ -78,11 +99,13 @@
 import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
 import { useUsersStore } from "~~/stores/users";
+import { useCommentsStore } from "~~/stores/comments";
 import { Task } from '~~/models/tasks';
 import { useNotificationStore } from "~~/stores/notifications";
 
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
+const { comments } = useCommentsStore();
 const tasksStore = useTasksStore();
 const { latest, addTask } = tasksStore;
 const { pages } = usePagesStore();

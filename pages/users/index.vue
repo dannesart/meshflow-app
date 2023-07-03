@@ -4,11 +4,9 @@
             Users
         </UIHeadline>
         <ul class="w-full flex gap-5">
-            <li v-for="(user, userId) in allUsers" class="border-b last:border-b-0 bg-white shadow-lg rounded-lg p-5 w-52 ">
+            <li v-for="(user, userId) in allUsers">
 
-                <ModulesExtendedLink :label="user.name" :style="'small'" :sub-label="useTimeAgo(user.last_login)"
-                    :route="('/users/' + userId)" :image="user.picture">
-                </ModulesExtendedLink>
+                <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
             </li>
         </ul>
     </NuxtLayout>

@@ -7,13 +7,8 @@
             <p class="font-medium text-gray-800" :class="{ 'text-lg': size !== 'small', 'text-sm': size === 'small' }"
                 name="user-info-name">@{{ name }}</p>
         </div>
-        <div :class="{ 'w-14 h-14': size !== 'small', 'w-8 h-8': size === 'small' }"
-            class="text-white text-xl flex justify-center items-center uppercase rounded-full bg-blue-600 hover:shadow-xl"
-            name="user-info-avatar" v-if="name && !image">
-            {{ nameToShort(name) }}
-        </div>
-        <img :src="image" class="flex justify-center items-center rounded-full hover:shadow-xl"
-            :class="{ 'w-14 h-14': size !== 'small', 'w-8 h-8': size === 'small' }" name="user-info-avatar" v-if="image" />
+        <UIUserImage :name="name" :image="image" :size="size"></UIUserImage>
+
     </div>
 </template>
 
