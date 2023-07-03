@@ -40,8 +40,10 @@ export const usePagesStore = defineStore("PagesStore", {
         );
         this.loading = false;
         await this.fetchPages();
+        return true;
       } catch (error) {
-        //TODO: Handle error
+        this.loading = false;
+        return false;
       }
     },
     async fetchPages() {

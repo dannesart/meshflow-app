@@ -44,48 +44,20 @@ const filterChange = async (_filters: { [key: string]: any }) => {
 const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts };
 }
-const onAdd = (page: Page) => {
-    try {
-        addPage(page);
+const onAdd = async (page: Page) => {
+
+    if (await addPage(page)) {
         setNotification("Page created", "Your page was successfully created", "success");
-    } catch (error) {
-        setNotification("Page not created", "Your page was successfully created", "fail");
+    } else {
+        setNotification(
+            "Page not created",
+            "The page could not be created!",
+            "fail"
+        )
     }
+
+
 }
 const onCancel = () => { }
-
-// export default {
-//     data() {
-//         return {
-//             filters: ref({}),
-//             sorts: ref({}),
-//             pages,
-//             PAGE_STATUSES
-//         }
-//     },
-//     methods: {
-//         updateFavorite(favorite: any, itemIdx: number, title: string) {
-//             // const newData = [...pages.value]
-//             // newData[itemIdx] = { ...newData[itemIdx], favorite }
-//             // page = newData;
-//             setNotification('Pelle has liked', title, "liked");
-//         },
-//         async filterChange(_filters: { [key: string]: any }) {
-//             this.filters = { ...this.filters, ..._filters };
-//         },
-//         async sortChange(_sorts: { [key: string]: any }) {
-//             this.sorts = { ...this.sorts, ..._sorts };
-//         },
-//         onAdd: (page: Page) => {
-//             try {
-//                 addPage(page);
-//                 setNotification("Page created", "Your page was successfully created", "success");
-//             } catch (error) {
-//                 setNotification("Page not created", "Your page was successfully created", "fail");
-//             }
-//         },
-//         onCancel: () => { }
-//     }
-// }
 
 </script>

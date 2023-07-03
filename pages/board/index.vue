@@ -57,7 +57,7 @@ export default {
     methods: {
         handleFavorite: (isFavorite: boolean, title: string) => {
             if (!isFavorite) {
-                setNotification('Pelle has liked', title, "liked");
+                setNotification('Pelle has liked', title, "success");
             }
         },
         async dragChange(event: any, status: string) {

@@ -109,6 +109,7 @@ declare global {
   const useSettings: typeof import('../../composables/states')['useSettings']
   const useSlots: typeof import('vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app')['useState']
+  const useTimeAgo: typeof import('../../utils/time')['useTimeAgo']
   const useTransitionState: typeof import('vue')['useTransitionState']
   const useVisualEditor: typeof import('../../composables/states')['useVisualEditor']
   const useVisualEditorLayer: typeof import('../../composables/states')['useVisualEditorLayer']
@@ -238,6 +239,7 @@ declare module 'vue' {
     readonly useSettings: UnwrapRef<typeof import('../../composables/states')['useSettings']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useState']>
+    readonly useTimeAgo: UnwrapRef<typeof import('../../utils/time')['useTimeAgo']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>
     readonly useVisualEditor: UnwrapRef<typeof import('../../composables/states')['useVisualEditor']>
     readonly useVisualEditorLayer: UnwrapRef<typeof import('../../composables/states')['useVisualEditorLayer']>

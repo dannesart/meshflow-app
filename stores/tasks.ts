@@ -45,12 +45,19 @@ export const useTasksStore = defineStore("TasksStore", {
     },
     async deleteTask(task: Task) {
       try {
+        this.loading = true;
         const config = useRuntimeConfig();
         const response = await axios.delete(
           config.public.REDIRECT_URI + "/api/tasks/" + task.id
         );
         this.fetchTasks();
-      } catch (error) {}
+        this.loading = false;
+
+        return true;
+      } catch (error) {
+        this.loading = false;
+        return false;
+      }
     },
     async updateTask(task: Task, patch: { [key: string]: any }) {
       try {
@@ -62,9 +69,11 @@ export const useTasksStore = defineStore("TasksStore", {
           task
         );
         this.loading = false;
+
         return true;
       } catch (error) {
         this.loading = false;
+
         return false;
       }
     },
@@ -82,6 +91,7 @@ export const useTasksStore = defineStore("TasksStore", {
           config.public.REDIRECT_URI + "/api/tasks",
           task
         );
+        this.loading = false;
         this.loading = false;
         await this.fetchTasks();
         return true;

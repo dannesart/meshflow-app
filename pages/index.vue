@@ -14,25 +14,28 @@
         <div class="flex gap-5 flex-col md:flex-row">
             <div class="flex flex-col gap-4 md:w-1/2">
                 <UIHeadline size="h3">
-                    Latest comments
+                    Latest signed in
                 </UIHeadline>
                 <div class="flex gap-4">
-                    <ul class="w-full flex flex-col gap-5 p-5 rounded-lg shadow-lg bg-white">
-                        <li v-for="comment in commentsStore.comments" class="border-b pb-5 last:pb-0 last:border-b-0">
-                            <ModulesExtendedLink :label="comment.message" :sub-label="('Added by @' + comment.from)"
-                                :route="('/comments/' + comment.id)">
+                    <ul class="w-full flex gap-5">
+                        <li v-for="(user, userId) in allUsers"
+                            class="border-b last:border-b-0 bg-white shadow-lg rounded-lg p-5 w-52 ">
+
+                            <ModulesExtendedLink :label="user.name" :style="'small'"
+                                :sub-label="useTimeAgo(user.last_login)" :route="('/users/' + userId)"
+                                :image="user.picture">
                             </ModulesExtendedLink>
                         </li>
-                        <li v-if="!commentsStore.comments.length">
+                        <li v-if="!usersAmount">
                             <small>
-                                No comments yet
+                                No activity yet
                             </small>
                         </li>
                     </ul>
                 </div>
                 <div class="flex justify-end">
-                    <NuxtLink to="/comments">
-                        View all comments
+                    <NuxtLink to="/">
+                        View latest activity
                     </NuxtLink>
                 </div>
             </div>
@@ -74,27 +77,32 @@
 
 import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
-import { useCommentsStore } from "~~/stores/comments";
 import { useUsersStore } from "~~/stores/users";
-import { Task, TASK_STATUSES } from '~~/models/tasks';
+import { Task } from '~~/models/tasks';
 import { useNotificationStore } from "~~/stores/notifications";
 
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
-const commentsStore = useCommentsStore();
-const { latest, tasks, addTask } = tasksStore;
+const { latest, addTask } = tasksStore;
 const { pages } = usePagesStore();
-const { usersAmount } = useUsersStore();
+const { usersAmount, allUsers } = useUsersStore();
 
 const onAdd = async (task: Task) => {
 
     if (await addTask(task)) {
-
+        setNotification(
+            "Task added",
+            "The task was successfully added!",
+            "success"
+        )
         useRouter().push('/board')
-        setNotification("Task created", "Your task was successfully created", "success")
     } else {
-        setNotification("Task not created", "Your task could not be created", "fail")
+        setNotification(
+            "Task not added",
+            "The task could not be added!",
+            "fail"
+        );
     }
 
 }

@@ -3,11 +3,10 @@
         @click="handleClick" :class="colors[color || 'default']">
         <input v-if="isEditing" :value="newValue" @input="handleChange" @blur="handleBlur" ref="tagEdit"
             class="appearance-none border-0 bg-transparent w-auto outline-none max-w-[60px]" />
-        <div v-else>
+        <div v-else class="flex gap-3">
             <slot />
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">

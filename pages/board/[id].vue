@@ -42,8 +42,12 @@
                     <label>Tags</label>
                     <ModulesTagsList color="white" can-add="true" @add="addNewTag">
                         <UITag v-for="(tag, index) in task?.tags" :can-edit="true" :value="tag"
-                            @save="updateTag($event, index)">
+                            @save="updateTag($event, index)" class="group">
                             {{ tag }}
+                            <div class="hidden group-hover:block cursor-pointer hover:bg-black/30 rounded-full"
+                                @click="e => removeTag(e, index)">
+                                <UIIcons name="close"></UIIcons>
+                            </div>
                         </UITag>
                     </ModulesTagsList>
                 </div>
@@ -85,7 +89,7 @@ const task = ref<Task>(taskById(id as string) as Task);
 
 const toggleFavorite = () => {
     if (task.value) {
-        setNotification("Liked task", "Danne liked you task")
+        setNotification("Liked task", "Danne liked you task", 'success')
         //task.favorite = !task?.favorite;
 
     }
@@ -109,18 +113,48 @@ const addNewTag = () => {
 
 }
 
+const removeTag = (e: Event, idx: number) => {
+    task.value.tags.splice(idx, 1);
+}
+
 const handleDelete = async (e: Event) => {
     e.preventDefault()
     if (confirm("Are you sure you want to delete this task?")) {
-        await deleteTask(task.value);
-        useRouter().push('/board')
+        if (await deleteTask(task.value)) {
+            useRouter().push('/board')
+            setNotification(
+                "Task deleted",
+                "The task was successfully deleted!",
+                "success"
+            );
+        } else {
+            setNotification(
+                "Task not deleted",
+                "The task could not be deleted!",
+                "fail"
+            );
+        }
+
+
     }
 }
 
 const save = async (e: Event) => {
     e.preventDefault();
-    await updateTask(task.value, { ...task });
-    setNotification("Task updated", "The tasks was successfully updated!")
+    if (await updateTask(task.value, { ...task })) {
+        setNotification(
+            "Task updated",
+            "The task was successfully updated!",
+            "success"
+        );
+    } else {
+        setNotification(
+            "Task not updated",
+            "The task could not be updated!",
+            "fail"
+        );
+    }
+
 }
 
 
