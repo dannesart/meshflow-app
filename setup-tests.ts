@@ -2,7 +2,7 @@ import { vi } from "vitest";
 
 vi.mock("#imports", () => {
   return {
-    useSession: () => {
+    useAuth: () => {
       return {
         data: {},
       };
@@ -12,7 +12,7 @@ vi.mock("#imports", () => {
 
 vi.mock("#app", () => {
   return {
-    useSession: () => {
+    useAuth: () => {
       return {
         data: {},
       };

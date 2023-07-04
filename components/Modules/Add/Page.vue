@@ -12,23 +12,21 @@
 </template>
 
 <script setup lang="ts">
-import { PageSchema, PAGE_STATUSES, TPage } from '~~/models/page';
-import { useSession } from "#imports";
-const { data } = useSession();
+import { PageSchema, PAGE_STATUSES, Page } from '~~/models/page';
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = PAGE_STATUSES;
 
-let newPage: TPage = {
+let newPage: Page = {
     title: '',
     status: statuses[1],
     id: (Math.random() * 1000).toString(),
     tags: [],
     blocks: [],
     created: new Date(),
-    createdBy: data.value?.user?.name || '',
+    createdBy: '',
     updated: new Date(),
-    updatedBy: data.value?.user?.name || ''
+    updatedBy: ''
 }
 
 const valueChange = (event: string, key: string) => {
@@ -37,7 +35,7 @@ const valueChange = (event: string, key: string) => {
     validate(newPage);
 }
 
-const validate = async (_newPage: TPage) => {
+const validate = async (_newPage: Page) => {
     const validated = await PageSchema.safeParse(_newPage);
 
     if (!validated.success) {

@@ -12,9 +12,8 @@
 
 <script setup lang="ts">
 import { TaskSchema, TASK_STATUSES } from '~~/models/tasks';
-import { useSession } from "#imports";
 import { useProjectStore } from '~~/stores/projects';
-const { data } = useSession();
+
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = TASK_STATUSES;
@@ -26,9 +25,9 @@ const newTask = ref({
     tags: [],
     projectId: useProjectStore().activeId,
     created: new Date(),
-    createdBy: data.value?.user?.name || '',
+    createdBy: '',
     updated: new Date(),
-    updatedBy: data.value?.user?.name || ''
+    updatedBy: ''
 })
 
 const valueChange = (event: string, key: string) => {

@@ -123,7 +123,7 @@ import { useUsersStore } from "~~/stores/users";
 // We can then show back button.
 const { id, type } = useRoute().params;
 const projectStore = useProjectStore();
-const { status, data, signIn, signOut } = useSession()
+const { status, data, signIn, signOut } = useAuth()
 
 const user = (email: string) => {
 	return useUsersStore().userByEmail(email);

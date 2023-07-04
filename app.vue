@@ -12,10 +12,10 @@ import { useProjectStore } from "~~/stores/projects";
 import { useDataStore } from "~~/stores/data";
 import { usePagesStore } from "./stores/pages";
 
+const { fetchProjects } = useProjectStore();
 const { fetchSettings } = useSettingsStore();
 const { fetchTasks } = useTasksStore();
 const { fetchUser } = useAuthStore();
-const { fetchProjects } = useProjectStore();
 const { fetchData } = useDataStore();
 const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();

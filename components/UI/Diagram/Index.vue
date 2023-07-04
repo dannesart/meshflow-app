@@ -18,9 +18,9 @@ const percent = (value / max) * 100;
 const dasharray = `${percent || 0}, 100`
 
 const getColor = () => {
-    if (percent >= 80) return 'stroke-green-500';
+    if (percent >= 80) return 'stroke-red-500';
     if (percent >= 50) return 'stroke-orange-500';
-    return 'stroke-red-500';
+    return 'stroke-green-500';
 }
 
 </script>

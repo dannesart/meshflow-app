@@ -53,7 +53,7 @@
 import { useAuthStore } from '~~/stores/auth';
 import { useUsersStore } from '~~/stores/users';
 
-const { data, signOut } = useSession()
+const { data, signOut } = useAuth()
 const authStore = useAuthStore();
 const usersStore = useUsersStore();
 const user = usersStore.userById(authStore.currentUser.sub || '') || {};

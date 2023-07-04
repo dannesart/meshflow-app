@@ -13,7 +13,7 @@
 
         <div class="flex flex-col gap-4">
             <UIHeadline size="h3">
-                Latest signed in
+                Latest sign in
             </UIHeadline>
             <div class="flex gap-4">
                 <ul class="w-full flex gap-5">

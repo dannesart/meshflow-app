@@ -26,8 +26,7 @@
 
 <script setup lang="ts">
 import { Model, ModelSchema } from '~~/models/model';
-import { useSession } from "#imports";
-const { data } = useSession();
+
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 
