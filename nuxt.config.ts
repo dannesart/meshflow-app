@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     [
       "@sidebase/nuxt-auth",
       {
+        origin: process.env.REDIRECT_URI,
         enableGlobalAppMiddleware: true,
         defaultProvider: "auth0",
       },
