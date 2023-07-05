@@ -34,7 +34,7 @@ declare module 'nuxt/schema' {
 
       enableGlobalAppMiddleware: boolean,
 
-      defaultProvider: any,
+      defaultProvider: string,
 
       addDefaultCallbackUrl: boolean,
 
@@ -65,7 +65,7 @@ declare module 'nuxt/schema' {
 
       enableGlobalAppMiddleware: boolean,
 
-      defaultProvider: any,
+      defaultProvider: string,
 
       addDefaultCallbackUrl: boolean,
 
