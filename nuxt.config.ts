@@ -9,7 +9,6 @@ export default defineNuxtConfig({
       "@sidebase/nuxt-auth",
       {
         enableGlobalAppMiddleware: true,
-        defaultProvider: "auth0",
       },
     ],
     "@nuxtjs/tailwindcss",
