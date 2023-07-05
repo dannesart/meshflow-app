@@ -19,6 +19,14 @@ declare module 'nuxt/schema' {
 
    mongoUrl: string,
 
+   clientId: string,
+
+   clientSecret: string,
+
+   issuer: string,
+
+   domain: string,
+
    auth: {
       isEnabled: boolean,
 

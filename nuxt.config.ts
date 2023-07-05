@@ -26,6 +26,10 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     mongoUrl: process.env.MONGO_URL,
+    clientId: process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    issuer: process.env.AUTH0_ISSUER,
+    domain: process.env.AUTH0_DOMAIN,
     public: {
       REDIRECT_URI: process.env.REDIRECT_URI,
     },
