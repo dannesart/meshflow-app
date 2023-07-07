@@ -18,8 +18,30 @@ export default NuxtAuthHandler({
         config.issuer ||
         process.env.AUTH0_ISSUER ||
         "https://meshflow.eu.auth0.com",
-      domain: config.domain || process.env.AUTH0_DOMAIN,
     }),
   ],
+
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+      },
+    },
+    state: {
+      name: `next-auth.state`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+        maxAge: 900,
+      },
+    },
+  },
+
   secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
 });

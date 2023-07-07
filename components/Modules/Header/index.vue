@@ -165,9 +165,9 @@ const selectProject = (projectId: string) => {
 
 const notifications = 3;
 
-const logout = () => {
+const logout = async () => {
 	// navigateTo('/')
-	signOut();
+	await signOut();
 }
 
 
