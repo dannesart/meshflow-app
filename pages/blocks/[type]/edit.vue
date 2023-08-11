@@ -2,9 +2,9 @@
     <NuxtLayout>
         <UIHeadline size="h1">
 
-            Edit {{ model.name }}
+            Edit {{ model?.name }}
         </UIHeadline>
-        <p :class="{ 'text-gray-400': !model.description }">{{ model.description || 'Description' }}</p>
+        <p :class="{ 'text-gray-400': !model?.description }">{{ model?.description || 'Description' }}</p>
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
@@ -13,7 +13,7 @@
                 button-style="icon">
             </ModulesAdd>
         </div>
-        <div v-if="active === 'model'">
+        <div v-if="active === 'model' && model">
             <div v-if="model.fields.length" class="flex flex-col gap-6">
                 <draggable :list="model.fields" group="fields" item-key="id" ghost-class="ghost"
                     :component-data="{ class: 'flex flex-col gap-4' }">
@@ -58,16 +58,17 @@
 
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { TTab } from '~~/components/UI/Tabs/tabs.model';
-import { Model } from '~~/models/model';
 import { useBlocksStore } from '~~/stores/blocks';
+import { useNotificationStore } from '~~/stores/notifications';
 
-const dragging = ref(false)
-const isLoading = ref(false);
-
+const notificationsStore = useNotificationStore();
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
-const { getBlockById } = blockStore;
+const { setNotification } = notificationsStore;
+const { getBlockById, updateBlock } = blockStore;
+const { isLoading } = storeToRefs(blockStore);
 const block = getBlockById(type as string);
 
 const model = ref<any>(block)
@@ -86,11 +87,15 @@ const onAddNewField = (args: any) => {
     model.value.fields.push(args)
 }
 
-const save = () => {
+const save = async () => {
     isLoading.value = true;
-    setTimeout(() => {
-        isLoading.value = false;
-    }, 3000)
+    const saved = await updateBlock(model.value);
+    if (saved) {
+        setNotification('Model saved!', 'The model was successfully saved', 'success');
+    } else {
+        // Handle error
+        setNotification('Model not saved', 'The model could not be saved', 'fail');
+    }
 }
 
 const setActiveTab = (tab: TTab) => {
