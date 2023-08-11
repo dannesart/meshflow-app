@@ -1,4 +1,5 @@
-import { getServerSession } from "#auth";
+import { getServerSession, getToken } from "#auth";
+import { AuthToken } from "~~/models/auth";
 import { Model } from "~~/models/model";
 import { ModelDbModel } from "~~/models/model.db";
 
@@ -10,7 +11,8 @@ export default defineEventHandler(async (e) => {
 
   const body = await readBody(e);
   const id = e.context.params?.type;
-  const { updatedBy, name, description, fields } = body;
+  const { name, description, fields } = body;
+  const token: AuthToken = (await getToken({ event: e })) as AuthToken;
   const updatedObject: Omit<
     Model,
     "createdBy" | "created" | "projectId" | "id" | "serviceType"
@@ -18,7 +20,7 @@ export default defineEventHandler(async (e) => {
     updated: new Date(),
     name,
     description,
-    updatedBy,
+    updatedBy: token.sub,
     fields,
   };
   //   const valid = await PageSchema.safeParse(updatedObject);
