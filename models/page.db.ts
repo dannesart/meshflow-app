@@ -8,6 +8,7 @@ const PageDbSchema: Schema<Page> = new Schema({
   created: { type: Date, default: Date.now },
   updatedBy: String,
   updated: { type: Date, default: Date.now },
+  slug: String,
   blocks: [String],
   tags: [String],
   projectId: { type: Schema.Types.ObjectId, ref: "projects" },

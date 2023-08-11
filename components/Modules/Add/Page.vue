@@ -23,6 +23,7 @@ let newPage: Page = {
     id: (Math.random() * 1000).toString(),
     tags: [],
     blocks: [],
+    slug: '',
     created: new Date(),
     createdBy: '',
     updated: new Date(),
@@ -30,7 +31,13 @@ let newPage: Page = {
 }
 
 const valueChange = (event: string, key: string) => {
-    (newPage as any)[key] = event;
+
+    if (key === "title") {
+        (newPage as any).title = event;
+        (newPage as any).slug = event;
+    } else {
+        (newPage as any)[key] = event;
+    }
     events('valueUpdate', newPage);
     validate(newPage);
 }

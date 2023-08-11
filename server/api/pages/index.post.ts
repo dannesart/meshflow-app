@@ -8,6 +8,7 @@ const newPage = (
   title: string,
   createdBy: string,
   status: string,
+  slug: string,
   tags: string[],
   blocks: string[],
   projectId: string
@@ -17,6 +18,7 @@ const newPage = (
     status,
     createdBy,
     blocks,
+    slug,
     created: new Date(),
     updatedBy: createdBy,
     updated: new Date(),
@@ -39,6 +41,7 @@ export default defineEventHandler(async (e) => {
     token.sub || "",
     body.status,
     body.tags,
+    body.slag,
     body.blocks,
     body.projectId
   );

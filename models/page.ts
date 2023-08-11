@@ -11,6 +11,7 @@ const PageSchema = z
     created: z.date(),
     updatedBy: z.string(),
     updated: z.date(),
+    slug: z.string(),
     tags: z.array(z.string()),
     blocks: z.array(z.string()),
     projectId: z.any(),
