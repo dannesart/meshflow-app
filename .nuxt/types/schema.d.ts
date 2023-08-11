@@ -27,6 +27,8 @@ declare module 'nuxt/schema' {
 
    domain: string,
 
+   api: string,
+
    auth: {
       isEnabled: boolean,
 

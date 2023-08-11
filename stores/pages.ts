@@ -4,19 +4,20 @@ import { Page } from "~~/models/page";
 
 type State = {
   isEditing: boolean;
-  loading: boolean;
+  isLoading: boolean;
   allPages: Page[];
 };
 
 const state = () =>
   <State>{
     isEditing: false,
-    loading: true,
+    isLoading: true,
     allPages: [],
   };
 
 const getters = {
   editing: (state: State) => state.isEditing,
+  loading: (state: State) => state.isLoading,
   pages: (state: State) => state.allPages,
   getAmountOfPages: (state: State) => state.allPages.length,
   getPageById: (state: State) => {
@@ -30,30 +31,46 @@ export const usePagesStore = defineStore("PagesStore", {
   state,
   getters,
   actions: {
+    async updatePage(page: Page) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.patch(
+          config.public.REDIRECT_URI + "/api/pages/" + page.id,
+          page
+        );
+        this.isLoading = false;
+        await this.fetchPages();
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
     async addPage(page: Page) {
       try {
-        this.loading = true;
+        this.isLoading = true;
         const config = useRuntimeConfig();
         const response = await axios.post(
           config.public.REDIRECT_URI + "/api/pages",
           page
         );
-        this.loading = false;
+        this.isLoading = false;
         await this.fetchPages();
         return true;
       } catch (error) {
-        this.loading = false;
+        this.isLoading = false;
         return false;
       }
     },
     async fetchPages() {
-      this.loading = true;
+      this.isLoading = true;
       try {
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/pages"
         );
-        this.loading = false;
+        this.isLoading = false;
         if (response.data) {
           if (response.data.error) {
             return;
@@ -62,7 +79,7 @@ export const usePagesStore = defineStore("PagesStore", {
         }
       } catch (error) {
         //TODO: Handle error
-        this.loading = false;
+        this.isLoading = false;
       }
     },
   },

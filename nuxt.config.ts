@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     issuer: process.env.AUTH0_ISSUER,
     domain: process.env.AUTH0_DOMAIN,
+    api: process.env.API,
     public: {
       REDIRECT_URI: process.env.REDIRECT_URI,
     },
