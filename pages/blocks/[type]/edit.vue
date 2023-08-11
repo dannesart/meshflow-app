@@ -2,7 +2,7 @@
     <NuxtLayout>
         <UIHeadline size="h1">
 
-            Edit {{ type }}
+            Edit {{ model.name }}
         </UIHeadline>
         <p :class="{ 'text-gray-400': !model.description }">{{ model.description || 'Description' }}</p>
 
@@ -60,21 +60,17 @@
 <script setup lang="ts">
 import { TTab } from '~~/components/UI/Tabs/tabs.model';
 import { Model } from '~~/models/model';
+import { useBlocksStore } from '~~/stores/blocks';
 
 const dragging = ref(false)
 const isLoading = ref(false);
-const { type } = useRoute().params;
 
-const model = ref<any>({
-    name: type as string,
-    id: (Math.floor(Math.random() * 100000000) + 1) + "",
-    description: '',
-    fields: [],
-    created: new Date(),
-    createdBy: 'Me',
-    updated: new Date(),
-    updatedBy: 'Me'
-})
+const { type } = useRoute().params;
+const blockStore = useBlocksStore();
+const { getBlockById } = blockStore;
+const block = getBlockById(type as string);
+
+const model = ref<any>(block)
 const tabs: TTab[] = [
     {
         name: 'model',

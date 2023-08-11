@@ -2,7 +2,7 @@
     <NuxtLayout>
         <UIHeadline size="h1">
 
-            {{ type }}
+            {{ blockType?.name }}
         </UIHeadline>
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
@@ -15,7 +15,7 @@
                 Edit
             </NuxtLink>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd :type="type">
+            <ModulesAdd :type="blockType?.name">
             </ModulesAdd>
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
@@ -27,14 +27,25 @@
 
         </div>
 
+        <div class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
+            No blocks yet. Create one <ModulesAdd @on-add="onAdd" :type="blockType?.name" button-style="system"
+                label="Add block">
+            </ModulesAdd>
+        </div>
+
 
 
     </NuxtLayout>
 </template>
 
 <script setup>
+import { useBlocksStore } from '~~/stores/blocks';
+
 
 const { type } = useRoute().params;
+const blockStore = useBlocksStore();
+const { getBlockById } = blockStore;
+const blockType = getBlockById(type);
 
 // Fetch data based on type.
 
@@ -51,19 +62,6 @@ const sortChange = () => {
 }
 
 // Show data.
-const data = ref([
-    {
-        title: "Title 1",
-        body: "Body 1",
-        id: "34DA424",
-        favorite: true
-    },
-    {
-        title: "Title 2",
-        body: "Body 2",
-        id: "80AF823",
-        favorite: false
-    }
-])
+const data = ref([])
 
 </script>

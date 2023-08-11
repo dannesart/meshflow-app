@@ -1,7 +1,9 @@
 import { Model, ModelSchema } from "~~/models/model";
-import { getServerSession } from "#auth";
+import { getServerSession, getToken } from "#auth";
+import { AuthToken } from "~~/models/auth";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
+import { ModelDbModel } from "~~/models/model.db";
 
 const newBlockModel = (
   name: string,
@@ -23,23 +25,26 @@ const newBlockModel = (
 
 export default defineEventHandler(async (e) => {
   const session = await getServerSession(e);
+  const token: AuthToken = (await getToken({ event: e })) as AuthToken;
   if (!session || !session.user) {
     return { error: "Need to be authenticated" };
   }
   // newBlockModel(name, session.user.email || '', projectId, description )
   const body = await readBody(e);
   if (ModelSchema.safeParse(body)) {
-    const { name, projectId, description } = body;
-    // const newDoc = new ModelDbModel({
-    //   name,
-    //   createdBy: session.user.email,
-    //   updatedBy: session.user.email,
-    //   projectId,
-    //   description,
-    //   fields: [],
-    //   id: uuidv4(),
-    //   serviceType: "block",
-    // });
+    const { name, projectId, description, fields } = body;
+    const newDoc = new ModelDbModel({
+      name,
+      createdBy: token.sub,
+      updatedBy: token.sub,
+      projectId,
+      description,
+      fields: fields || [],
+      id: uuidv4(),
+      serviceType: "block",
+    });
+    await newDoc.save();
+    return newDoc.toJSON();
   }
 
   return false;

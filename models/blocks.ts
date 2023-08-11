@@ -4,9 +4,10 @@ const BLOCK_STATUSES: string[] = ["public", "private"];
 
 const BlockSchema = z
   .object({
-    title: z.string().min(3).max(50),
+    name: z.string().min(3).max(50),
     status: z.string(),
     id: z.string().optional(),
+    description: z.string().optional(),
     createdBy: z.string(),
     created: z.date(),
     updatedBy: z.string(),

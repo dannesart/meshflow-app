@@ -16,10 +16,11 @@
                 {{ page.status }}
             </div>
 
-            <UIForm>
+            <UIForm class="flex flex-col gap-6">
                 <ModulesInput type="text" :value="page.title" @value-update="updateTitle">
                     Title
                 </ModulesInput>
+
             </UIForm>
 
             <div class="flex flex-col gap-6">
@@ -44,11 +45,17 @@
                     </template>
                 </draggable>
 
+
                 <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
                     No blocks yet. Create or add existing one <ModulesAdd @on-add="onAddNewBlock" type="block" select="true"
                         button-style="system" label="Add block">
                     </ModulesAdd>
                 </div>
+
+
+                <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
+                    Slug
+                </ModulesInput>
 
             </div>
 
@@ -89,6 +96,10 @@ const changeStatus = async () => {
 
 const updateTitle = async (newValue: string) => {
     page.value.title = newValue;
+}
+
+const updateSlug = async (newValue: string) => {
+    page.value.slug = newValue;
 }
 
 const onAddNewBlock = async () => {
