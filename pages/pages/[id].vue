@@ -45,7 +45,7 @@
                 </draggable>
 
                 <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
-                    No blocks yet. Create or add existing one <ModulesAdd @on-add="onAddNewBlock" type="block"
+                    No blocks yet. Create or add existing one <ModulesAdd @on-add="onAddNewBlock" type="block" select="true"
                         button-style="system" label="Add block">
                     </ModulesAdd>
                 </div>

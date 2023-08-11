@@ -11,6 +11,7 @@ import { useAuthStore } from "~~/stores/auth";
 import { useProjectStore } from "~~/stores/projects";
 import { useDataStore } from "~~/stores/data";
 import { usePagesStore } from "./stores/pages";
+import { useBlocksStore } from "./stores/blocks";
 
 const { fetchProjects } = useProjectStore();
 const { fetchSettings } = useSettingsStore();
@@ -19,6 +20,7 @@ const { fetchUser } = useAuthStore();
 const { fetchData } = useDataStore();
 const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
+const { fetchBlocks } = useBlocksStore();
 
 await fetchUser();
 await fetchProjects();
@@ -27,6 +29,7 @@ await fetchSettings();
 await fetchTasks();
 await fetchData();
 await fetchPages();
+await fetchBlocks();
 
 </script>
 

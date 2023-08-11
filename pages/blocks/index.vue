@@ -13,11 +13,17 @@
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
 
-            <NuxtLink :to="('/blocks/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
-                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
+            <NuxtLink :to="('/blocks/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in blocks">
+                <ModulesCard :title="item.title" :body="item.status" :tags="item.tags" :favorite="false"
                     @favorite="event => updateFavorite(event, index)"></ModulesCard>
             </NuxtLink>
 
+
+        </div>
+        <div v-if="!blocks.length" class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
+            No blocks yet. Create or add existing one <ModulesAdd @on-add="onAdd" type="block" button-style="system"
+                label="Add block">
+            </ModulesAdd>
         </div>
 
 
@@ -25,30 +31,23 @@
 </template>
 
 <script setup lang=ts>
-
+import { Block } from '~~/models/blocks';
+import { useBlocksStore } from '~~/stores/blocks';
+import { storeToRefs } from 'pinia';
+import { useNotificationStore } from '~~/stores/notifications';
+const notificationsStore = useNotificationStore();
+const blockStore = useBlocksStore();
+const { setNotification } = notificationsStore;
+const { loading, blocks } = storeToRefs(blockStore)
+const { addBlock } = blockStore;
 const filters = ref({});
 const sorts = ref({});
 
 
-const data = ref([
-    {
-        title: "Projects",
-        body: "23 active projects",
-        id: "projects",
-        favorite: true
-    },
-    {
-        title: "Companies",
-        body: "6 active companies",
-        id: "companies",
-        favorite: false
-    }
-])
-
 const updateFavorite = (favorite: any, itemIdx: number) => {
-    const newData = [...data.value]
-    newData[itemIdx] = { ...newData[itemIdx], favorite }
-    data.value = newData;
+    // const newData = [...data.value]
+    // newData[itemIdx] = { ...newData[itemIdx], favorite }
+    // data.value = newData;
 }
 
 const filterChange = async (_filters: { [key: string]: any }) => {
@@ -59,8 +58,19 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts }
 }
 
-const onAdd = (newData: any) => {
-    console.log("Add new block", newData)
+const onAdd = async (block: Block) => {
+
+    if (await addBlock(block)) {
+        setNotification("Page created", "Your page was successfully created", "success");
+    } else {
+        setNotification(
+            "Page not created",
+            "The page could not be created!",
+            "fail"
+        )
+    }
+
+
 }
 const onCancel = () => {
     console.log("Cancel new block")
