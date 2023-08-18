@@ -35,9 +35,9 @@
         <div class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
             No blocks yet. Create one <ModulesAdd @on-add="onAdd" :type="blockType?.name" button-style="system"
                 label="Add block">
-                <UIForm>
-                    <ModulesInput v-for="field in blockType.fields">
-                        {{ field }}
+                <UIForm class="flex flex-col gap-6">
+                    <ModulesInput v-for="field in blockType.fields" :type="field.type.id">
+                        {{ field.name }}
                     </ModulesInput>
                 </UIForm>
             </ModulesAdd>

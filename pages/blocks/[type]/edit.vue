@@ -1,10 +1,24 @@
 <template>
     <NuxtLayout>
-        <UIHeadline size="h1">
+        <div class="flex gap-6 justify-between">
+            <UIHeadline size="h1">
 
-            Edit {{ model?.name }}
-        </UIHeadline>
-        <p :class="{ 'text-gray-400': !model?.description }">{{ model?.description || 'Description' }}</p>
+                Edit {{ model?.name }}
+            </UIHeadline>
+            <ModulesEdit icon="dots" buttonStyle="icon" :name="model?.name" :type="'block'" :value="model" size="6"
+                @on-save="">
+                <!-- <UIForm class="flex flex-col gap-6">
+                    <ModulesInput :value="model?.name" type="text">
+                        Name
+                    </ModulesInput>
+                    <ModulesInput :value="model?.description" type="text">
+                        Description
+                    </ModulesInput>
+                </UIForm> -->
+            </ModulesEdit>
+        </div>
+        <p :class="{ 'text-gray-400': !model?.description }">{{ model?.description ||
+            'Description' }}</p>
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
@@ -34,7 +48,7 @@
                                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
                             </div>
                             <div class="flex items-center justify-center mr-0 ml-auto ">
-                                <ModulesEdit type="block" icon="dots" :size="4" button-style="icon">
+                                <ModulesEdit type="field" icon="dots" :size="4" button-style="icon">
                                 </ModulesEdit>
                             </div>
                         </div>
