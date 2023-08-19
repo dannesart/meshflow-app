@@ -10,7 +10,7 @@
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
 
-            <NuxtLink :to="('/pages/' + page.id)" class="flex-1 md:max-w-md" v-for="(page, index) in pages">
+            <NuxtLink :to="('/pages/' + page.id)" class="flex-1 md:max-w-md md:min-w-max " v-for="(page, index) in pages">
 
                 <ModulesCard :title="page.title" :body="page.status"
                     @favorite="event => updateFavorite(event, index, page.title)"></ModulesCard>
@@ -25,10 +25,13 @@
 import { Page, PAGE_STATUSES } from '~~/models/page';
 import { usePagesStore } from '~~/stores/pages';
 import { useNotificationStore } from "~~/stores/notifications";
+import { storeToRefs } from 'pinia';
 
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
-const { pages, addPage } = usePagesStore();
+const pageStore = usePagesStore();
+const { addPage } = pageStore
+const { pages } = storeToRefs(pageStore);
 const filters = ref({});
 const sorts = ref({});
 
