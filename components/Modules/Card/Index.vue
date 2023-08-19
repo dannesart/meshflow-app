@@ -6,7 +6,9 @@
             {{ title }}
         </UIHeadline>
 
-        <p class="text-slate-400" data-body>
+        <p class="first-letter:capitalize"
+            :class="{ 'text-slate-400': body !== 'public' && body !== 'private', 'text-green-400': body === 'public', 'text-red-400': body === 'private' }"
+            data-body>
             {{ body }}
         </p>
         <ModulesFavorite :favorite="favoriteState" @favorite="toggleFavorite" :size="size"></ModulesFavorite>

@@ -8,9 +8,9 @@
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
             <ModulesAdd label="Add page" type="page" @onAdd="onAdd" @onCancel="onCancel"></ModulesAdd>
         </div>
-        <div class="flex gap-6 flex-col md:flex-row">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-            <NuxtLink :to="('/pages/' + page.id)" class="flex-1 md:max-w-md md:min-w-max " v-for="(page, index) in pages">
+            <NuxtLink :to="('/pages/' + page.id)" v-for="(page, index) in pages">
 
                 <ModulesCard :title="page.title" :body="page.status"
                     @favorite="event => updateFavorite(event, index, page.title)"></ModulesCard>
@@ -64,3 +64,4 @@ const onAdd = async (page: Page) => {
 const onCancel = () => { }
 
 </script>
+
