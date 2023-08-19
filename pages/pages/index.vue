@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang=ts>
-import { Page, PAGE_STATUSES } from '~~/models/page';
+import { Page } from '~~/models/page';
 import { usePagesStore } from '~~/stores/pages';
 import { useNotificationStore } from "~~/stores/notifications";
 import { storeToRefs } from 'pinia';
@@ -39,7 +39,7 @@ const updateFavorite = (favorite: any, itemIdx: number, title: string) => {
     // const newData = [...pages.value]
     // newData[itemIdx] = { ...newData[itemIdx], favorite }
     // page = newData;
-    setNotification('Pelle has liked', title, "liked");
+    setNotification('Pelle has liked', title, "success");
 }
 const filterChange = async (_filters: { [key: string]: any }) => {
     filters.value = { ...filters.value, ..._filters };
