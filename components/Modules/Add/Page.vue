@@ -34,7 +34,7 @@ const valueChange = (event: string, key: string) => {
 
     if (key === "title") {
         (newPage as any).title = event;
-        (newPage as any).slug = event;
+        (newPage as any).slug = typeof event === "string" ? event.split(' ').map((str) => { return str.charAt(0).toUpperCase() + str.slice(1) }).join('') : event;
     } else {
         (newPage as any)[key] = event;
     }

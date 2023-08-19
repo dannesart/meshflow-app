@@ -61,7 +61,7 @@
 
             <footer class="flex gap-3">
                 <UIButton type="add" @click="savePage">Save</UIButton>
-                <UIButton type="nevermind">Delete</UIButton>
+                <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
             </footer>
         </div>
     </NuxtLayout>
@@ -75,10 +75,11 @@ import { storeToRefs } from 'pinia';
 import { useNotificationStore } from '~~/stores/notifications';
 
 const { id } = useRoute().params;
+const router = useRouter();
 const pageStore = usePagesStore();
 const notificationsStore = useNotificationStore();
 const { loading } = storeToRefs(pageStore)
-const { getPageById, updatePage } = pageStore
+const { getPageById, updatePage, deletePage } = pageStore
 const { setNotification } = notificationsStore;
 const page = ref<Page>(getPageById(id as string) as Page);
 
@@ -106,8 +107,21 @@ const onAddNewBlock = async () => {
 
 }
 
-const deletePage = () => {
+const handleDeletePage = async () => {
 
+    if (page.value.id) {
+        const deleted = await deletePage(page.value.id as string);
+        if (deleted) {
+            setNotification('Page deleted!', 'The page was successfully deleted', 'success');
+            router.push('/pages')
+        } else {
+            // Handle error
+            setNotification('Page not dleted', 'The page could not be deleted', 'fail');
+        }
+    }
+    else {
+        setNotification('Page be deleted', 'Missing ID', 'fail');
+    }
 }
 
 const savePage = async () => {

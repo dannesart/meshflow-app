@@ -40,8 +40,8 @@ export default defineEventHandler(async (e) => {
     body.title,
     token.sub || "",
     body.status,
+    body.slug,
     body.tags,
-    body.slag,
     body.blocks,
     body.projectId
   );

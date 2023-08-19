@@ -63,6 +63,21 @@ export const usePagesStore = defineStore("PagesStore", {
         return false;
       }
     },
+    async deletePage(id: string) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.delete(
+          config.public.REDIRECT_URI + "/api/pages/" + id
+        );
+        this.isLoading = false;
+        await this.fetchPages();
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
     async fetchPages() {
       this.isLoading = true;
       try {
