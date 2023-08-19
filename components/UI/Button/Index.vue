@@ -23,7 +23,8 @@ const classes: ClassType = {
         normal: "border border-red-500 text-red-500 px-6 py-3 rounded-lg"
     },
     delete: {
-        normal: 'bg-transparent text-red-500 px-6 py-3 rounded-lg'
+        normal: 'bg-transparent text-red-500 px-6 py-3 rounded-lg',
+        inverted: 'bg-red-500 text-white px-6 py-3 rounded-lg'
     },
     add: {
         normal: "bg-blue-600 text-white px-6 py-3 rounded-lg",

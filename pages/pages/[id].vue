@@ -63,7 +63,19 @@
                 <UIButton type="add" @click="savePage">Save</UIButton>
                 <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
             </footer>
+
+
+
+
         </div>
+
+        <ModulesConfirm :show="showConfirm" @on-confirm="handleConfirmDelete" @on-deny="handleConfirmDeny">
+            <p>
+                Do you really want to delete this page? It will not be able to be restored.
+            </p>
+        </ModulesConfirm>
+
+
     </NuxtLayout>
 </template>
 
@@ -82,6 +94,7 @@ const { loading } = storeToRefs(pageStore)
 const { getPageById, updatePage, deletePage } = pageStore
 const { setNotification } = notificationsStore;
 const page = ref<Page>(getPageById(id as string) as Page);
+const showConfirm = ref(false);
 
 const changeStatus = async () => {
     page.value.status = page.value.status === "private" ? 'public' : 'private';
@@ -108,7 +121,13 @@ const onAddNewBlock = async () => {
 }
 
 const handleDeletePage = async () => {
-
+    showConfirm.value = true;
+}
+const handleConfirmDeny = async () => {
+    showConfirm.value = false;
+}
+const handleConfirmDelete = async () => {
+    showConfirm.value = false;
     if (page.value.id) {
         const deleted = await deletePage(page.value.id as string);
         if (deleted) {
