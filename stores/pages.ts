@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { Page } from "~~/models/page";
+import { useUiStore } from "./ui";
 
 type State = {
   isEditing: boolean;
@@ -48,7 +49,9 @@ export const usePagesStore = defineStore("PagesStore", {
       }
     },
     async addPage(page: Page) {
+      const uiStore = useUiStore();
       try {
+        uiStore.setLoading(true);
         this.isLoading = true;
         const config = useRuntimeConfig();
         const response = await axios.post(
@@ -56,36 +59,46 @@ export const usePagesStore = defineStore("PagesStore", {
           page
         );
         this.isLoading = false;
+        uiStore.setLoading(false);
         await this.fetchPages();
         return true;
       } catch (error) {
         this.isLoading = false;
+        uiStore.setLoading(false);
         return false;
       }
     },
     async deletePage(id: string) {
+      const uiStore = useUiStore();
       try {
         this.isLoading = true;
+        uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.delete(
           config.public.REDIRECT_URI + "/api/pages/" + id
         );
         this.isLoading = false;
         await this.fetchPages();
+        uiStore.setLoading(false);
         return true;
       } catch (error) {
         this.isLoading = false;
+        uiStore.setLoading(false);
         return false;
       }
     },
     async fetchPages() {
-      this.isLoading = true;
+      const uiStore = useUiStore();
+
       try {
+        uiStore.setLoading(true);
+        this.isLoading = true;
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/pages"
         );
         this.isLoading = false;
+        uiStore.setLoading(false);
         if (response.data) {
           if (response.data.error) {
             return;
@@ -95,6 +108,7 @@ export const usePagesStore = defineStore("PagesStore", {
       } catch (error) {
         //TODO: Handle error
         this.isLoading = false;
+        uiStore.setLoading(false);
       }
     },
   },

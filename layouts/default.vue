@@ -1,5 +1,7 @@
 <template>
     <div class="layout">
+        <UILoadBar v-if="loading"></UILoadBar>
+
         <ModulesAside></ModulesAside>
         <ModulesHeader></ModulesHeader>
         <main
@@ -11,5 +13,9 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
+import { useUiStore } from '~~/stores/ui';
+const uiStore = useUiStore();
+const { loading } = storeToRefs(uiStore)
 
 </script>
