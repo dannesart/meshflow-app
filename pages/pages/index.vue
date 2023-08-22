@@ -34,6 +34,7 @@ const { addPage } = pageStore
 const { pages } = storeToRefs(pageStore);
 const filters = ref({});
 const sorts = ref({});
+const router = useRouter();
 
 const updateFavorite = (favorite: any, itemIdx: number, title: string) => {
     // const newData = [...pages.value]
@@ -48,9 +49,10 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts };
 }
 const onAdd = async (page: Page) => {
-
-    if (await addPage(page)) {
+    const newPage = await addPage(page);
+    if (newPage) {
         setNotification("Page created", "Your page was successfully created", "success");
+        router.push(`/pages/${newPage.data.id || newPage.data._id}`);
     } else {
         setNotification(
             "Page not created",

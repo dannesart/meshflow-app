@@ -50,7 +50,7 @@ export default defineEventHandler(async (e) => {
     try {
       const pageDoc = new PageModel(newPageObject);
       await pageDoc.save();
-      return newPageObject;
+      return pageDoc.toJSON();
     } catch (error) {
       return error;
     }

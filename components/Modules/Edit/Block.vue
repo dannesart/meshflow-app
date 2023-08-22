@@ -43,7 +43,6 @@ const valueChange = (event: string, key: string) => {
 const validate = async (editBlockForm: any) => {
     const { name, description } = editBlockForm.value;
     const toBeValidated = { name, description };
-    console.log(toBeValidated)
     const validated = await ModelSchema.partial({
         created: true,
         createdBy: true,

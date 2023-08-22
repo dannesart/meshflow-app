@@ -61,7 +61,7 @@ export const usePagesStore = defineStore("PagesStore", {
         this.isLoading = false;
         uiStore.setLoading(false);
         await this.fetchPages();
-        return true;
+        return response;
       } catch (error) {
         this.isLoading = false;
         uiStore.setLoading(false);
