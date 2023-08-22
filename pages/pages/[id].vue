@@ -5,8 +5,6 @@
                 {{ page?.title }}
             </UIHeadline>
 
-            <UILoader v-if="loading"></UILoader>
-
         </header>
         <div class="flex gap-6 flex-col" v-if="page">
 

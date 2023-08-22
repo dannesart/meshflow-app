@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { Block } from "~~/models/blocks";
+import { useUiStore } from "./ui";
 
 type State = {
   isEditing: boolean;
@@ -64,6 +65,8 @@ export const useBlocksStore = defineStore("BlocksStore", {
       }
     },
     async fetchBlocks() {
+      const uiStore = useUiStore();
+      uiStore.setLoading(true);
       this.isLoading = true;
       try {
         const config = useRuntimeConfig();
