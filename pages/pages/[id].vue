@@ -133,7 +133,7 @@ const handleConfirmDelete = async () => {
             router.push('/pages')
         } else {
             // Handle error
-            setNotification('Page not dleted', 'The page could not be deleted', 'fail');
+            setNotification('Page not deleted', 'The page could not be deleted', 'fail');
         }
     }
     else {

@@ -64,9 +64,16 @@
         </div>
 
         <ModulesVisualEditor v-if="active === 'visual'"></ModulesVisualEditor>
-        <footer>
+        <footer class="flex gap-3">
             <UIButton :is-loading="isLoading" type="add" @click="save()">Save</UIButton>
+            <UIButton :is-loading="isLoading" type="nevermind" @click="handleDeleteBlock()">Delete</UIButton>
         </footer>
+
+        <ModulesConfirm :show="showConfirm" @on-confirm="handleConfirmDelete" @on-deny="handleConfirmDeny">
+            <p>
+                Do you really want to delete this block? It will not be able to be restored.
+            </p>
+        </ModulesConfirm>
     </NuxtLayout>
 </template>
 
@@ -84,6 +91,7 @@ const { setNotification } = notificationsStore;
 const { getBlockById, updateBlock } = blockStore;
 const { isLoading } = storeToRefs(blockStore);
 const block = getBlockById(type as string);
+const showConfirm = ref(false);
 
 const model = ref<any>(block)
 const tabs: TTab[] = [
@@ -100,6 +108,31 @@ const active = ref(tabs[0].name);
 const onAddNewField = (args: any) => {
     model.value.fields.push(args)
 }
+
+const handleDeleteBlock = async () => {
+    showConfirm.value = true;
+}
+const handleConfirmDeny = async () => {
+    showConfirm.value = false;
+}
+
+const handleConfirmDelete = async () => {
+    showConfirm.value = false;
+    if (model.value.id) {
+        // const deleted = await deletePage(page.value.id as string);
+        // if (deleted) {
+        //     setNotification('Page deleted!', 'The page was successfully deleted', 'success');
+        //     router.push('/pages')
+        // } else {
+        // Handle error
+        setNotification('Block not deleted', 'This is not implemented yet', 'fail');
+        //}
+    }
+    else {
+        setNotification('Block be deleted', 'Missing ID', 'fail');
+    }
+}
+
 
 const save = async () => {
     isLoading.value = true;
