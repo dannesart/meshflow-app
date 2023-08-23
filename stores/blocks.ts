@@ -74,7 +74,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
           config.public.REDIRECT_URI + "/api/blocks"
         );
         this.isLoading = false;
-        uiStore.setLoading(false);
         if (response.data) {
           if (response.data.error) {
             return;
@@ -83,7 +82,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
         }
       } catch (error) {
         //TODO: Handle error
-        uiStore.setLoading(false);
         this.isLoading = false;
       }
     },

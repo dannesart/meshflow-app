@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { TUser } from "~~/models/user";
 import { useRuntimeConfig } from "#app";
-import { useUiStore } from "./ui";
 
 export const useUserStore = defineStore("UserStore", {
   state: () =>
@@ -19,8 +18,6 @@ export const useUserStore = defineStore("UserStore", {
 
     async fetchUser() {
       try {
-        const uiStore = useUiStore();
-        uiStore.setLoading(true);
         if (process.client) {
           // const { user } = useAuth0();
           // this.setUser(user.value as TUser);

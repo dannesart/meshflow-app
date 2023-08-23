@@ -12,6 +12,10 @@ import { useProjectStore } from "~~/stores/projects";
 import { useDataStore } from "~~/stores/data";
 import { usePagesStore } from "./stores/pages";
 import { useBlocksStore } from "./stores/blocks";
+import { useUiStore } from "./stores/ui";
+
+
+const uiStore = useUiStore();
 
 const { fetchProjects } = useProjectStore();
 const { fetchSettings } = useSettingsStore();
@@ -22,14 +26,9 @@ const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
 const { fetchBlocks } = useBlocksStore();
 
-await fetchUser();
-await fetchProjects();
-await fetchUserMap();
-await fetchSettings();
-await fetchTasks();
-await fetchData();
-await fetchPages();
-await fetchBlocks();
+uiStore.setLoading(true);
+await Promise.all([fetchUser(), fetchProjects(), fetchUserMap(), fetchSettings(), fetchTasks(), fetchData(), fetchPages(), fetchBlocks()])
+uiStore.setLoading(false);
 
 </script>
 

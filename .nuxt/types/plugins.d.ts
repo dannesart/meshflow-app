@@ -12,6 +12,7 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/router").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client").default> &
   InjectionType<typeof import("../../node_modules/@sidebase/nuxt-auth/dist/runtime/plugin").default> &
+  InjectionType<typeof import("../../plugins/i18n").default> &
   InjectionType<typeof import("../../plugins/vuedraggable").default>
 
 declare module '#app' {

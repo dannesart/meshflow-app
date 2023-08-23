@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <UIHeadline size="h1">
-            Pages
+            {{ $t('pages') }}
         </UIHeadline>
         <div class="flex gap-6">
             <ModulesFilter @filterChange="filterChange" @sortChange="sortChange"></ModulesFilter>
