@@ -65,8 +65,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
       }
     },
     async fetchBlocks() {
-      const uiStore = useUiStore();
-
       this.isLoading = true;
       try {
         const config = useRuntimeConfig();

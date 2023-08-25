@@ -17,6 +17,7 @@ const ModelFieldSchema = z.object({
   isMain: z.boolean().default(() => false),
   validations: z.object({
     required: z.boolean().default(() => false),
+    allowedReferences: z.array(z.string()).optional(),
     minMax: z.object({
       use: z.boolean(),
       min: z.number().optional(),

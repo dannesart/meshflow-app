@@ -45,8 +45,8 @@
 
 
                 <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
-                    No blocks yet. Create or add existing one <ModulesAdd @on-add="onAddNewBlock" type="block" select="true"
-                        button-style="system" label="Add block">
+                    No blocks yet. Create or add existing one <ModulesAdd button-style="system" label="Add block"
+                        select="true" type="block">
                     </ModulesAdd>
                 </div>
 
@@ -61,9 +61,6 @@
                 <UIButton type="add" @click="savePage">Save</UIButton>
                 <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
             </footer>
-
-
-
 
         </div>
 

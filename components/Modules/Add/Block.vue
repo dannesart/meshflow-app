@@ -1,5 +1,5 @@
 <template>
-    <UIForm :class="'flex flex-col gap-6'" name="new-block-form">
+    <UIForm :class="'flex flex-col gap-6'" name="new-block-form" v-if="!select">
 
         <ModulesInput type="text" :max="50" :value="newBlockForm.name" @valueUpdate="$event => valueChange($event, 'name')">
             Name
@@ -22,11 +22,37 @@
             </span>
         </div>
     </UIForm>
+    <div v-else class="flex flex-col gap-6">
+        <div v-for="block of blocks"
+            class="p-5 px-7 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer">
+            <div
+                class="h-12 w-12 flex items-center justify-center rounded-full bg-slate-100 flex-none flex-grow-0 font-bold text-slate-500">
+
+                5
+            </div>
+            <div class="flex flex-col">
+                <UIHeadline :size="'h3'">
+                    {{ block.name }}
+                </UIHeadline>
+                <p class="text-sm text-gray-400">
+                    {{ block.description }}
+                </p>
+            </div>
+            <div class="ml-auto mr-0">
+                <UIIcons :name="'chevron-down'"></UIIcons>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { Model, ModelSchema } from '~~/models/model';
+import { useBlocksStore } from '~~/stores/blocks';
 
+const blockStore = useBlocksStore();
+const { blocks } = storeToRefs(blockStore);
+const { select } = defineProps(['select']);
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 

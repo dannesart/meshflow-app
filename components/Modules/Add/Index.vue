@@ -23,7 +23,8 @@
             </ModulesAddPage>
             <ModulesAddField v-if="type === 'field' && showModal" @on-valid="setValid" @on-error="setInvalid">
             </ModulesAddField>
-            <ModulesAddBlock v-if="type === 'block' && showModal" @on-valid="setValid" @on-error="setInvalid">
+            <ModulesAddBlock v-if="type === 'block' && showModal" :select="select" @on-valid="setValid"
+                @on-error="setInvalid">
             </ModulesAddBlock>
             <ModulesAddModel v-if="type === 'model' && showModal" :service-type="serviceType" @on-valid="setValid"
                 @on-error="setInvalid"></ModulesAddModel>
@@ -31,7 +32,7 @@
             <slot v-if="showModal"></slot>
 
             <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
-                <UIButton type="add" @click="complete()" :disabled="!isValid">
+                <UIButton type="add" @click="complete()" :disabled="!isValid" v-if="!select">
                     Create {{ type }}
                 </UIButton>
                 <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">

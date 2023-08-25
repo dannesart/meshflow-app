@@ -29,4 +29,11 @@ export const ModelTypes: ModelType[] = [
     description: "Created, Updated, Deleted etc",
     icon: "date",
   },
+  {
+    name: "Reference",
+    id: "reference",
+    format: "reference",
+    description: "Link to another block",
+    icon: "link",
+  },
 ];

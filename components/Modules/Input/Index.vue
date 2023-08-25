@@ -45,6 +45,23 @@
             </div>
         </div>
 
+        <div v-if="type === 'multi-select'" :name="name" tabindex="0" @focusin=" isToggled = true"
+            @focusout="handleFocusOut" ref="selectRef"
+            class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none">
+            <div class="flex justify-between gap-3 capitalize">
+                {{ (valueRef || []).join(', ') || 'Select options' }}
+                <UIIcons :name="isToggled ? 'chevron-up' : 'chevron-down'">
+                </UIIcons>
+            </div>
+            <div v-if="isToggled"
+                class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20">
+                <div v-for="   option    in    values   " @click="e => selectMultiOption(e, option)"
+                    class="cursor-pointer py-1 hover:font-bold capitalize">
+                    {{ option }}
+                </div>
+            </div>
+        </div>
+
         <div class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
             v-if="type === 'select'" :name="name" tabindex="0" @focusin=" isToggled = true" @focusout="handleFocusOut"
             ref="selectRef">
@@ -153,6 +170,20 @@ const selectOption = (e: Event, option: string) => {
     if (selectRef.value) {
         selectRef.value.blur();
     }
+}
+
+const selectMultiOption = (e: Event, option: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!valueRef.value) valueRef.value = [];
+    if (valueRef.value.indexOf(option) > -1) {
+        const idx = valueRef.value.indexOf(option);
+        valueRef.value.splice(idx, 1);
+    }
+    else {
+        valueRef.value.push(option);
+    }
+    eventEmit('valueUpdate', valueRef.value);
 }
 
 const selectUserOption = (e: Event, option: any) => {

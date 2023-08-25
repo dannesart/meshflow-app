@@ -1,7 +1,7 @@
 <template>
     <UIForm :class="'flex flex-col gap-4'" name="new-field-form">
         <div v-if="step === 1">
-            <section class="flex gap-6 flex-col md:flex-row" name="model-types">
+            <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" name="model-types">
                 <div v-for="type in ModelTypes"
                     class="p-5 md:p-10 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer"
                     name="model-type" @click="selectType(type)">
@@ -41,6 +41,12 @@
                     This represent main title
                 </ModulesInput>
             </div>
+            <div class="mb-12" v-if="field.type.name === ModelTypes[4].name">
+                <ModulesInput type="multi-select" name="reference-types" :value="field.validations.allowedReferences"
+                    :values="blockTypes" @value-update="e => field.isMain = e">
+                    Select allowed reference types
+                </ModulesInput>
+            </div>
             <UIHeadline size="h3">Validations</UIHeadline>
             <div class="flex flex-col gap-4">
                 <ModulesInput type="checkbox" name="required">
@@ -76,7 +82,12 @@
 <script setup lang="ts">
 import { ModelField, ModelFieldSchema, ModelType } from '~~/models/model';
 import { ModelTypes } from "~~/constants/model";
+import { storeToRefs } from 'pinia';
+import { useBlocksStore } from "@/stores/blocks";
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
+
+const { blocks } = storeToRefs(useBlocksStore());
+const blockTypes = blocks.value.map((block) => block.name);
 const step = ref(1);
 
 const field = ref<ModelField>({
