@@ -23,6 +23,9 @@
         </div>
     </UIForm>
     <div v-else class="flex flex-col gap-6">
+        <p>
+            Pick from the list of block types
+        </p>
         <div v-for="block of blocks"
             class="p-5 px-7 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer">
             <div

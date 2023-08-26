@@ -37,7 +37,7 @@
                                 <span class="text-amber-500 absolute top-1 -left-2 -rotate-45" v-if="field.isMain">
                                     <UIIcons name="crown" :size="4"></UIIcons>
                                 </span>
-                                <UIIcons :name="field.type.name" :size="6"></UIIcons>
+                                <UIIcons :name="field.type.icon" :class="'text-black'" :size="6"></UIIcons>
                             </div>
                             <div class="flex flex-col gap-1">
 

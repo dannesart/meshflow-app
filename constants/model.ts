@@ -36,4 +36,11 @@ export const ModelTypes: ModelType[] = [
     description: "Link to another block",
     icon: "link",
   },
+  {
+    name: "Media",
+    id: "media",
+    format: "media",
+    description: "Link to a media",
+    icon: "media",
+  },
 ];

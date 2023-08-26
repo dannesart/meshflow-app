@@ -54,9 +54,10 @@
                 </UIIcons>
             </div>
             <div v-if="isToggled"
-                class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20">
+                class="flex flex-col gap-2 pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20">
                 <div v-for="   option    in    values   " @click="e => selectMultiOption(e, option)"
-                    class="cursor-pointer py-1 hover:font-bold capitalize">
+                    class="cursor-pointer py-1 hover:font-bold capitalize flex gap-2">
+                    <ModulesInput type="checkbox" :value="(valueRef || []).indexOf(option) > -1"></ModulesInput>
                     {{ option }}
                 </div>
             </div>

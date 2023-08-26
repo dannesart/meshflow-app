@@ -47,6 +47,7 @@
                 <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
                     No blocks yet. Create or add existing one <ModulesAdd button-style="system" label="Add block"
                         select="true" type="block">
+
                     </ModulesAdd>
                 </div>
 
