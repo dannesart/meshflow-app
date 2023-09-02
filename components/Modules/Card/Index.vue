@@ -6,7 +6,7 @@
             {{ title }}
         </UIHeadline>
 
-        <p class="first-letter:capitalize"
+        <p class="first-letter:capitalize truncate"
             :class="{ 'text-slate-400': body !== 'public' && body !== 'private', 'text-green-400': body === 'public', 'text-red-400': body === 'private' }"
             data-body>
             {{ body }}

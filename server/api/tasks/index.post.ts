@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { TaskSchema, Task } from "~~/models/tasks";
 import { TaskModel } from "~~/models/tasks.db";
 import { getServerSession, getToken } from "#auth";
@@ -17,6 +18,7 @@ const newTask = (
     created: new Date(),
     updatedBy: createdBy,
     updated: new Date(),
+    id: uuidv4(),
     tags,
     projectId,
   };

@@ -21,6 +21,10 @@
                 class="w-10 h-10 cursor-pointer rounded-full bg-white shadow-lg hover:shadow-xl"></div>
         </div>
 
+        <div v-if="type === 'media'">
+            [[Media select]]
+        </div>
+
         <div v-if="type === 'range'">
             <input type="range" :name="name" :min="0" :max="values.length" step="1" :list="'markers-' + id" class="w-full"
                 @change=" updateSlider($event)" />
@@ -29,7 +33,7 @@
             </datalist>
         </div>
 
-        <div v-if="type === 'checkbox'" class="flex gap-3 items-center cursor-pointer">
+        <div v-if="type === 'checkbox' || type === 'boolean'" class="flex gap-3 items-center cursor-pointer">
             <input type="checkbox" class="w-6 h-6 rounded-lg cursor-pointer" :name="name" :checked="value" :id="id"
                 @change="updateCheckbox" />
             <label :for="id" class="cursor-pointer">

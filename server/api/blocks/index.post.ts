@@ -2,7 +2,6 @@ import { Model, ModelSchema } from "~~/models/model";
 import { getServerSession, getToken } from "#auth";
 import { AuthToken } from "~~/models/auth";
 import { v4 as uuidv4 } from "uuid";
-import { z } from "zod";
 import { ModelDbModel } from "~~/models/model.db";
 
 const newBlockModel = (

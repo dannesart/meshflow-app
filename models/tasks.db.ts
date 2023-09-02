@@ -5,6 +5,7 @@ const TaskDbSchema: Schema<Task> = new Schema({
   title: String,
   description: String,
   status: String,
+  id: { type: String, unique: true },
   deadline: { type: Date },
   projectId: { type: Schema.Types.ObjectId, ref: "projects" },
   createdBy: String,
