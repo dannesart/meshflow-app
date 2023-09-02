@@ -1,24 +1,15 @@
 <template>
     <NuxtLayout>
-        <div class="flex gap-6 justify-between">
-            <UIHeadline size="h1">
-
+        <div class="flex flex-col gap-2">
+            <UIHeadline size="h1" :editable="true" :value="model?.name" class="!w-auto"
+                @value-change="$event => model.name = $event">
                 Edit {{ model?.name }}
             </UIHeadline>
-            <ModulesEdit icon="dots" buttonStyle="icon" :name="model?.name" :type="'block'" :value="model" size="6"
-                @on-save="">
-                <!-- <UIForm class="flex flex-col gap-6">
-                    <ModulesInput :value="model?.name" type="text">
-                        Name
-                    </ModulesInput>
-                    <ModulesInput :value="model?.description" type="text">
-                        Description
-                    </ModulesInput>
-                </UIForm> -->
-            </ModulesEdit>
+            <UIHeadline size="h4" class="!w-auto" :editable="true" :value="model?.description"
+                @value-change="$event => model.description = $event">
+                {{ model?.description || 'Description' }}
+            </UIHeadline>
         </div>
-        <p :class="{ 'text-gray-400': !model?.description }">{{ model?.description ||
-            'Description' }}</p>
 
         <div class="flex justify-between">
             <UITabs :tabs="tabs" @on-change="setActiveTab" :active="active" :class="'w-80'"></UITabs>
@@ -92,6 +83,9 @@ const { getBlockById, updateBlock } = blockStore;
 const { isLoading } = storeToRefs(blockStore);
 const block = getBlockById(type as string);
 const showConfirm = ref(false);
+const editingText = ref<string>();
+const nameRef = ref();
+const descriptionRef = ref();
 
 const model = ref<any>(block)
 const tabs: TTab[] = [
@@ -133,6 +127,20 @@ const handleConfirmDelete = async () => {
     }
 }
 
+const editText = (field: string) => {
+    editingText.value = field;
+    setTimeout(() => {
+        if (field === "name") {
+            nameRef.value.focus();
+        }
+        else {
+            descriptionRef.value.focus();
+        }
+    })
+}
+const stopEditing = () => {
+    editingText.value = '';
+}
 
 const save = async () => {
     isLoading.value = true;
