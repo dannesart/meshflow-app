@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <header class="flex gap-4 items-center">
-            <UIHeadline size="h1">
+            <UIHeadline size="h1" :editable="true" :value="page?.title" @value-change="(value) => page.title = value">
                 {{ page?.title }}
             </UIHeadline>
 
@@ -14,12 +14,11 @@
                 {{ page.status }}
             </div>
 
-            <UIForm class="flex flex-col gap-6">
-                <ModulesInput type="text" :value="page.title" @value-update="updateTitle">
-                    Title
-                </ModulesInput>
 
-            </UIForm>
+
+            <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
+                Slug
+            </ModulesInput>
 
             <div class="flex flex-col gap-6">
 
@@ -51,10 +50,6 @@
                     </ModulesAdd>
                 </div>
 
-
-                <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
-                    Slug
-                </ModulesInput>
 
             </div>
 
