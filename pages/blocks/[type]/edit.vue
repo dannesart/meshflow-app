@@ -1,14 +1,22 @@
 <template>
     <NuxtLayout>
-        <div class="flex flex-col gap-2">
-            <UIHeadline size="h1" :editable="true" :value="model?.name" class="!w-auto"
-                @value-change="$event => model.name = $event">
-                Edit {{ model?.name }}
-            </UIHeadline>
-            <UIHeadline size="h4" class="!w-auto" :editable="true" :value="model?.description"
-                @value-change="$event => model.description = $event">
-                {{ model?.description || 'Description' }}
-            </UIHeadline>
+        <div class="flex justify-between">
+            <div class="flex flex-col gap-2">
+                <UIHeadline size="h1" :value="model?.name" :editable="true" class="flex gap-3"
+                    @value-change="$event => model.name = $event">
+                    {{ model?.name }}
+
+
+                </UIHeadline>
+
+                <UIHeadline size="h4" class="!w-auto" :editable="true" :value="model?.description"
+                    @value-change="$event => model.description = $event">
+                    {{ model?.description || 'Description' }}
+                </UIHeadline>
+            </div>
+            <!-- <ModulesEdit type="block" buttonStyle="icon" :name="model?.name" :value="model" icon="dots"
+                @on-save="setNewValues"></ModulesEdit> -->
+
         </div>
 
         <div class="flex justify-between">
@@ -98,6 +106,10 @@ const tabs: TTab[] = [
     }
 ]
 const active = ref(tabs[0].name);
+
+const setNewValues = (newValues: any) => {
+    model.value = { ...model.value, ...newValues };
+}
 
 const onAddNewField = (args: any) => {
     model.value.fields.push(args)

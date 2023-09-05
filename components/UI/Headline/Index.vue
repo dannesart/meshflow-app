@@ -1,19 +1,18 @@
 <template>
-    <component :is="size" v-bind="$attrs" :class="cssClasses[size]" @click="editField()" v-if="!isEditing">
+    <component :is="size" v-bind="$attrs" :class="cssClasses[size]" @click="editField" v-if="!isEditing">
         <slot />
     </component>
-    <div v-else class="relative pr-24 w-full" tabindex="0">
-        <input type="text" ref="fieldRef" class="w-full" :class="cssClasses[size]" :value="valueRef"
-            @input="valueRef = $event.target?.value" />
-        <div class="absolute right-0 top-0 bottom-0 items-center justify-center flex gap-2">
-            <button tabindex="0" @click="acceptEdit"
-                class="aspect-square h-8 rounded-lg bg-green-200 flex justify-center items-center">
+    <div v-else class="relative z-50 flex-none w-auto" tabindex="0" ref="fieldContainerRef">
+        <input type="text" ref="fieldRef" :class="cssClasses[size]" :value="valueRef" @keyup.enter="acceptEdit"
+            @blur="acceptEdit" @input="valueRef = $event.target?.value" />
+        <!-- <div class="absolute right-0 top-0 bottom-0 items-center justify-center flex gap-2">
+            <button @click="acceptEdit" class="aspect-square h-8 rounded-lg bg-green-200 flex justify-center items-center">
                 <UIIcons :name="'check'"></UIIcons>
             </button>
             <button @click="denyEdit" class="aspect-square h-8 rounded-lg bg-red-200 flex justify-center items-center">
                 <UIIcons :name="'close'"></UIIcons>
             </button>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -21,34 +20,68 @@
 const { size, editable, value }: { size?: string; editable?: boolean; value?: string } = defineProps(["size", "editable", "value"]);
 const emits = defineEmits(['valueChange']);
 const valueRef = ref(value);
-
+const inFocus = ref(false);
 const fieldRef = ref();
+const fieldContainerRef = ref();
 const isEditing = ref(false);
-const editField = () => {
+const editField = (e: Event) => {
     if (editable) {
         isEditing.value = true;
+        e.preventDefault();
+        e.stopPropagation();
         setTimeout(() => {
             fieldRef.value.focus();
             console.log("focus")
         })
     }
 }
-const stopEditField = () => { if (editable) { isEditing.value = false; } }
+const stopEditField = ($event: Event) => {
+    if ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+    }
+    if (editable) {
+        isEditing.value = false;
+        if (valueRef.value !== value)
+            valueRef.value = value;
+    }
+}
 
 const acceptEdit = (event: Event) => {
     event.stopPropagation();
     event.preventDefault();
     emits('valueChange', valueRef.value);
-    stopEditField();
+    isEditing.value = false;
 }
-const denyEdit = () => {
-    stopEditField();
+const denyEdit = ($event: Event) => {
 
+    stopEditField($event);
 }
 
-const editableCssClasses = 'hover:bg-pink-100 cursor-text';
+// if (process.client) {
+
+//     const handleClick = (e: Event) => {
+//         e.preventDefault();
+//         e.stopPropagation();
+//         if (fieldContainerRef.value && isEditing.value) {
+//             if (!fieldContainerRef.value.contains(e.target)) {
+
+//                 denyEdit(e);
+
+//             }
+//         }
+//     }
+//     document.removeEventListener('click', handleClick)
+//     document.addEventListener('click', handleClick)
+
+//     onBeforeUnmount(() => {
+//         document.removeEventListener('click', handleClick)
+//     })
+// }
+
+const editableCssClasses = 'hover:bg-pink-100 cursor-text p-0 appearance-none outline-none bg-transparent';
 const cssClasses: { [key: string]: string } = {
-    h1: `text-5xl font-bold text-sky-900 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
+    h1: `text-5xl h-10 leading-10 font-bold text-sky-900 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h2: `text-slate-500 text-2xl first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h3: `text-slate-600 text-xl font-bold mb-4 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h4: `text-slate-600 text-lg font-semibold first-letter:capitalize ${editable ? editableCssClasses : ''}`,

@@ -1,11 +1,11 @@
 <template>
     <UIForm :class="'flex flex-col gap-6'" name="new-block-form">
 
-        <ModulesInput type="text" :max="50" :value="value.name" @valueUpdate="$event => valueChange($event, 'name')">
+        <ModulesInput type="text" :max="50" :value="value?.name" @valueUpdate="$event => valueChange($event, 'name')">
             Name
         </ModulesInput>
 
-        <ModulesInput type="text-lg" :max="100" :value="value.description"
+        <ModulesInput type="text-lg" :max="100" :value="editBlockForm?.description"
             @valueUpdate="$event => valueChange($event, 'description')">
             <label>
                 Description <span class="text-sm text-gray-400">Optional</span>
@@ -30,7 +30,7 @@ import { Model, ModelSchema } from '~~/models/model';
 const { value } = defineProps(['value']);
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
-const editBlockForm = ref(value);
+const editBlockForm = ref({ ...value });
 
 const valueChange = (event: string, key: string) => {
     (editBlockForm as any).value[key] = event;
