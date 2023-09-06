@@ -11,79 +11,59 @@
             <ModulesStat label="Rules" number="9"></ModulesStat>
         </div>
 
-        <div class="flex flex-col gap-4">
-            <UIHeadline size="h3">
-                Latest sign in
-            </UIHeadline>
-            <div class="flex gap-4">
-                <ul class="w-full flex gap-5 overflow-x-scroll md:overflow-x-visible scroll-smooth snap-x ">
-                    <li v-for="(user, userId) in allUsers" class="snap-center">
-                        <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
-                    </li>
-                    <li v-if="!usersAmount">
-                        <small>
-                            No activity yet
-                        </small>
-                    </li>
-                </ul>
-            </div>
-            <div class="flex justify-end">
-                <NuxtLink to="/">
-                    View latest activity
-                </NuxtLink>
-            </div>
-        </div>
+
 
         <div class="flex gap-5 flex-col md:flex-row">
-            <div class="flex flex-col gap-4 md:w-1/2">
-                <UIHeadline size="h3">
-                    Latest comments
-                </UIHeadline>
-                <div class="flex gap-4">
-                    <ul class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
-                        <li v-for="comment in comments" class="border-b last:border-b-0 pb-5 last:pb-0">
-
-                            <ModulesExtendedLink :label="comment.message" :sub-label="'from @' + comment.from"
-                                :route="('/comments/' + comment.id)">
-                            </ModulesExtendedLink>
-                        </li>
-                        <li v-if="!comments.length">
-                            <small>
-                                No comments yet
-                            </small>
-                        </li>
-                    </ul>
+            <div class="flex flex-col gap-4 md:w-1/2 h-full justify-between">
+                <div class="flex flex-col gap-4">
+                    <UIHeadline size="h3">
+                        Latest sign in
+                    </UIHeadline>
+                    <div class="flex gap-5">
+                        <ul class="w-full flex gap-5 overflow-x-scroll md:overflow-x-visible scroll-smooth snap-x ">
+                            <li v-for="(user, userId) in allUsers" class="snap-center">
+                                <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
+                            </li>
+                            <li v-if="!usersAmount">
+                                <small>
+                                    No activity yet
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="flex justify-end">
-                    <NuxtLink to="/comments">
-                        View all comments
+                <div class="flex justify-end items-end">
+                    <NuxtLink to="/">
+                        View latest activity
                     </NuxtLink>
                 </div>
             </div>
-            <div class="flex flex-col gap-4 md:w-1/2">
-                <div class="flex justify-between">
-                    <UIHeadline size="h3">
-                        Latests tasks
-                    </UIHeadline>
-                    <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
-                    </ModulesAdd>
-                </div>
-                <div class=" flex gap-5">
-                    <div v-if="tasksStore.isLoading">
-                        <UILoader></UILoader>
+            <div class="flex flex-col gap-4 md:w-1/2 h-full justify-between">
+                <div class="flex flex-col gap-4">
+                    <div class="flex justify-between">
+                        <UIHeadline size="h3">
+                            Latests tasks
+                        </UIHeadline>
+                        <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
+                        </ModulesAdd>
                     </div>
-                    <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
-                        <li v-for="task in latest" class="border-b last:border-b-0 pb-5 last:pb-0">
-                            <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
-                                :route="('/board/' + task.id)">
-                                <div class="mb-2 flex gap-3 items-center text-sm text-gray-400">
-                                    Added by <UIUserTag :id="task.createdBy"></UIUserTag>
-                                </div>
-                            </ModulesExtendedLink>
-                        </li>
-                    </ul>
+                    <div class=" flex gap-5">
+                        <div v-if="tasksStore.isLoading">
+                            <UILoader></UILoader>
+                        </div>
+                        <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
+                            <li v-for="task in latest" class="border-b last:border-b-0 pb-5 last:pb-0">
+                                <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
+                                    :route="('/board/' + task.id)">
+                                    <div class="mb-2 flex gap-3 items-center text-sm text-gray-400">
+                                        Added by <UIUserTag :id="task.createdBy"></UIUserTag>
+                                    </div>
+                                </ModulesExtendedLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="flex justify-end">
+                <div class="flex justify-end items-end">
                     <NuxtLink to="/board">
                         View all tasks
                     </NuxtLink>
