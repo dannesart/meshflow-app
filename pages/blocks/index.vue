@@ -13,7 +13,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-            <NuxtLink :to="('/blocks/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in blocks">
+            <NuxtLink :to="('/blocks/' + item.id)" class="flex-1" v-for="(item, index) in blocks">
                 <ModulesCard :title="item.name" :body="item.description" :tags="item.tags" :favorite="false"
                     @favorite="event => updateFavorite(event, index)"></ModulesCard>
             </NuxtLink>
