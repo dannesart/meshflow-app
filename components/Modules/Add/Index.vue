@@ -33,7 +33,7 @@
 
             <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
                 <UIButton type="add" @click="complete()" :disabled="!isValid" v-if="!select">
-                    Create {{ serviceType || type }}
+                    Create {{ serviceType || type }} {{ type === "model" ? 'type' : '' }}
                 </UIButton>
                 <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">
                     Nevermind

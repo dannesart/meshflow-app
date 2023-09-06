@@ -16,8 +16,8 @@
                 Latest sign in
             </UIHeadline>
             <div class="flex gap-4">
-                <ul class="w-full flex gap-5">
-                    <li v-for="(user, userId) in allUsers">
+                <ul class="w-full flex gap-5 overflow-x-scroll md:overflow-x-visible scroll-smooth snap-x ">
+                    <li v-for="(user, userId) in allUsers" class="snap-center">
                         <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
                     </li>
                     <li v-if="!usersAmount">
