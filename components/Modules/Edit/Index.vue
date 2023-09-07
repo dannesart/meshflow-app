@@ -17,6 +17,9 @@
             <ModulesEditBlock v-if="type === 'block' && showModal" :value="value" @on-valid="setValid"
                 @on-error="setInvalid">
             </ModulesEditBlock>
+            <ModulesEditField v-if="type === 'field' && showModal" :value="value" @on-valid="setValid"
+                @on-error="setInvalid">
+            </ModulesEditField>
             <slot v-if="showModal"></slot>
 
             <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
@@ -65,4 +68,10 @@ const cancelEditData = () => {
     emitEvents("onCancel")
 }
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Edit'
+})
 </script>

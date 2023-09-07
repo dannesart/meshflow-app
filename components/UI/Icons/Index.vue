@@ -308,3 +308,9 @@ const getSize = (size: Number | string) => {
 }
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Icons'
+})
+</script>

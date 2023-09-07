@@ -172,3 +172,9 @@ const logout = async () => {
 
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+	name: 'Header'
+})
+</script>

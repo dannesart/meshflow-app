@@ -20,3 +20,9 @@ const change = (tab: TTab) => {
 }
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Tabs'
+})
+</script>

@@ -48,18 +48,18 @@
     </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useBlocksStore } from '~~/stores/blocks';
 
 
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
 const { getBlockById } = blockStore;
-const blockType = getBlockById(type);
+const blockType = getBlockById(type as string);
 
 // Fetch data based on type.
 
-const updateFavorite = (event, index) => {
+const updateFavorite = (event: Event, index: number) => {
 
 }
 
@@ -74,4 +74,10 @@ const sortChange = () => {
 // Show data.
 const data = ref([])
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'BlocksType'
+})
 </script>

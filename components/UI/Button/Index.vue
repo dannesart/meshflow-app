@@ -70,6 +70,12 @@ const getClasses = (type: string, size: string) => {
 
 </script>
 
+<script lang="ts">
+export default defineComponent({
+    name: 'Button'
+})
+</script>
+
 <style>
 .loader {
     border-radius: 50px;

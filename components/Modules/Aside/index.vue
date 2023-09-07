@@ -37,7 +37,7 @@
     </aside>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Menu } from '~~/constants';
 import { useSettingsStore } from "~~/stores/settings";
 const settingsStore = useSettingsStore()
@@ -52,4 +52,10 @@ const toggleMenu = () => {
     menuState.value = !menuState.value;
 }
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Aside'
+})
 </script>

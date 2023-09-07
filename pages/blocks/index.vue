@@ -77,3 +77,9 @@ const onCancel = () => {
 }
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Blocks'
+})
+</script>

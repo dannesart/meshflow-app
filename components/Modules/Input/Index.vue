@@ -1,6 +1,9 @@
 <template>
     <div class="flex flex-col gap-3 relative">
-        <slot v-if="type !== 'checkbox'" />
+        <UIHeadline size="label" v-if="type !== 'checkbox'">
+            <slot />
+        </UIHeadline>
+
         <input v-if="type === 'text' || type === 'number' || type === 'email' || type === 'date'" :required="required"
             :value="value" @input="updateValue($event)" :type="type || 'text'" :disabled="disabled" :minlength="min"
             :maxlength="max" class="py-3 px-5 border rounded-lg shadow-sm  bg-white disabled:bg-slate-100"
@@ -24,6 +27,8 @@
         <div v-if="type === 'media'">
             [[Media select]]
         </div>
+
+
 
         <div v-if="type === 'range'">
             <input type="range" :name="name" :min="0" :max="values.length" step="1" :list="'markers-' + id" class="w-full"

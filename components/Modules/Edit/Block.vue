@@ -61,3 +61,9 @@ const validate = async (editBlockForm: any) => {
 }
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'EditBlock'
+})
+</script>

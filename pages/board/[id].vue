@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout>
         <header class="flex gap-4">
-            <UIHeadline size="h1">
+            <UIHeadline size="h1" editable="true" :value="task?.title" @value-change="(value) => task.title = value">
                 {{ task?.title }}
             </UIHeadline>
             <ModulesFavorite @favorite="toggleFavorite" :class="'relative top-auto right-auto'"></ModulesFavorite>

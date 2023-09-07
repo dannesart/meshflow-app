@@ -85,3 +85,9 @@ const cancelNewData = () => {
 }
 
 </script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Add'
+})
+</script>

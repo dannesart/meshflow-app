@@ -58,27 +58,6 @@ const denyEdit = ($event: Event) => {
     stopEditField($event);
 }
 
-// if (process.client) {
-
-//     const handleClick = (e: Event) => {
-//         e.preventDefault();
-//         e.stopPropagation();
-//         if (fieldContainerRef.value && isEditing.value) {
-//             if (!fieldContainerRef.value.contains(e.target)) {
-
-//                 denyEdit(e);
-
-//             }
-//         }
-//     }
-//     document.removeEventListener('click', handleClick)
-//     document.addEventListener('click', handleClick)
-
-//     onBeforeUnmount(() => {
-//         document.removeEventListener('click', handleClick)
-//     })
-// }
-
 const editableCssClasses = 'hover:bg-pink-100 cursor-text p-0 appearance-none outline-none bg-transparent';
 const cssClasses: { [key: string]: string } = {
     h1: `text-5xl h-10 leading-10 font-bold text-sky-900 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
@@ -86,6 +65,13 @@ const cssClasses: { [key: string]: string } = {
     h3: `text-slate-600 text-xl font-bold mb-4 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h4: `text-slate-600 text-lg font-semibold first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h5: `text-slate-600 font-semibold first-letter:capitalize ${editable ? editableCssClasses : ''}`,
+    label: `text-slate-600 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
 }
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Headline'
+})
 </script>

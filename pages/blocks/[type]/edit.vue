@@ -47,7 +47,7 @@
                                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
                             </div>
                             <div class="flex items-center justify-center mr-0 ml-auto ">
-                                <ModulesEdit type="field" icon="dots" :size="4" button-style="icon">
+                                <ModulesEdit type="field" icon="dots" :value="field" :size="4" button-style="icon">
                                 </ModulesEdit>
                             </div>
                         </div>
@@ -177,3 +177,9 @@ const setActiveTab = (tab: TTab) => {
     opacity: 0.5;
 }
 </style>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'BlocksTypeEdit'
+})
+</script>
