@@ -48,6 +48,21 @@ export const useBlocksStore = defineStore("BlocksStore", {
         return false;
       }
     },
+    async deleteBlock(blockId: string) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.delete(
+          config.public.REDIRECT_URI + "/api/blocks/" + blockId
+        );
+        this.isLoading = false;
+        await this.fetchBlocks();
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
     async addBlock(block: Block) {
       try {
         this.isLoading = true;

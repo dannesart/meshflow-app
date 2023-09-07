@@ -86,8 +86,9 @@ import { useNotificationStore } from '~~/stores/notifications';
 const notificationsStore = useNotificationStore();
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
+const router = useRouter();
 const { setNotification } = notificationsStore;
-const { getBlockById, updateBlock } = blockStore;
+const { getBlockById, updateBlock, deleteBlock } = blockStore;
 const { isLoading } = storeToRefs(blockStore);
 const block = getBlockById(type as string);
 const showConfirm = ref(false);
@@ -125,17 +126,16 @@ const handleConfirmDeny = async () => {
 const handleConfirmDelete = async () => {
     showConfirm.value = false;
     if (model.value.id) {
-        // const deleted = await deletePage(page.value.id as string);
-        // if (deleted) {
-        //     setNotification('Page deleted!', 'The page was successfully deleted', 'success');
-        //     router.push('/pages')
-        // } else {
-        // Handle error
-        setNotification('Block not deleted', 'This is not implemented yet', 'fail');
-        //}
+        const deleted = await deleteBlock(model.value.id as string);
+        if (deleted) {
+            setNotification('Block deleted!', 'The block was successfully deleted', 'success');
+            router.push('/blocks')
+        } else {
+            setNotification('Block not deleted', 'The block could not be deleted', 'fail');
+        }
     }
     else {
-        setNotification('Block be deleted', 'Missing ID', 'fail');
+        setNotification('Block could not be deleted', 'Missing ID', 'fail');
     }
 }
 

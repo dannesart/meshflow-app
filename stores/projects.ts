@@ -15,8 +15,10 @@ export const useProjectStore = defineStore("ProjectsStore", {
     projects: (state) => state._projects,
   },
   actions: {
+    initProject(id: string) {},
     setActive(id: string) {
       this._activeProjectId = id;
+      this.initProject(id);
     },
     async createProject(name: string) {
       try {
