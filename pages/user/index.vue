@@ -28,12 +28,24 @@
             </UIListItem>
         </UIList>
         <UIHeadline size="h2">
+            Personal settings
+        </UIHeadline>
+        <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
+            <ModulesInput type="switch" :value="userSettings.darkmode"
+                @click="() => userSettings.darkmode = !userSettings.darkmode">
+                Dark mode
+            </ModulesInput>
+            <ModulesInput :values="['sv', 'en']" :value="userSettings.language" type="select">
+                Language
+            </ModulesInput>
+        </section>
+        <UIHeadline size="h2">
             Other
         </UIHeadline>
         <section class="flex flex-col gap-6 p-6 bg-white rounded-xl shadow-lg">
-            <label>
+            <UIHeadline size="label">
                 I quit
-            </label>
+            </UIHeadline>
             <p class="text-sm text-gray-400">
                 Please remove me as a user from meshflow for ever. <br />
                 This means, that you will be removed from every project you are part of. <br />
@@ -57,4 +69,8 @@ const { data, signOut } = useAuth()
 const authStore = useAuthStore();
 const usersStore = useUsersStore();
 const user = usersStore.userById(authStore.currentUser.sub || '') || {};
+const userSettings = ref({
+    darkmode: false,
+    language: 'en'
+});
 </script>

@@ -27,22 +27,22 @@
             Pick from the list of block types
         </p>
         <div v-for="block of blocks"
-            class="p-5 px-7 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer">
-            <div
-                class="h-12 w-12 flex items-center justify-center rounded-full bg-slate-100 flex-none flex-grow-0 font-bold text-slate-500">
-
-                5
+            class="p-5 px-7 rounded-xl gap-6 shadow-xl flex flex-col w-full hover:shadow-2xl cursor-pointer">
+            <div @click="toggleOpenBlock(block.name)" class="w-full flex ">
+                <div class="flex flex-col">
+                    <UIHeadline :size="'h3'">
+                        {{ block.name }}
+                    </UIHeadline>
+                    <p class="text-sm text-gray-400">
+                        {{ block.description }}
+                    </p>
+                </div>
+                <div class="ml-auto mr-0">
+                    <UIIcons :name="openBlock === block.name ? 'chevron-up' : 'chevron-down'"></UIIcons>
+                </div>
             </div>
-            <div class="flex flex-col">
-                <UIHeadline :size="'h3'">
-                    {{ block.name }}
-                </UIHeadline>
-                <p class="text-sm text-gray-400">
-                    {{ block.description }}
-                </p>
-            </div>
-            <div class="ml-auto mr-0">
-                <UIIcons :name="'chevron-down'"></UIIcons>
+            <div class="p-3" v-if="openBlock === block.name">
+                Hellloooooo
             </div>
         </div>
     </div>
@@ -58,6 +58,11 @@ const { blocks } = storeToRefs(blockStore);
 const { select } = defineProps(['select']);
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
+const openBlock = ref();
+
+const toggleOpenBlock = (name: string) => {
+    openBlock.value = openBlock.value === name ? '' : name;
+}
 
 const newBlockForm = ref({
     name: '',
