@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import {
   PROJECT_STATUSES,
   ProjectSchema,
@@ -10,6 +11,7 @@ const newProject = (name: string, createdBy: string) => {
     name,
     status: PROJECT_STATUSES[0],
     createdBy,
+    id: uuidv4(),
     created: new Date(),
     updatedBy: createdBy,
     updated: new Date(),
