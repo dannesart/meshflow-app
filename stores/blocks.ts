@@ -1,6 +1,7 @@
 import axios from "axios";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { Block } from "~~/models/blocks";
+import { useProjectStore } from "./projects";
 import { useUiStore } from "./ui";
 
 type State = {
@@ -81,12 +82,21 @@ export const useBlocksStore = defineStore("BlocksStore", {
     },
     async fetchBlocks() {
       this.isLoading = true;
+      const uiStore = useUiStore();
+      const { activeId } = storeToRefs(useProjectStore());
       try {
+        uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/blocks"
+          config.public.REDIRECT_URI + "/api/blocks",
+          {
+            params: {
+              projectId: activeId.value,
+            },
+          }
         );
         this.isLoading = false;
+        uiStore.setLoading(false);
         if (response.data) {
           if (response.data.error) {
             return;
@@ -96,6 +106,7 @@ export const useBlocksStore = defineStore("BlocksStore", {
       } catch (error) {
         //TODO: Handle error
         this.isLoading = false;
+        uiStore.setLoading(false);
       }
     },
   },

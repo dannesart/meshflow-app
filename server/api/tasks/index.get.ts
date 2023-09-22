@@ -6,7 +6,8 @@ export default defineEventHandler(async (e) => {
   if (!session || !session.user) {
     return { error: "Need to be authenticated" };
   }
-  const tasks = await TaskModel.find({});
+  const { projectId } = getQuery(e);
+  const tasks = await TaskModel.find({ projectId: projectId });
 
   return (
     tasks.map((task) => {

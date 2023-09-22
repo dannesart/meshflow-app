@@ -1,7 +1,8 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import axios from "axios";
 import { Task } from "~~/models/tasks";
 import { useRuntimeConfig } from "#app";
+import { useProjectStore } from "./projects";
 
 type State = {
   allTasks: Task[];
@@ -102,12 +103,17 @@ export const useTasksStore = defineStore("TasksStore", {
       }
     },
     async fetchTasks() {
+      const { activeId } = storeToRefs(useProjectStore());
       this.loading = true;
       try {
         const config = useRuntimeConfig();
-
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/tasks"
+          config.public.REDIRECT_URI + "/api/tasks",
+          {
+            params: {
+              projectId: activeId.value,
+            },
+          }
         );
         this.loading = false;
         if (response.data) {

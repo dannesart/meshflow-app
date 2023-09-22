@@ -6,7 +6,8 @@ export default defineEventHandler(async (e) => {
   if (!session || !session.user) {
     return { error: "Need to be authenticated" };
   }
-  const pages = await PageModel.find({});
+  const { projectId } = getQuery(e);
+  const pages = await PageModel.find({ projectId: projectId });
 
   return (
     pages.map((page) => {

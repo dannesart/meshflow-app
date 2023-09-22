@@ -11,7 +11,7 @@
 
             </ModulesAdd>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" v-if="blocks.length">
 
             <NuxtLink :to="('/blocks/' + item.id)" class="flex-1" v-for="(item, index) in blocks">
                 <ModulesCard :title="item.name" :body="item.description" :tags="item.tags" :favorite="false"
@@ -20,7 +20,7 @@
 
 
         </div>
-        <div v-if="!blocks.length" class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
+        <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
             No block types yet. Create one <ModulesAdd @on-add="onAdd" type="model" service-type="block"
                 button-style="system" label="Add block type">
             </ModulesAdd>

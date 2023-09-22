@@ -52,6 +52,7 @@
 import { storeToRefs } from 'pinia';
 import { Model, ModelSchema } from '~~/models/model';
 import { useBlocksStore } from '~~/stores/blocks';
+import { useProjectStore } from '~~/stores/projects';
 
 const blockStore = useBlocksStore();
 const { blocks } = storeToRefs(blockStore);
@@ -68,7 +69,8 @@ const newBlockForm = ref({
     name: '',
     description: '',
     fields: [],
-    serviceType: 'block'
+    serviceType: 'block',
+    projectId: useProjectStore().activeId
 })
 
 const valueChange = (event: string, key: string) => {

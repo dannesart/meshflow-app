@@ -6,7 +6,8 @@ export default defineEventHandler(async (e) => {
   if (!session || !session.user) {
     return { error: "Need to be authenticated" };
   }
-  const blocks = await ModelDbModel.find({});
+  const { projectId } = getQuery(e);
+  const blocks = await ModelDbModel.find({ projectId: projectId });
 
   return (
     blocks.map((block) => {

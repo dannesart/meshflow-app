@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { PageSchema, PAGE_STATUSES, Page } from '~~/models/page';
+import { useProjectStore } from '~~/stores/projects';
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const statuses = PAGE_STATUSES;
@@ -27,7 +28,8 @@ let newPage: Page = {
     created: new Date(),
     createdBy: '',
     updated: new Date(),
-    updatedBy: ''
+    updatedBy: '',
+    projectId: useProjectStore().activeId
 }
 
 const valueChange = (event: string, key: string) => {

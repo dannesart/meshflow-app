@@ -116,13 +116,22 @@
 </template>
 
 <script setup lang=ts>
+import { useBlocksStore } from "~~/stores/blocks";
+import { usePagesStore } from "~~/stores/pages";
 import { useProjectStore } from "~~/stores/projects";
+import { useTasksStore } from "~~/stores/tasks";
+import { useUiStore } from "~~/stores/ui";
 import { useUsersStore } from "~~/stores/users";
 // Check if route contains Id param.
 // Then we know it's not a "root" page. 
 // We can then show back button.
 const { id, type } = useRoute().params;
 const projectStore = useProjectStore();
+const tasksStore = useTasksStore();
+const pagesStore = usePagesStore();
+const blocksStore = useBlocksStore();
+const uiStore = useUiStore();
+const { setLoading } = uiStore;
 const { status, data, signIn, signOut } = useAuth()
 
 const user = (email: string) => {
@@ -158,9 +167,14 @@ const closeNotificationMenu = (e: Event) => {
 
 };
 
-const selectProject = (projectId: string) => {
+const selectProject = async (projectId: string) => {
+	setLoading(true);
 	projectStore.setActive(projectId);
+	await tasksStore.fetchTasks();
+	await pagesStore.fetchPages();
+	await blocksStore.fetchBlocks();
 	closeMenu()
+	setLoading(false);
 }
 
 const notifications = 3;

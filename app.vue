@@ -15,7 +15,7 @@ import { useBlocksStore } from "./stores/blocks";
 import { useUiStore } from "./stores/ui";
 
 
-const uiStore = useUiStore();
+const { setLoading } = useUiStore();
 
 const { fetchProjects } = useProjectStore();
 const { fetchSettings } = useSettingsStore();
@@ -26,9 +26,10 @@ const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
 const { fetchBlocks } = useBlocksStore();
 
-uiStore.setLoading(true);
+setLoading(true);
+await Promise.all([fetchUser(), fetchProjects()]);
 await Promise.all([fetchUser(), fetchProjects(), fetchUserMap(), fetchSettings(), fetchTasks(), fetchData(), fetchPages(), fetchBlocks()])
-uiStore.setLoading(false);
+setLoading(false);
 
 </script>
 

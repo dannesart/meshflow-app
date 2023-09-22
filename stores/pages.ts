@@ -1,6 +1,7 @@
 import axios from "axios";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { Page } from "~~/models/page";
+import { useProjectStore } from "./projects";
 import { useUiStore } from "./ui";
 
 type State = {
@@ -89,13 +90,19 @@ export const usePagesStore = defineStore("PagesStore", {
     },
     async fetchPages() {
       const uiStore = useUiStore();
+      const { activeId } = storeToRefs(useProjectStore());
 
       try {
         uiStore.setLoading(true);
         this.isLoading = true;
         const config = useRuntimeConfig();
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/pages"
+          config.public.REDIRECT_URI + "/api/pages",
+          {
+            params: {
+              projectId: activeId.value,
+            },
+          }
         );
         this.isLoading = false;
         uiStore.setLoading(false);

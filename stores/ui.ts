@@ -8,6 +8,7 @@ export const useUiStore = defineStore("UiStore", {
   actions: {
     setLoading(loading: boolean) {
       this.isLoading = loading;
+      console.log(loading);
     },
   },
 });

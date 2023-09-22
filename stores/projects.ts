@@ -8,6 +8,8 @@ type TProjectsState = {
   _projects: Project[];
 };
 
+const ACTIVE_PROJET_ID_KEY = "ACTIVE_PROJET_ID";
+
 export const useProjectStore = defineStore("ProjectsStore", {
   state: () => <TProjectsState>{ _activeProjectId: null, _projects: [] },
   getters: {
@@ -18,6 +20,7 @@ export const useProjectStore = defineStore("ProjectsStore", {
     initProject(id: string) {},
     setActive(id: string) {
       this._activeProjectId = id;
+      localStorage.setItem(ACTIVE_PROJET_ID_KEY, id);
       this.initProject(id);
     },
     async createProject(name: string) {
@@ -47,8 +50,9 @@ export const useProjectStore = defineStore("ProjectsStore", {
         if (!this._projects || !this._projects.length) {
           return useRouter().push("/projects/create");
         }
-
-        this.setActive(this._projects[0].id);
+        this.setActive(
+          localStorage.getItem(ACTIVE_PROJET_ID_KEY) || this._projects[0].id
+        );
       } catch (error) {
         //TODO: Handle error
       }
