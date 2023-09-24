@@ -11,7 +11,7 @@ export default defineEventHandler(async (e) => {
 
   if (token.sub) {
     const projects = await ProjectModel.find({
-      createdBy: token.sub,
+      users: { $in: token.sub },
     });
 
     return projects.map((project) => {

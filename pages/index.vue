@@ -8,7 +8,7 @@
             <ModulesStat label="Active tasks" :number="allTasks.length"></ModulesStat>
             <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
             <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
-            <ModulesStat label="Rules" number="9"></ModulesStat>
+            <ModulesStat label="Rules" :number="rules"></ModulesStat>
         </div>
 
         <div class="flex gap-5 flex-col md:flex-row">
@@ -90,6 +90,8 @@ const { addTask } = tasksStore;
 const { latest, allTasks } = storeToRefs(tasksStore);
 const { pages } = storeToRefs(usePagesStore());
 const { usersAmount, allUsers } = useUsersStore();
+
+const rules = 0;
 
 const onAdd = async (task: Task) => {
 

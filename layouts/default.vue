@@ -1,6 +1,5 @@
 <template>
     <div class="layout">
-        {{ loading }}
         <UILoadBar v-if="loading"></UILoadBar>
 
         <ModulesAside></ModulesAside>

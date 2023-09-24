@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { useRuntimeConfig } from "#app";
+import { useProjectStore } from "./projects";
+import { Project } from "~~/models/project";
 
 type State = {
   token: string | null;
@@ -60,8 +62,9 @@ export const useUsersStore = defineStore("UsersStore", {
           headers: { authorization: `Bearer ${token}` },
         };
         try {
-          const response = await axios.request(options);
-          this.users.push(response.data);
+          const user = (await axios.request(options)) as any;
+          this.users[user.user_id] = user.data;
+          console.log(user);
         } catch (error) {
           console.log(error);
         }
@@ -80,8 +83,8 @@ export const useUsersStore = defineStore("UsersStore", {
           headers: { authorization: `Bearer ${token}` },
         };
         try {
-          const response = await axios.request(options);
-          this.users = response.data;
+          const user = (await axios.request(options)) as any;
+          this.users[user.user_id] = user;
         } catch (error) {
           console.log(error);
         }
@@ -91,21 +94,30 @@ export const useUsersStore = defineStore("UsersStore", {
     },
     async fetchUserMap() {
       try {
-        const token = await this.getToken();
-
-        var options = {
-          method: "GET",
-          url: "https://meshflow.eu.auth0.com/api/v2/users",
-          headers: { authorization: `Bearer ${token}` },
-        };
-        try {
-          const response = await axios.request(options);
-          response.data.map((user: any) => {
-            this.users[user.user_id] = user;
-          });
-        } catch (error) {
-          console.log(error);
+        // const token = await this.getToken();
+        const projectStore = useProjectStore();
+        const { activeId, getProject } = projectStore;
+        const activeProject = getProject(activeId || "") as Project;
+        if (activeProject) {
+          const userIds = activeProject.users;
+          for (let i = 0; i < userIds.length; i++) {
+            await this.fetchUserById(userIds[i]);
+          }
         }
+
+        // var options = {
+        //   method: "GET",
+        //   url: "https://meshflow.eu.auth0.com/api/v2/users",
+        //   headers: { authorization: `Bearer ${token}` },
+        // };
+        // try {
+        //   const response = await axios.request(options);
+        //   response.data.map((user: any) => {
+        //     this.users[user.user_id] = user;
+        //   });
+        // } catch (error) {
+        //   console.log(error);
+        // }
       } catch (error) {
         //TODO: Handle error
       }

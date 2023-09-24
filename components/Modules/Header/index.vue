@@ -18,7 +18,7 @@
 					v-if="notifications">
 					{{ notifications }}</div>
 			</div>
-			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" role="developer">
+			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" :role="activeProject?.name">
 			</UIUserInfo>
 
 			<div class="w-96 bg-white outline-none shadow-xl justify-between px-6 md:px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-50 transition-transform translate-x-full focus-within:translate-x-0"
@@ -28,7 +28,7 @@
 
 
 					<UIUserInfo :class="'self-end hidden md:flex'" :image="data?.user?.image" :name="data?.user?.name"
-						role="developer">
+						:role="activeProject?.name">
 					</UIUserInfo>
 
 
@@ -116,6 +116,8 @@
 </template>
 
 <script setup lang=ts>
+import { storeToRefs } from "pinia";
+import { Project } from "~~/models/project";
 import { useBlocksStore } from "~~/stores/blocks";
 import { usePagesStore } from "~~/stores/pages";
 import { useProjectStore } from "~~/stores/projects";
@@ -133,6 +135,11 @@ const blocksStore = useBlocksStore();
 const uiStore = useUiStore();
 const { setLoading } = uiStore;
 const { status, data, signIn, signOut } = useAuth()
+const { activeId, getProject } = storeToRefs(projectStore);
+
+const activeProject = computed(() => {
+	return getProject.value(activeId.value || '') as Project;
+})
 
 const user = (email: string) => {
 	return useUsersStore().userByEmail(email);
@@ -177,7 +184,7 @@ const selectProject = async (projectId: string) => {
 
 }
 
-const notifications = 3;
+const notifications = 0;
 
 const logout = async () => {
 	// navigateTo('/')
