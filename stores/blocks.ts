@@ -103,7 +103,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
       } catch (error) {
         //TODO: Handle error
         this.isLoading = false;
-        uiStore.setLoading(false);
       }
     },
   },
