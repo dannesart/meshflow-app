@@ -14,6 +14,7 @@ const ProjectSchema = z
     created: z.date(),
     updatedBy: z.string(),
     updated: z.date(),
+    users: z.array(z.string()),
   })
   .strict();
 
@@ -29,6 +30,7 @@ const ProjectDbSchema: Schema<Project> = new Schema({
   created: { type: Date, default: Date.now },
   updatedBy: String,
   updated: { type: Date, default: Date.now },
+  users: [String],
 });
 
 const ProjectModel: Model<Project> = model("projects", ProjectDbSchema);

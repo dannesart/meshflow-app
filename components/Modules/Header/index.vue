@@ -170,11 +170,11 @@ const closeNotificationMenu = (e: Event) => {
 const selectProject = async (projectId: string) => {
 	setLoading(true);
 	projectStore.setActive(projectId);
-	await tasksStore.fetchTasks();
-	await pagesStore.fetchPages();
-	await blocksStore.fetchBlocks();
+	await Promise.all([tasksStore.fetchTasks(), pagesStore.fetchPages(), blocksStore.fetchBlocks()])
+
 	closeMenu()
 	setLoading(false);
+
 }
 
 const notifications = 3;

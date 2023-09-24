@@ -93,7 +93,6 @@ export const usePagesStore = defineStore("PagesStore", {
       const { activeId } = storeToRefs(useProjectStore());
 
       try {
-        uiStore.setLoading(true);
         this.isLoading = true;
         const config = useRuntimeConfig();
         const response = await axios.get(
@@ -105,7 +104,6 @@ export const usePagesStore = defineStore("PagesStore", {
           }
         );
         this.isLoading = false;
-        uiStore.setLoading(false);
         if (response.data) {
           if (response.data.error) {
             return;

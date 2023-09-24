@@ -82,10 +82,8 @@ export const useBlocksStore = defineStore("BlocksStore", {
     },
     async fetchBlocks() {
       this.isLoading = true;
-      const uiStore = useUiStore();
       const { activeId } = storeToRefs(useProjectStore());
       try {
-        uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/blocks",
@@ -96,7 +94,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
           }
         );
         this.isLoading = false;
-        uiStore.setLoading(false);
         if (response.data) {
           if (response.data.error) {
             return;
