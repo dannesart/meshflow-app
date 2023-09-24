@@ -5,13 +5,11 @@
             Dashboard
         </UIHeadline>
         <div class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x min-h-[8rem] ">
-            <ModulesStat label="Active tasks" :number="tasksStore.allTasks.length"></ModulesStat>
+            <ModulesStat label="Active tasks" :number="allTasks.length"></ModulesStat>
             <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
             <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
             <ModulesStat label="Rules" number="9"></ModulesStat>
         </div>
-
-
 
         <div class="flex gap-5 flex-col md:flex-row">
             <div class="flex flex-col gap-4 md:w-1/2 h-full justify-between">
@@ -82,13 +80,15 @@ import { useUsersStore } from "~~/stores/users";
 import { useCommentsStore } from "~~/stores/comments";
 import { Task } from '~~/models/tasks';
 import { useNotificationStore } from "~~/stores/notifications";
+import { storeToRefs } from "pinia";
 
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
-const { comments } = useCommentsStore();
+const { comments } = storeToRefs(useCommentsStore());
 const tasksStore = useTasksStore();
-const { latest, addTask } = tasksStore;
-const { pages } = usePagesStore();
+const { addTask } = tasksStore;
+const { latest, allTasks } = storeToRefs(tasksStore);
+const { pages } = storeToRefs(usePagesStore());
 const { usersAmount, allUsers } = useUsersStore();
 
 const onAdd = async (task: Task) => {
