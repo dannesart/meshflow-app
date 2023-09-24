@@ -63,8 +63,8 @@ export const useUsersStore = defineStore("UsersStore", {
         };
         try {
           const user = (await axios.request(options)) as any;
-          this.users[user.user_id] = user.data;
-          console.log(user);
+
+          this.users[user.data.user_id] = user.data;
         } catch (error) {
           console.log(error);
         }
