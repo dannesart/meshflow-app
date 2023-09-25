@@ -65,8 +65,12 @@ export const useBlocksStore = defineStore("BlocksStore", {
       }
     },
     async addBlock(block: Block) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+
       try {
         this.isLoading = true;
+        setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.post(
           config.public.REDIRECT_URI + "/api/blocks",
@@ -74,9 +78,11 @@ export const useBlocksStore = defineStore("BlocksStore", {
         );
         this.isLoading = false;
         await this.fetchBlocks();
+        setLoading(false);
         return true;
       } catch (error) {
         this.isLoading = false;
+        setLoading(false);
         return false;
       }
     },

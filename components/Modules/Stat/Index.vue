@@ -24,8 +24,14 @@
     </article>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { label, number, errors } = defineProps(["label", "number", "errors"]);
 const isLoading = ref(false);
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Stat'
+})
 </script>

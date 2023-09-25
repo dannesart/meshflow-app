@@ -3,6 +3,7 @@ import axios from "axios";
 import { Task } from "~~/models/tasks";
 import { useRuntimeConfig } from "#app";
 import { useProjectStore } from "./projects";
+import { useUiStore } from "./ui";
 
 type State = {
   allTasks: Task[];
@@ -28,7 +29,7 @@ export const useTasksStore = defineStore("TasksStore", {
     tasks: (state) => state.allTasks,
     latest: (state) => {
       const latest = [...state.allTasks];
-      latest.length = latest.length > 5 ? 5 : latest.length;
+      latest.length = latest.length > 2 ? 2 : latest.length;
       return latest;
     },
     taskByIdx: (state) => {
@@ -85,20 +86,24 @@ export const useTasksStore = defineStore("TasksStore", {
       this.task = task;
     },
     async addTask(task: Task) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
       try {
+        setLoading(true);
         this.loading = true;
         const config = useRuntimeConfig();
         const response = await axios.post(
           config.public.REDIRECT_URI + "/api/tasks",
           task
         );
-        this.loading = false;
-        this.loading = false;
         await this.fetchTasks();
+        this.loading = false;
+        setLoading(false);
         return true;
       } catch (error) {
         //TODO: Handle error
         this.loading = false;
+        setLoading(false);
         return false;
       }
     },

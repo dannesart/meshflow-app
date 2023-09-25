@@ -45,11 +45,11 @@
                         <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
                         </ModulesAdd>
                     </div>
-                    <div class=" flex gap-5">
-                        <div v-if="tasksStore.isLoading">
-                            <UILoader></UILoader>
-                        </div>
-                        <ul v-else class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
+                    <div class="flex gap-5">
+                        <UILoader v-if="tasksStore.isLoading"></UILoader>
+
+                        <ul v-else-if="latest.length" class="w-full flex flex-col gap-4 p-5 rounded-lg shadow-lg bg-white">
+
                             <li v-for="task in latest" class="border-b last:border-b-0 pb-5 last:pb-0">
                                 <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
                                     :route="('/board/' + task.id)">
@@ -59,6 +59,11 @@
                                 </ModulesExtendedLink>
                             </li>
                         </ul>
+                        <UIEmpty v-else>
+                            No tasks yet, create one
+                            <ModulesAdd @on-add="onAdd" type="task" button-style="system" label="Add task">
+                            </ModulesAdd>
+                        </UIEmpty>
                     </div>
                 </div>
                 <div class="flex justify-end items-end">

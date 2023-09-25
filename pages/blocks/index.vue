@@ -20,11 +20,11 @@
 
 
         </div>
-        <div v-else class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
+        <UIEmpty v-else>
             No block types yet. Create one <ModulesAdd @on-add="onAdd" type="model" service-type="block"
                 button-style="system" label="Add block type">
             </ModulesAdd>
-        </div>
+        </UIEmpty>
 
 
     </NuxtLayout>
