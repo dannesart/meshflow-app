@@ -53,8 +53,8 @@ import { useBlocksStore } from "~~/stores/blocks";
 
 const { value } = defineProps(['value'])
 const field = ref({ ...value });
-const { blocks } = storeToRefs(useBlocksStore());
-const blockTypes = blocks.value.map((block) => block.name);
+const { blockModels } = storeToRefs(useBlocksStore());
+const blockTypes = blockModels.value.map((blockModel) => blockModel.name);
 const events = defineEmits(['onError', 'onValid']);
 
 const handleMinMax = (value: number, isMin: boolean) => {

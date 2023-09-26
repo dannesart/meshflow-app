@@ -24,11 +24,11 @@ const { fetchUser } = useAuthStore();
 const { fetchData } = useDataStore();
 const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
-const { fetchBlocks } = useBlocksStore();
+const { fetchBlockModels } = useBlocksStore();
 
 setLoading(true);
 await Promise.all([fetchUser(), fetchProjects()]);
-await Promise.all([fetchUser(), fetchProjects(), fetchUserMap(), fetchSettings(), fetchTasks(), fetchData(), fetchPages(), fetchBlocks()])
+await Promise.all([fetchUser(), fetchProjects(), fetchUserMap(), fetchSettings(), fetchTasks(), fetchData(), fetchPages(), fetchBlockModels()])
 setLoading(false);
 
 </script>

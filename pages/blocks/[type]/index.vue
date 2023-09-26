@@ -54,8 +54,8 @@ import { useBlocksStore } from '~~/stores/blocks';
 
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
-const { getBlockById } = blockStore;
-const blockType = getBlockById(type as string);
+const { getBlockModelById } = blockStore;
+const blockType = getBlockModelById(type as string);
 
 // Fetch data based on type.
 

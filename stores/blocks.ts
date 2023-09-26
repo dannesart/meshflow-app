@@ -1,30 +1,41 @@
 import axios from "axios";
 import { defineStore, storeToRefs } from "pinia";
 import { Block } from "~~/models/blocks";
+import { Model } from "~~/models/model";
 import { useProjectStore } from "./projects";
 import { useUiStore } from "./ui";
 
 type State = {
   isEditing: boolean;
   isLoading: boolean;
-  allBlocks: Block[];
+  _blockModels: Model[];
+  _blocks: {
+    [key: string]: Block[];
+  };
 };
 
 const state = () =>
   <State>{
     isEditing: false,
     isLoading: true,
-    allBlocks: [],
+    _blockModels: [],
+    _blocks: {},
   };
 
 const getters = {
   editing: (state: State) => state.isEditing,
   loading: (state: State) => state.isLoading,
-  blocks: (state: State) => state.allBlocks,
-  getAmountOfBlocks: (state: State) => state.allBlocks.length,
-  getBlockById: (state: State) => {
+  blocks: (state: State) => state._blocks,
+  getBlocksByType: (state: State) => {
+    return (type: string) => {
+      return state._blocks[type];
+    };
+  },
+  blockModels: (state: State) => state._blockModels,
+  getAmountOfBlockModels: (state: State) => state._blockModels.length,
+  getBlockModelById: (state: State) => {
     return (id: string) => {
-      return state.allBlocks.find((block) => block.id === id);
+      return state._blockModels.find((block) => block.id === id);
     };
   },
 };
@@ -33,37 +44,6 @@ export const useBlocksStore = defineStore("BlocksStore", {
   state,
   getters,
   actions: {
-    async updateBlock(block: Block) {
-      try {
-        this.isLoading = true;
-        const config = useRuntimeConfig();
-        const response = await axios.patch(
-          config.public.REDIRECT_URI + "/api/blocks/" + block.id,
-          block
-        );
-        this.isLoading = false;
-        await this.fetchBlocks();
-        return true;
-      } catch (error) {
-        this.isLoading = false;
-        return false;
-      }
-    },
-    async deleteBlock(blockId: string) {
-      try {
-        this.isLoading = true;
-        const config = useRuntimeConfig();
-        const response = await axios.delete(
-          config.public.REDIRECT_URI + "/api/blocks/" + blockId
-        );
-        this.isLoading = false;
-        await this.fetchBlocks();
-        return true;
-      } catch (error) {
-        this.isLoading = false;
-        return false;
-      }
-    },
     async addBlock(block: Block) {
       const uiStore = useUiStore();
       const { setLoading } = uiStore;
@@ -73,11 +53,10 @@ export const useBlocksStore = defineStore("BlocksStore", {
         setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.post(
-          config.public.REDIRECT_URI + "/api/blocks",
+          config.public.REDIRECT_URI + "/api/blocks/" + block.type,
           block
         );
         this.isLoading = false;
-        await this.fetchBlocks();
         setLoading(false);
         return true;
       } catch (error) {
@@ -86,7 +65,61 @@ export const useBlocksStore = defineStore("BlocksStore", {
         return false;
       }
     },
-    async fetchBlocks() {
+
+    async updateBlockModel(blockModel: Model) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.patch(
+          config.public.REDIRECT_URI + "/api/blocks/" + blockModel.id,
+          blockModel
+        );
+        this.isLoading = false;
+        await this.fetchBlockModels();
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
+    async deleteBlockModel(blockModelId: string) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.delete(
+          config.public.REDIRECT_URI + "/api/blocks/" + blockModelId
+        );
+        this.isLoading = false;
+        await this.fetchBlockModels();
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
+    async addBlockModel(blockModel: Model) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+
+      try {
+        this.isLoading = true;
+        setLoading(true);
+        const config = useRuntimeConfig();
+        const response = await axios.post(
+          config.public.REDIRECT_URI + "/api/blocks",
+          blockModel
+        );
+        this.isLoading = false;
+        await this.fetchBlockModels();
+        setLoading(false);
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        setLoading(false);
+        return false;
+      }
+    },
+    async fetchBlockModels() {
       this.isLoading = true;
       const { activeId } = storeToRefs(useProjectStore());
       try {
@@ -104,7 +137,7 @@ export const useBlocksStore = defineStore("BlocksStore", {
           if (response.data.error) {
             return;
           }
-          this.allBlocks = response.data;
+          this._blockModels = response.data;
         }
       } catch (error) {
         //TODO: Handle error

@@ -86,8 +86,8 @@ import { storeToRefs } from 'pinia';
 import { useBlocksStore } from "@/stores/blocks";
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 
-const { blocks } = storeToRefs(useBlocksStore());
-const blockTypes = blocks.value.map((block) => block.name);
+const { blockModels } = storeToRefs(useBlocksStore());
+const blockTypes = blockModels.value.map((blockModel) => blockModel.name);
 const step = ref(1);
 
 const field = ref<ModelField>({

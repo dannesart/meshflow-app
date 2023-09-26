@@ -177,7 +177,7 @@ const closeNotificationMenu = (e: Event) => {
 const selectProject = async (projectId: string) => {
 	setLoading(true);
 	projectStore.setActive(projectId);
-	await Promise.all([tasksStore.fetchTasks(), pagesStore.fetchPages(), blocksStore.fetchBlocks()])
+	await Promise.all([tasksStore.fetchTasks(), pagesStore.fetchPages(), blocksStore.fetchBlockModels()])
 
 	closeMenu()
 	setLoading(false);

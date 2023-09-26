@@ -88,9 +88,9 @@ const { type } = useRoute().params;
 const blockStore = useBlocksStore();
 const router = useRouter();
 const { setNotification } = notificationsStore;
-const { getBlockById, updateBlock, deleteBlock } = blockStore;
+const { getBlockModelById, updateBlockModel, deleteBlockModel } = blockStore;
 const { isLoading } = storeToRefs(blockStore);
-const block = getBlockById(type as string);
+const block = getBlockModelById(type as string);
 const showConfirm = ref(false);
 const editingText = ref<string>();
 const nameRef = ref();
@@ -126,7 +126,7 @@ const handleConfirmDeny = async () => {
 const handleConfirmDelete = async () => {
     showConfirm.value = false;
     if (model.value.id) {
-        const deleted = await deleteBlock(model.value.id as string);
+        const deleted = await deleteBlockModel(model.value.id as string);
         if (deleted) {
             setNotification('Block deleted!', 'The block was successfully deleted', 'success');
             router.push('/blocks')
@@ -156,7 +156,7 @@ const stopEditing = () => {
 
 const save = async () => {
     isLoading.value = true;
-    const saved = await updateBlock(model.value);
+    const saved = await updateBlockModel(model.value);
     if (saved) {
         setNotification('Model saved!', 'The model was successfully saved', 'success');
     } else {

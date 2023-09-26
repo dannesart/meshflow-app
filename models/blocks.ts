@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const BLOCK_STATUSES: string[] = ["public", "private"];
 
-const BlockSchema = z
+const BlockModelSchema = z
   .object({
     name: z.string().min(3).max(50),
     status: z.string(),
@@ -18,6 +18,12 @@ const BlockSchema = z
   })
   .strict();
 
+type BlockModel = z.infer<typeof BlockModelSchema>;
+
+const BlockSchema = BlockModelSchema.extend({
+  type: z.string(),
+});
+
 type Block = z.infer<typeof BlockSchema>;
 
-export { BlockSchema, Block, BLOCK_STATUSES };
+export { BlockModelSchema, BlockSchema, BlockModel, Block, BLOCK_STATUSES };
