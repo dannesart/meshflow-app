@@ -15,12 +15,8 @@
                 Edit
             </NuxtLink>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
-            <ModulesAdd :type="blockType?.name">
-                <UIForm class="flex flex-col gap-6">
-                    <ModulesInput v-for="field in blockType.fields" :type="field.type.id">
-                        {{ field.name }}
-                    </ModulesInput>
-                </UIForm>
+            <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
+                button-style="system" label="Add block">
             </ModulesAdd>
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
@@ -33,13 +29,9 @@
         </div>
 
         <div class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
-            No blocks yet. Create one <ModulesAdd @on-add="onAdd" :type="blockType?.name" button-style="system"
-                label="Add block">
-                <UIForm class="flex flex-col gap-6">
-                    <ModulesInput v-for="field in blockType.fields" :type="field.type.id">
-                        {{ field.name }}
-                    </ModulesInput>
-                </UIForm>
+            No blocks yet. Create one
+            <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
+                button-style="system" label="Add block">
             </ModulesAdd>
         </div>
 
@@ -49,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+import { z } from 'zod';
 import { useBlocksStore } from '~~/stores/blocks';
 
 
@@ -56,6 +49,8 @@ const { type } = useRoute().params;
 const blockStore = useBlocksStore();
 const { getBlockModelById } = blockStore;
 const blockType = getBlockModelById(type as string);
+
+const onAdd = () => { }
 
 // Fetch data based on type.
 
@@ -73,6 +68,12 @@ const sortChange = () => {
 
 // Show data.
 const data = ref([])
+const newBlockData = ref({});
+
+const validated = computed(() => {
+    const schema = fieldsToSchema(blockType?.fields || []);
+    return schema.safeParse(newBlockData.value)
+})
 
 </script>
 

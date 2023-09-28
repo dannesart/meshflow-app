@@ -2,6 +2,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     'ModulesAddBlock': typeof import("../components/Modules/Add/Block.vue")['default']
+    'ModulesAddData': typeof import("../components/Modules/Add/Data.vue")['default']
     'ModulesAddField': typeof import("../components/Modules/Add/Field.vue")['default']
     'ModulesAdd': typeof import("../components/Modules/Add/Index.vue")['default']
     'ModulesAddModel': typeof import("../components/Modules/Add/Model.vue")['default']
@@ -76,6 +77,7 @@ declare module 'vue' {
     'Html': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyModulesAddBlock': typeof import("../components/Modules/Add/Block.vue")['default']
+    'LazyModulesAddData': typeof import("../components/Modules/Add/Data.vue")['default']
     'LazyModulesAddField': typeof import("../components/Modules/Add/Field.vue")['default']
     'LazyModulesAdd': typeof import("../components/Modules/Add/Index.vue")['default']
     'LazyModulesAddModel': typeof import("../components/Modules/Add/Model.vue")['default']
@@ -153,6 +155,7 @@ declare module 'vue' {
 }
 
 export const ModulesAddBlock: typeof import("../components/Modules/Add/Block.vue")['default']
+export const ModulesAddData: typeof import("../components/Modules/Add/Data.vue")['default']
 export const ModulesAddField: typeof import("../components/Modules/Add/Field.vue")['default']
 export const ModulesAdd: typeof import("../components/Modules/Add/Index.vue")['default']
 export const ModulesAddModel: typeof import("../components/Modules/Add/Model.vue")['default']
@@ -227,6 +230,7 @@ export const Head: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Html']
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyModulesAddBlock: typeof import("../components/Modules/Add/Block.vue")['default']
+export const LazyModulesAddData: typeof import("../components/Modules/Add/Data.vue")['default']
 export const LazyModulesAddField: typeof import("../components/Modules/Add/Field.vue")['default']
 export const LazyModulesAdd: typeof import("../components/Modules/Add/Index.vue")['default']
 export const LazyModulesAddModel: typeof import("../components/Modules/Add/Model.vue")['default']

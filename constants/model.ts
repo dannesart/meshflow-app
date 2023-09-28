@@ -12,7 +12,7 @@ export const ModelTypes: ModelType[] = [
     name: "Boolean",
     id: "boolean",
     description: "On and off",
-    format: "string",
+    format: "boolean",
     icon: "boolean",
   },
   {

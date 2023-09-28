@@ -21,6 +21,8 @@ declare global {
   const defineStore: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']
   const effect: typeof import('vue')['effect']
   const effectScope: typeof import('vue')['effectScope']
+  const fieldsToSchema: typeof import('../../utils/form')['fieldsToSchema']
+  const form: typeof import('../../utils/form')['form']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -151,6 +153,8 @@ declare module 'vue' {
     readonly defineStore: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']>
     readonly effect: UnwrapRef<typeof import('vue')['effect']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly fieldsToSchema: UnwrapRef<typeof import('../../utils/form')['fieldsToSchema']>
+    readonly form: UnwrapRef<typeof import('../../utils/form')['form']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>

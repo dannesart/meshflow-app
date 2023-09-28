@@ -14,7 +14,7 @@
 
 
             <UIHeadline size="h1" v-if="type" :class="'mb-6'">
-                Add {{ type === 'model' ? `${serviceType} type` : type }}
+                Add {{ type === 'model' ? `${serviceType} type` : type === 'data' ? `${serviceType}` : type }}
             </UIHeadline>
 
             <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid">
@@ -26,6 +26,8 @@
             <ModulesAddBlock v-if="type === 'block' && showModal" :select="select" @on-valid="setValid"
                 @on-error="setInvalid">
             </ModulesAddBlock>
+            <ModulesAddData v-if="type === 'data' && showModal" :service-type="serviceType" :fields="fields"
+                @on-valid="setValid" @on-error="setInvalid"></ModulesAddData>
             <ModulesAddModel v-if="type === 'model' && showModal" :service-type="serviceType" @on-valid="setValid"
                 @on-error="setInvalid"></ModulesAddModel>
 
@@ -52,7 +54,7 @@ import { useProjectStore } from '~~/stores/projects';
 
 const projectStore = useProjectStore();
 const { activeId } = projectStore;
-const { type, asLink, label, buttonStyle, icon, size, select, serviceType } = defineProps(['type', 'asLink', 'label', 'buttonStyle', 'icon', 'size', 'select', 'serviceType']);
+const { type, asLink, label, buttonStyle, icon, size, select, serviceType, fields } = defineProps(['type', 'asLink', 'label', 'buttonStyle', 'icon', 'size', 'select', 'serviceType', 'fields']);
 const emitEvents = defineEmits(['onAdd', 'onCancel']);
 let showModal = ref(false);
 let isValid = ref(false);
