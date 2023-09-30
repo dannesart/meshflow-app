@@ -13,14 +13,12 @@ export default defineEventHandler(async (e) => {
   // newBlockModel(name, session.user.email || '', projectId, description )
   const body = await readBody(e);
   if (BlockSchema.safeParse(body)) {
-    const { name, projectId, description, properties, type } = body;
+    const { projectId, properties, type } = body;
     const newDoc = new BlocksDbModel({
-      name,
       createdBy: token.sub,
       updatedBy: token.sub,
       projectId,
-      description,
-      fields: properties || {},
+      properties: properties || {},
       id: uuidv4(),
       type,
     });

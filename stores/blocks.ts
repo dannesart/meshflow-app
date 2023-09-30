@@ -44,7 +44,11 @@ export const useBlocksStore = defineStore("BlocksStore", {
   state,
   getters,
   actions: {
-    async addBlock(block: Block) {
+    async addBlock(block: {
+      projectId: string;
+      properties: any;
+      type: string;
+    }) {
       const uiStore = useUiStore();
       const { setLoading } = uiStore;
 
@@ -56,6 +60,34 @@ export const useBlocksStore = defineStore("BlocksStore", {
           config.public.REDIRECT_URI + "/api/blocks/" + block.type,
           block
         );
+        this.isLoading = false;
+        await this.fetchBlocks(block.type);
+        setLoading(false);
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        setLoading(false);
+        return false;
+      }
+    },
+
+    async fetchBlocks(blockType: string) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+      const { activeId } = storeToRefs(useProjectStore());
+      try {
+        this.isLoading = true;
+        setLoading(true);
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/blocks/" + blockType,
+          {
+            params: {
+              projectId: activeId.value,
+            },
+          }
+        );
+        this._blocks[blockType] = response.data;
         this.isLoading = false;
         setLoading(false);
         return true;

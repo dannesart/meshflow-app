@@ -58,11 +58,11 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
 const onAdd = async (blockModel: BlockModel) => {
 
     if (await addBlockModel(blockModel)) {
-        setNotification("Block created", "Your block was successfully created", "success");
+        setNotification("Block type created", "Your block type was successfully created", "success");
     } else {
         setNotification(
-            "Block not created",
-            "The block could not be created!",
+            "Block type not created",
+            "The block type could not be created!",
             "fail"
         )
     }

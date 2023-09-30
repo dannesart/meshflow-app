@@ -1,11 +1,10 @@
 <template>
     <UIForm :class="'flex flex-col gap-6'" name="new-data-form">
 
-        <ModulesInput v-for="field in fields" :required="field.validations.required" :type="field.type.id" :max="50"
+        <ModulesInput v-for="field in fields" :required="field.validations.required" :type="field.type.id"
             :value="newDataForm[field.id]" @valueUpdate="$event => valueChange($event, field.id)">
             {{ field.name }}
         </ModulesInput>
-
 
         <div name="new-block-error" class="flex gap-4 bg-red-50 p-4 rounded-lg mt-6" v-for="error in errors">
             <span class="font-bold capitalize">
@@ -24,11 +23,7 @@ import { useProjectStore } from '~~/stores/projects';
 const { fields, serviceType } = defineProps(['fields', 'serviceType']);
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
-const openBlock = ref();
 
-const toggleOpenBlock = (name: string) => {
-    openBlock.value = openBlock.value === name ? '' : name;
-}
 
 const newDataForm = ref<any>({
     serviceType,
@@ -38,23 +33,23 @@ const newDataForm = ref<any>({
 const valueChange = (event: string, key: string) => {
     (newDataForm as any).value[key] = event;
     events('valueUpdate', newDataForm.value);
-    validate(newDataForm.value);
-}
-
-
-
-const validate = (newData: any) => {
-
-    const schema = fieldsToSchema(fields || []);
-    const validated = schema.safeParse(newData);
-
-    if (!validated.success) {
-        errors.value = [...validated.error.issues];
-        events('onError', validated.error)
-    } else {
-        errors.value = []
-        events('onValid', validated.data)
+    const isValid = valid.value;
+    if (!isValid.success) {
+        errors.value = [...isValid.error.issues];
+        events('onError', isValid.error)
     }
+    else {
+        errors.value = []
+        events('onValid', isValid.data)
+    }
+}
+const schema = fieldsToSchema(fields || []);
+const valid = computed(() => {
+    const validated = schema.safeParse(newDataForm.value);
+    return validated;
+})
+if (valid.value.success) {
+    events('onValid', valid.value)
 }
 
 </script>

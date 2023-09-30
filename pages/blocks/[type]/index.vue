@@ -21,14 +21,15 @@
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
 
-            <NuxtLink :to="('/blocks/' + type + '/' + item.id)" class="flex-1 max-w-md" v-for="(item, index) in data">
-                <ModulesCard :title="item.title" :body="item.body" @favorite="event => updateFavorite(event, index)">
+            <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md" v-for="(block, index) in blocks">
+                <ModulesCard :title="block.properties.title || block.properties.name" :body="block.properties.description"
+                    @favorite="event => updateFavorite(event, index)">
                 </ModulesCard>
             </NuxtLink>
 
         </div>
 
-        <div class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
+        <div v-if="!blocks.length" class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
             No blocks yet. Create one
             <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
                 button-style="system" label="Add block">
@@ -41,16 +42,43 @@
 </template>
 
 <script setup lang="ts">
-import { z } from 'zod';
+import { storeToRefs } from 'pinia';
 import { useBlocksStore } from '~~/stores/blocks';
 
-
+import { useNotificationStore } from '~~/stores/notifications';
+const notificationsStore = useNotificationStore();
+const { setNotification } = notificationsStore;
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
-const { getBlockModelById } = blockStore;
+const { getBlockModelById, addBlock, fetchBlocks, getBlocksByType } = blockStore;
 const blockType = getBlockModelById(type as string);
 
-const onAdd = () => { }
+const blocks = computed(() => {
+    return getBlocksByType(blockType?.name as string)
+})
+
+
+const onAdd = async (data: any) => {
+
+    console.log("DaTA", data)
+    const { projectId, ...props } = data;
+    const dataToBeSent = {
+        projectId,
+        properties: props,
+        type: blockType?.name
+    }
+    const addedBlock = await addBlock(dataToBeSent);
+    if (addedBlock) {
+        setNotification("Block created", "Your block was successfully created", "success");
+    } else {
+        setNotification(
+            "Block not created",
+            "The block could not be created!",
+            "fail"
+        )
+    }
+
+}
 
 // Fetch data based on type.
 
@@ -74,6 +102,8 @@ const validated = computed(() => {
     const schema = fieldsToSchema(blockType?.fields || []);
     return schema.safeParse(newBlockData.value)
 })
+
+await fetchBlocks(blockType?.name as string);
 
 </script>
 

@@ -3,8 +3,6 @@ import { Block } from "./blocks";
 
 // This is the DB schema. Based on project type
 const BlockDbSchema: Schema<Block> = new Schema({
-  name: String,
-  description: String,
   id: { type: String, unique: true },
   properties: {},
   projectId: { type: Schema.Types.ObjectId, ref: "projects" },
