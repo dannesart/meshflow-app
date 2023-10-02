@@ -4,7 +4,7 @@
         <UIHeadline size="h1">
             Dashboard
         </UIHeadline>
-        <div class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x min-h-[8rem] ">
+        <div class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-[8rem] ">
             <ModulesStat label="Active tasks" :number="allTasks.length"></ModulesStat>
             <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
             <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
