@@ -3,8 +3,8 @@
         class=" flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center relative overflow-hidden"
         :class="getClasses(type, size || 'normal')" :name="name" :disabled="disabled">
         <!-- <UILoader v-if="isLoading"></UILoader> -->
-        <div class="loader" v-if="isLoading"></div>
-        <slot :class={ 'text-transparent': isLoading } />
+        <div class="loader" v-if="isLoading"></div>        
+<slot :class="{ 'text-transparent': isLoading }" />
 
     </button>
 </template>
