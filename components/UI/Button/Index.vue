@@ -1,11 +1,10 @@
 <template>
     <button
         class=" flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center relative overflow-hidden"
-        :class="getClasses(type, size || 'normal'), { 'w-32': isLoading }" :name="name" :disabled="disabled">
+        :class="getClasses(type, size || 'normal')" :name="name" :disabled="disabled">
         <!-- <UILoader v-if="isLoading"></UILoader> -->
-        <p v-if="isLoading" class="h-6 "></p>
         <div class="loader" v-if="isLoading"></div>
-        <slot v-else />
+        <slot :class={ 'text-transparent': isLoading } />
 
     </button>
 </template>
