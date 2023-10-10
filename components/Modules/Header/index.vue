@@ -11,12 +11,12 @@
 
 			<div class="text-xl w-14 h-14 flex justify-center items-center rounded-full relative cursor-pointer hover:shadow-xl"
 				@click="openNotificationMenu"
-				:class="{ 'text-slate-800 bg-slate-100': !notifications, 'text-white bg-pink-500': notifications }"
+				:class="{ 'text-slate-800 bg-slate-100': !nonReadNotifications, 'text-white bg-pink-500': nonReadNotifications }"
 				name="user-info-avatar">
 				<UIIcons name="notifications"></UIIcons>
 				<div class="absolute -top-1 -right-1 bg-white shadow-xl rounded-full text-slate-600 w-6 h-6 flex justify-center items-center text-sm"
-					v-if="notifications">
-					{{ notifications }}</div>
+					v-if="nonReadNotifications">
+					{{ nonReadNotifications }}</div>
 			</div>
 			<UIUserInfo @click="openMenu" :name="data?.user?.name" :image="data?.user?.image" :role="activeProject?.name">
 			</UIUserInfo>
@@ -89,21 +89,21 @@
 					<UIHeadline size="h3">
 						Notifications
 					</UIHeadline>
-					<UIList>
-						<UIListItem :class="'flex-row'">
+					<UIList v-if="notifications.length">
+						<UIListItem :class="'flex-row'" v-for="notification in notifications">
 							<div class="w-10 h-10 rounded-lg bg-red-100 text-pink-500 flex items-center justify-center">
 								<UIIcons name="notifications"></UIIcons>
 							</div>
 							<div class="flex-col gap-3">
-								<UIHeadline size="h4">Title</UIHeadline>
-								<p>Something...</p>
+								<UIHeadline size="h4">{{ notification.title }}</UIHeadline>
+								<p>{{ notification.body }}</p>
 							</div>
 						</UIListItem>
-					</UIList>
 
-					<UIButton :type="'link'">
-						All notifications
-					</UIButton>
+					</UIList>
+					<div v-else class="bg-gray-100 p-6 rounded-lg">
+						No notifications
+					</div>
 				</div>
 				<div class="flex flex-col gap-3 ">
 					<UIButton type="system" @click="closeNotificationMenu" class="md:hidden">Close
@@ -124,6 +124,7 @@ import { useProjectStore } from "~~/stores/projects";
 import { useTasksStore } from "~~/stores/tasks";
 import { useUiStore } from "~~/stores/ui";
 import { useUsersStore } from "~~/stores/users";
+import { useNotificationStore } from "~~/stores/notifications";
 // Check if route contains Id param.
 // Then we know it's not a "root" page. 
 // We can then show back button.
@@ -132,10 +133,12 @@ const projectStore = useProjectStore();
 const tasksStore = useTasksStore();
 const pagesStore = usePagesStore();
 const blocksStore = useBlocksStore();
+const notificationStore = useNotificationStore();
 const uiStore = useUiStore();
 const { setLoading } = uiStore;
 const { status, data, signIn, signOut } = useAuth()
 const { activeId, getProject } = storeToRefs(projectStore);
+const { notifications, nonReadNotifications } = storeToRefs(notificationStore)
 
 const activeProject = computed(() => {
 	return getProject.value(activeId.value || '') as Project;
@@ -183,8 +186,6 @@ const selectProject = async (projectId: string) => {
 	setLoading(false);
 
 }
-
-const notifications = 0;
 
 const logout = async () => {
 	// navigateTo('/')

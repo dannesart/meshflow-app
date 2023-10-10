@@ -13,6 +13,7 @@ export const useNotificationStore = defineStore("NotificationStore", {
   getters: {
     notifications: (state) => state._notifications as TNotification[],
     notification: (state) => state._notification as TNotification | null,
+    nonReadNotifications: (state) => state._notifications.length,
   },
   actions: {
     setNotifications(notifications: TNotification[]) {

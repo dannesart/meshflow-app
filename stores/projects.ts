@@ -3,15 +3,34 @@ import { defineStore } from "pinia";
 import { Project } from "~~/models/project";
 import { useRuntimeConfig } from "#app";
 
+type License = {
+  id: string;
+  created: Date;
+  valid: Date;
+  tier: number;
+  organisation?: string;
+};
+
 type TProjectsState = {
   _activeProjectId: string | null;
   _projects: Array<Project>;
+  _license: License;
 };
 
 const ACTIVE_PROJET_ID_KEY = "ACTIVE_PROJET_ID";
 
 export const useProjectStore = defineStore("ProjectsStore", {
-  state: () => <TProjectsState>{ _activeProjectId: null, _projects: [] },
+  state: () =>
+    <TProjectsState>{
+      _activeProjectId: null,
+      _projects: [],
+      _license: {
+        id: "0",
+        created: new Date("2023-01-01"),
+        valid: new Date("2070-01-01"),
+        tier: 0,
+      },
+    },
   getters: {
     activeId: (state) => state._activeProjectId,
     projects: (state) => state._projects as Array<Project>,
