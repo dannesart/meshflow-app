@@ -3,7 +3,7 @@
     <UIHeadline size="h1"> Dashboard </UIHeadline>
     <div
       class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-[8rem]">
-      <ModulesStat label="Active tasks" :number="allTasks.length"></ModulesStat>
+      <ModulesStat label="Active tasks" :number="amountActiveTasks"></ModulesStat>
       <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
       <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
       <ModulesStat label="Rules" :number="rules"></ModulesStat>
@@ -82,7 +82,7 @@ const { setNotification } = notificationsStore;
 const { comments } = storeToRefs(useCommentsStore());
 const tasksStore = useTasksStore();
 const { addTask } = tasksStore;
-const { latest, allTasks } = storeToRefs(tasksStore);
+const { latest, allTasks, amountActiveTasks } = storeToRefs(tasksStore);
 const { pages } = storeToRefs(usePagesStore());
 const usersStore = useUsersStore();
 const { usersAmount, allUsers } = storeToRefs(usersStore);

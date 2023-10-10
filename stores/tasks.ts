@@ -12,7 +12,7 @@ type State = {
   errors: string[];
   loading: boolean;
 };
-
+const taskActiveStatuses = ["todo", "doing", "reviewing", "testing"];
 export const useTasksStore = defineStore("TasksStore", {
   state: () =>
     <State>{
@@ -36,6 +36,10 @@ export const useTasksStore = defineStore("TasksStore", {
       return (taskId: string) =>
         state.allTasks.findIndex((task) => task.id === taskId);
     },
+    amountActiveTasks: (state) =>
+      state.allTasks.filter(
+        (task) => taskActiveStatuses.indexOf(task.status) > -1
+      ).length,
     taskById: (state) => {
       return (taskId: string) =>
         state.allTasks.find((task) => task.id === taskId);

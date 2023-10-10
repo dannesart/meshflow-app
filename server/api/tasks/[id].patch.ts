@@ -37,7 +37,6 @@ export default defineEventHandler(async (e) => {
     tags,
     title,
   };
-  debugger;
   const valid = await TaskSchema.safeParse(updatedObject);
   if (valid.success) {
     try {
