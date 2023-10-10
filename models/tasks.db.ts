@@ -8,6 +8,7 @@ const TaskDbSchema: Schema<Task> = new Schema({
   id: { type: String, unique: true },
   deadline: { type: Date },
   projectId: { type: Schema.Types.ObjectId, ref: "projects" },
+  assignedTo: String,
   createdBy: String,
   created: { type: Date, default: Date.now },
   updatedBy: String,

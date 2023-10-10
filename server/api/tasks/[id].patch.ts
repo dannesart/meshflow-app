@@ -37,12 +37,17 @@ export default defineEventHandler(async (e) => {
     tags,
     title,
   };
+  debugger;
   const valid = await TaskSchema.safeParse(updatedObject);
   if (valid.success) {
     try {
-      const taskDoc = TaskModel.findOneAndUpdate({ _id: id }, updatedObject, {
-        upsert: true,
-      });
+      const taskDoc = await TaskModel.findOneAndUpdate(
+        { _id: id },
+        updatedObject,
+        {
+          upsert: true,
+        }
+      );
       return taskDoc;
     } catch (error) {
       return error;

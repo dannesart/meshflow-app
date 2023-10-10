@@ -141,7 +141,7 @@ const handleDelete = async (e: Event) => {
 
 const save = async (e: Event) => {
     e.preventDefault();
-    if (await updateTask(task.value, { ...task })) {
+    if (await updateTask(task.value, { ...task.value })) {
         setNotification(
             "Task updated",
             "The task was successfully updated!",

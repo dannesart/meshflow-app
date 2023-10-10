@@ -1,40 +1,28 @@
 <template>
-    <svg :width="width" :height="height" :viewBox="viewBox" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
-        <g fill="none" fill-rule="evenodd">
-            <g transform="translate(1 1)" stroke-width="2">
-                <circle cx="5" cy="50" r="5">
-                    <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear"
-                        repeatCount="indefinite" />
-                    <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear"
-                        repeatCount="indefinite" />
-                </circle>
-                <circle cx="27" cy="5" r="5">
-                    <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5"
-                        calcMode="linear" repeatCount="indefinite" />
-                    <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27"
-                        calcMode="linear" repeatCount="indefinite" />
-                </circle>
-                <circle cx="49" cy="50" r="5">
-                    <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear"
-                        repeatCount="indefinite" />
-                    <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49"
-                        calcMode="linear" repeatCount="indefinite" />
-                </circle>
-            </g>
-        </g>
+    <svg viewBox="0 0 36 36" class="w-14 aspect-square animated">
+        <path class="stroke-blue-200" d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="4" />
+        <path d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" :class="'stroke-blue-500'" stroke-width="4" stroke-linecap="round"
+            :stroke-dasharray="'60, 100'" />
     </svg>
 </template>
 
 <script setup lang=ts>
 
-const { size }: { size?: string } = defineProps(['size']);
-
-const SIZES: { [key: string]: string } = {
-    base: '24',
-    lg: '40'
-}
-const width = SIZES[size || 'base'];
-const height = SIZES[size || 'base'];
-const viewBox = `0 0 57 57`
 
 </script>
+
+<style scoped>
+.animated {
+    animation: spinn 0.6s infinite linear;
+}
+
+@keyframes spinn {
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>

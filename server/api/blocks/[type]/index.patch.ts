@@ -26,10 +26,14 @@ export default defineEventHandler(async (e) => {
   //   const valid = await PageSchema.safeParse(updatedObject);
   //   if (valid.success) {
   try {
-    const taskDoc = ModelDbModel.findOneAndUpdate({ _id: id }, updatedObject, {
-      upsert: true,
-    });
-    return taskDoc;
+    const blockDoc = await ModelDbModel.findOneAndUpdate(
+      { _id: id },
+      updatedObject,
+      {
+        upsert: true,
+      }
+    );
+    return blockDoc;
   } catch (error) {
     return error;
   }

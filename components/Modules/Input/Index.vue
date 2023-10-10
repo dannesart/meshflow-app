@@ -106,8 +106,8 @@
                 <div v-if="selectedUser">
                     <UIUserTag :id="selectedUser"></UIUserTag>
                 </div>
-                <input type="search" placeholder="Select user" v-else
-                    class="bg-transparent cursor-pointer outline-none  absolute inset-0 py-3 px-5" />
+                <div v-else class="bg-transparent cursor-pointer outline-none  absolute inset-0 py-3 px-5">
+                    Select user</div>
                 <div class="z-10 absolute right-5" tabindex="0">
                     <UIIcons :name="isToggled ? 'chevron-up' : 'chevron-down'">
                     </UIIcons>
@@ -208,6 +208,7 @@ const selectMultiOption = (e: Event, option: string) => {
 const selectUserOption = (e: Event, option: any) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log(option.user_id);
     selectedUser.value = option.user_id;
     eventEmit('valueUpdate', option.user_id);
     isToggled.value = false;
@@ -239,4 +240,10 @@ const setTaggingValue = (tagValue: string) => {
 }
 
 
+</script>
+
+<script lang="ts">
+export default defineComponent({
+    name: 'Input'
+})
 </script>

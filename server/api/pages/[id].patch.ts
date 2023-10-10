@@ -27,10 +27,14 @@ export default defineEventHandler(async (e) => {
   //   const valid = await PageSchema.safeParse(updatedObject);
   //   if (valid.success) {
   try {
-    const taskDoc = PageModel.findOneAndUpdate({ _id: id }, updatedObject, {
-      upsert: true,
-    });
-    return taskDoc;
+    const pageDoc = await PageModel.findOneAndUpdate(
+      { _id: id },
+      updatedObject,
+      {
+        upsert: true,
+      }
+    );
+    return pageDoc;
   } catch (error) {
     return error;
   }
