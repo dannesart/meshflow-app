@@ -6,6 +6,7 @@ import { Project } from "~~/models/project";
 
 type State = {
   token: string | null;
+  loading: boolean;
   users: { [id: string]: any };
 };
 
@@ -13,6 +14,7 @@ export const useUsersStore = defineStore("UsersStore", {
   state: () =>
     <State>{
       token: null,
+      loading: true,
       users: {},
     },
   getters: {
@@ -26,6 +28,7 @@ export const useUsersStore = defineStore("UsersStore", {
         return state.users[email];
       };
     },
+    isLoading: (state) => state.loading,
     usersAmount: (state) => {
       return Object.keys(state.users).length;
     },
@@ -95,6 +98,7 @@ export const useUsersStore = defineStore("UsersStore", {
     async fetchUserMap() {
       try {
         // const token = await this.getToken();
+        this.loading = true;
         const projectStore = useProjectStore();
         const { activeId, getProject } = projectStore;
         const activeProject = getProject(activeId || "") as Project;
@@ -104,6 +108,7 @@ export const useUsersStore = defineStore("UsersStore", {
             await this.fetchUserById(userIds[i]);
           }
         }
+        this.loading = false;
 
         // var options = {
         //   method: "GET",
@@ -120,6 +125,7 @@ export const useUsersStore = defineStore("UsersStore", {
         // }
       } catch (error) {
         //TODO: Handle error
+        this.loading = false;
       }
     },
   },
