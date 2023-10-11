@@ -20,17 +20,10 @@ export default defineNuxtConfig({
   ],
   auth: {
     origin: process.env.ORIGIN,
-    baseURL: process.env.ORIGIN,
-    provider: {
-      type: "authjs",
-      defaultProvider: "auth0",
-    },
-    globalAppMiddleware: {
-      isEnabled: true,
-    },
+    enableGlobalAppMiddleware: true,
+    defaultProvider: "auth0",
   },
   runtimeConfig: {
-    AUTH_ORIGIN: process.env.AUTH_ORIGIN,
     REDIRECT_URI: process.env.REDIRECT_URI,
     mongoUrl: process.env.MONGO_URL,
     clientId: process.env.AUTH0_CLIENT_ID,

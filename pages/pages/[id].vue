@@ -14,6 +14,8 @@
                 {{ page.status }}
             </div>
 
+
+
             <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
                 Slug
             </ModulesInput>
@@ -74,17 +76,14 @@ import { usePagesStore } from '~~/stores/pages';
 import { Page } from '~~/models/page';
 import { storeToRefs } from 'pinia';
 import { useNotificationStore } from '~~/stores/notifications';
-import { useBlocksStore } from '~~/stores/blocks';
 
 const { id } = useRoute().params;
 const router = useRouter();
 const pageStore = usePagesStore();
 const notificationsStore = useNotificationStore();
-const blocksStore = useBlocksStore();
 const { loading } = storeToRefs(pageStore)
 const { getPageById, updatePage, deletePage } = pageStore
 const { setNotification } = notificationsStore;
-const { fetchBlockModels } = blocksStore;
 const page = ref<Page>(getPageById(id as string) as Page);
 const showConfirm = ref(false);
 
@@ -145,7 +144,7 @@ const savePage = async () => {
     }
 
 }
-await fetchBlockModels();
+
     // Fetch data based on id.
 
     // Show data.

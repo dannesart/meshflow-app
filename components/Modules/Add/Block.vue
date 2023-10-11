@@ -26,25 +26,23 @@
         <p>
             Pick from the list of block types
         </p>
-        <div v-for="blockModel of blockModels"
+        <div v-for="block of blocks"
             class="p-5 px-7 rounded-xl gap-6 shadow-xl flex flex-col w-full hover:shadow-2xl cursor-pointer">
-            <div @click="toggleOpenBlock(blockModel.name)" class="w-full flex ">
+            <div @click="toggleOpenBlock(block.name)" class="w-full flex ">
                 <div class="flex flex-col">
                     <UIHeadline :size="'h3'">
-                        {{ blockModel.name }}
+                        {{ block.name }}
                     </UIHeadline>
                     <p class="text-sm text-gray-400">
-                        {{ blockModel.description }}
+                        {{ block.description }}
                     </p>
                 </div>
                 <div class="ml-auto mr-0">
-                    <UIIcons :name="openBlock === blockModel.name ? 'chevron-up' : 'chevron-down'"></UIIcons>
+                    <UIIcons :name="openBlock === block.name ? 'chevron-up' : 'chevron-down'"></UIIcons>
                 </div>
             </div>
-            <div class="p-3" v-if="openBlock === blockModel.name">
-                <div v-for="block in getBlocksByType(blockModel.name)">
-                    {{ block.properties.title || block.properties.name }}
-                </div>
+            <div class="p-3" v-if="openBlock === block.name">
+                Hellloooooo
             </div>
         </div>
     </div>
@@ -57,16 +55,13 @@ import { useBlocksStore } from '~~/stores/blocks';
 import { useProjectStore } from '~~/stores/projects';
 
 const blockStore = useBlocksStore();
-const { fetchBlocks } = blockStore;
-const { blocks, blockModels, getBlocksByType } = storeToRefs(blockStore);
+const { blocks } = storeToRefs(blockStore);
 const { select } = defineProps(['select']);
 const events = defineEmits(['valueUpdate', 'onValid', 'onError'])
 const errors = ref();
 const openBlock = ref();
 
-const toggleOpenBlock = async (name: string) => {
-    if (!getBlocksByType.value(name)) await fetchBlocks(name);
-
+const toggleOpenBlock = (name: string) => {
     openBlock.value = openBlock.value === name ? '' : name;
 }
 

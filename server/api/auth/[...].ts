@@ -22,15 +22,15 @@ export default NuxtAuthHandler({
     }),
   ],
   cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
+    // pkceCodeVerifier: {
+    //   name: "next-auth.pkce.code_verifier",
+    //   options: {
+    //     httpOnly: true,
+    //     sameSite: "lax",
+    //     path: "/",
+    //     secure: true,
+    //   },
+    // },
     state: {
       name: `next-auth.state`,
       options: {
