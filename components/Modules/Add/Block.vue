@@ -41,10 +41,12 @@
                     <UIIcons :name="openBlock === blockModel.name ? 'chevron-up' : 'chevron-down'"></UIIcons>
                 </div>
             </div>
-            <div class="p-3" v-if="openBlock === blockModel.name">
-                <div v-for="block in getBlocksByType(blockModel.name)">
-                    {{ block.properties.title || block.properties.name }}
-                </div>
+            <div class="p-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" v-if="openBlock === blockModel.name">
+                <ModulesCard @click="blockSelect(block.id as string)"
+                    :title="block.properties.title || block.properties.name" :favorite="false"
+                    v-for="block in getBlocksByType(blockModel.name)">
+
+                </ModulesCard>
             </div>
         </div>
     </div>
@@ -77,6 +79,10 @@ const newBlockForm = ref({
     serviceType: 'block',
     projectId: useProjectStore().activeId
 })
+
+const blockSelect = (id: string) => {
+    events('onValid', id)
+}
 
 const valueChange = (event: string, key: string) => {
     (newBlockForm as any).value[key] = event;

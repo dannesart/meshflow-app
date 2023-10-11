@@ -18,25 +18,27 @@
                 label="Add block">
             </ModulesAdd>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            <ClientOnly>
+
+        <ClientOnly>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                 <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md"
                     v-for="(block, index) in blocks">
                     <ModulesCard :title="block.properties.title || block.properties.name"
                         :body="block.properties.description" @favorite="event => updateFavorite(event, index)">
                     </ModulesCard>
                 </NuxtLink>
-                <UIEmpty v-if="!blocks.length">
-                    No blocks yet. Create one
-                    <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
-                        button-style="system" label="Add block">
-                    </ModulesAdd>
-                </UIEmpty>
-            </ClientOnly>
-            <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
-                <UILoader></UILoader>
             </div>
+            <UIEmpty v-if="!blocks.length">
+                No blocks yet. Create one
+                <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
+                    button-style="system" label="Add block">
+                </ModulesAdd>
+            </UIEmpty>
+        </ClientOnly>
+        <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <UILoader></UILoader>
         </div>
+
 
 
 
