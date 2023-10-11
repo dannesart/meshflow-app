@@ -5,13 +5,7 @@ export default defineNuxtConfig({
   imports: {},
 
   modules: [
-    [
-      "@sidebase/nuxt-auth",
-      {
-        enableGlobalAppMiddleware: true,
-        defaultProvider: "auth0",
-      },
-    ],
+    "@sidebase/nuxt-auth",
     "@nuxtjs/tailwindcss",
     [
       "@pinia/nuxt",
@@ -24,7 +18,13 @@ export default defineNuxtConfig({
       },
     ],
   ],
+  auth: {
+    origin: process.env.ORIGIN || "http://localhost:3000",
+    enableGlobalAppMiddleware: true,
+    defaultProvider: "auth0",
+  },
   runtimeConfig: {
+    REDIRECT_URI: process.env.REDIRECT_URI,
     mongoUrl: process.env.MONGO_URL,
     clientId: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,

@@ -21,7 +21,12 @@
                     button-style="system" label="Add block type">
                 </ModulesAdd>
             </UIEmpty>
+
         </ClientOnly>
+
+        <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <UILoader></UILoader>
+        </div>
 
 
     </NuxtLayout>

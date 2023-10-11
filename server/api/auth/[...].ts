@@ -1,36 +1,36 @@
 import { NuxtAuthHandler } from "#auth";
-import Providers from "next-auth/providers/auth0";
+import auth0 from "next-auth/providers/auth0";
 
 const config = useRuntimeConfig();
 
 export default NuxtAuthHandler({
+  secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
   providers: [
-    Providers.default({
+    auth0.default({
       clientId:
-        config.clientId ||
-        process.env.AUTH0_CLIENT_ID ||
-        "wYKLHxV9LPWMzvwZmmro7wemafsO4dsU",
+        // config.clientId ||
+        // process.env.AUTH0_CLIENT_ID ||
+        "Y6oJo7VaFIEFvSyYh3bz34Cf36zNhroO",
       clientSecret:
-        config.clientSecret ||
-        process.env.AUTH0_CLIENT_SECRET ||
-        "GrNNZ7EsS-N9nS_G7wkaFtEtkqTvDTHsjo-13GBuJFa0Cnt40MmcOf5hVk--SkV9",
+        // config.clientSecret ||
+        // process.env.AUTH0_CLIENT_SECRET ||
+        "XYKzhoaWsG7r8nmGKFkzz9Eh4yuK54xyWpmakbiqbubBKuOOPnXZWNQWycnotaf-",
       issuer:
-        config.issuer ||
-        process.env.AUTH0_ISSUER ||
+        // config.issuer ||
+        // process.env.AUTH0_ISSUER ||
         "https://meshflow.eu.auth0.com",
     }),
   ],
-
   cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: true,
-      },
-    },
+    // pkceCodeVerifier: {
+    //   name: "next-auth.pkce.code_verifier",
+    //   options: {
+    //     httpOnly: true,
+    //     sameSite: "lax",
+    //     path: "/",
+    //     secure: true,
+    //   },
+    // },
     state: {
       name: `next-auth.state`,
       options: {
@@ -42,6 +42,4 @@ export default NuxtAuthHandler({
       },
     },
   },
-
-  secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
 });

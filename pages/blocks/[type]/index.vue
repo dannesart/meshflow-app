@@ -1,7 +1,6 @@
 <template>
     <NuxtLayout>
         <UIHeadline size="h1">
-
             {{ blockType?.name }}
         </UIHeadline>
         <div class="flex gap-6">
@@ -20,20 +19,23 @@
             </ModulesAdd>
         </div>
         <div class="flex gap-6 flex-col md:flex-row">
-
-            <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md" v-for="(block, index) in blocks">
-                <ModulesCard :title="block.properties.title || block.properties.name" :body="block.properties.description"
-                    @favorite="event => updateFavorite(event, index)">
-                </ModulesCard>
-            </NuxtLink>
-
-        </div>
-
-        <div v-if="!blocks.length" class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between">
-            No blocks yet. Create one
-            <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
-                button-style="system" label="Add block">
-            </ModulesAdd>
+            <ClientOnly>
+                <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md"
+                    v-for="(block, index) in blocks">
+                    <ModulesCard :title="block.properties.title || block.properties.name"
+                        :body="block.properties.description" @favorite="event => updateFavorite(event, index)">
+                    </ModulesCard>
+                </NuxtLink>
+                <UIEmpty v-if="!blocks.length">
+                    No blocks yet. Create one
+                    <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
+                        button-style="system" label="Add block">
+                    </ModulesAdd>
+                </UIEmpty>
+            </ClientOnly>
+            <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+                <UILoader></UILoader>
+            </div>
         </div>
 
 
@@ -51,10 +53,11 @@ const { setNotification } = notificationsStore;
 const { type } = useRoute().params;
 const blockStore = useBlocksStore();
 const { getBlockModelById, addBlock, fetchBlocks, getBlocksByType } = blockStore;
-const blockType = getBlockModelById(type as string);
+const { loading } = storeToRefs(blockStore)
 
+const blockType = computed(() => getBlockModelById(type as string));
 const blocks = computed(() => {
-    return getBlocksByType(blockType?.name as string)
+    return getBlocksByType(blockType.value?.name as string)
 })
 
 
@@ -99,11 +102,11 @@ const data = ref([])
 const newBlockData = ref({});
 
 const validated = computed(() => {
-    const schema = fieldsToSchema(blockType?.fields || []);
+    const schema = fieldsToSchema(blockType.value?.fields || []);
     return schema.safeParse(newBlockData.value)
 })
+await fetchBlocks(blockType.value?.name as string);
 
-await fetchBlocks(blockType?.name as string);
 
 </script>
 

@@ -17,6 +17,8 @@ declare module 'nuxt/schema' {
       cdnURL: string,
    },
 
+   REDIRECT_URI: string,
+
    mongoUrl: string,
 
    clientId: string,
@@ -32,7 +34,7 @@ declare module 'nuxt/schema' {
    auth: {
       isEnabled: boolean,
 
-      origin: any,
+      origin: string,
 
       basePath: string,
 
@@ -63,7 +65,7 @@ declare module 'nuxt/schema' {
    auth: {
       isEnabled: boolean,
 
-      origin: any,
+      origin: string,
 
       basePath: string,
 
