@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     ],
   ],
   auth: {
-    origin: process.env.ORIGIN || "http://localhost:3000",
+    origin: process.env.ORIGIN,
     enableGlobalAppMiddleware: true,
     defaultProvider: "auth0",
   },
