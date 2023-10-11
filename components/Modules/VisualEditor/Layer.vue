@@ -1,7 +1,7 @@
 <template>
     <div name="layer" :class="{
         [cssClasses(layer.type.defaultClasses, layer.classes)]: true,
-        'hover:border-cyan-600': layerStore.currentLayer?.name !== layer.name,
+        'hover:border-sky-600': layerStore.currentLayer?.name !== layer.name,
         'border-emerald-300': layerStore.currentLayer?.name === layer.name,
         'border-none': !layerStore.showingLayerBorders,
         'border-white': layerStore.currentLayer?.name !== layer.name

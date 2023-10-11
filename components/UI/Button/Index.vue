@@ -27,8 +27,8 @@ const classes: ClassType = {
         inverted: 'bg-red-500 text-white px-6 py-3 rounded-lg'
     },
     add: {
-        normal: "bg-cyan-600 text-white px-6 py-3 rounded-lg",
-        small: "bg-cyan-600 text-white px-4 py-2 rounded-lg",
+        normal: "bg-sky-600 text-white px-6 py-3 rounded-lg",
+        small: "bg-sky-600 text-white px-4 py-2 rounded-lg",
     },
     love: {
         normal: "text-emerald-500 bg-emerald-200 px-6 py-3 rounded-lg",
@@ -52,7 +52,7 @@ const classes: ClassType = {
         small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
     },
     link: {
-        normal: 'text-cyan-700 hover:shadow-none hover:text-cyan-500'
+        normal: 'text-sky-700 hover:shadow-none hover:text-sky-500'
     },
     icon: {
         normal: "bg-slate-200 text-slate-700 p-3 rounded-lg",

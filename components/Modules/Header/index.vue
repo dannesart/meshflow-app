@@ -11,7 +11,7 @@
 
 			<div class="text-xl w-14 h-14 flex justify-center items-center rounded-full relative cursor-pointer hover:shadow-xl"
 				@click="openNotificationMenu"
-				:class="{ 'text-slate-800 bg-slate-100': !nonReadNotifications, 'text-white bg-pink-500': nonReadNotifications }"
+				:class="{ 'text-slate-800 bg-slate-100': !nonReadNotifications, 'text-white bg-sky-500': nonReadNotifications }"
 				name="user-info-avatar">
 				<UIIcons name="notifications"></UIIcons>
 				<div class="absolute -top-1 -right-1 bg-white shadow-xl rounded-full text-slate-600 w-6 h-6 flex justify-center items-center text-sm"
@@ -59,7 +59,7 @@
 						</UIListItem>
 					</UIList>
 
-					<NuxtLink class="text-cyan-600 text-right cursor-pointer" to="/projects/create"
+					<NuxtLink class="text-sky-600 text-right cursor-pointer" to="/projects/create"
 						v-if="projectStore.projects.length < MAX_PROJECTS">
 						Create new project
 					</NuxtLink>
@@ -68,7 +68,7 @@
 				<div class="flex flex-col gap-3">
 
 					<NuxtLink
-						class="text-cyan-600 text-center border border-cyan-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
+						class="text-sky-600 text-center border border-sky-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
 						to="/user">
 						Go to profile
 					</NuxtLink>
@@ -91,7 +91,7 @@
 					</UIHeadline>
 					<UIList v-if="notifications.length">
 						<UIListItem :class="'flex-row'" v-for="notification in notifications">
-							<div class="w-10 h-10 rounded-lg bg-red-100 text-pink-500 flex items-center justify-center">
+							<div class="w-10 h-10 rounded-lg bg-red-100 text-sky-500 flex items-center justify-center">
 								<UIIcons name="notifications"></UIIcons>
 							</div>
 							<div class="flex-col gap-3">

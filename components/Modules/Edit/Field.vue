@@ -30,7 +30,7 @@
                 Limit character count
             </ModulesInput>
             <div class="flex gap-4 items-end" v-if="field.validations.minMax.use"
-                :class="{ 'bg-cyan-50 p-6 rounded-xl': field.validations.minMax.use }">
+                :class="{ 'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use }">
                 <ModulesInput type="text" :value="field.validations.minMax.min" @value-update="e => handleMinMax(e, true)">
                     Min
                 </ModulesInput>

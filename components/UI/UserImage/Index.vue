@@ -1,6 +1,6 @@
 <template>
     <div :class="{ 'w-14 h-14': size !== 'small' && size !== 'large', 'w-20 h-20': size === 'large', 'w-8 h-8': size === 'small' }"
-        class="text-white text-xl flex justify-center items-center uppercase rounded-full bg-cyan-600 hover:shadow-xl"
+        class="text-white text-xl flex justify-center items-center uppercase rounded-full bg-sky-600 hover:shadow-xl"
         name="user-info-avatar" v-if="name && !image">
         {{ nameToShort(name) }}
     </div>

@@ -56,7 +56,7 @@
         </div>
 
         <div v-if="type === 'radio'" class="flex gap-2 flex-wrap" :name="name">
-            <div v-for="   v    of    values   " :class="{ 'bg-cyan-400 text-white': v === value }"
+            <div v-for="   v    of    values   " :class="{ 'bg-sky-400 text-white': v === value }"
                 class="px-3 py-1 rounded-lg bg-slate-100 justify-center items-center flex cursor-pointer"
                 @click=" updateRadio(v)">
                 {{ v }}

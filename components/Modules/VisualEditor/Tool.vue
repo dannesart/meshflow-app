@@ -13,7 +13,7 @@
                 <p class="flex-none w-full text-xs text-slate-300">{{ label }}</p>
                 <div class="flex gap-3">
                     <div v-for="color in COLORS" class="w-7 h-7 shadow-lg rounded-full cursor-pointer"
-                        :class="{ 'border-2 border-cyan-500': ((type === 'text-color' ? 'text-' : 'bg-') + color) === value, [`bg-${color}`]: true }"
+                        :class="{ 'border-2 border-sky-500': ((type === 'text-color' ? 'text-' : 'bg-') + color) === value, [`bg-${color}`]: true }"
                         @click="pickColor(color)">
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         class="flex gap-3 cursor-pointer items-center text-sm capitalize"
                         @click="pickRadioValue(radioValue, label)">
                         <div class="w-7 h-7 shadow-lg rounded-full flex items-center justify-center">
-                            <div name="radio-value-selected" class="w-4 h-4 bg-cyan-600 rounded-full"
+                            <div name="radio-value-selected" class="w-4 h-4 bg-sky-600 rounded-full"
                                 v-if="radioValue === value"></div>
                         </div>
                         {{ radioValue }}

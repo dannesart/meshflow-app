@@ -58,7 +58,7 @@ const denyEdit = ($event: Event) => {
     stopEditField($event);
 }
 
-const editableCssClasses = 'hover:bg-pink-100 cursor-text p-0 appearance-none outline-none bg-transparent';
+const editableCssClasses = 'hover:bg-sky-100 cursor-text p-0 appearance-none outline-none bg-transparent';
 const cssClasses: { [key: string]: string } = {
     h1: `text-5xl leading-10 font-bold text-sky-900 first-letter:capitalize ${editable ? editableCssClasses : ''}`,
     h2: `text-slate-500 text-2xl first-letter:capitalize ${editable ? editableCssClasses : ''}`,
