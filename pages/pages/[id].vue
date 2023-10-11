@@ -10,11 +10,9 @@
 
             <div class=" cursor-pointer hover:shadow-md text-sm capitalize  p-3 py-1 rounded-full w-max flex-none"
                 @click="changeStatus()"
-                :class="{ 'bg-red-100 text-red-400': page.status === 'private', 'bg-green-100 text-green-400': page.status === 'public' }">
+                :class="{ 'bg-red-100 text-red-400': page.status === 'private', 'bg-emerald-100 text-emerald-400': page.status === 'public' }">
                 {{ page.status }}
             </div>
-
-
 
             <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
                 Slug
@@ -76,14 +74,17 @@ import { usePagesStore } from '~~/stores/pages';
 import { Page } from '~~/models/page';
 import { storeToRefs } from 'pinia';
 import { useNotificationStore } from '~~/stores/notifications';
+import { useBlocksStore } from '~~/stores/blocks';
 
 const { id } = useRoute().params;
 const router = useRouter();
 const pageStore = usePagesStore();
 const notificationsStore = useNotificationStore();
+const blocksStore = useBlocksStore();
 const { loading } = storeToRefs(pageStore)
 const { getPageById, updatePage, deletePage } = pageStore
 const { setNotification } = notificationsStore;
+const { fetchBlockModels } = blocksStore;
 const page = ref<Page>(getPageById(id as string) as Page);
 const showConfirm = ref(false);
 
@@ -144,7 +145,7 @@ const savePage = async () => {
     }
 
 }
-
+await fetchBlockModels();
     // Fetch data based on id.
 
     // Show data.

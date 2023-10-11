@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import Favorite from "./index.vue";
 
-const activeClass = "bg-green-200";
+const activeClass = "bg-emerald-200";
 
 describe("Favorite", () => {
   it("Should render a component with icon", () => {

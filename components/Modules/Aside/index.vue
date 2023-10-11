@@ -2,7 +2,7 @@
     <aside
         class="h-full py-4 px-6 lg:px-10 flex flex-col gap-8 transition-transform z-40 bg-white md:inset-auto md:relative"
         v-bind:class="{ 'absolute inset-0 ': menuState }">
-        <div class="w-3/4 text-green-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14">
+        <div class="w-3/4 text-emerald-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14">
             <NuxtLink to="/" class="flex gap-6 items-center">
 
                 <UILogo :size="50"></UILogo>
@@ -22,9 +22,9 @@
                 <ul class="flex flex-col gap-1">
                     <li v-for="item in group.items">
                         <NuxtLink :to=item.route v-if="(item.webOnly && settingsStore.isWeb) || !item.webOnly"
-                            class="text-2xl md:text-lg text-gray-800 rounded-lg hover:bg-green-100 hover:text-green-700 py-3 px-5 flex gap-3 items-center"
-                            activeClass="font-bold text-green-700 bg-green-100"
-                            router-link-active="font-bold text-green-700 bg-green-100">
+                            class="text-2xl md:text-lg text-gray-800 rounded-lg hover:bg-emerald-100 hover:text-emerald-700 py-3 px-5 flex gap-3 items-center"
+                            activeClass="font-bold text-emerald-700 bg-emerald-100"
+                            router-link-active="font-bold text-emerald-700 bg-emerald-100">
                             <UIIcons :name="item.icon" v-if="item.icon && showIcons"></UIIcons>
                             {{ item.label }}
 

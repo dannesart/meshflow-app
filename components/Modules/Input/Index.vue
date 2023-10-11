@@ -47,16 +47,16 @@
         </div>
 
         <div v-if="type === 'switch'" :name="name" class="w-14 h-8 cursor-pointer rounded-full transition-all relative p-1"
-            :class="{ 'bg-gray-200': !value, 'bg-green-200': value }">
+            :class="{ 'bg-gray-200': !value, 'bg-emerald-200': value }">
 
             <div class="absolute h-6 w-6 top-1 rounded-full transition-all "
-                :class="{ 'bg-gray-600 left-1': !value, 'bg-green-600  left-full -translate-x-full -ml-1': value }">
+                :class="{ 'bg-gray-600 left-1': !value, 'bg-emerald-600  left-full -translate-x-full -ml-1': value }">
             </div>
 
         </div>
 
         <div v-if="type === 'radio'" class="flex gap-2 flex-wrap" :name="name">
-            <div v-for="   v    of    values   " :class="{ 'bg-blue-400 text-white': v === value }"
+            <div v-for="   v    of    values   " :class="{ 'bg-cyan-400 text-white': v === value }"
                 class="px-3 py-1 rounded-lg bg-slate-100 justify-center items-center flex cursor-pointer"
                 @click=" updateRadio(v)">
                 {{ v }}

@@ -6,7 +6,7 @@
         <input type="text" ref="fieldRef" :class="cssClasses[size]" :value="valueRef" @keyup.enter="acceptEdit"
             @blur="acceptEdit" @input="valueRef = $event.target?.value" />
         <!-- <div class="absolute right-0 top-0 bottom-0 items-center justify-center flex gap-2">
-            <button @click="acceptEdit" class="aspect-square h-8 rounded-lg bg-green-200 flex justify-center items-center">
+            <button @click="acceptEdit" class="aspect-square h-8 rounded-lg bg-emerald-200 flex justify-center items-center">
                 <UIIcons :name="'check'"></UIIcons>
             </button>
             <button @click="denyEdit" class="aspect-square h-8 rounded-lg bg-red-200 flex justify-center items-center">

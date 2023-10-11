@@ -3,7 +3,7 @@
         class=" flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center relative overflow-hidden"
         :class="getClasses(type, size || 'normal'), { 'text-transparent': isLoading }" :name="name" :disabled="disabled">
         <!-- <UILoader v-if="isLoading"></UILoader> -->
-        <div class="loader" v-if="isLoading"></div>   
+        <div class="loader" v-if="isLoading"></div>
         <slot />
 
     </button>
@@ -27,13 +27,13 @@ const classes: ClassType = {
         inverted: 'bg-red-500 text-white px-6 py-3 rounded-lg'
     },
     add: {
-        normal: "bg-blue-600 text-white px-6 py-3 rounded-lg",
-        small: "bg-blue-600 text-white px-4 py-2 rounded-lg",
+        normal: "bg-cyan-600 text-white px-6 py-3 rounded-lg",
+        small: "bg-cyan-600 text-white px-4 py-2 rounded-lg",
     },
     love: {
-        normal: "text-green-500 bg-green-200 px-6 py-3 rounded-lg",
-        round: "bg-green-200 text-green-500 p-3 rounded-full",
-        small: "bg-green-200 text-green-500 px-4 py-2 rounded-lg",
+        normal: "text-emerald-500 bg-emerald-200 px-6 py-3 rounded-lg",
+        round: "bg-emerald-200 text-emerald-500 p-3 rounded-full",
+        small: "bg-emerald-200 text-emerald-500 px-4 py-2 rounded-lg",
     },
     dead: {
         normal: "text-gray-500 bg-gray-200 px-6 py-3 rounded-lg",
@@ -52,7 +52,7 @@ const classes: ClassType = {
         small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
     },
     link: {
-        normal: 'text-blue-700 hover:shadow-none hover:text-blue-500'
+        normal: 'text-cyan-700 hover:shadow-none hover:text-cyan-500'
     },
     icon: {
         normal: "bg-slate-200 text-slate-700 p-3 rounded-lg",

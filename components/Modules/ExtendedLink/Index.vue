@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="" :class="{ 'absolute top-0 right-0': style === 'small' }">
-            <button class="w-8 h-8 bg-blue-600 flex justify-center items-center rounded-full text-white">
+            <button class="w-8 h-8 bg-cyan-600 flex justify-center items-center rounded-full text-white">
                 <UIIcons name="arrow-right"></UIIcons>
 
             </button>

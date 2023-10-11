@@ -15,14 +15,14 @@
 
 const { min, max, value } = defineProps(['min', 'max', 'value'])
 const percent = Math.floor((value / max) * 100);
-const dasharray = computed(() => { 
+const dasharray = computed(() => {
     return `${percent || 0}, 100`
 });
 
 const getColor = () => {
     if (percent >= 80) return 'stroke-red-500';
     if (percent >= 50) return 'stroke-orange-500';
-    return 'stroke-green-500';
+    return 'stroke-emerald-500';
 }
 
 </script>

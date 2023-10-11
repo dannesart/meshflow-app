@@ -59,7 +59,7 @@
 						</UIListItem>
 					</UIList>
 
-					<NuxtLink class="text-blue-600 text-right cursor-pointer" to="/projects/create"
+					<NuxtLink class="text-cyan-600 text-right cursor-pointer" to="/projects/create"
 						v-if="projectStore.projects.length < MAX_PROJECTS">
 						Create new project
 					</NuxtLink>
@@ -68,7 +68,7 @@
 				<div class="flex flex-col gap-3">
 
 					<NuxtLink
-						class="text-blue-600 text-center border border-blue-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
+						class="text-cyan-600 text-center border border-cyan-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
 						to="/user">
 						Go to profile
 					</NuxtLink>

@@ -12,7 +12,7 @@
             </UIListItem>
             <UIListItem>
                 <strong>Email</strong> {{ user?.email }} <UIIcons v-if="user?.email_verified" name="check-badge"
-                    :class="'text-green-500'">
+                    :class="'text-emerald-500'">
                 </UIIcons>
             </UIListItem>
         </UIList>

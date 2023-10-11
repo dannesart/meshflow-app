@@ -27,17 +27,16 @@ describe("Card", () => {
     });
 
     // Check props. Se if favorite is boolean.
-    expect(typeof CardMock.favorite).toBe("boolean")
-    
+    expect(typeof CardMock.favorite).toBe("boolean");
+
     const button = component.find("[data-favorite]");
 
     await button.trigger("click");
 
-    if(CardMock.favorite){
-        expect(button.classes()).toContain("text-gray-500");
-    }else {
-        expect(button.classes()).toContain("text-green-500");
+    if (CardMock.favorite) {
+      expect(button.classes()).toContain("text-gray-500");
+    } else {
+      expect(button.classes()).toContain("text-emerald-500");
     }
-    
   });
 });

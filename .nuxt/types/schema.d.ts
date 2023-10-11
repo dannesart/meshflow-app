@@ -30,59 +30,47 @@ declare module 'nuxt/schema' {
    domain: string,
 
    api: string,
-
-   auth: {
-      isEnabled: boolean,
-
-      origin: string,
-
-      basePath: string,
-
-      trustHost: boolean,
-
-      enableSessionRefreshPeriodically: boolean,
-
-      enableSessionRefreshOnWindowFocus: boolean,
-
-      enableGlobalAppMiddleware: boolean,
-
-      defaultProvider: string,
-
-      addDefaultCallbackUrl: boolean,
-
-      globalMiddlewareOptions: {
-         allow404WithoutAuth: boolean,
-
-         addDefaultCallbackUrl: boolean,
-      },
-
-      isOriginSet: boolean,
-   },
   }
   interface PublicRuntimeConfig {
    REDIRECT_URI: string,
 
    auth: {
+      computed: {
+         origin: any,
+
+         pathname: string,
+
+         fullBaseUrl: string,
+      },
+
       isEnabled: boolean,
 
+      session: {
+         enableRefreshPeriodically: boolean,
+
+         enableRefreshOnWindowFocus: boolean,
+      },
+
+      globalAppMiddleware: {
+         isEnabled: boolean,
+
+         allow404WithoutAuth: boolean,
+
+         addDefaultCallbackUrl: boolean,
+      },
+
       origin: string,
-
-      basePath: string,
-
-      trustHost: boolean,
-
-      enableSessionRefreshPeriodically: boolean,
-
-      enableSessionRefreshOnWindowFocus: boolean,
 
       enableGlobalAppMiddleware: boolean,
 
       defaultProvider: string,
 
-      addDefaultCallbackUrl: boolean,
+      provider: {
+         type: string,
 
-      globalMiddlewareOptions: {
-         allow404WithoutAuth: boolean,
+         trustHost: boolean,
+
+         defaultProvider: any,
 
          addDefaultCallbackUrl: boolean,
       },

@@ -3,7 +3,7 @@
         :class="{ 'translate-y-0': notificationStore.notification, 'translate-y-full': !notificationStore.notification, 'bottom-4': notificationStore.notification, '-bottom-full': !notificationStore.notification }">
         <div class="w-10 h-10 rounded-lg  flex items-center justify-center" :class="{
             'bg-red-100 text-red-500': notificationStore.notification?.type === 'fail',
-            'bg-green-100 text-green-500': notificationStore.notification?.type === 'success',
+            'bg-emerald-100 text-emerald-500': notificationStore.notification?.type === 'success',
         }">
             <UIIcons name="tasks"></UIIcons>
         </div>
