@@ -14,7 +14,8 @@
 
 
             <UIHeadline size="h1" v-if="type" :class="'mb-6'">
-                Add {{ type === 'model' ? `${serviceType} type` : type === 'data' ? `${serviceType}` : type }}
+                {{ type === "block" ? '' : 'New' }} {{ type === 'model' ? `${serviceType} type` : type === 'data' ?
+                    `${serviceType}` : type }}
             </UIHeadline>
 
             <ModulesAddTask v-if="type === 'task' && showModal" @on-valid="setValid" @on-error="setInvalid">
@@ -36,7 +37,7 @@
             <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
                 <ClientOnly>
                     <UIButton type="add" @click="complete()" :disabled="!isValid" v-if="!select">
-                        Create {{ serviceType || type }} {{ type === "model" ? 'type' : '' }}
+                        Add {{ serviceType || type }} {{ type === "model" ? 'type' : '' }}
                     </UIButton>
                     <UIButton type="nevermind" name="nevermind-button" @click="cancelNewData()">
                         Nevermind

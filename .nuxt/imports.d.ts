@@ -5,9 +5,7 @@ export { withCtx, withDirectives, withKeys, withMemo, withModifiers, withScopeId
 export { useActiveMenu, useVisualEditor, useVisualEditorLayer, useSettings, useActiveFilter } from '../composables/states';
 export { fieldsToSchema, form } from '../utils/form';
 export { useTimeAgo } from '../utils/time';
-export { default as useAuthD } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth.d';
-export { default as useAuth } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth';
-export { default as useAuthStateD } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState.d';
-export { default as useAuthState } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState';
+export { useAuth } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth';
+export { useAuthState } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState';
 export { usePinia, defineStore, acceptHMRUpdate, defineStore as definePiniaStore } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

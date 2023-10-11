@@ -15,10 +15,10 @@
             </NuxtLink>
             <div class="w-[1px] h-5/6 my-auto bg-slate-300 "></div>
             <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
-                button-style="system" label="Add block">
+                label="Add block">
             </ModulesAdd>
         </div>
-        <div class="flex gap-6 flex-col md:flex-row">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             <ClientOnly>
                 <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md"
                     v-for="(block, index) in blocks">
