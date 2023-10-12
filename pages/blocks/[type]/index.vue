@@ -20,7 +20,7 @@
         </div>
 
         <ClientOnly>
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" v-if="blocks.length">
                 <NuxtLink :to="('/blocks/' + type + '/' + block.id)" class="flex-1 max-w-md"
                     v-for="(block, index) in blocks">
                     <ModulesCard :title="block.properties.title || block.properties.name"
@@ -28,7 +28,7 @@
                     </ModulesCard>
                 </NuxtLink>
             </div>
-            <UIEmpty v-if="!blocks.length">
+            <UIEmpty v-else>
                 No blocks yet. Create one
                 <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="blockType?.name" :fields="blockType?.fields"
                     button-style="system" label="Add block">

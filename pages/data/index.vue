@@ -12,13 +12,22 @@
 
             </ModulesAdd>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <ClientOnly>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" v-if="dataModels.length">
+                <NuxtLink :to="('/data/' + item.id)" class="flex-1" v-for="(item, index) in dataModels">
+                    <ModulesCard :title="item.name" :body="item.description" :tags="item.tags"></ModulesCard>
+                </NuxtLink>
+            </div>
+            <UIEmpty v-else-if="!loading">
+                No data types yet. Create one <ModulesAdd @on-add="onAdd" type="model" service-type="data"
+                    button-style="system" label="Add data type">
+                </ModulesAdd>
+            </UIEmpty>
 
-            <NuxtLink :to="('/data/' + item.id)" class="flex-1 md:max-w-md" v-for="(item, index) in data">
-                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
-                    @favorite="event => updateFavorite(event, index)"></ModulesCard>
-            </NuxtLink>
+        </ClientOnly>
 
+        <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <UILoader></UILoader>
         </div>
 
 
@@ -26,29 +35,17 @@
 </template>
 
 <script setup lang=ts>
+import { storeToRefs } from 'pinia';
+import { DataModel } from '~~/models/data';
+import { useDataStore } from '~~/stores/data';
+
+
+const dataStore = useDataStore();
+const { loading, dataModels } = storeToRefs(dataStore);
 
 const filters = ref({});
 const sorts = ref({});
-const data = ref([
-    {
-        title: "Project",
-        body: "23",
-        id: "project",
-        favorite: true
-    },
-    {
-        title: "Company",
-        body: "6",
-        id: "company",
-        favorite: false
-    }
-])
 
-const updateFavorite = (favorite: any, itemIdx: number) => {
-    const newData = [...data.value]
-    newData[itemIdx] = { ...newData[itemIdx], favorite }
-    data.value = newData;
-}
 
 const filterChange = async (_filters: { [key: string]: any }) => {
     filters.value = { ...filters.value, ..._filters }
@@ -56,6 +53,24 @@ const filterChange = async (_filters: { [key: string]: any }) => {
 
 const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts }
+}
+
+const onAdd = async (dataModel: DataModel) => {
+
+    // if (await addBlockModel(blockModel)) {
+    //     setNotification("Block type created", "Your block type was successfully created", "success");
+    // } else {
+    //     setNotification(
+    //         "Block type not created",
+    //         "The block type could not be created!",
+    //         "fail"
+    //     )
+    // }
+
+
+}
+const onCancel = () => {
+    console.log("Cancel new block")
 }
 
 </script>

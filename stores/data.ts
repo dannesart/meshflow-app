@@ -1,58 +1,80 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import axios from "axios";
-import { TData } from "~~/models/data";
+import { Data } from "~~/models/data";
 import { useRuntimeConfig } from "#app";
+import { Model } from "~~/models/model";
+import { useUiStore } from "./ui";
+import { useProjectStore } from "./projects";
+
+type State = {
+  _dataModels: Model[];
+  _data: { [type: string]: Data[] };
+  _isEditing: boolean;
+  _loading: boolean;
+};
 
 export const useDataStore = defineStore("DataStore", {
   state: () =>
-    <{ _allData: TData[]; _data: TData | null; _isEditing: boolean }>{
+    <State>{
       _isEditing: false,
-      _allData: [],
-      _data: null,
+      _dataModels: [],
+      _data: {},
+      _loading: true,
     },
   getters: {
     editing: (state) => state._isEditing,
     currentData: (state) => state._data,
-    allData: (state) => state._allData,
+    dataModels: (state) => state._dataModels,
+    loading: (state) => state._loading,
     latest: (state) => {
-      const latest = [...state._allData];
+      const latest = [...state._dataModels];
       latest.length = latest.length > 5 ? 5 : latest.length;
       return latest;
     },
-    dataByIdx: (state) => {
-      return (dataId: string) =>
-        state._allData.findIndex((data) => data.id === dataId);
+    dataModelById: (state) => {
+      return (id: string) => state._dataModels.find((model) => model.id === id);
+    },
+    dataByType: (state) => {
+      return (type: string) => state._data[type] || [];
     },
     dataById: (state) => {
-      return (dataId: string) =>
-        state._allData.find((data) => data.id === dataId);
+      return (type: string, id: string) => {};
     },
   },
   actions: {
     active(open: boolean) {
       this._isEditing = open;
     },
-    updateTask(data: TData, patch: { [key: string]: any }) {
-      const idx = this.dataByIdx(data.id);
-      const update = { ...data, ...patch };
-      this.allData[idx] = update;
-    },
-    seTDatas(tasks: TData[]) {
-      this._allData = tasks;
-    },
-    setCurrentData(data: TData) {
-      //this.data = data;
+
+    async fetchDataByType(type: string) {
+      // Do request
+      const response: Data[] = [];
+      this._data[type] = response;
     },
 
-    async fetchData() {
+    async fetchDataModels() {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+      const { activeId } = storeToRefs(useProjectStore());
       try {
+        this._loading = true;
+        setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/data"
+          config.public.REDIRECT_URI + "/api/data",
+          {
+            params: {
+              projectId: activeId.value,
+            },
+          }
         );
-        this._allData = response.data;
+        this._dataModels = response.data;
+        this._loading = false;
+        setLoading(false);
       } catch (error) {
         //TODO: Handle error
+        this._loading = false;
+        setLoading(false);
       }
     },
   },

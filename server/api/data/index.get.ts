@@ -7,16 +7,16 @@ export default defineEventHandler(async (e) => {
     return { error: "Need to be authenticated" };
   }
   const { projectId } = getQuery(e);
-  const blocks = await ModelDbModel.find({
+  const data = await ModelDbModel.find({
     projectId: projectId,
-    serviceType: "block",
+    serviceType: "data",
   });
 
   return (
-    blocks.map((block) => {
+    data.map((_data) => {
       return {
-        ...block.toJSON(),
-        id: block._id,
+        ..._data.toJSON(),
+        id: _data._id,
       };
     }) || []
   );

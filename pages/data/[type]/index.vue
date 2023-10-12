@@ -18,13 +18,24 @@
             <ModulesAdd :type="type">
             </ModulesAdd>
         </div>
-        <div class="flex md:gap-6 flex-col md:flex-row">
+        <ClientOnly>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" v-if="!data.length">
 
-            <NuxtLink :to="('/data/' + type + '/' + item.id)" class="flex-1 max-w-md" v-for="(item, index) in data">
-                <ModulesCard :title="item.title" :body="item.body" :favorite="item.favorite"
-                    @favorite="event => updateFavorite(event, index)"></ModulesCard>
-            </NuxtLink>
+                <NuxtLink :to="('/data/' + type + '/' + item.id)" class="flex-1 max-w-md" v-for="(item, index) in data">
+                    <ModulesCard :title="item.properties.title || item.properties.name" :body="item.updated"></ModulesCard>
+                </NuxtLink>
 
+            </div>
+            <UIEmpty v-else>
+                No blocks yet. Create one
+                <ModulesAdd @on-add="onAdd" :type="'data'" :service-type="'Data type'" :fields="[]" button-style="system"
+                    label="Add block">
+                </ModulesAdd>
+            </UIEmpty>
+        </ClientOnly>
+
+        <div v-if="loading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <UILoader></UILoader>
         </div>
 
 
@@ -33,28 +44,23 @@
 </template>
 
 <script setup lang=ts>
+import { storeToRefs } from 'pinia';
+import { useDataStore } from '~~/stores/data';
 
+
+const dataStore = useDataStore();
+const { loading, dataByType } = storeToRefs(dataStore);
+const { fetchDataByType } = dataStore;
 const { type } = useRoute().params;
 const filters = ref({});
 const sorts = ref({});
 
 // Fetch data based on type.
+await fetchDataByType(type as string);
 
-// Show data.
-const data = ref([
-    {
-        title: "Title 1",
-        body: "Body 1",
-        id: "34DA424",
-        favorite: true
-    },
-    {
-        title: "Title 2",
-        body: "Body 2",
-        id: "80AF823",
-        favorite: false
-    }
-])
+const data = computed(() => {
+    return dataByType.value(type as string);
+})
 
 const filterChange = async (_filters: { [key: string]: any }) => {
     filters.value = { ...filters.value, ..._filters }
@@ -64,10 +70,6 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
     sorts.value = { ...sorts.value, ..._sorts }
 }
 
-const updateFavorite = (favorite: any, itemIdx: number) => {
-    const newData = [...data.value]
-    newData[itemIdx] = { ...newData[itemIdx], favorite }
-    data.value = newData;
-}
+const onAdd = () => { }
 
 </script>
