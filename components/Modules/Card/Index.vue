@@ -7,7 +7,7 @@
         </UIHeadline>
 
         <p class="first-letter:capitalize truncate" v-if="body"
-            :class="{ 'mb-0': !tags.length, 'pr-12': true, 'text-slate-400': body !== 'public' && body !== 'private', 'text-emerald-400': body === 'public', 'text-red-400': body === 'private' }"
+            :class="{ 'mb-0': !tags || !tags.length, 'pr-12': true, 'text-slate-400': body !== 'public' && body !== 'private', 'text-emerald-400': body === 'public', 'text-red-400': body === 'private' }"
             data-body>
             {{ body }}
         </p>
