@@ -148,7 +148,7 @@ const user = (email: string) => {
 	return useUsersStore().userByEmail(email);
 }
 
-const MAX_PROJECTS = 2;
+const MAX_PROJECTS = 10;
 const isMenuActive = ref(false);
 const menuRef = ref();
 const openMenu = () => menuRef.value.focus();

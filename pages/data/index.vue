@@ -38,10 +38,13 @@
 import { storeToRefs } from 'pinia';
 import { DataModel } from '~~/models/data';
 import { useDataStore } from '~~/stores/data';
+import { useNotificationStore } from '~~/stores/notifications';
 
-
+const notificationsStore = useNotificationStore();
+const { setNotification } = notificationsStore;
 const dataStore = useDataStore();
 const { loading, dataModels } = storeToRefs(dataStore);
+const { addDataModel } = dataStore;
 
 const filters = ref({});
 const sorts = ref({});
@@ -56,21 +59,21 @@ const sortChange = async (_sorts: { [key: string]: any }) => {
 }
 
 const onAdd = async (dataModel: DataModel) => {
-
-    // if (await addBlockModel(blockModel)) {
-    //     setNotification("Block type created", "Your block type was successfully created", "success");
-    // } else {
-    //     setNotification(
-    //         "Block type not created",
-    //         "The block type could not be created!",
-    //         "fail"
-    //     )
-    // }
+    console.log(dataModel)
+    if (await addDataModel(dataModel)) {
+        setNotification("Data type created", "Your data type was successfully created", "success");
+    } else {
+        setNotification(
+            "Data type not created",
+            "The data type could not be created!",
+            "fail"
+        )
+    }
 
 
 }
 const onCancel = () => {
-    console.log("Cancel new block")
+    console.log("Cancel new data")
 }
 
 </script>

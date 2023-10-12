@@ -46,6 +46,29 @@ export const useDataStore = defineStore("DataStore", {
       this._isEditing = open;
     },
 
+    async addDataModel(dataModel: Model) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+
+      try {
+        this._loading = true;
+        setLoading(true);
+        const config = useRuntimeConfig();
+        const response = await axios.post(
+          config.public.REDIRECT_URI + "/api/blocks",
+          dataModel
+        );
+        this._loading = false;
+        await this.fetchDataModels();
+        setLoading(false);
+        return true;
+      } catch (error) {
+        this._loading = false;
+        setLoading(false);
+        return false;
+      }
+    },
+
     async fetchDataByType(type: string) {
       // Do request
       const response: Data[] = [];
