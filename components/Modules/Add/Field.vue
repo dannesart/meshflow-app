@@ -36,9 +36,15 @@
                     Id
                 </ModulesInput>
             </div>
-            <div class="mb-12" v-if="field.type.name === ModelTypes[0].name">
+            <div class="mb-4" v-if="field.type.name === ModelTypes[0].name">
                 <ModulesInput type="checkbox" name="main-title" :value="field.isMain" @value-update="e => field.isMain = e">
                     This represent main title
+                </ModulesInput>
+            </div>
+            <div class="mb-12">
+                <ModulesInput type="checkbox" name="main-title" :value="field.allowMultiple"
+                    @value-update="e => field.allowMultiple = e">
+                    Multiple value
                 </ModulesInput>
             </div>
             <div class="mb-12" v-if="field.type.name === ModelTypes[4].name">
@@ -95,6 +101,7 @@ const field = ref<ModelField>({
     name: '',
     type: ModelTypes[0],
     isMain: false,
+    allowMultiple: false,
     validations: {
         required: false,
         minMax: {

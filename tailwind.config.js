@@ -11,7 +11,12 @@ module.exports = {
   ],
   mode: "aot",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Kodchasan: ["'Kodchasan'", "sans-serif"],
+        Rounded: ["'M PLUS Rounded 1c'", "sans-serif"],
+      },
+    },
   },
   plugins: [],
   safelist: [

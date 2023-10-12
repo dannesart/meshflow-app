@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 91 93"
+    <svg xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 93 93"
         :width="size || 91" :height="size || 93" :class="{ 'animate-logo': animate }" id="LogoFrame">
         <g id="Logo">
             <path id="line-3"
@@ -30,7 +30,7 @@ const { animate, size } = defineProps(['animate', 'size']);
 }
 
 .animate-logo {
-    transform-origin: center;
+    transform-origin: center center;
     animation: rotate 1.5s ease infinite;
 }
 

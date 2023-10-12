@@ -5,8 +5,8 @@
         <div class="w-3/4 text-emerald-400 text-3xl font-bold md:px-4 rounded-full flex items-center flex-none h-14">
             <NuxtLink to="/" class="flex gap-6 items-center">
 
-                <UILogo :size="50"></UILogo>
-                <span class="hidden md:block text-xl lg:text-2xl">meshflow</span>
+                <UILogo :size="40" />
+                <span class="hidden md:block text-xl lg:text-2xl font-Rounded font-extrabold ">meshflow</span>
             </NuxtLink>
             <button class="md:hidden px-3 py-3 ml-3" @click="toggleMenu()">
                 <UIIcons :name="menuState ? 'close' : 'menu'" :size="8"></UIIcons>

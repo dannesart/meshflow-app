@@ -2658,6 +2658,14 @@ module.exports = {
         "\"Liberation Mono\"",
         "\"Courier New\"",
         "monospace"
+      ],
+      "Kodchasan": [
+        "'Kodchasan'",
+        "sans-serif"
+      ],
+      "Rounded": [
+        "'M PLUS Rounded 1c'",
+        "sans-serif"
       ]
     },
     "fontSize": {

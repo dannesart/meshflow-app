@@ -15,6 +15,7 @@ const ModelFieldSchema = z.object({
   type: ModelTypeSchema,
   linkType: z.string().optional(),
   isMain: z.boolean().default(() => false),
+  allowMultiple: z.boolean().default(() => false),
   validations: z.object({
     required: z.boolean().default(() => false),
     allowedReferences: z.array(z.string()).optional(),
