@@ -16,14 +16,14 @@
         </div>
         <nav class="flex flex-col gap-3" v-bind:class="{ 'hidden md:flex': !menuState }">
             <div v-for="group in Menu">
-                <label v-if="group.label" class="text-sm text-gray-400 px-5 my-3 block">
+                <label v-if="group.label" class="text-sm text-gray-400 md:px-5 my-3 block">
                     {{ group.label }}
                 </label>
                 <ul class="flex flex-col gap-1">
                     <li v-for="item in group.items">
                         <NuxtLink :to=item.route v-if="(item.webOnly && settingsStore.isWeb) || !item.webOnly"
-                            class="text-2xl md:text-lg text-gray-800 rounded-lg hover:bg-emerald-100 hover:text-emerald-700 py-3 px-5 flex gap-3 items-center"
-                            activeClass="font-bold text-emerald-700 bg-emerald-100"
+                            class="text-2xl md:text-lg text-gray-800 rounded-lg md:hover:bg-emerald-100 hover:text-emerald-700 py-3 md:px-5 flex gap-3 items-center"
+                            activeClass="font-bold text-emerald-700 md:bg-emerald-100"
                             router-link-active="font-bold text-emerald-700 bg-emerald-100">
                             <UIIcons :name="item.icon" v-if="item.icon && showIcons"></UIIcons>
                             {{ item.label }}
