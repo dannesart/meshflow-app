@@ -1,0 +1,15 @@
+<svg width="225" height="130" viewBox="0 0 225 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Vector">
+<g id="large">
+<path id="Vector_2" d="M13 117.309L84 13.3085M155.478 117L84.4777 13" stroke="#34D399" stroke-width="16" stroke-linecap="round"/>
+<circle id="Ellipse 2" cx="13" cy="117" r="13" fill="#34D399"/>
+<circle id="Ellipse 1" cx="84" cy="13" r="13" fill="#34D399"/>
+<circle id="Ellipse 5" cx="155" cy="117" r="13" fill="#34D399"/>
+</g>
+<g id="small">
+<path id="Vector_3" d="M125.5 72.5L155.311 34.2455M212 116.755L155.689 34" stroke="#34D399" stroke-width="16" stroke-linecap="round"/>
+<circle id="Ellipse 3" cx="211.522" cy="117" r="13" fill="#34D399"/>
+<circle id="Ellipse 4" cx="156.522" cy="34" r="13" fill="#34D399"/>
+</g>
+</g>
+</svg>
