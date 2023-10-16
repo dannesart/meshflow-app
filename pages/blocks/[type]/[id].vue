@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { useBlocksStore } = from '~~/stores/blocks';
+import { useBlocksStore } from '~~/stores/blocks';
 import { storeToRefs } from 'pinia';
 const { id, type } = useRoute().params;
 
