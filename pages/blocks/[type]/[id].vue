@@ -14,18 +14,14 @@
 
 <script setup lang="ts">
 import { useBlocksStore } from "~~/stores/blocks";
-import { storeToRefs } from "pinia";
 const { id, type } = useRoute().params;
 const { getBlockById, getBlocksByType, fetchBlocks, getBlockModelById } =
   useBlocksStore();
-const blockType = computed(() => getBlockModelById(type as string));
 
-if (!getBlocksByType(blockType.value?.id)) fetchBlocks(blockType.value?.id);
+if (!getBlocksByType(type as string)) fetchBlocks(type as string);
 
 // Fetch data based on id.
-const block = computed(() =>
-  getBlockById(blockType.value?.id as string, id as string)
-);
+const block = computed(() => getBlockById(type as string, id as string));
 
 // Show data.
 </script>
