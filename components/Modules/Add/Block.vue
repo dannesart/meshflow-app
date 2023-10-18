@@ -24,6 +24,7 @@
       name="new-block-error"
       class="flex gap-4 p-4 mt-6 rounded-lg bg-red-50"
       v-for="error in errors"
+      :key="error.path"
     >
       <span class="font-bold capitalize">
         {{ error.path.join("/") }}
@@ -37,6 +38,7 @@
     <p>Pick from the list of block types</p>
     <div
       v-for="blockModel of blockModels"
+      :key="blockModel.id"
       class="flex flex-col w-full gap-6 p-5 shadow-xl cursor-pointer px-7 rounded-xl hover:shadow-2xl"
     >
       <div @click="toggleOpenBlock(blockModel.id)" class="flex w-full">
@@ -60,11 +62,13 @@
         class="grid grid-cols-1 gap-6 p-3 md:grid-cols-2 xl:grid-cols-4"
         v-if="openBlock === blockModel.id"
       >
-        <template v-for="block in getBlocksByType(blockModel.id)">
+        <template
+          v-for="block in getBlocksByType(blockModel.id)"
+          :key="block.id"
+        >
           <div
             class="p-5 rounded-lg shadow-xl px-7"
             @click="blockSelect(block.id)"
-            :key="block.id"
           >
             <UIHeadline :size="'h3'">
               {{ block.properties.title || block.properties.name }}
