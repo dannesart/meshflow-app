@@ -22,7 +22,7 @@
 
     <div
       name="new-block-error"
-      class="flex gap-4 bg-red-50 p-4 rounded-lg mt-6"
+      class="flex gap-4 p-4 mt-6 rounded-lg bg-red-50"
       v-for="error in errors"
     >
       <span class="font-bold capitalize">
@@ -37,9 +37,9 @@
     <p>Pick from the list of block types</p>
     <div
       v-for="blockModel of blockModels"
-      class="p-5 px-7 rounded-xl gap-6 shadow-xl flex flex-col w-full hover:shadow-2xl cursor-pointer"
+      class="flex flex-col w-full gap-6 p-5 shadow-xl cursor-pointer px-7 rounded-xl hover:shadow-2xl"
     >
-      <div @click="toggleOpenBlock(blockModel.name)" class="w-full flex">
+      <div @click="toggleOpenBlock(blockModel.id)" class="flex w-full">
         <div class="flex flex-col">
           <UIHeadline :size="'h3'">
             {{ blockModel.name }}
@@ -57,13 +57,14 @@
         </div>
       </div>
       <div
-        class="p-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
-        v-if="openBlock === blockModel.name"
+        class="grid grid-cols-1 gap-6 p-3 md:grid-cols-2 xl:grid-cols-4"
+        v-if="openBlock === blockModel.id"
       >
-        <template v-for="block in getBlocksByType(blockModel.name)">
+        <template v-for="block in getBlocksByType(blockModel.id)">
           <div
-            class="p-5 px-7 rounded-lg shadow-xl"
+            class="p-5 rounded-lg shadow-xl px-7"
             @click="blockSelect(block.id)"
+            :key="block.id"
           >
             <UIHeadline :size="'h3'">
               {{ block.properties.title || block.properties.name }}
@@ -90,10 +91,10 @@ const events = defineEmits(["valueUpdate", "onValid", "onError", "onSelect"]);
 const errors = ref();
 const openBlock = ref();
 
-const toggleOpenBlock = async (name: string) => {
-  if (!getBlocksByType.value(name)) await fetchBlocks(name);
+const toggleOpenBlock = async (typeId: string) => {
+  if (!getBlocksByType.value(typeId)) await fetchBlocks(typeId);
 
-  openBlock.value = openBlock.value === name ? "" : name;
+  openBlock.value = openBlock.value === typeId ? "" : typeId;
 };
 
 const newBlockForm = ref({

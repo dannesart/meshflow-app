@@ -34,8 +34,8 @@ const getters = {
   blockModels: (state: State) => state._blockModels,
   getBlockById: (state: State) => {
     return (type: string, id: string) => {
-      return (state._blocks[type] || []).find(() => block?.id === id);
-    }
+      return (state._blocks[type] || []).find((block) => block?.id === id);
+    };
   },
   getAmountOfBlockModels: (state: State) => state._blockModels.length,
   getBlockModelById: (state: State) => {

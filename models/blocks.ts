@@ -21,7 +21,7 @@ const BlockModelSchema = z
 type BlockModel = z.infer<typeof BlockModelSchema>;
 
 const BlockSchema = BlockModelSchema.extend({
-  type: z.string(),
+  type: z.any(),
 }).omit({
   name: true,
   description: true,

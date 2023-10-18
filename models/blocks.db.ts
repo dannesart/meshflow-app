@@ -10,7 +10,7 @@ const BlockDbSchema: Schema<Block> = new Schema({
   created: { type: Date, default: Date.now },
   updatedBy: String,
   updated: { type: Date, default: Date.now },
-  type: String,
+  type: { type: Schema.Types.ObjectId, ref: "models" },
 });
 const BlocksDbModel = model("blocks", BlockDbSchema);
 
