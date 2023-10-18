@@ -81,7 +81,7 @@ const { loading } = storeToRefs(blockStore);
 
 const blockType = computed(() => getBlockModelById(type as string));
 const blocks = computed(() => {
-  return getBlocksByType(blockType.value?.name as string);
+  return getBlocksByType(type as string);
 });
 
 const onAdd = async (data: any) => {
@@ -89,7 +89,7 @@ const onAdd = async (data: any) => {
   const dataToBeSent = {
     projectId,
     properties: props,
-    type: blockType.value?.id,
+    type: type,
   };
   const addedBlock = await addBlock(dataToBeSent);
   if (addedBlock) {
@@ -123,7 +123,7 @@ const validated = computed(() => {
   const schema = fieldsToSchema(blockType.value?.fields || []);
   return schema.safeParse(newBlockData.value);
 });
-await fetchBlocks(blockType.value?.id as string);
+await fetchBlocks(type as string);
 </script>
 
 <script lang="ts">
