@@ -16,11 +16,13 @@
 import { useBlocksStore } from '~~/stores/blocks';
 import { storeToRefs } from 'pinia';
 const { id, type } = useRoute().params;
-const { getBlockById } = useBlocksStore();
+const { getBlockById, getBlocksByType, fetchBlocks } = useBlocksStore();
+    
+if(!getBlocksByType(type)) fetchBlocks(type);
 
-    // Fetch data based on id.
-    const block = computed(() => getBlockById(type as string, id as string));
+// Fetch data based on id.
+const block = computed(() => getBlockById(type as string, id as string));
 
-    // Show data.
+// Show data.
 
 </script>
