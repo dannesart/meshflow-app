@@ -12,10 +12,11 @@
     </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useBlocksStore } from '~~/stores/blocks';
 import { storeToRefs } from 'pinia';
 const { id, type } = useRoute().params;
+const { getBlockById } = useBlocksStore();
 
     // Fetch data based on id.
     const block = computed(() => getBlockById(type as string, id as string));
