@@ -28,7 +28,7 @@
     <ClientOnly>
       <div
         class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
-        v-if="blocks.length"
+        v-if="blocks && blocks.length"
       >
         <NuxtLink
           :to="'/blocks/' + type + '/' + block.id"
