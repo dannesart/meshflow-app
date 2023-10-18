@@ -89,7 +89,7 @@ const onAdd = async (data: any) => {
   const dataToBeSent = {
     projectId,
     properties: props,
-    type: blockType?.id,
+    type: blockType.value?.id,
   };
   const addedBlock = await addBlock(dataToBeSent);
   if (addedBlock) {
