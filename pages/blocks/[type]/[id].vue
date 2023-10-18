@@ -17,11 +17,12 @@ import { useBlocksStore } from '~~/stores/blocks';
 import { storeToRefs } from 'pinia';
 const { id, type } = useRoute().params;
 const { getBlockById, getBlocksByType, fetchBlocks } = useBlocksStore();
+const blockType = computed(() => getBlockModelById(type as string));
     
-if(!getBlocksByType(type)) fetchBlocks(type);
+if(!getBlocksByType(blockType.value?.name)) fetchBlocks(blockType.value?.name);
 
 // Fetch data based on id.
-const block = computed(() => getBlockById(type as string, id as string));
+const block = computed(() => getBlockById(blockType.value?.name as string, id as string));
 
 // Show data.
 
