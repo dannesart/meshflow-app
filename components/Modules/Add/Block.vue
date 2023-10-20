@@ -68,7 +68,7 @@
         >
           <div
             class="p-5 rounded-lg shadow-xl px-7"
-            @click="blockSelect(block.id)"
+            @click="blockSelect(block.id, blockModel.id)"
           >
             <UIHeadline :size="'h3'">
               {{ block.properties.title || block.properties.name }}
@@ -109,9 +109,9 @@ const newBlockForm = ref({
   projectId: useProjectStore().activeId,
 });
 
-const blockSelect = (id: string) => {
-  events("onValid", { id });
-  events("onSelect", { id });
+const blockSelect = (id: string, type: string) => {
+  events("onValid", { id, type });
+  events("onSelect", { id, type });
 };
 
 const valueChange = (event: string, key: string) => {

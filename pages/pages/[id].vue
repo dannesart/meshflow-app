@@ -25,7 +25,7 @@
       <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
         Slug
       </ModulesInput>
-      <div class="flex justify-between">
+      <div class="flex justify-between items-center">
         <UIHeadline size="label"> Blocks </UIHeadline>
         <ModulesAdd
           @on-add="onBlockAdd"
@@ -45,17 +45,45 @@
           item-key="id"
           ghost-class="ghost"
           :component-data="{ class: 'flex flex-col gap-4' }"
-          v-if="page.blocks.length"
+          v-if="page.blocks?.length"
         >
           <template #item="{ element: block }">
             <div
+              v-if="block?.properties"
               class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
             >
               <div class="flex flex-col gap-1">
                 <UIHeadline size="h4" :class="'flex gap-3 items-center'">
-                  {{ block.name }}
+                  {{ block.properties.name || block.properties.title }}
                 </UIHeadline>
-                <p class="text-sm text-gray-500">{{ block.description }}</p>
+                <p class="text-sm text-gray-500">
+                  {{ getBlockModelById(block?.type)?.name }}
+                </p>
+              </div>
+              <div class="flex items-center justify-center mr-0 ml-auto">
+                <ModulesEdit
+                  type="block"
+                  icon="dots"
+                  :size="4"
+                  button-style="icon"
+                >
+                </ModulesEdit>
+              </div>
+            </div>
+            <div
+              v-else
+              class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
+            >
+              <div class="flex flex-col gap-1">
+                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
+                  {{
+                    getBlockById(block.type, block.id)?.properties?.name ||
+                    getBlockById(block.type, block.id)?.properties?.title
+                  }}
+                </UIHeadline>
+                <p class="text-sm text-gray-500">
+                  {{ getBlockModelById(block?.type)?.name }}
+                </p>
               </div>
               <div class="flex items-center justify-center mr-0 ml-auto">
                 <ModulesEdit
@@ -118,14 +146,16 @@ const pageStore = usePagesStore();
 const notificationsStore = useNotificationStore();
 const blocksStore = useBlocksStore();
 const { loading } = storeToRefs(pageStore);
-const { getPageById, updatePage, deletePage } = pageStore;
+const { updatePage, deletePage, getPageById } = pageStore;
 const { setNotification } = notificationsStore;
-const { fetchBlockModels } = blocksStore;
+const { fetchBlockModels, getBlockModelById } = blocksStore;
+const { getBlockById } = storeToRefs(blocksStore);
 const page = ref<Page>(getPageById(id as string) as Page);
 const showConfirm = ref(false);
 
-const onBlockAdd = (selected: { id: string; projectId: string }) => {
-  page.value.blocks.push(id);
+const onBlockAdd = (selected: { id: string; projectId: string; type }) => {
+  if (!page.value.blocks) page.value.blocks = [];
+  page.value.blocks.push({ id: selected.id, type: selected.type });
 };
 
 const changeStatus = async () => {
@@ -189,7 +219,12 @@ const handleConfirmDelete = async () => {
 };
 
 const savePage = async () => {
-  const saved = await updatePage(page.value);
+  const valueToBeSaved = { ...page.value };
+  valueToBeSaved.blocks = valueToBeSaved.blocks.map((block) => {
+    return block._id || block.id;
+  });
+  const saved = await updatePage(valueToBeSaved);
+
   if (saved) {
     setNotification(
       "Page saved!",

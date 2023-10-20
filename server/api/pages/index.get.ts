@@ -7,12 +7,14 @@ export default defineEventHandler(async (e) => {
     return { error: "Need to be authenticated" };
   }
   const { projectId } = getQuery(e);
-  const pages = await PageModel.find({ projectId: projectId });
-
+  const pages = await PageModel.find({ projectId: projectId }).populate(
+    "blocks"
+  );
   return (
     pages.map((page) => {
+      const pageJson = page.toJSON();
       return {
-        ...page.toJSON(),
+        ...pageJson,
         id: page._id,
       };
     }) || []
