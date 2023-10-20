@@ -47,54 +47,18 @@
           :component-data="{ class: 'flex flex-col gap-4' }"
           v-if="page.blocks?.length"
         >
-          <template #item="{ element: block }">
-            <div
+          <template #item="{ element: block, index }">
+            <ModulesEntity
+              :data="block"
+              @remove="onBlockRemove(index)"
               v-if="block?.properties"
-              class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
-            >
-              <div class="flex flex-col gap-1">
-                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
-                  {{ block.properties.name || block.properties.title }}
-                </UIHeadline>
-                <p class="text-sm text-gray-500">
-                  {{ getBlockModelById(block?.type)?.name }}
-                </p>
-              </div>
-              <div class="flex items-center justify-center mr-0 ml-auto">
-                <ModulesEdit
-                  type="block"
-                  icon="dots"
-                  :size="4"
-                  button-style="icon"
-                >
-                </ModulesEdit>
-              </div>
-            </div>
-            <div
+            ></ModulesEntity>
+            <ModulesEntity
+              :id="block.id"
+              @remove="onBlockRemove(index)"
+              :type="block.type"
               v-else
-              class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
-            >
-              <div class="flex flex-col gap-1">
-                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
-                  {{
-                    getBlockById(block.type, block.id)?.properties?.name ||
-                    getBlockById(block.type, block.id)?.properties?.title
-                  }}
-                </UIHeadline>
-                <p class="text-sm text-gray-500">
-                  {{ getBlockModelById(block?.type)?.name }}
-                </p>
-              </div>
-              <div class="flex items-center justify-center mr-0 ml-auto">
-                <ModulesEdit
-                  type="block"
-                  icon="dots"
-                  :size="4"
-                  button-style="icon"
-                >
-                </ModulesEdit>
-              </div>
-            </div>
+            ></ModulesEntity>
           </template>
         </draggable>
 
@@ -156,6 +120,10 @@ const showConfirm = ref(false);
 const onBlockAdd = (selected: { id: string; projectId: string; type }) => {
   if (!page.value.blocks) page.value.blocks = [];
   page.value.blocks.push({ id: selected.id, type: selected.type });
+};
+
+const onBlockRemove = (idx: number) => {
+  page.value.blocks.splice(idx, 1);
 };
 
 const changeStatus = async () => {
