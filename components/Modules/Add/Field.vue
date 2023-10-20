@@ -57,7 +57,7 @@
           type="checkbox"
           name="main-title"
           :value="field.isMain"
-          @value-update="(e) => (field.isMain = e)"
+          @value-update="(e) => handleIsMain(e)"
         >
           This represent main title
         </ModulesInput>
@@ -65,9 +65,9 @@
       <div class="mb-12">
         <ModulesInput
           type="checkbox"
-          name="main-title"
+          name="multiple-values"
           :value="field.allowMultiple"
-          @value-update="(e) => (field.allowMultiple = e)"
+          @value-update="(e) => handleAllowMultiple(e)"
         >
           Multiple value
         </ModulesInput>
@@ -78,14 +78,20 @@
           name="reference-types"
           :value="field.validations.allowedReferences"
           :values="blockTypes"
-          @value-update="(e) => (field.isMain = e)"
+          @value-update="(e) => handleMultipleSelect(e)"
         >
           Select allowed reference types
         </ModulesInput>
       </div>
       <UIHeadline size="h3">Validations</UIHeadline>
       <div class="flex flex-col gap-4">
-        <ModulesInput type="checkbox" name="required"> Required </ModulesInput>
+        <ModulesInput
+          type="checkbox"
+          name="required"
+          @value-update="(e) => handleIsRequired(e)"
+        >
+          Required
+        </ModulesInput>
 
         <div
           class="flex flex-col gap-4"
@@ -95,7 +101,7 @@
             type="checkbox"
             name="character-count"
             :value="field.validations.minMax.use"
-            @value-update="(e) => (field.validations.minMax.use = e)"
+            @value-update="(e) => handleUseMinMax(e)"
           >
             Limit character count
           </ModulesInput>
@@ -154,6 +160,28 @@ const field = ref<ModelField>({
     },
   },
 });
+
+const handleIsMain = (e) => {
+  field.value.isMain = e;
+  checkValid();
+};
+const handleAllowMultiple = (e) => {
+  field.value.allowMultiple = e;
+  checkValid();
+};
+const handleIsRequired = (e) => {
+  field.value.validations.required = e;
+  checkValid();
+};
+
+const handleUseMinMax = (e) => {
+  field.value.validations.minMax.use = e;
+  checkValid();
+};
+
+const handleMultipleSelect = (values: string[]) => {
+  debugger;
+};
 
 const handleMinMax = (value: number, isMin: boolean) => {
   if (isMin) {
