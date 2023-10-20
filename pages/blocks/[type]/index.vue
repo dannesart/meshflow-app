@@ -37,8 +37,15 @@
           :key="block.id"
         >
           <ModulesCard
-            :title="block.properties.title || block.properties.name"
-            :body="block.properties.description"
+            :title="
+              block.properties.title ||
+              block.properties.name ||
+              `${blockType?.name} #${index}`
+            "
+            :body="
+              block.properties.description ||
+              `Updated ${useTimeAgo(block.updated)}`
+            "
             @favorite="(event) => updateFavorite(event, index)"
           >
           </ModulesCard>
