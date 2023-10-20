@@ -34,7 +34,6 @@ const getters = {
   blockModels: (state: State) => state._blockModels,
   getBlockById: (state: State) => {
     return (type: string, id: string) => {
-      console.log(state._blocks, type, id);
       const block = (state._blocks[type] || []).find(
         (block) => block?.id === id
       );
@@ -106,6 +105,28 @@ export const useBlocksStore = defineStore("BlocksStore", {
         return false;
       }
     },
+
+    async deleteBlock(blockId: string, blockTypeId: string) {
+      try {
+        this.isLoading = true;
+        const config = useRuntimeConfig();
+        const response = await axios.delete(
+          config.public.REDIRECT_URI +
+            "/api/blocks/" +
+            blockTypeId +
+            "/" +
+            blockId
+        );
+        this.isLoading = false;
+        await this.fetchBlocks(blockTypeId);
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        return false;
+      }
+    },
+
+    async updateBlock(blockId: string, block: Block) {},
 
     async updateBlockModel(blockModel: Model) {
       try {

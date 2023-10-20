@@ -49,7 +49,6 @@ const editField = (e: Event) => {
     e.stopPropagation();
     setTimeout(() => {
       fieldRef.value.focus();
-      console.log("focus");
     });
   }
 };
