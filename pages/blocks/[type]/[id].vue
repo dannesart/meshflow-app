@@ -1,14 +1,20 @@
 <template>
   <NuxtLayout>
-    <UIHeadline size="h1">
-      {{ id }}
-    </UIHeadline>
-    <div class="flex gap-6">
-      Block with a type of {{ type }} and id {{ id }}
-      <div v-if="block">
-        {{ block }}
+    <template v-if="block">
+      <UIHeadline
+        size="h1"
+        editable="true"
+        :value="block.properties.title || block.properties.name"
+      >
+        {{ block.properties.title || block.properties.name }}
+      </UIHeadline>
+      Updated {{ useTimeAgo(block.updated) }}
+      <div v-for="(field, idx) of model.fields">
+        <ModulesInput :type="field.type.id" :value="block.properties[field.id]">
+          {{ field.name }}
+        </ModulesInput>
       </div>
-    </div>
+    </template>
   </NuxtLayout>
 </template>
 
@@ -17,7 +23,7 @@ import { useBlocksStore } from "~~/stores/blocks";
 const { id, type } = useRoute().params;
 const { getBlockById, getBlocksByType, fetchBlocks, getBlockModelById } =
   useBlocksStore();
-
+const model = getBlockModelById(type);
 if (!getBlocksByType(type as string)) fetchBlocks(type as string);
 
 // Fetch data based on id.
