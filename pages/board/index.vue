@@ -29,7 +29,9 @@
         <draggable
           :list="(tasksStore.tasks || []).filter((a) => a.status === status)"
           group="tasks"
-          :component-data="{ class: 'flex flex-col gap-4 h-full' }"
+          :component-data="{
+            class: 'flex flex-col gap-4 h-full min-h-[20rem]',
+          }"
           item-key="id"
           @change="dragChange($event, status)"
           @end="dragEnd($event, status)"
