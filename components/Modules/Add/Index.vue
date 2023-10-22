@@ -27,50 +27,50 @@
             : type
         }}
       </UIHeadline>
+      <div class="flex-1 overflow-y-scroll">
+        <ModulesAddTask
+          v-if="type === 'task' && showModal"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        >
+        </ModulesAddTask>
+        <ModulesAddPage
+          v-if="type === 'page' && showModal"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        >
+        </ModulesAddPage>
+        <ModulesAddField
+          v-if="type === 'field' && showModal"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        >
+        </ModulesAddField>
+        <ModulesAddBlock
+          v-if="type === 'block' && showModal"
+          :select="select"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+          @on-select="complete()"
+        >
+        </ModulesAddBlock>
+        <ModulesAddData
+          v-if="type === 'data' && showModal"
+          :service-type="serviceType"
+          :fields="fields"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        ></ModulesAddData>
+        <ModulesAddModel
+          v-if="type === 'model' && showModal"
+          :service-type="serviceType"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        ></ModulesAddModel>
 
-      <ModulesAddTask
-        v-if="type === 'task' && showModal"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-      >
-      </ModulesAddTask>
-      <ModulesAddPage
-        v-if="type === 'page' && showModal"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-      >
-      </ModulesAddPage>
-      <ModulesAddField
-        v-if="type === 'field' && showModal"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-      >
-      </ModulesAddField>
-      <ModulesAddBlock
-        v-if="type === 'block' && showModal"
-        :select="select"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-        @on-select="complete()"
-      >
-      </ModulesAddBlock>
-      <ModulesAddData
-        v-if="type === 'data' && showModal"
-        :service-type="serviceType"
-        :fields="fields"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-      ></ModulesAddData>
-      <ModulesAddModel
-        v-if="type === 'model' && showModal"
-        :service-type="serviceType"
-        @on-valid="setValid"
-        @on-error="setInvalid"
-      ></ModulesAddModel>
-
-      <slot v-if="showModal"></slot>
-
-      <footer class="absolute bottom-0 left-0 right-0 p-10 border-t flex gap-4">
+        <slot v-if="showModal"></slot>
+      </div>
+      <footer class="flex gap-4 z-50 bg-white">
         <ClientOnly>
           <UIButton
             type="add"

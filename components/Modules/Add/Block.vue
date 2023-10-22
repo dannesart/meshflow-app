@@ -36,10 +36,11 @@
   </UIForm>
   <div v-else class="flex flex-col gap-6">
     <p>Pick from the list of block types</p>
+
     <div
       v-for="blockModel of blockModels"
       :key="blockModel.id"
-      class="flex flex-col w-full gap-6 p-5 shadow-xl cursor-pointer px-7 rounded-xl hover:shadow-2xl"
+      class="flex flex-col w-full gap-6 p-5 bg-slate-100 cursor-pointer px-7 rounded-xl"
     >
       <div @click="toggleOpenBlock(blockModel.id)" class="flex w-full">
         <div class="flex flex-col">
@@ -67,7 +68,7 @@
           :key="block.id"
         >
           <div
-            class="p-5 rounded-lg shadow-xl px-7"
+            class="p-5 rounded-lg bg-white shadow-xl px-7"
             @click="blockSelect(block.id, blockModel.id)"
           >
             <UIHeadline :size="'h3'">

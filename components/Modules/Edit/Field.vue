@@ -22,7 +22,7 @@
       type="checkbox"
       name="main-title"
       :value="field.isMain"
-      @value-update="(e) => (field.isMain = e)"
+      @value-update="(e) => handleIsMain(e)"
     >
       This represent main title
     </ModulesInput>
@@ -88,6 +88,24 @@ const field = ref({ ...value });
 const { blockModels } = storeToRefs(useBlocksStore());
 const blockTypes = blockModels.value.map((blockModel) => blockModel.name);
 const events = defineEmits(["onError", "onValid"]);
+
+const handleIsMain = (e) => {
+  field.value.isMain = e;
+  checkValid();
+};
+const handleAllowMultiple = (e) => {
+  field.value.allowMultiple = e;
+  checkValid();
+};
+const handleIsRequired = (e) => {
+  field.value.validations.required = e;
+  checkValid();
+};
+
+const handleUseMinMax = (e) => {
+  field.value.validations.minMax.use = e;
+  checkValid();
+};
 
 const handleMinMax = (value: number, isMin: boolean) => {
   // if (isMin) {
