@@ -5,7 +5,6 @@
       class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
       v-for="(todo, index) in todos"
     >
-      {{ index }}
       <ModulesInput
         type="checkbox"
         :value="todo.done"
