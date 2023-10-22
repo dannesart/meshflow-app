@@ -40,7 +40,7 @@
                 :title="task.title"
                 :body="task.description || '-'"
                 :tags="task.tags"
-                :user="task.createdBy"
+                :user="task.assignedTo"
                 :class="'mb-0'"
                 @favorite="handleFavorite($event, task.title)"
               ></ModulesCard>
