@@ -1,5 +1,4 @@
 import { PageModel } from "~~/models/page.db";
-import { BlocksDbModel } from "~~/models/blocks.db";
 import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {
