@@ -10,6 +10,7 @@ const TaskDbSchema: Schema<Task> = new Schema({
   projectId: { type: Schema.Types.ObjectId, ref: "projects" },
   assignedTo: String,
   createdBy: String,
+  estimate: String,
   created: { type: Date, default: Date.now },
   updatedBy: String,
   updated: { type: Date, default: Date.now },

@@ -21,7 +21,7 @@
       class="py-3 px-5 border rounded-lg shadow-sm bg-white disabled:bg-slate-100"
       :class="{ 'hover:shadow-lg': !disabled }"
       :name="name"
-      placeholder="ex. Sunny weather or Benjamin"
+      :placeholder="exampleValue(type)"
     />
 
     <!-- Tag modal -->
@@ -265,6 +265,21 @@ const updateColor = (value: string) => {
 const updateValue = (event: Event) => {
   const newValue = (event.target as { value?: string }).value;
   eventEmit("valueUpdate", newValue);
+};
+
+const exampleValue = (type: string) => {
+  switch (type) {
+    case "text":
+      return "ex. Sunny weather or Benjamin";
+    case "number":
+      return "ex. 1, 12 or 100";
+    case "email":
+      return "ex. john.doe@work.com";
+    case "Date":
+      return "ex. July 12th";
+    default:
+      return "ex. Hello world";
+  }
 };
 
 const selectOption = (e: Event, option: string) => {
