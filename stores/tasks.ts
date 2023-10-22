@@ -28,7 +28,11 @@ export const useTasksStore = defineStore("TasksStore", {
     currentTask: (state) => state.task,
     tasks: (state) => state.allTasks,
     latest: (state) => {
-      const latest = [...state.allTasks];
+      const latest = [
+        ...state.allTasks.filter(
+          (task) => taskActiveStatuses.indexOf(task.status) > -1
+        ),
+      ];
       latest.length = latest.length > 2 ? 2 : latest.length;
       return latest;
     },
@@ -36,6 +40,10 @@ export const useTasksStore = defineStore("TasksStore", {
       return (taskId: string) =>
         state.allTasks.findIndex((task) => task.id === taskId);
     },
+    getActiveTasks: (state) =>
+      state.allTasks.filter(
+        (task) => taskActiveStatuses.indexOf(task.status) > -1
+      ),
     amountActiveTasks: (state) =>
       state.allTasks.filter(
         (task) => taskActiveStatuses.indexOf(task.status) > -1
