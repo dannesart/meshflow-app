@@ -14,4 +14,4 @@ const BlockDbSchema: Schema<Block> = new Schema({
 });
 const BlocksDbModel = model("blocks", BlockDbSchema);
 
-export { BlocksDbModel };
+export { BlocksDbModel, BlockDbSchema };
