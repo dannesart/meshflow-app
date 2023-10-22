@@ -32,8 +32,6 @@ export default defineEventHandler(async (e) => {
     description,
     createdBy,
     updatedBy,
-    deadline: new Date(deadline),
-    estimate,
     assignedTo,
     projectId,
     status,
@@ -41,6 +39,12 @@ export default defineEventHandler(async (e) => {
     tags,
     title,
   };
+  if (deadline) {
+    updatedObject.deadline = new Date(deadline);
+  }
+  if (estimate) {
+    updatedObject.estimate = estimate;
+  }
   const valid = await TaskSchema.safeParse(updatedObject);
   if (valid.success) {
     try {

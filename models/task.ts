@@ -14,9 +14,10 @@ const TaskSchema = z
   .object({
     title: z.string().min(3).max(50),
     description: z.string().min(0).max(300).optional(),
-    deadline: z.date().optional(),
+    deadline: z.any().optional(),
     status: z.string(),
     id: z.string(),
+    estimate: z.string().optional(),
     createdBy: z.string(),
     created: z.date(),
     tags: z.array(z.string()),

@@ -21,7 +21,7 @@ const TaskSchema = z
     id: z.string().optional(),
     createdBy: z.string(),
     created: z.date(),
-    estimate: z.string(),
+    estimate: z.string().optional(),
     updatedBy: z.string(),
     updated: z.date().default(() => new Date()),
     tags: z.array(z.string()),
