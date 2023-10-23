@@ -34,18 +34,22 @@ export const usePagesStore = defineStore("PagesStore", {
   getters,
   actions: {
     async updatePage(page: Page) {
+      const uiStore = useUiStore();
       try {
         this.isLoading = true;
+        uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.patch(
           config.public.REDIRECT_URI + "/api/pages/" + page.id,
           page
         );
-        this.isLoading = false;
         await this.fetchPages();
+        this.isLoading = false;
+        uiStore.setLoading(false);
         return true;
       } catch (error) {
         this.isLoading = false;
+        uiStore.setLoading(false);
         return false;
       }
     },
@@ -59,9 +63,9 @@ export const usePagesStore = defineStore("PagesStore", {
           config.public.REDIRECT_URI + "/api/pages",
           page
         );
+        await this.fetchPages();
         this.isLoading = false;
         uiStore.setLoading(false);
-        await this.fetchPages();
         return response;
       } catch (error) {
         this.isLoading = false;
@@ -78,8 +82,8 @@ export const usePagesStore = defineStore("PagesStore", {
         const response = await axios.delete(
           config.public.REDIRECT_URI + "/api/pages/" + id
         );
-        this.isLoading = false;
         await this.fetchPages();
+        this.isLoading = false;
         uiStore.setLoading(false);
         return true;
       } catch (error) {
