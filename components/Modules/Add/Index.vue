@@ -40,6 +40,12 @@
           @on-error="setInvalid"
         >
         </ModulesAddPage>
+        <ModulesAddUser
+          v-if="type === 'user' && showModal"
+          @on-valid="setValid"
+          @on-error="setInvalid"
+        >
+        </ModulesAddUser>
         <ModulesAddField
           v-if="type === 'field' && showModal"
           @on-valid="setValid"
@@ -70,7 +76,7 @@
 
         <slot v-if="showModal"></slot>
       </div>
-      <footer class="flex gap-4 z-50 bg-white">
+      <footer class="z-50 flex gap-4 bg-white">
         <ClientOnly>
           <UIButton
             type="add"
