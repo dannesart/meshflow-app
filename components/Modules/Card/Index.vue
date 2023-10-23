@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-xl shadow-lg bg-white relative hover:shadow-xl hover:cursor-pointer"
+    class="relative bg-white shadow-lg rounded-xl hover:shadow-xl hover:cursor-pointer"
     :class="{ 'p-6 py-4': size === 'small', 'p-10 py-8': size !== 'small' }"
   >
     <UIHeadline size="h3" data-title :class="{ 'pr-12': true }">
@@ -8,7 +8,7 @@
     </UIHeadline>
 
     <p
-      class="first-letter:capitalize truncate"
+      class="truncate first-letter:capitalize"
       v-if="body"
       :class="{
         'mb-0': !tags || !tags.length,
@@ -26,11 +26,14 @@
       @favorite="toggleFavorite"
       :size="size"
     ></ModulesFavorite>
-    <div class="flex mt-4 gap-3">
+    <div class="flex gap-3 mt-4">
       <UIUserTag v-if="user" :id="user" :size="'small'"></UIUserTag>
       <ModulesTagsList :can-add="false" v-if="tags && tags.length">
-        <UITag v-for="tag in tags" class="px-2 py-0.5 text-sm">
-          {{ tag }}
+        <UITag class="px-2 py-0.5 text-sm">
+          {{ tags[0] }}
+        </UITag>
+        <UITag class="px-2 py-0.5 text-sm" v-if="tags.length > 1">
+          {{ tags.length - 1 }}+
         </UITag>
       </ModulesTagsList>
     </div>
