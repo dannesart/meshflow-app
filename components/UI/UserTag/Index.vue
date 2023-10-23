@@ -34,7 +34,7 @@
     </div>
     <UIUserImage
       :name="fullUser.name"
-      :image="fullUser.image"
+      :image="fullUser.picture"
       :size="'small'"
       v-else-if="fullUser"
     ></UIUserImage>

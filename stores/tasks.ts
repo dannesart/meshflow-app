@@ -119,6 +119,9 @@ export const useTasksStore = defineStore("TasksStore", {
         return false;
       }
     },
+    async fetchTask(id: string) {
+      // TODO: Implement this
+    },
     async fetchTasks() {
       const { activeId } = storeToRefs(useProjectStore());
       this.loading = true;
