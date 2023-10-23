@@ -40,7 +40,7 @@
     <div
       v-for="blockModel of blockModels"
       :key="blockModel.id"
-      class="flex flex-col w-full gap-6 p-5 bg-slate-100 cursor-pointer px-7 rounded-xl"
+      class="flex flex-col w-full gap-6 p-5 cursor-pointer bg-slate-100 px-7 rounded-xl"
     >
       <div @click="toggleOpenBlock(blockModel.id)" class="flex w-full">
         <div class="flex flex-col">
@@ -68,7 +68,7 @@
           :key="block.id"
         >
           <div
-            class="p-5 rounded-lg bg-white shadow-xl px-7"
+            class="p-5 bg-white rounded-lg shadow-xl px-7"
             @click="blockSelect(block.id, blockModel.id)"
           >
             <UIHeadline :size="'h3'">
@@ -76,6 +76,14 @@
             </UIHeadline>
             <p class="text-gray-400">Updated {{ useTimeAgo(block.updated) }}</p>
           </div>
+        </template>
+        <template v-if="!getBlocksByType(blockModel.id).length">
+          <UIEmpty>
+            No blocks yet for this type.
+            <UIButton type="link" @click="goToType(blockModel.id)"
+              >Go to block type</UIButton
+            >
+          </UIEmpty>
         </template>
       </div>
     </div>
@@ -88,6 +96,7 @@ import { Model, ModelSchema } from "~~/models/model";
 import { useBlocksStore } from "~~/stores/blocks";
 import { useProjectStore } from "~~/stores/projects";
 
+const router = useRouter();
 const blockStore = useBlocksStore();
 const { fetchBlocks } = blockStore;
 const { blocks, blockModels, getBlocksByType } = storeToRefs(blockStore);
@@ -109,6 +118,10 @@ const newBlockForm = ref({
   serviceType: "block",
   projectId: useProjectStore().activeId,
 });
+
+const goToType = async (id: string) => {
+  await router.push(`/blocks/${id}`);
+};
 
 const blockSelect = (id: string, type: string) => {
   events("onValid", { id, type });

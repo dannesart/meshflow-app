@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <header class="flex gap-4 items-center">
+    <header class="flex items-center gap-4">
       <UIHeadline
         size="h1"
         :editable="true"
@@ -9,23 +9,23 @@
       >
         {{ page?.title }}
       </UIHeadline>
-    </header>
-    <div class="flex gap-6 flex-col" v-if="page">
       <div
-        class="cursor-pointer hover:shadow-md text-sm capitalize p-3 py-1 rounded-full w-max flex-none"
+        class="flex-none p-3 py-2 text-sm capitalize rounded-full cursor-pointer hover:shadow-md w-max"
         @click="changeStatus()"
         :class="{
-          'bg-red-100 text-red-400': page.status === 'private',
-          'bg-emerald-100 text-emerald-400': page.status === 'public',
+          'bg-red-100 text-red-400 hover:bg-red-200': page.status === 'private',
+          'bg-emerald-100 text-emerald-400 hover:bg-emerald-200':
+            page.status === 'public',
         }"
       >
         {{ page.status }}
       </div>
-
+    </header>
+    <div class="flex flex-col gap-6" v-if="page">
       <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
         Slug
       </ModulesInput>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <UIHeadline size="label"> Blocks </UIHeadline>
         <ModulesAdd
           @on-add="onBlockAdd"
@@ -64,7 +64,7 @@
 
         <div
           v-else
-          class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between"
+          class="flex items-center justify-between gap-6 p-10 bg-gray-100 rounded-xl"
         >
           No blocks yet. Create or add existing one
           <ModulesAdd
