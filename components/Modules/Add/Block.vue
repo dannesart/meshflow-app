@@ -78,7 +78,7 @@
           </div>
         </template>
         <template v-if="!getBlocksByType(blockModel.id).length">
-          <UIEmpty>
+          <UIEmpty :class="'bg-white  md:col-span-2 xl:col-span-4'">
             No blocks yet for this type.
             <UIButton type="link" @click="goToType(blockModel.id)"
               >Go to block type</UIButton
@@ -120,7 +120,7 @@ const newBlockForm = ref({
 });
 
 const goToType = async (id: string) => {
-  await router.push(`/blocks/${id}`);
+  router.push(`/blocks/${id}`);
 };
 
 const blockSelect = (id: string, type: string) => {
