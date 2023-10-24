@@ -6,7 +6,7 @@
           size="h1"
           :value="model?.name"
           :editable="true"
-          class="flex gap-3"
+          class="flex gap-3 capitalize"
           @value-change="($event) => (model.name = $event)"
         >
           {{ model?.name }}
@@ -69,7 +69,10 @@
                 ></UIIcons>
               </div>
               <div class="flex flex-col gap-1">
-                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
+                <UIHeadline
+                  size="h4"
+                  :class="'flex gap-3 items-center capitalize'"
+                >
                   {{ field.name }}
                 </UIHeadline>
                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
