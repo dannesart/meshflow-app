@@ -19,10 +19,15 @@
       class="flex md:gap-6 flex-col overflow-x-scroll pb-4 scroll-smooth snap-x md:flex-row"
     >
       <div
-        class="w-96 flex flex-col gap-3 flex-none snap-center"
+        class="w-96 flex flex-col gap-3 flex-none snap-center relative"
         v-for="status in TASK_STATUSES"
       >
-        <UIHeadline size="h3" :class="{ capitalize: true }">
+        <UIHeadline
+          size="h3"
+          :class="{
+            capitalize: true,
+          }"
+        >
           {{ status }}
         </UIHeadline>
 
@@ -30,7 +35,7 @@
           :list="(tasksStore.tasks || []).filter((a) => a.status === status)"
           group="tasks"
           :component-data="{
-            class: 'flex flex-col gap-4 h-full min-h-[20rem]',
+            class: 'flex flex-col gap-4 h-full flex-1',
           }"
           item-key="id"
           @change="dragChange($event, status)"

@@ -113,7 +113,7 @@
             }"
           >
             <ModulesInput
-              type="text"
+              type="number"
               :value="field.validations.minMax.min"
               @value-update="(e) => handleMinMax(e, true)"
             >
@@ -121,7 +121,7 @@
             </ModulesInput>
             <div class="pb-4">-</div>
             <ModulesInput
-              type="text"
+              type="number"
               :value="field.validations.minMax.max"
               @value-update="(e) => handleMinMax(e, false)"
             >
@@ -153,6 +153,7 @@ const field = ref<ModelField>({
   allowMultiple: false,
   validations: {
     required: false,
+    allowedReferences: [],
     minMax: {
       use: false,
       min: undefined,
@@ -180,7 +181,7 @@ const handleUseMinMax = (e) => {
 };
 
 const handleMultipleSelect = (values: string[]) => {
-  debugger;
+  field.value.allowedReferences = values;
 };
 
 const handleMinMax = (value: number, isMin: boolean) => {
@@ -220,4 +221,10 @@ const checkValid = () => {
     events("onError", { ...field.value });
   }
 };
+</script>
+
+<script lang="ts">
+export default defineComponent({
+  name: "AddField",
+});
 </script>

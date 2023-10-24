@@ -1,78 +1,97 @@
 <template>
-  <div class="flex gap-6 mb-6">
-    <ModulesInput
-      :type="'text'"
-      :value="field.name"
-      @value-update="(e) => handleOnName(e)"
-      class="w-96"
-    >
-      Name
-    </ModulesInput>
-    <ModulesInput
-      :type="'text'"
-      :value="field.id"
-      :disabled="true"
-      class="w-96"
-    >
-      Id
-    </ModulesInput>
-  </div>
-  <div class="mb-12" v-if="field.type.name === ModelTypes[0].name">
-    <ModulesInput
-      type="checkbox"
-      name="main-title"
-      :value="field.isMain"
-      @value-update="(e) => handleIsMain(e)"
-    >
-      This represent main title
-    </ModulesInput>
-  </div>
-  <div class="mb-12" v-if="field.type.name === ModelTypes[4].name">
-    <ModulesInput
-      type="multi-select"
-      name="reference-types"
-      :value="field.validations.allowedReferences"
-      :values="blockTypes"
-    >
-      Select allowed reference types
-    </ModulesInput>
-  </div>
-  <UIHeadline size="h3">Validations</UIHeadline>
-  <div class="flex flex-col gap-4">
-    <ModulesInput type="checkbox" name="required"> Required </ModulesInput>
-
-    <div
-      class="flex flex-col gap-4"
-      v-if="field.type.name === ModelTypes[0].name"
-    >
+  <div>
+    <div class="flex gap-6 mb-6">
+      <ModulesInput
+        :type="'text'"
+        :value="field.name"
+        @value-update="(e) => handleOnName(e)"
+        class="w-96"
+      >
+        Name
+      </ModulesInput>
+      <ModulesInput
+        :type="'text'"
+        :value="field.id"
+        :disabled="true"
+        class="w-96"
+      >
+        Id
+      </ModulesInput>
+    </div>
+    <div class="mb-4" v-if="field.type.name === ModelTypes[0].name">
       <ModulesInput
         type="checkbox"
-        name="character-count"
-        :value="field.validations.minMax.use"
-        @value-update="(e) => (field.validations.minMax.use = e)"
+        name="main-title"
+        :value="field.isMain"
+        @value-update="(e) => handleIsMain(e)"
       >
-        Limit character count
+        This represent main title
       </ModulesInput>
+    </div>
+    <div class="mb-12">
+      <ModulesInput
+        type="checkbox"
+        name="multiple-values"
+        :value="field.allowMultiple"
+        @value-update="(e) => handleAllowMultiple(e)"
+      >
+        Multiple value
+      </ModulesInput>
+    </div>
+    <div class="mb-12" v-if="field.type.name === ModelTypes[4].name">
+      <ModulesInput
+        type="multi-select"
+        name="reference-types"
+        :value="field.validations.allowedReferences"
+        :values="blockTypes"
+        @value-update="(e) => handleMultipleSelect(e)"
+      >
+        Select allowed reference types
+      </ModulesInput>
+    </div>
+    <UIHeadline size="h3">Validations</UIHeadline>
+    <div class="flex flex-col gap-4">
+      <ModulesInput
+        type="checkbox"
+        name="required"
+        @value-update="(e) => handleIsRequired(e)"
+      >
+        Required
+      </ModulesInput>
+
       <div
-        class="flex gap-4 items-end"
-        v-if="field.validations.minMax.use"
-        :class="{ 'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use }"
+        class="flex flex-col gap-4"
+        v-if="field.type.name === ModelTypes[0].name"
       >
         <ModulesInput
-          type="text"
-          :value="field.validations.minMax.min"
-          @value-update="(e) => handleMinMax(e, true)"
+          type="checkbox"
+          name="character-count"
+          :value="field.validations.minMax.use"
+          @value-update="(e) => handleUseMinMax(e)"
         >
-          Min
+          Limit character count
         </ModulesInput>
-        <div class="pb-4">-</div>
-        <ModulesInput
-          type="text"
-          :value="field.validations.minMax.max"
-          @value-update="(e) => handleMinMax(e, false)"
+        <div
+          class="flex gap-4 items-end"
+          v-if="field.validations.minMax.use"
+          :class="{ 'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use }"
         >
-          Max
-        </ModulesInput>
+          <ModulesInput
+            type="number"
+            :value="field.validations.minMax.min"
+            @value-update="(e) => handleMinMax(e, true)"
+          >
+            Min
+          </ModulesInput>
+          <div class="pb-4">-</div>
+          <ModulesInput
+            type="number"
+            :value="field.validations.minMax.max"
+            @value-update="(e) => handleMinMax(e, false)"
+          >
+            Max
+          </ModulesInput>
+        </div>
       </div>
     </div>
   </div>
@@ -82,12 +101,13 @@ import { storeToRefs } from "pinia";
 import { ModelTypes } from "~~/constants/model";
 import { ModelFieldSchema } from "~~/models/model";
 import { useBlocksStore } from "~~/stores/blocks";
-
+const events = defineEmits(["valueUpdate", "onError", "onValid"]);
 const { value } = defineProps(["value"]);
-const field = ref({ ...value });
+
 const { blockModels } = storeToRefs(useBlocksStore());
 const blockTypes = blockModels.value.map((blockModel) => blockModel.name);
-const events = defineEmits(["onError", "onValid"]);
+
+const field = ref({ ...value });
 
 const handleIsMain = (e) => {
   field.value.isMain = e;
@@ -108,18 +128,18 @@ const handleUseMinMax = (e) => {
 };
 
 const handleMinMax = (value: number, isMin: boolean) => {
-  // if (isMin) {
-  //     if ((field.value.validations.minMax.max || 0) < value) {
-  //         field.value.validations.minMax.max = value < 0 ? 0 : value;
-  //     }
-  //     field.value.validations.minMax.min = value < 0 ? 0 : value;
-  // }
-  // if (!isMin) {
-  //     if ((field.value.validations.minMax.min || 0) > value) {
-  //         field.value.validations.minMax.min = value < 0 ? 0 : value;
-  //     }
-  //     field.value.validations.minMax.max = value < 0 ? 0 : value;
-  // }
+  if (isMin) {
+    if ((field.value.validations.minMax.max || 0) < value) {
+      field.value.validations.minMax.max = value < 0 ? 0 : value;
+    }
+    field.value.validations.minMax.min = value < 0 ? 0 : value;
+  }
+  if (!isMin) {
+    if ((field.value.validations.minMax.min || 0) > value) {
+      field.value.validations.minMax.min = value < 0 ? 0 : value;
+    }
+    field.value.validations.minMax.max = value < 0 ? 0 : value;
+  }
 };
 
 const handleOnName = (value: string) => {

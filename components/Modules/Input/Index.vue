@@ -74,17 +74,18 @@
 
     <div
       v-if="type === 'checkbox' || type === 'boolean'"
-      class="flex gap-3 items-center cursor-pointer"
+      class="flex w-full gap-3 items-center cursor-pointer"
+      @click="updateCheckbox(!value)"
     >
-      <input
-        type="checkbox"
+      <div
         class="w-6 h-6 rounded-lg cursor-pointer"
+        :class="{ 'bg-sky-400 text-white': value, 'bg-slate-200': !value }"
         :name="name"
-        :checked="value"
         :id="id"
-        @change="updateCheckbox"
-      />
-      <label :for="id" class="cursor-pointer">
+      >
+        <UIIcons name="check" v-if="value"></UIIcons>
+      </div>
+      <label class="cursor-pointer">
         <slot />
       </label>
     </div>
@@ -140,8 +141,9 @@
           <ModulesInput
             type="checkbox"
             :value="(valueRef || []).indexOf(option) > -1"
-          ></ModulesInput>
-          {{ option }}
+          >
+            {{ option }}
+          </ModulesInput>
         </div>
       </div>
     </div>
@@ -242,9 +244,8 @@ const handleFocusOut = (event: Event) => {
   isToggled.value = false;
 };
 
-const updateCheckbox = (event: Event) => {
-  const newValue = (event.target as { checked?: boolean }).checked;
-  eventEmit("valueUpdate", newValue);
+const updateCheckbox = (checked: boolean) => {
+  eventEmit("valueUpdate", checked);
 };
 
 const updateSlider = (event: Event) => {
@@ -289,6 +290,7 @@ const selectOption = (e: Event, option: string) => {
   eventEmit("valueUpdate", option);
   isToggled.value = false;
   if (selectRef.value) {
+    console.log("Trigger blur");
     selectRef.value.blur();
   }
 };
