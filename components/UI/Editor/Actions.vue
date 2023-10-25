@@ -3,9 +3,10 @@
     <div :class="buttonStyle">
       <div>😀</div>
       <div
-        class="hidden group-hover:flex p-2 bg-white absolute top-full z-50 gap-2 border border-slate-400 rounded-lg"
+        class="hidden group-hover:flex p-2 bg-white absolute top-full z-50 gap-2 border border-slate-400 rounded-lg left-0"
       >
         <button
+          :class="buttonStyle"
           v-for="emoji in emojis"
           @click.prevent="editor.chain().focus().setEmoji(emoji.name).run()"
         >
@@ -33,7 +34,7 @@ import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 
 const { editor } = defineProps(["editor"]);
 const buttonStyle =
-  "w-8 h-8 rounded-lg border border-slate-400 flex justify-center items-center cursor-pointer group relative bg-white";
+  "w-8 h-8 rounded-lg border border-slate-400 flex justify-center items-center cursor-pointer group relative bg-white hover:bg-sky-100";
 const emojis = [
   {
     emoji: "🚀",

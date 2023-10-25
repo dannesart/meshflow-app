@@ -32,6 +32,6 @@ const editor = useEditor({
 
 <style>
 .tiptap {
-  @apply py-3 px-5;
+  @apply py-3 px-5 min-h-[10rem] resize-y;
 }
 </style>
