@@ -16,14 +16,18 @@
     </header>
     <div class="flex gap-6 flex-col md:flex-row" v-if="task">
       <UIForm :class="'flex-1 flex flex-col gap-6'">
-        <ModulesInput
+        <!-- <ModulesInput
           type="text-lg"
           :max="300"
           :value="task.description"
           @value-update="(e) => (task.description = e)"
         >
           Description
-        </ModulesInput>
+        </ModulesInput> -->
+        <UIEditor
+          :value="task.description"
+          @value-update="(e) => (task.description = e)"
+        />
 
         <ModulesTodo
           :value="task.subTasks"
