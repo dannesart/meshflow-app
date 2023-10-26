@@ -26,6 +26,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+      - name: Pointing to private registry
+        run: npm config set "@tiptap-pro:registry" https://registry.tiptap.dev/
+      - name: Set token
+        run: npm config set "//registry.tiptap.dev/:_authToken" ${{secrets.TIPTAP_PRO_TOKEN}}
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
