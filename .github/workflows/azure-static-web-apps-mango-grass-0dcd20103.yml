@@ -19,7 +19,7 @@ jobs:
         env:
           PAT: ${{ secrets.TIPTAP_PRO_TOKEN }}
         run: |
-          sed -i.back "s|TIPTAP_PRO_TOKEN|${PAT}|g" ~/.npmrc
+          sed -i.back "s|TIPTAP_PRO_TOKEN|${PAT}|g" ./.npmrc
       - name: Authenticate with private NPM package
         run: echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" > ~/.npmrc
   build_and_deploy_job:
