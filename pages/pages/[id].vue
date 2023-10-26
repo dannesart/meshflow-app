@@ -1,24 +1,37 @@
 <template>
   <NuxtLayout>
-    <header class="flex items-center gap-4">
+    <header class="flex items-center gap-4 justify-between">
       <UIHeadline
         size="h1"
         :editable="true"
+        :class="'!w-auto'"
         :value="page?.title"
         @value-change="(value) => (page.title = value)"
       >
         {{ page?.title }}
       </UIHeadline>
-      <div
-        class="flex-none p-3 py-2 text-sm capitalize rounded-full cursor-pointer hover:shadow-md w-max"
-        @click="changeStatus()"
-        :class="{
-          'bg-red-100 text-red-400 hover:bg-red-200': page.status === 'private',
-          'bg-emerald-100 text-emerald-400 hover:bg-emerald-200':
-            page.status === 'public',
-        }"
-      >
-        {{ page.status }}
+      <div class="flex gap-2 items-center">
+        <label class="text-sm text-slate-500 capitalize">{{
+          page.status
+        }}</label>
+        <ModulesInput
+          type="switch"
+          :value="page.status === 'public'"
+          @click="changeStatus()"
+        >
+        </ModulesInput>
+        <!-- <div
+          class="flex-none p-3 py-2 text-sm capitalize rounded-full cursor-pointer hover:shadow-md w-max"
+          @click="changeStatus()"
+          :class="{
+            'bg-red-100 text-red-400 hover:bg-red-200':
+              page.status === 'private',
+            'bg-emerald-100 text-emerald-400 hover:bg-emerald-200':
+              page.status === 'public',
+          }"
+        >
+          {{ page.status }}
+        </div> -->
       </div>
     </header>
     <div class="flex flex-col gap-6" v-if="page">

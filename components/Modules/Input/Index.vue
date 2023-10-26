@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-3 relative">
-    <UIHeadline size="label" v-if="type !== 'checkbox'">
+    <UIHeadline size="label" v-if="type !== 'checkbox' && type !== 'switch'">
       <slot />
     </UIHeadline>
 
