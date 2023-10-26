@@ -13,7 +13,7 @@ export const ModelTypes: ModelType[] = [
     id: "richText",
     description: "Paragraphs, larger texts etc.",
     format: "string",
-    icon: "text",
+    icon: "richText",
   },
   {
     name: "Boolean",
