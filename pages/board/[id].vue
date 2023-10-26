@@ -127,6 +127,10 @@ const { taskById, updateTask, deleteTask } = tasksStore;
 const { id } = useRoute().params;
 const task = ref<Task>(taskById(id as string) as Task);
 
+const editorUpdate = (value: string) => {
+  console.log("Update, ", value);
+};
+
 const toggleFavorite = () => {
   if (task.value) {
     setNotification("Liked task", "Danne liked you task", "success");

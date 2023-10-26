@@ -13,7 +13,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 
 const { value } = defineProps(["value"]);
-const emits = defineEmits(["valueChange"]);
+const emits = defineEmits(["valueUpdate"]);
 
 const editor = useEditor({
   content: value,
@@ -25,7 +25,7 @@ const editor = useEditor({
     }),
   ],
   onUpdate: () => {
-    emits("valueChange", editor.value.getHTML());
+    emits("valueUpdate", editor.value.getHTML());
   },
 });
 </script>

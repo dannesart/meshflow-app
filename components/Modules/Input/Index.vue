@@ -24,6 +24,12 @@
       :placeholder="exampleValue(type)"
     />
 
+    <UIEditor
+      v-if="type === 'richText'"
+      :value="value"
+      @value-update="updateValue($event)"
+    />
+
     <!-- Tag modal -->
     <div class="absolute bottom-full mb-10 p-4" v-if="isTagging">
       <ModulesInput
