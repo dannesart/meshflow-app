@@ -190,8 +190,19 @@
       class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
     >
       <div class="flex justify-between gap-3 capitalize h-6 items-center">
-        <div v-if="selectedUser">
+        <div
+          v-if="selectedUser"
+          class="flex justify-between items-center gap-1"
+        >
           <UIUserTag :id="selectedUser"></UIUserTag>
+          <UIButton
+            type="icon"
+            size="round-small"
+            :class="'bg-transparent'"
+            @click="clearUserOption"
+          >
+            <UIIcons name="close"></UIIcons>
+          </UIButton>
         </div>
         <div
           v-else
@@ -312,6 +323,17 @@ const selectMultiOption = (e: Event, option: string) => {
     valueRef.value.push(option);
   }
   eventEmit("valueUpdate", valueRef.value);
+};
+
+const clearUserOption = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+  selectedUser.value = "";
+  eventEmit("valueUpdate", "");
+  isToggled.value = false;
+  if (userSelectRef.value) {
+    userSelectRef.value.blur();
+  }
 };
 
 const selectUserOption = (e: Event, option: any) => {
