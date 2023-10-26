@@ -13,6 +13,7 @@
       <UIHeadline
         size="p"
         editable="true"
+        :class="'!flex-1'"
         :value="todo?.title"
         @value-change="(e) => (todo.title = e)"
       >
