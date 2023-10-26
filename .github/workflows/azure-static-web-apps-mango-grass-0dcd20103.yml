@@ -14,14 +14,10 @@ jobs:
     name: Pre auth registry
     runs-on: ubuntu-latest
     steps:
-      - name: Replace values
-        shell: bash
-        env:
-          PAT: ${{ secrets.TIPTAP_PRO_TOKEN }}
-        run: |
-          sed -i.back "s|TIPTAP_PRO_TOKEN|${PAT}|g" ./.npmrc
-      - name: Authenticate with private NPM package
-        run: echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" > ~/.npmrc
+      - name: Pointing to private registry
+        run: npm config set "@tiptap-pro:registry" https://registry.tiptap.dev/
+      - name: Set token
+        run: npm config set "//registry.tiptap.dev/:_authToken" ${{secrets.TIPTAP_PRO_TOKEN}}
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
