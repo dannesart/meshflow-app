@@ -10,6 +10,12 @@ on:
   #     - main
 
 jobs:
+  pre_auth_registry:
+    name: Pre auth registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate with private NPM package
+        run: echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" > ~/.npmrc
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
