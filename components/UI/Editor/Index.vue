@@ -25,7 +25,7 @@ const editor = useEditor({
     }),
   ],
   onUpdate: () => {
-    emits("valueChange", editor.getHTML());
+    emits("valueChange", editor.value.getHTML());
   },
 });
 </script>

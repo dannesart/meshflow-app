@@ -45,7 +45,6 @@
             <NuxtLink :to="'/board/' + task.id" class="flex-1 md:max-w-xl">
               <ModulesCard
                 :title="task.title"
-                :body="task.description || '-'"
                 :tags="task.tags"
                 :user="task.assignedTo"
                 :class="'mb-0'"
