@@ -21,6 +21,13 @@
     >
       {{ body }}
     </p>
+
+    <UIBadge
+      v-if="badge"
+      :badge="badge"
+      :class="'absolute top-6 right-6'"
+    ></UIBadge>
+
     <div class="flex gap-3 mt-4">
       <UIUserTag v-if="user" :id="user" :size="'small'"></UIUserTag>
       <ModulesTagsList :can-add="false" v-if="tags && tags.length">
@@ -36,13 +43,14 @@
 </template>
 
 <script setup lang="ts">
-const { title, body, favorite, size, tags, user } = defineProps([
+const { title, body, favorite, size, tags, user, badge } = defineProps([
   "title",
   "body",
   "favorite",
   "size",
   "tags",
   "user",
+  "badge",
 ]);
 const eventEmit = defineEmits(["favorite"]);
 const favoriteState = ref(favorite);

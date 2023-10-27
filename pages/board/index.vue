@@ -47,6 +47,11 @@
                 :title="task.title"
                 :tags="task.tags"
                 :user="task.assignedTo"
+                :badge="{
+                  icon: '',
+                  value: task.estimate,
+                  theme: colorByEstimate(task.estimate),
+                }"
                 :class="'mb-0'"
                 @favorite="handleFavorite($event, task.title)"
               ></ModulesCard>
@@ -78,6 +83,13 @@ export default {
     };
   },
   methods: {
+    colorByEstimate: (estimate: number) => {
+      if (!estimate) return "system";
+      if (estimate <= 2) return "primary";
+      if (estimate > 2 && estimate < 5) return "secondary";
+      if (estimate >= 5 && estimate <= 7) return "warning";
+      return "error";
+    },
     handleFavorite: (isFavorite: boolean, title: string) => {
       if (!isFavorite) {
         setNotification("Pelle has liked", title, "success");

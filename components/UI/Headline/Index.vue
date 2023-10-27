@@ -10,7 +10,7 @@
   </component>
   <div
     v-else
-    class="relative z-50 flex-none w-auto"
+    class="relative z-50 flex-none w-full"
     tabindex="0"
     ref="fieldContainerRef"
   >
