@@ -62,42 +62,46 @@
           </div>
           <div class="flex gap-5">
             <div
-              v-if="tasksStore.isLoading"
+              v-if="isLoading"
               class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
             >
               <UILoader></UILoader>
             </div>
-
-            <div v-else-if="latest.length" class="flex flex-col w-full gap-4">
-              <NuxtLink
-                :to="'/board/' + task.id"
-                class="flex-1"
-                v-for="task in latest"
-                :key="task.id"
+            <ClientOnly>
+              <div
+                v-if="!isLoading && latest.length"
+                class="flex flex-col w-full gap-4"
               >
-                <ModulesCard
-                  :title="task.title"
-                  :tags="task.tags"
-                  :user="task.assignedTo"
-                  :badge="{
-                    icon: '',
-                    value: task.estimate,
-                    theme: useColorByEstimate(task.estimate),
-                  }"
-                  :class="'mb-0'"
-                ></ModulesCard>
-              </NuxtLink>
-            </div>
-            <UIEmpty v-else>
-              No tasks yet, create one
-              <ModulesAdd
-                @on-add="onAdd"
-                type="task"
-                button-style="system"
-                label="Add task"
-              >
-              </ModulesAdd>
-            </UIEmpty>
+                <NuxtLink
+                  :to="'/board/' + task.id"
+                  class="flex-1"
+                  v-for="task in latest"
+                  :key="task.id"
+                >
+                  <ModulesCard
+                    :title="task.title"
+                    :tags="task.tags"
+                    :user="task.assignedTo"
+                    :badge="{
+                      icon: '',
+                      value: task.estimate,
+                      theme: useColorByEstimate(task.estimate),
+                    }"
+                    :class="'mb-0'"
+                  ></ModulesCard>
+                </NuxtLink>
+              </div>
+              <UIEmpty v-else>
+                No tasks yet, create one
+                <ModulesAdd
+                  @on-add="onAdd"
+                  type="task"
+                  button-style="system"
+                  label="Add task"
+                >
+                </ModulesAdd>
+              </UIEmpty>
+            </ClientOnly>
           </div>
         </div>
         <div class="flex items-end justify-end">
@@ -122,7 +126,8 @@ const { setNotification } = notificationsStore;
 const { comments } = storeToRefs(useCommentsStore());
 const tasksStore = useTasksStore();
 const { addTask } = tasksStore;
-const { latest, allTasks, amountActiveTasks } = storeToRefs(tasksStore);
+const { latest, allTasks, amountActiveTasks, isLoading } =
+  storeToRefs(tasksStore);
 const { pages } = storeToRefs(usePagesStore());
 const usersStore = useUsersStore();
 const { usersAmount, allUsers } = storeToRefs(usersStore);

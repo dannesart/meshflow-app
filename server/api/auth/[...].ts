@@ -5,6 +5,9 @@ const config = useRuntimeConfig();
 
 export default NuxtAuthHandler({
   secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
+  pages: {
+    signIn: "/signin",
+  },
   providers: [
     auth0.default({
       clientId:
@@ -22,19 +25,19 @@ export default NuxtAuthHandler({
     }),
   ],
   cookies: {
-    // pkceCodeVerifier: {
-    //   name: "next-auth.pkce.code_verifier",
-    //   options: {
-    //     httpOnly: true,
-    //     sameSite: "lax",
-    //     path: "/",
-    //     secure: true,
-    //   },
-    // },
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: false,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+      },
+    },
     state: {
       name: `next-auth.state`,
       options: {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: "lax",
         path: "/",
         secure: true,
