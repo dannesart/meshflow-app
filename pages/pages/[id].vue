@@ -18,8 +18,7 @@
           type="switch"
           :value="page.status === 'public'"
           @click="changeStatus()"
-        >
-        </ModulesInput>
+        />
         <!-- <div
           class="flex-none p-3 py-2 text-sm capitalize rounded-full cursor-pointer hover:shadow-md w-max"
           @click="changeStatus()"

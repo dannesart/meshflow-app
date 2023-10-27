@@ -9,6 +9,7 @@ const BlockDbSchema: Schema<Block> = new Schema({
   createdBy: String,
   created: { type: Date, default: Date.now },
   updatedBy: String,
+  status: String,
   updated: { type: Date, default: Date.now },
   type: { type: Schema.Types.ObjectId, ref: "models" },
 });

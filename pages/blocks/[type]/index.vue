@@ -95,6 +95,7 @@ const onAdd = async (data: any) => {
     projectId,
     properties: props,
     type: type,
+    status: "private",
   };
   const addedBlock = await addBlock(dataToBeSent);
   if (addedBlock) {

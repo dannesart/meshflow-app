@@ -126,7 +126,32 @@ export const useBlocksStore = defineStore("BlocksStore", {
       }
     },
 
-    async updateBlock(blockId: string, block: Block) {},
+    async updateBlock(blockId: string, blockType: string, block: Block) {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
+
+      try {
+        this.isLoading = true;
+        setLoading(true);
+        const config = useRuntimeConfig();
+        const response = await axios.patch(
+          config.public.REDIRECT_URI +
+            "/api/blocks/" +
+            blockType +
+            "/" +
+            blockId,
+          block
+        );
+        this.isLoading = false;
+        await this.fetchBlocks(blockType);
+        setLoading(false);
+        return true;
+      } catch (error) {
+        this.isLoading = false;
+        setLoading(false);
+        return false;
+      }
+    },
 
     async updateBlockModel(blockModel: Model) {
       try {
