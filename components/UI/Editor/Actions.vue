@@ -38,6 +38,12 @@
       B
     </div>
     <div
+      :class="buttonStyle + ' font-bold'"
+      @click.prevent="editor.chain().focus().toggleUnderline().run()"
+    >
+      U
+    </div>
+    <div
       :class="buttonStyle + ' italic'"
       @click.prevent="editor.chain().focus().toggleItalic().run()"
     >
