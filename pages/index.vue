@@ -68,28 +68,26 @@
               <UILoader></UILoader>
             </div>
 
-            <ul
-              v-else-if="latest.length"
-              class="flex flex-col w-full gap-4 p-5 bg-white rounded-lg shadow-lg"
-            >
-              <li
+            <div v-else-if="latest.length" class="flex flex-col w-full gap-4">
+              <NuxtLink
+                :to="'/board/' + task.id"
+                class="flex-1"
                 v-for="task in latest"
                 :key="task.id"
-                class="pb-5 border-b last:border-b-0 last:pb-0"
               >
-                <ModulesExtendedLink
-                  :label="task.title"
+                <ModulesCard
+                  :title="task.title"
                   :tags="task.tags"
-                  :route="'/board/' + task.id"
-                >
-                  <div
-                    class="flex items-center gap-3 mb-2 text-sm text-gray-400"
-                  >
-                    Added by <UIUserTag :id="task.createdBy"></UIUserTag>
-                  </div>
-                </ModulesExtendedLink>
-              </li>
-            </ul>
+                  :user="task.assignedTo"
+                  :badge="{
+                    icon: '',
+                    value: task.estimate,
+                    theme: useColorByEstimate(task.estimate),
+                  }"
+                  :class="'mb-0'"
+                ></ModulesCard>
+              </NuxtLink>
+            </div>
             <UIEmpty v-else>
               No tasks yet, create one
               <ModulesAdd

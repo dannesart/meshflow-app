@@ -33,6 +33,10 @@
         </div> -->
       </div>
     </header>
+    <p>
+      Updated
+      {{ useTimeAgo(page.updated) }}
+    </p>
     <div class="flex flex-col gap-6" v-if="page">
       <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
         Slug

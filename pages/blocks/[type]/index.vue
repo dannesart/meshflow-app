@@ -40,6 +40,10 @@
               block.properties.name ||
               `${blockType?.name} #${index}`
             "
+            :badge="{
+              icon: 'check',
+              theme: block.status === 'public' ? 'primary' : 'system',
+            }"
             :body="
               block.properties.description ||
               `Updated ${useTimeAgo(block.updated)}`
