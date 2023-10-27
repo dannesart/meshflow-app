@@ -21,11 +21,6 @@
     >
       {{ body }}
     </p>
-    <ModulesFavorite
-      :favorite="favoriteState"
-      @favorite="toggleFavorite"
-      :size="size"
-    ></ModulesFavorite>
     <div class="flex gap-3 mt-4">
       <UIUserTag v-if="user" :id="user" :size="'small'"></UIUserTag>
       <ModulesTagsList :can-add="false" v-if="tags && tags.length">

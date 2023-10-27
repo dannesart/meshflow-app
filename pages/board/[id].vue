@@ -9,10 +9,6 @@
       >
         {{ task?.title }}
       </UIHeadline>
-      <ModulesFavorite
-        @favorite="toggleFavorite"
-        :class="'relative top-auto right-auto'"
-      ></ModulesFavorite>
     </header>
     <div class="flex gap-6 flex-col md:flex-row" v-if="task">
       <UIForm :class="'flex-1 flex flex-col gap-6'">

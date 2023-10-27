@@ -10,7 +10,7 @@
       >
         {{ page?.title }}
       </UIHeadline>
-      <div class="flex gap-2 items-center">
+      <div class="flex gap-2 items-center" v-if="page && page.status">
         <label class="text-sm text-slate-500 capitalize">{{
           page.status
         }}</label>
