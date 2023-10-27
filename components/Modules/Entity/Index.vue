@@ -5,6 +5,15 @@
     <div class="flex flex-col gap-1">
       <UIHeadline size="h4" :class="'flex gap-3 items-center'">
         {{ block.properties.name || block.properties.title }}
+        <span
+          class="text-sm"
+          :class="{
+            'text-emerald-400': block.status === 'public',
+            'text-red-400': block.status === 'private',
+          }"
+        >
+          {{ block.status }}
+        </span>
       </UIHeadline>
       <p class="text-sm text-gray-500">
         {{ getBlockModelById(block?.type)?.name }}

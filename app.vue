@@ -1,9 +1,8 @@
 <template>
   <NuxtPage />
 </template>
-  
-<script setup>
 
+<script setup>
 import { useSettingsStore } from "~~/stores/settings";
 import { useTasksStore } from "~~/stores/tasks";
 import { useUsersStore } from "~~/stores/users";
@@ -13,7 +12,6 @@ import { useDataStore } from "~~/stores/data";
 import { usePagesStore } from "./stores/pages";
 import { useBlocksStore } from "./stores/blocks";
 import { useUiStore } from "./stores/ui";
-
 
 const { setLoading } = useUiStore();
 
@@ -28,8 +26,13 @@ const { fetchBlockModels } = useBlocksStore();
 
 setLoading(true);
 await Promise.all([fetchUser(), fetchProjects()]);
-await Promise.all([fetchUser(), fetchProjects(), fetchUserMap(), fetchSettings(), fetchTasks(), fetchDataModels(), fetchPages(), fetchBlockModels()])
+await Promise.all([
+  fetchUserMap(),
+  fetchSettings(),
+  fetchTasks(),
+  fetchDataModels(),
+  fetchPages(),
+  fetchBlockModels(),
+]);
 setLoading(false);
-
 </script>
-

@@ -20,7 +20,13 @@
           />
         </div>
       </header>
-      Updated {{ useTimeAgo(block.updated) }}
+      <p>
+        <span class="font-bold inline-block text-sky-700">{{
+          model.name
+        }}</span>
+        | Updated
+        {{ useTimeAgo(block.updated) }}
+      </p>
       <div v-for="(field, idx) of model.fields">
         <ModulesInput :type="field.type.id" :value="block.properties[field.id]">
           {{ field.name }}
