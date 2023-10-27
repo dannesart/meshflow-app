@@ -30,8 +30,6 @@
             :title="item.name"
             :body="item.description"
             :tags="item.tags"
-            :favorite="false"
-            @favorite="(event) => updateFavorite(event, index)"
           ></ModulesCard>
         </NuxtLink>
       </div>

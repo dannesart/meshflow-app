@@ -28,7 +28,7 @@
       :class="'absolute top-6 right-6'"
     ></UIBadge>
 
-    <div class="flex gap-3 mt-4">
+    <div class="flex gap-3 mt-4" v-if="user || tags">
       <UIUserTag v-if="user" :id="user" :size="'small'"></UIUserTag>
       <ModulesTagsList :can-add="false" v-if="tags && tags.length">
         <UITag class="px-2 py-0.5 text-sm">
@@ -59,4 +59,10 @@ const toggleFavorite = (_favorite: boolean) => {
   favoriteState.value = !_favorite;
   eventEmit("favorite", !_favorite, title);
 };
+</script>
+
+<script lang="ts">
+export default defineComponent({
+  name: "Card",
+});
 </script>
