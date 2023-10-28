@@ -8,34 +8,44 @@
         <UIIcons name="add"></UIIcons>
       </UIButton>
     </div>
-    <div
-      class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
-      v-for="(todo, index) in todos"
+    <TransitionGroup
+      enter-active-class="duration-300 ease-out"
+      enter-from-class="transform scale-50 opacity-0"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="transform scale-50 opacity-0"
     >
-      <ModulesInput
-        type="checkbox"
-        :value="todo.done"
-        @click="setToDone(todo)"
-      ></ModulesInput>
-      <UIHeadline
-        size="p"
-        editable="true"
-        :class="'!flex-1'"
-        :value="todo?.title"
-        @value-change="(e) => (todo.title = e)"
+      <div
+        class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
+        v-for="(todo, index) in todos"
+        :key="index"
       >
-        {{ todo?.title }}
-      </UIHeadline>
+        <ModulesInput
+          type="checkbox"
+          :value="todo.done"
+          @click="setToDone(todo)"
+        ></ModulesInput>
+        <UIHeadline
+          size="p"
+          editable="true"
+          :class="'!flex-1'"
+          :value="todo?.title"
+          @value-change="(e) => (todo.title = e)"
+        >
+          {{ todo?.title }}
+        </UIHeadline>
 
-      <UIButton
-        type="icon"
-        size="round-small"
-        :class="'ml-auto mr-0'"
-        @click="(e) => remove(e, index)"
-      >
-        <UIIcons name="close"></UIIcons>
-      </UIButton>
-    </div>
+        <UIButton
+          type="icon"
+          size="round-small"
+          :class="'ml-auto mr-0'"
+          @click="(e) => remove(e, index)"
+        >
+          <UIIcons name="close"></UIIcons>
+        </UIButton>
+      </div>
+    </TransitionGroup>
     <UIEmpty v-if="!todos.length">No todo's</UIEmpty>
   </div>
 </template>
@@ -63,7 +73,7 @@ const remove = ($event: Event, index: number) => {
 
 const add = ($event: Event) => {
   $event.preventDefault();
-  (todos.value as Array<TTodo>).unshift({
+  (todos.value as Array<TTodo>).push({
     title: "Todo " + (todos.value.length + 1),
     done: false,
   });
