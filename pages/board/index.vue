@@ -19,10 +19,15 @@
       class="flex md:gap-6 flex-col overflow-x-scroll pb-4 scroll-smooth snap-x md:flex-row"
     >
       <div
-        class="w-96 flex flex-col gap-3 flex-none snap-center"
+        class="w-96 flex flex-col gap-3 flex-none snap-center relative"
         v-for="status in TASK_STATUSES"
       >
-        <UIHeadline size="h3" :class="{ capitalize: true }">
+        <UIHeadline
+          size="h3"
+          :class="{
+            capitalize: true,
+          }"
+        >
           {{ status }}
         </UIHeadline>
 
@@ -30,7 +35,7 @@
           :list="(tasksStore.tasks || []).filter((a) => a.status === status)"
           group="tasks"
           :component-data="{
-            class: 'flex flex-col gap-4 h-full min-h-[20rem]',
+            class: 'flex flex-col gap-4 h-full flex-1',
           }"
           item-key="id"
           @change="dragChange($event, status)"
@@ -40,9 +45,13 @@
             <NuxtLink :to="'/board/' + task.id" class="flex-1 md:max-w-xl">
               <ModulesCard
                 :title="task.title"
-                :body="task.description || '-'"
                 :tags="task.tags"
                 :user="task.assignedTo"
+                :badge="{
+                  icon: '',
+                  value: task.estimate,
+                  theme: colorByEstimate(task.estimate),
+                }"
                 :class="'mb-0'"
                 @favorite="handleFavorite($event, task.title)"
               ></ModulesCard>
@@ -74,6 +83,13 @@ export default {
     };
   },
   methods: {
+    colorByEstimate: (estimate: number) => {
+      if (!estimate) return "system";
+      if (estimate <= 2) return "primary";
+      if (estimate > 2 && estimate < 5) return "secondary";
+      if (estimate >= 5 && estimate <= 7) return "warning";
+      return "error";
+    },
     handleFavorite: (isFavorite: boolean, title: string) => {
       if (!isFavorite) {
         setNotification("Pelle has liked", title, "success");

@@ -1,40 +1,52 @@
 <template>
   <div class="flex flex-col gap-3">
-    <UIHeadline size="h4"> Todos </UIHeadline>
-    <div
-      class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
-      v-for="(todo, index) in todos"
-    >
-      <ModulesInput
-        type="checkbox"
-        :value="todo.done"
-        @click="setToDone(todo)"
-      ></ModulesInput>
-      <UIHeadline
-        size="p"
-        editable="true"
-        :value="todo?.title"
-        @value-change="(e) => (todo.title = e)"
-      >
-        {{ todo?.title }}
+    <div class="flex justify-between items-center">
+      <UIHeadline size="h4">
+        Todos ({{ completedTodos.length }}/{{ todos.length }})
       </UIHeadline>
-
-      <UIButton
-        type="icon"
-        size="round-small"
-        :class="'ml-auto mr-0'"
-        @click="(e) => remove(e, index)"
-      >
-        <UIIcons name="close"></UIIcons>
+      <UIButton type="icon" size="round-small-add" @click="add($event)">
+        <UIIcons name="add"></UIIcons>
       </UIButton>
     </div>
-    <p class="bg-white px-4 py-2 rounded-lg" v-if="!todos.length">No todo's</p>
-
-    <footer class="flex justify-end">
-      <UIButton type="system" size="small" @click="add($event)"
-        >Add new todo</UIButton
+    <TransitionGroup
+      enter-active-class="duration-300 ease-out"
+      enter-from-class="transform scale-50 opacity-0"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="transform scale-50 opacity-0"
+    >
+      <div
+        class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
+        v-for="(todo, index) in todos"
+        :key="index"
       >
-    </footer>
+        <ModulesInput
+          type="checkbox"
+          :value="todo.done"
+          @click="setToDone(todo)"
+        ></ModulesInput>
+        <UIHeadline
+          size="p"
+          editable="true"
+          :class="'!flex-1'"
+          :value="todo?.title"
+          @value-change="(e) => (todo.title = e)"
+        >
+          {{ todo?.title }}
+        </UIHeadline>
+
+        <UIButton
+          type="icon"
+          size="round-small"
+          :class="'ml-auto mr-0'"
+          @click="(e) => remove(e, index)"
+        >
+          <UIIcons name="close"></UIIcons>
+        </UIButton>
+      </div>
+    </TransitionGroup>
+    <UIEmpty v-if="!todos.length">No todo's</UIEmpty>
   </div>
 </template>
 
@@ -48,6 +60,10 @@ type TTodo = {
 };
 
 const todos = ref<TTodo[]>(value || []);
+
+const completedTodos = computed(() => {
+  return todos.value.filter((todo) => todo.done);
+});
 
 const remove = ($event: Event, index: number) => {
   $event.preventDefault();

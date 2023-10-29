@@ -1,14 +1,16 @@
-export type TFormInput = {
-    type: string;
-    label: string;
-    disabled: boolean;
-}
+export type FormInput = {
+  type: string;
+  name: string;
+  label: string;
+  disabled: boolean;
+  value: any;
+  values: any[];
+};
 
+export type Group = {
+  inputs: Array<FormInput>;
+};
 
-export type TGroup = {
-    inputs: Array<TFormInput>;
-}
-
-export type TForm = {
-    groups: Array<TGroup>;
-}
+export type Form = {
+  groups: Array<Group>;
+};

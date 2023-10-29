@@ -10,7 +10,7 @@
   </component>
   <div
     v-else
-    class="relative z-50 flex-none w-auto"
+    class="relative z-50 flex-none w-full"
     tabindex="0"
     ref="fieldContainerRef"
   >
@@ -74,7 +74,7 @@ const denyEdit = ($event: Event) => {
 };
 
 const editableCssClasses =
-  "hover:bg-sky-100 cursor-text p-0 appearance-none outline-none bg-transparent";
+  "hover:bg-sky-100 cursor-text p-0 appearance-none outline-none bg-transparent w-full";
 const cssClasses: { [key: string]: string } = {
   h1: `text-5xl leading-10 font-bold text-sky-900 first-letter:capitalize ${
     editable ? editableCssClasses : ""
@@ -92,6 +92,9 @@ const cssClasses: { [key: string]: string } = {
     editable ? editableCssClasses : ""
   }`,
   label: `text-slate-600 first-letter:capitalize ${
+    editable ? editableCssClasses : ""
+  }`,
+  p: `text-slate-600 first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
 };

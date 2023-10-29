@@ -9,21 +9,13 @@
       >
         {{ task?.title }}
       </UIHeadline>
-      <ModulesFavorite
-        @favorite="toggleFavorite"
-        :class="'relative top-auto right-auto'"
-      ></ModulesFavorite>
     </header>
     <div class="flex gap-6 flex-col md:flex-row" v-if="task">
       <UIForm :class="'flex-1 flex flex-col gap-6'">
-        <ModulesInput
-          type="text-lg"
-          :max="300"
+        <UIEditor
           :value="task.description"
           @value-update="(e) => (task.description = e)"
-        >
-          Description
-        </ModulesInput>
+        />
 
         <ModulesTodo
           :value="task.subTasks"
@@ -122,6 +114,10 @@ const { setNotification } = notificationStore;
 const { taskById, updateTask, deleteTask } = tasksStore;
 const { id } = useRoute().params;
 const task = ref<Task>(taskById(id as string) as Task);
+
+const editorUpdate = (value: string) => {
+  console.log("Update, ", value);
+};
 
 const toggleFavorite = () => {
   if (task.value) {

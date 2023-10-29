@@ -1,10 +1,8 @@
 <template>
+  <NuxtLayout>
+    <UIHeadline size="h1"> Storage </UIHeadline>
 
-    <NuxtLayout>
-        <UIHeadline size="h1">
-            Storage
-        </UIHeadline>
-    </NuxtLayout>
+    <UIEmpty> This is not implemented yet. </UIEmpty>
+  </NuxtLayout>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

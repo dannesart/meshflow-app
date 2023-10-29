@@ -4,9 +4,16 @@ export const ModelTypes: ModelType[] = [
   {
     name: "Text",
     id: "text",
-    description: "Titles, Names, Paragraphs etc.",
+    description: "Titles, Names etc.",
     format: "string",
     icon: "text",
+  },
+  {
+    name: "Rich text",
+    id: "richText",
+    description: "Paragraphs, larger texts etc.",
+    format: "string",
+    icon: "richText",
   },
   {
     name: "Boolean",

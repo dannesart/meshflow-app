@@ -88,6 +88,7 @@ declare global {
   const useAuthD: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth.d')['default']
   const useAuthState: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']
   const useAuthStateD: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState.d')['default']
+  const useColorByEstimate: typeof import('../../composables/utils')['useColorByEstimate']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -220,6 +221,7 @@ declare module 'vue' {
     readonly useAuthD: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth.d')['default']>
     readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']>
     readonly useAuthStateD: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState.d')['default']>
+    readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

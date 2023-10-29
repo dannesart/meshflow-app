@@ -1,21 +1,39 @@
 <template>
   <NuxtLayout>
     <template v-if="block">
-      <UIHeadline
-        size="h1"
-        editable="true"
-        :value="block.properties.title || block.properties.name"
-      >
-        {{ block.properties.title || block.properties.name }}
-      </UIHeadline>
-      Updated {{ useTimeAgo(block.updated) }}
+      <header class="flex items-center gap-4 justify-between">
+        <UIHeadline
+          size="h1"
+          editable="true"
+          :value="block.properties.title || block.properties.name"
+        >
+          {{ block.properties.title || block.properties.name }}
+        </UIHeadline>
+        <div class="flex gap-2 items-center" v-if="block">
+          <label class="text-sm text-slate-500 capitalize">{{
+            block.status
+          }}</label>
+          <ModulesInput
+            type="switch"
+            :value="block.status === 'public'"
+            @click="changeStatus()"
+          />
+        </div>
+      </header>
+      <p>
+        <span class="font-bold inline-block text-sky-700">{{
+          model.name
+        }}</span>
+        | Updated
+        {{ useTimeAgo(block.updated) }}
+      </p>
       <div v-for="(field, idx) of model.fields">
         <ModulesInput :type="field.type.id" :value="block.properties[field.id]">
           {{ field.name }}
         </ModulesInput>
       </div>
       <footer class="flex gap-4">
-        <UIButton type="add">Save</UIButton>
+        <UIButton type="add" @click="handleUpdateBlock()">Save</UIButton>
         <UIButton type="delete" @click="handleDeleteBlock()"> Delete </UIButton>
       </footer>
 
@@ -42,6 +60,7 @@ const {
   getBlockById,
   getBlocksByType,
   fetchBlocks,
+  updateBlock,
   getBlockModelById,
   deleteBlock,
 } = useBlocksStore();
@@ -83,6 +102,35 @@ const handleConfirmDelete = async () => {
     }
   } else {
     setNotification("Block could not be deleted", "Missing ID", "fail");
+  }
+};
+
+const handleUpdateBlock = async () => {
+  const updated = await updateBlock(id, type, block.value);
+  if (updated) {
+    setNotification(
+      "Status changed!",
+      `Status has changed to ${block.value.status}`,
+      "success"
+    );
+    return true;
+  } else {
+    // Handle error
+    setNotification(
+      "Status not changed",
+      "The status could not be changed",
+      "fail"
+    );
+    return false;
+  }
+};
+
+const changeStatus = async () => {
+  block.value.status = block.value.status === "private" ? "public" : "private";
+  const updatedBlock = await handleUpdateBlock();
+  if (!updatedBlock) {
+    block.value.status =
+      block.value.status === "private" ? "public" : "private";
   }
 };
 </script>

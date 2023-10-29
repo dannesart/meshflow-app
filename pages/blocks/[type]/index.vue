@@ -1,12 +1,11 @@
 <template>
-  <NuxtLayout>
-    <UIHeadline size="h1">
-      {{ blockType?.name }}
-    </UIHeadline>
-    <div class="flex gap-6">
+  <NuxtLayout name="list">
+    <template #header> {{ blockType?.name }} </template>
+    <template #filters>
       <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
       </ModulesFilter>
-      <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+    </template>
+    <template #actions>
       <NuxtLink
         :to="'/blocks/' + type + '/edit'"
         class="flex items-center gap-3 px-6 py-3 bg-white rounded-lg shadow-md hover:shadow-lg text-slate-700"
@@ -23,8 +22,7 @@
         label="Add block"
       >
       </ModulesAdd>
-    </div>
-
+    </template>
     <ClientOnly>
       <div
         class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
@@ -42,6 +40,10 @@
               block.properties.name ||
               `${blockType?.name} #${index}`
             "
+            :badge="{
+              icon: 'check',
+              theme: block.status === 'public' ? 'primary' : 'system',
+            }"
             :body="
               block.properties.description ||
               `Updated ${useTimeAgo(block.updated)}`
@@ -97,6 +99,7 @@ const onAdd = async (data: any) => {
     projectId,
     properties: props,
     type: type,
+    status: "private",
   };
   const addedBlock = await addBlock(dataToBeSent);
   if (addedBlock) {

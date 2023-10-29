@@ -6,7 +6,7 @@
           size="h1"
           :value="model?.name"
           :editable="true"
-          class="flex gap-3"
+          class="flex gap-3 capitalize"
           @value-change="($event) => (model.name = $event)"
         >
           {{ model?.name }}
@@ -22,8 +22,6 @@
           {{ model?.description || "Description" }}
         </UIHeadline>
       </div>
-      <!-- <ModulesEdit type="block" buttonStyle="icon" :name="model?.name" :value="model" icon="dots"
-                @on-save="setNewValues"></ModulesEdit> -->
     </div>
 
     <div class="flex justify-between">
@@ -53,7 +51,7 @@
           ghost-class="ghost"
           :component-data="{ class: 'flex flex-col gap-4' }"
         >
-          <template #item="{ element: field }">
+          <template #item="{ element: field, index }">
             <div
               class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
             >
@@ -71,12 +69,23 @@
                 ></UIIcons>
               </div>
               <div class="flex flex-col gap-1">
-                <UIHeadline size="h4" :class="'flex gap-3 items-center'">
+                <UIHeadline
+                  size="h4"
+                  :class="'flex gap-3 items-center capitalize'"
+                >
                   {{ field.name }}
                 </UIHeadline>
                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
               </div>
               <div class="flex items-center justify-center mr-0 ml-auto">
+                <UIButton
+                  type="icon"
+                  size="round-small"
+                  class="bg-transparent"
+                  @click="onRemoveField(index)"
+                >
+                  <UIIcons name="close"></UIIcons>
+                </UIButton>
                 <ModulesEdit
                   type="field"
                   icon="dots"
@@ -165,6 +174,9 @@ const active = ref(tabs[0].name);
 
 const setNewValues = (newValues: any) => {
   model.value = { ...model.value, ...newValues };
+};
+const onRemoveField = (index: number) => {
+  model.value.fields.splice(index, 1);
 };
 
 const onAddNewField = (args: any) => {

@@ -2,8 +2,12 @@
   <NuxtLayout>
     <UIHeadline size="h1"> Dashboard </UIHeadline>
     <div
-      class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-[8rem]">
-      <ModulesStat label="Active tasks" :number="amountActiveTasks"></ModulesStat>
+      class="flex gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-[8rem]"
+    >
+      <ModulesStat
+        label="Active tasks"
+        :number="amountActiveTasks"
+      ></ModulesStat>
       <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
       <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
       <ModulesStat label="Rules" :number="rules"></ModulesStat>
@@ -14,14 +18,26 @@
         <div class="flex flex-col gap-4">
           <UIHeadline size="h3"> Latest sign in </UIHeadline>
           <div class="flex gap-5">
-            <div v-if="usersStore.isLoading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <div
+              v-if="usersStore.isLoading"
+              class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+            >
               <UILoader></UILoader>
             </div>
 
-            <ul v-else-if="usersAmount"
-              class="flex w-full gap-5 overflow-x-scroll md:overflow-x-visible scroll-smooth snap-x snap-mandatory">
-              <li v-for="(user, userId) in allUsers" :key="userId" class="snap-center">
-                <ModulesUserCard :user="user" :userId="userId"></ModulesUserCard>
+            <ul
+              v-else-if="usersAmount"
+              class="flex w-full gap-5 overflow-x-scroll md:overflow-x-visible scroll-smooth snap-x snap-mandatory"
+            >
+              <li
+                v-for="(user, userId) in allUsers"
+                :key="userId"
+                class="snap-center"
+              >
+                <ModulesUserCard
+                  :user="user"
+                  :userId="userId"
+                ></ModulesUserCard>
               </li>
             </ul>
             <UIEmpty v-else> No activity yet </UIEmpty>
@@ -35,29 +51,57 @@
         <div class="flex flex-col gap-4">
           <div class="flex justify-between">
             <UIHeadline size="h3"> Latests tasks </UIHeadline>
-            <ModulesAdd type="task" asLink="true" label="+ Create new task" @onAdd="onAdd" @onCancel="onCancel">
+            <ModulesAdd
+              type="task"
+              asLink="true"
+              label="+ Create new task"
+              @onAdd="onAdd"
+              @onCancel="onCancel"
+            >
             </ModulesAdd>
           </div>
           <div class="flex gap-5">
-            <div v-if="tasksStore.isLoading" class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6">
+            <div
+              v-if="isLoading"
+              class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+            >
               <UILoader></UILoader>
             </div>
-
-            <ul v-else-if="latest.length" class="flex flex-col w-full gap-4 p-5 bg-white rounded-lg shadow-lg">
-              <li v-for="task in latest" :key="task.id" class="pb-5 border-b last:border-b-0 last:pb-0">
-                <ModulesExtendedLink :label="task.title" :sub-label="task.description" :tags="task.tags"
-                  :route="'/board/' + task.id">
-                  <div class="flex items-center gap-3 mb-2 text-sm text-gray-400">
-                    Added by <UIUserTag :id="task.createdBy"></UIUserTag>
-                  </div>
-                </ModulesExtendedLink>
-              </li>
-            </ul>
-            <UIEmpty v-else>
-              No tasks yet, create one
-              <ModulesAdd @on-add="onAdd" type="task" button-style="system" label="Add task">
-              </ModulesAdd>
-            </UIEmpty>
+            <ClientOnly>
+              <div
+                v-if="!isLoading && latest.length"
+                class="flex flex-col w-full gap-4"
+              >
+                <NuxtLink
+                  :to="'/board/' + task.id"
+                  class="flex-1"
+                  v-for="task in latest"
+                  :key="task.id"
+                >
+                  <ModulesCard
+                    :title="task.title"
+                    :tags="task.tags"
+                    :user="task.assignedTo"
+                    :badge="{
+                      icon: '',
+                      value: task.estimate,
+                      theme: useColorByEstimate(task.estimate),
+                    }"
+                    :class="'mb-0'"
+                  ></ModulesCard>
+                </NuxtLink>
+              </div>
+              <UIEmpty v-else>
+                No tasks yet, create one
+                <ModulesAdd
+                  @on-add="onAdd"
+                  type="task"
+                  button-style="system"
+                  label="Add task"
+                >
+                </ModulesAdd>
+              </UIEmpty>
+            </ClientOnly>
           </div>
         </div>
         <div class="flex items-end justify-end">
@@ -82,7 +126,8 @@ const { setNotification } = notificationsStore;
 const { comments } = storeToRefs(useCommentsStore());
 const tasksStore = useTasksStore();
 const { addTask } = tasksStore;
-const { latest, allTasks, amountActiveTasks } = storeToRefs(tasksStore);
+const { latest, allTasks, amountActiveTasks, isLoading } =
+  storeToRefs(tasksStore);
 const { pages } = storeToRefs(usePagesStore());
 const usersStore = useUsersStore();
 const { usersAmount, allUsers } = storeToRefs(usersStore);
@@ -102,5 +147,5 @@ const onAdd = async (task: Task) => {
   }
 };
 
-const onCancel = () => { };
+const onCancel = () => {};
 </script>

@@ -15,12 +15,12 @@
         v-for="(item, index) in data"
         :key="item.id"
       >
-        <Card
+        <ModulesCard
           :title="item.title"
           :body="item.body"
           :favorite="item.favorite"
           @favorite="(event) => updateFavorite(event, index)"
-        ></Card>
+        ></ModulesCard>
       </NuxtLink>
     </UIGrid>
   </NuxtLayout>
