@@ -226,7 +226,8 @@ const handleLogout = async (e) => {
   e.preventDefault();
   document.cookie = "next-auth.csrf-token=; Max-Age=-99999999;";
   document.cookie = "next-auth.session-token=; Max-Age=-99999999;";
-  await signOut({ callbackUrl: "/signin" });
+  await signOut({ callbackUrl: "/signout" });
+  //await signOut({ callbackUrl: "/signin" });
 };
 </script>
 

@@ -50,7 +50,7 @@
                 :badge="{
                   icon: '',
                   value: task.estimate,
-                  theme: colorByEstimate(task.estimate),
+                  theme: useColorByEstimate(task.estimate),
                 }"
                 :class="'mb-0'"
                 @favorite="handleFavorite($event, task.title)"
@@ -63,7 +63,7 @@
   </NuxtLayout>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { Task, TASK_STATUSES } from "~~/models/tasks";
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
@@ -72,61 +72,35 @@ const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
 const { addTask } = tasksStore;
+const filters = ref({});
+const sorts = ref({});
 
-export default {
-  data() {
-    return {
-      filters: ref({}),
-      sorts: ref({}),
-      tasksStore,
-      TASK_STATUSES,
-    };
-  },
-  methods: {
-    colorByEstimate: (estimate: number) => {
-      if (!estimate) return "system";
-      if (estimate <= 2) return "primary";
-      if (estimate > 2 && estimate < 5) return "secondary";
-      if (estimate >= 5 && estimate <= 7) return "warning";
-      return "error";
-    },
-    handleFavorite: (isFavorite: boolean, title: string) => {
-      if (!isFavorite) {
-        setNotification("Pelle has liked", title, "success");
-      }
-    },
-    async dragChange(event: any, status: string) {
-      if (event.added) {
-        event.added.element.status = status;
-        await this.tasksStore.updateTask(event.added.element, {});
-      }
-    },
-    dragEnd(event: any, status: string) {
-      //this.tasks[event.newIndex].status = status;
-      //this.move(this.tasks, event.oldIndex, event.newIndex);
-    },
-    async filterChange(_filters: { [key: string]: any }) {
-      this.filters = { ...this.filters, ..._filters };
-    },
-    async sortChange(_sorts: { [key: string]: any }) {
-      this.sorts = { ...this.sorts, ..._sorts };
-    },
-    async onAdd(task: Task) {
-      if (await addTask(task)) {
-        setNotification(
-          "Task created",
-          "Your task was successfully created",
-          "success"
-        );
-      } else {
-        setNotification(
-          "Task not created",
-          "Your task could not be created",
-          "fail"
-        );
-      }
-    },
-    onCancel: () => {},
-  },
+const dragChange = async (event: any, status: string) => {
+  if (event.added) {
+    event.added.element.status = status;
+    await this.tasksStore.updateTask(event.added.element, {});
+  }
+};
+const dragEnd = async (event: any, status: string) => {};
+const filterChange = async (_filters: { [key: string]: any }) => {
+  this.filters = { ...this.filters, ..._filters };
+};
+const sortChange = async (_sorts: { [key: string]: any }) => {
+  this.sorts = { ...this.sorts, ..._sorts };
+};
+const onAdd = async (task: Task) => {
+  if (await addTask(task)) {
+    setNotification(
+      "Task created",
+      "Your task was successfully created",
+      "success"
+    );
+  } else {
+    setNotification(
+      "Task not created",
+      "Your task could not be created",
+      "fail"
+    );
+  }
 };
 </script>

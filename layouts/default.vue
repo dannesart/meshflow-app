@@ -4,7 +4,6 @@
 
     <ModulesAside></ModulesAside>
     <ModulesHeader></ModulesHeader>
-    sfsefs
     <main
       class="overscroll-contain py-4 px-6 lg:px-10 pt-8 lg:pt-12 lg:mb-10 lg:mr-10 flex flex-col gap-10 bg-slate-50 rounded-3xl relative overflow-y-scroll"
     >
