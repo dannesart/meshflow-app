@@ -8,7 +8,7 @@
         :value="page?.title"
         @value-change="(value) => (page.title = value)"
       >
-        {{ page?.title }}
+        {{ page?.title || "Getting page..." }}
       </UIHeadline>
       <div class="flex gap-2 items-center" v-if="page && page.status">
         <label class="text-sm text-slate-500 capitalize">{{
@@ -19,21 +19,9 @@
           :value="page.status === 'public'"
           @click="changeStatus()"
         />
-        <!-- <div
-          class="flex-none p-3 py-2 text-sm capitalize rounded-full cursor-pointer hover:shadow-md w-max"
-          @click="changeStatus()"
-          :class="{
-            'bg-red-100 text-red-400 hover:bg-red-200':
-              page.status === 'private',
-            'bg-emerald-100 text-emerald-400 hover:bg-emerald-200':
-              page.status === 'public',
-          }"
-        >
-          {{ page.status }}
-        </div> -->
       </div>
     </header>
-    <p>
+    <p v-if="page?.updated">
       Updated
       {{ useTimeAgo(page.updated) }}
     </p>
@@ -99,6 +87,9 @@
         <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
       </footer>
     </div>
+    <UIEmpty v-if="!page" class="!justify-center flex">
+      <UILoader />
+    </UIEmpty>
 
     <ModulesConfirm
       :show="showConfirm"

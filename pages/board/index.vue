@@ -103,4 +103,5 @@ const onAdd = async (task: Task) => {
     );
   }
 };
+const onCancel = async () => {};
 </script>

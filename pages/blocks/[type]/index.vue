@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout name="list">
-    <template #header> {{ blockType?.name }} </template>
+    <template #header>
+      {{ blockType?.name || "Getting block types..." }}
+    </template>
     <template #filters>
       <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
       </ModulesFilter>
@@ -66,12 +68,9 @@
         </ModulesAdd>
       </UIEmpty>
     </ClientOnly>
-    <div
-      v-if="loading"
-      class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
-    >
-      <UILoader></UILoader>
-    </div>
+    <UIEmpty v-if="!blockType" class="!justify-center flex">
+      <UILoader />
+    </UIEmpty>
   </NuxtLayout>
 </template>
 

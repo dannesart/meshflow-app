@@ -48,6 +48,9 @@
         </p>
       </ModulesConfirm>
     </template>
+    <UIEmpty v-if="!block" class="!justify-center flex">
+      <UILoader />
+    </UIEmpty>
   </NuxtLayout>
 </template>
 
