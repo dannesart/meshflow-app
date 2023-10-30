@@ -25,4 +25,25 @@ export default NuxtAuthHandler({
         "https://meshflow.eu.auth0.com",
     }),
   ],
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: false,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+      },
+    },
+    state: {
+      name: `next-auth.state`,
+      options: {
+        httpOnly: false,
+        sameSite: "lax",
+        path: "/",
+        secure: true,
+        maxAge: 900,
+      },
+    },
+  },
 });
