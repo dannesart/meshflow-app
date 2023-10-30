@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,180px),1fr))] gap-6"
-  >
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
     <slot />
   </div>
 </template>

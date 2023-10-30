@@ -18,7 +18,7 @@
     </template>
     <ClientOnly>
       <div
-        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
         v-if="blockModels.length"
       >
         <NuxtLink
@@ -47,8 +47,8 @@
     </ClientOnly>
 
     <div
-      v-if="loading"
-      class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+      v-if="loading && !blockModels.length"
+      class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
     >
       <UILoader></UILoader>
     </div>
