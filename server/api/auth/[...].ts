@@ -29,7 +29,7 @@ export default NuxtAuthHandler({
     pkceCodeVerifier: {
       name: "next-auth.pkce.code_verifier",
       options: {
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "lax",
         path: "/",
         secure: true,
@@ -38,7 +38,7 @@ export default NuxtAuthHandler({
     state: {
       name: `next-auth.state`,
       options: {
-        httpOnly: false,
+        httpOnly: true,
         sameSite: "lax",
         path: "/",
         secure: true,
