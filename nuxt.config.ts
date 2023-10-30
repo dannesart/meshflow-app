@@ -19,16 +19,27 @@ export default defineNuxtConfig({
     ],
   ],
   auth: {
+    provider: {
+      type: "authjs",
+      addDefaultCallbackUrl: true,
+    },
     origin: process.env.ORIGIN,
     enableGlobalAppMiddleware: true,
+    baseUrl: "/api/auth",
     defaultProvider: "auth0",
+    globalAppMiddleware: {
+      isEnabled: true,
+      allow404WithoutAuth: true,
+      addDefaultCallbackUrl: true
+    }
   },
   runtimeConfig: {
     REDIRECT_URI: process.env.REDIRECT_URI,
     mongoUrl: process.env.MONGO_URL,
-    clientId: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    issuer: process.env.AUTH0_ISSUER,
+    nextAuthSecret: process.env.NEXTAUTH_SECRET,
+    auth0ClientId: process.env.AUTH0_CLIENT_ID,
+    auth0ClientSecret: process.env.AUTH0_CLIENT_SECRET,
+    auth0Issuer: process.env.AUTH0_ISSUER,
     domain: process.env.AUTH0_DOMAIN,
     api: process.env.API,
     public: {
