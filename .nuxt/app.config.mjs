@@ -1,8 +1,20 @@
 
+import { updateAppConfig } from '#app'
 import { defuFn } from '/Users/Daniel/Documents/GitHub/meshflow-app/node_modules/defu/dist/defu.mjs'
 
-const inlineConfig = {}
+const inlineConfig = {
+  "nuxt": {
+    "buildId": "test"
+  }
+}
+
+// Vite - webpack is handled directly in #app/config
+if (import.meta.hot) {
+  import.meta.hot.accept((newModule) => {
+    updateAppConfig(newModule.default)
+  })
+}
 
 
 
-export default defuFn(inlineConfig)
+export default /* #__PURE__ */ defuFn(inlineConfig)

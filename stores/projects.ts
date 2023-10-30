@@ -72,6 +72,7 @@ export const useProjectStore = defineStore("ProjectsStore", {
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/projects"
         );
+        if (response.data.error) throw new Error(response.data.error);
         this._projects = response.data as Array<Project>;
 
         if (!this._projects || !this._projects.length) {
