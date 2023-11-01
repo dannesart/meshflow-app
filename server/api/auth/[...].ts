@@ -25,4 +25,21 @@ export default NuxtAuthHandler({
         "https://meshflow.eu.auth0.com",
     }),
   ],
+  callbacks: {
+    // https://next-auth.js.org/configuration/callbacks#jwt-callback
+    jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+
+      return token;
+    },
+    // https://next-auth.js.org/configuration/callbacks#session-callback
+    session({ session, token }) {
+      // @ts-ignore
+      session.accessToken = token.accessToken;
+
+      return session;
+    },
+  },
 });
