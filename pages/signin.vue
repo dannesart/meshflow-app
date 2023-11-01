@@ -17,12 +17,12 @@
   </div>
 </template>
 <script setup lang="ts">
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/",
-  },
-});
+// definePageMeta({
+//   auth: {
+//     unauthenticatedOnly: true,
+//     navigateAuthenticatedTo: "/",
+//   },
+// });
 if (process.client) {
   const { signIn } = useAuth();
   signIn("auth0");
