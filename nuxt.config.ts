@@ -26,12 +26,11 @@ export default defineNuxtConfig({
     origin: process.env.ORIGIN,
     enableGlobalAppMiddleware: true,
     baseUrl: "/api/auth",
-    defaultProvider: "auth0",
     globalAppMiddleware: {
       isEnabled: true,
       allow404WithoutAuth: true,
-      addDefaultCallbackUrl: true
-    }
+      addDefaultCallbackUrl: true,
+    },
   },
   runtimeConfig: {
     REDIRECT_URI: process.env.REDIRECT_URI,
