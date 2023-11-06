@@ -21,15 +21,9 @@ export default defineNuxtConfig({
   auth: {
     provider: {
       type: "authjs",
-      addDefaultCallbackUrl: true,
     },
-    origin: process.env.ORIGIN,
-    enableGlobalAppMiddleware: true,
-    baseUrl: "/api/auth",
     globalAppMiddleware: {
       isEnabled: true,
-      allow404WithoutAuth: true,
-      addDefaultCallbackUrl: true,
     },
   },
   runtimeConfig: {
