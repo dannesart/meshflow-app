@@ -17,7 +17,7 @@
     "@babel/preset-env": "^7.20.2",
     "@nuxt/test-utils": "^3.0.0",
     "@nuxtjs/tailwindcss": "^6.2.0",
-    "@sidebase/nuxt-auth": "^0.6.0-beta.3",
+    "@sidebase/nuxt-auth": "^0.5.0",
     "@types/jest": "^29.2.4",
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
