@@ -21,6 +21,8 @@ export default defineNuxtConfig({
   auth: {
     provider: {
       type: "authjs",
+      defaultProvider: "auth0",
+      addDefaultCallbackUrl: true,
     },
     globalAppMiddleware: {
       isEnabled: true,
