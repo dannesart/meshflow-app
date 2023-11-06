@@ -23,8 +23,8 @@ definePageMeta({
     navigateAuthenticatedTo: "/",
   },
 });
-// if (process.client) {
-//   const { signIn } = useAuth();
-//   signIn("auth0");
-// }
+if (process.client) {
+  const { signIn } = useAuth();
+  signIn("auth0");
+}
 </script>
