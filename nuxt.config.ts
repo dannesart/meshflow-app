@@ -24,8 +24,10 @@ export default defineNuxtConfig({
       defaultProvider: "auth0",
       addDefaultCallbackUrl: true,
     },
+    origin: process.env.ORIGIN,
     globalAppMiddleware: {
       isEnabled: true,
+      addDefaultCallbackUrl: true,
     },
   },
   runtimeConfig: {
