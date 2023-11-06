@@ -10,7 +10,6 @@ export default NuxtAuthHandler({
   },
   providers: [
     auth0.default({
-      id: "auth0",
       clientId:
         // config.clientId ||
         // process.env.AUTH0_CLIENT_ID ||
