@@ -1,8 +1,8 @@
 <template>
   <header
-    class="py-4 px-6 lg:px-10 gap-3 lg:gap-6 h-full flex flex-row lg:justify-between items-center"
+    class="flex flex-row items-center h-full gap-3 px-6 py-4 lg:px-10 lg:gap-6 lg:justify-between"
   >
-    <div class="h-14 flex-1 flex items-center">
+    <div class="flex items-center flex-1 h-14">
       <UIButton
         type="back"
         @click.prevent="$router.back()"
@@ -15,7 +15,7 @@
     </div>
     <div class="flex gap-3 lg:gap-10">
       <div
-        class="text-xl w-14 h-14 flex justify-center items-center rounded-full relative cursor-pointer hover:shadow-xl"
+        class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
         :class="{
           'text-slate-800 bg-slate-100': !nonReadNotifications,
@@ -25,7 +25,7 @@
       >
         <UIIcons name="notifications"></UIIcons>
         <div
-          class="absolute -top-1 -right-1 bg-white shadow-xl rounded-full text-slate-600 w-6 h-6 flex justify-center items-center text-sm"
+          class="absolute flex items-center justify-center w-6 h-6 text-sm bg-white rounded-full shadow-xl -top-1 -right-1 text-slate-600"
           v-if="nonReadNotifications"
         >
           {{ nonReadNotifications }}
@@ -40,13 +40,13 @@
       </UIUserInfo>
 
       <div
-        class="w-96 bg-white outline-none shadow-xl justify-between px-6 md:px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-50 transition-transform translate-x-full focus-within:translate-x-0"
+        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none w-96 md:px-10 focus-within:translate-x-0"
         ref="menuRef"
         tabindex="0"
         @focusin="isMenuActive = true"
         @focusout="isMenuActive = false"
       >
-        <div class="flex gap-4 flex-col">
+        <div class="flex flex-col gap-4">
           <UIUserInfo
             :class="'self-end hidden md:flex'"
             :image="data?.user?.image"
@@ -71,12 +71,12 @@
 
               <div class="relative">
                 <div
-                  class="absolute -top-2 right-0 w-10 h-10 rounded-full bg-sky-600 text-white flex justify-center items-center border-2 border-white"
+                  class="absolute right-0 flex items-center justify-center w-10 h-10 text-white border-2 border-white rounded-full -top-2 bg-sky-600"
                 >
                   D
                 </div>
                 <div
-                  class="absolute -top-2 right-4 w-10 h-10 rounded-full bg-purple-600 text-white flex justify-center items-center border-2 border-white"
+                  class="absolute flex items-center justify-center w-10 h-10 text-white bg-purple-600 border-2 border-white rounded-full -top-2 right-4"
                 >
                   D
                 </div>
@@ -85,7 +85,7 @@
           </UIList>
 
           <NuxtLink
-            class="text-sky-600 text-right cursor-pointer"
+            class="text-right cursor-pointer text-sky-600"
             to="/projects/create"
             v-if="projectStore.projects.length < MAX_PROJECTS"
           >
@@ -95,7 +95,7 @@
 
         <div class="flex flex-col gap-3">
           <NuxtLink
-            class="text-sky-600 text-center border border-sky-500 px-6 py-3 rounded-lg cursor-pointer hover:shadow-xl"
+            class="px-6 py-3 text-center border rounded-lg cursor-pointer text-sky-600 border-sky-500 hover:shadow-xl"
             to="/user"
           >
             Go to profile
@@ -110,13 +110,13 @@
       </div>
 
       <div
-        class="w-96 bg-white outline-none shadow-xl justify-between px-6 md:px-10 py-4 flex gap-4 flex-col fixed top-0 right-0 bottom-0 z-50 transition-transform translate-x-full focus-within:translate-x-0"
+        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none w-96 md:px-10 focus-within:translate-x-0"
         ref="notificationMenuRef"
         tabindex="0"
         @focusin="isNotificationMenuActive = true"
         @focusout="isNotificationMenuActive = false"
       >
-        <div class="flex gap-4 flex-col">
+        <div class="flex flex-col gap-4">
           <UIHeadline size="h3"> Notifications </UIHeadline>
           <UIList v-if="notifications.length">
             <UIListItem
@@ -124,7 +124,7 @@
               v-for="notification in notifications"
             >
               <div
-                class="w-10 h-10 rounded-lg bg-red-100 text-sky-500 flex items-center justify-center"
+                class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg text-sky-500"
               >
                 <UIIcons name="notifications"></UIIcons>
               </div>
@@ -134,7 +134,7 @@
               </div>
             </UIListItem>
           </UIList>
-          <div v-else class="bg-gray-100 p-6 rounded-lg">No notifications</div>
+          <div v-else class="p-6 bg-gray-100 rounded-lg">No notifications</div>
         </div>
         <div class="flex flex-col gap-3">
           <UIButton
@@ -226,7 +226,8 @@ const handleLogout = async (e) => {
   e.preventDefault();
   document.cookie = "next-auth.csrf-token=; Max-Age=-99999999;";
   document.cookie = "next-auth.session-token=; Max-Age=-99999999;";
-  await signOut({ callbackUrl: "/signin" });
+  await signOut();
+  window.location = `https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${window.location.origin}/signin`;
   //await signOut({ callbackUrl: "/signin" });
 };
 </script>
