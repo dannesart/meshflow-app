@@ -11,9 +11,10 @@
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
+import Mention from "@tiptap/extension-mention";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 
-const { value } = defineProps(["value"]);
+const { value, suggestions } = defineProps(["value", "suggestions"]);
 const emits = defineEmits(["valueUpdate"]);
 
 const editor = useEditor({
@@ -24,6 +25,17 @@ const editor = useEditor({
     Emoji.configure({
       emojis: gitHubEmojis,
       enableEmoticons: true,
+    }),
+    Mention.configure({
+      HTMLAttributes: {
+        class: "mention",
+      },
+      renderLabel({ options, node }) {
+        return `<span class='bg-sky-200 text-sky-600 px-1 py-0.5 rounded-md'>${
+          options.suggestion.char
+        }${node.attrs.label ?? node.attrs.id}</span>`;
+      },
+      suggestions,
     }),
   ],
   onUpdate: () => {

@@ -10,10 +10,11 @@
         {{ task?.title }}
       </UIHeadline>
     </header>
-    <div class="flex gap-6 flex-col md:flex-row" v-if="task">
+    <div class="flex flex-col gap-6 md:flex-row" v-if="task">
       <UIForm :class="'flex-1 flex flex-col gap-6'">
         <UIEditor
           :value="task.description"
+          :suggestions="usersToList"
           @value-update="(e) => (task.description = e)"
         />
 
@@ -30,7 +31,7 @@
         </div>
       </UIForm>
       <aside
-        class="md:w-96 flex flex-col gap-4 bg-white shadow-xl p-6 rounded-xl"
+        class="flex flex-col gap-4 p-6 bg-white shadow-xl md:w-96 rounded-xl"
       >
         <ModulesInput
           type="user"
@@ -57,11 +58,12 @@
           Estimate
         </ModulesInput>
 
-        <div class="flex gap-3 flex-col">
+        <div class="flex flex-col gap-3">
           <label>Tags</label>
           <ModulesTagsList color="white" can-add="true" @add="addNewTag">
             <UITag
               v-for="(tag, index) in task?.tags"
+              :key="tag"
               :can-edit="true"
               :value="tag"
               @save="updateTag($event, index)"
@@ -69,7 +71,7 @@
             >
               {{ tag }}
               <div
-                class="hidden group-hover:block cursor-pointer hover:bg-black/30 rounded-full"
+                class="hidden rounded-full cursor-pointer group-hover:block hover:bg-black/30"
                 @click="(e) => removeTag(e, index)"
               >
                 <UIIcons name="close"></UIIcons>
@@ -107,11 +109,15 @@
 import { Task, TASK_STATUSES } from "~~/models/tasks";
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
+import { useUsersStore } from "~/stores/users";
+import { storeToRefs } from "pinia";
 
 const tasksStore = useTasksStore();
 const notificationStore = useNotificationStore();
 const { setNotification } = notificationStore;
 const { taskById, updateTask, deleteTask } = tasksStore;
+const usersStore = useUsersStore();
+const { usersToList } = storeToRefs(usersStore);
 const { id } = useRoute().params;
 const task = ref<Task>(taskById(id as string) as Task);
 

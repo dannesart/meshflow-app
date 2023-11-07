@@ -33,6 +33,13 @@ export const useUsersStore = defineStore("UsersStore", {
       return Object.keys(state.users).length;
     },
     allUsers: (state) => state.users,
+    usersToList: (state) =>
+      Object.keys(state.users).map(
+        (key) =>
+          state.users[key].nickname ||
+          state.users[key].name ||
+          state.users[key].fullname
+      ),
   },
   actions: {
     async getToken() {
