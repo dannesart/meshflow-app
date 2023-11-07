@@ -3,10 +3,11 @@
     <div :class="buttonStyle">
       <div>H</div>
       <div
-        class="hidden group-hover:flex p-2 bg-white absolute top-full z-50 gap-2 shadow-lg rounded-lg left-0"
+        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white rounded-lg shadow-lg group-hover:flex top-full"
       >
         <button
           v-for="index in 6"
+          :key="index"
           :class="buttonStyle"
           :style="{ fontSize: 20 - index + 'px' }"
           @click.prevent="
@@ -20,10 +21,11 @@
     <div :class="buttonStyle">
       <div>😀</div>
       <div
-        class="hidden group-hover:flex p-2 bg-white absolute top-full z-50 gap-2 shadow-lg rounded-lg left-0"
+        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white rounded-lg shadow-lg group-hover:flex top-full"
       >
         <button
           :class="buttonStyle"
+          :key="emoji.name"
           v-for="emoji in emojis"
           @click.prevent="editor.chain().focus().setEmoji(emoji.name).run()"
         >
@@ -38,10 +40,16 @@
       B
     </div>
     <div
-      :class="buttonStyle + ' font-bold'"
+      :class="buttonStyle + ' underline'"
       @click.prevent="editor.chain().focus().toggleUnderline().run()"
     >
       U
+    </div>
+    <div
+      :class="buttonStyle + ' line-through'"
+      @click.prevent="editor.chain().focus().toggleStrike().run()"
+    >
+      S
     </div>
     <div
       :class="buttonStyle + ' italic'"
