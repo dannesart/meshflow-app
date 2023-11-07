@@ -43,22 +43,14 @@
 </template>
 
 <script setup lang="ts">
-const { title, body, favorite, size, tags, user, badge } = defineProps([
+const { title, body, size, tags, user, badge } = defineProps([
   "title",
   "body",
-  "favorite",
   "size",
   "tags",
   "user",
   "badge",
 ]);
-const eventEmit = defineEmits(["favorite"]);
-const favoriteState = ref(favorite);
-
-const toggleFavorite = (_favorite: boolean) => {
-  favoriteState.value = !_favorite;
-  eventEmit("favorite", !_favorite, title);
-};
 </script>
 
 <script lang="ts">

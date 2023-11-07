@@ -1,5 +1,4 @@
 export type TCard = {
-    title: string, 
-    body: string, 
-    favorite: boolean
-}
+  title: string;
+  body: string;
+};

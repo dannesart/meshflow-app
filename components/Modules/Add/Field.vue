@@ -2,12 +2,12 @@
   <UIForm :class="'flex flex-col gap-4'" name="new-field-form">
     <div v-if="step === 1">
       <section
-        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
         name="model-types"
       >
         <div
           v-for="type in ModelTypes"
-          class="p-5 md:p-10 rounded-xl gap-6 shadow-xl flex w-full hover:shadow-2xl cursor-pointer"
+          class="flex w-full gap-6 p-5 shadow-xl cursor-pointer md:p-10 rounded-xl hover:shadow-2xl"
           name="model-type"
           @click="selectType(type)"
         >
@@ -26,7 +26,7 @@
       </section>
     </div>
     <div v-if="step === 2">
-      <div class="flex gap-4 items-baseline cursor-pointer" @click="step = 1">
+      <div class="flex items-baseline gap-4 cursor-pointer" @click="step = 1">
         <UIButton type="icon" size="small">
           <UIIcons name="arrow-left"></UIIcons>
         </UIButton>
@@ -106,7 +106,7 @@
             Limit character count
           </ModulesInput>
           <div
-            class="flex gap-4 items-end"
+            class="flex items-end gap-4"
             v-if="field.validations.minMax.use"
             :class="{
               'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use,
@@ -138,7 +138,7 @@
 import { ModelField, ModelFieldSchema, ModelType } from "~~/models/model";
 import { ModelTypes } from "~~/constants/model";
 import { storeToRefs } from "pinia";
-import { useBlocksStore } from "@/stores/blocks";
+import { useBlocksStore } from "~~/stores/blocks";
 const events = defineEmits(["valueUpdate", "onValid", "onError"]);
 
 const { blockModels } = storeToRefs(useBlocksStore());

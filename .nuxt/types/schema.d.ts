@@ -66,18 +66,12 @@ declare module 'nuxt/schema' {
 
          trustHost: boolean,
 
-         defaultProvider: any,
+         defaultProvider: string,
 
          addDefaultCallbackUrl: boolean,
       },
 
-      origin: string,
-
       enableGlobalAppMiddleware: boolean,
-
-      baseUrl: string,
-
-      defaultProvider: string,
    },
   }
 }
