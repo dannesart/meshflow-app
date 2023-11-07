@@ -18,7 +18,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-      - uses: actions/setup-node@v3
+      - name: Setting node version
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
