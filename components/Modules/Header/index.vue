@@ -226,7 +226,7 @@ const handleLogout = async (e) => {
   e.preventDefault();
   document.cookie = "next-auth.csrf-token=; Max-Age=-99999999;";
   document.cookie = "next-auth.session-token=; Max-Age=-99999999;";
-  window.location = `https://${process.env.AUTH0_DOMAIN}/v2/logout?returnTo=${window.location.origin}/signin`;
+  window.location = `https://meshflow.eu.auth0.com/v2/logout?returnTo=${window.location.origin}/signin`;
   //await signOut();
 
   //await signOut({ callbackUrl: "/signin" });
