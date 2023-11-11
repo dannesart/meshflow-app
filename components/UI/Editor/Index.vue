@@ -12,6 +12,7 @@ import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Mention from "@tiptap/extension-mention";
+import Link from "@tiptap/extension-link";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
@@ -30,6 +31,9 @@ const editor = useEditor({
     }),
     BulletList,
     ListItem,
+    Link.configure({
+      openOnClick: false,
+    }),
     Mention.configure({
       HTMLAttributes: {
         class: "mention",
