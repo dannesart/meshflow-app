@@ -32,30 +32,27 @@ declare module 'nuxt/schema' {
    domain: string,
 
    api: string,
-  }
-  interface PublicRuntimeConfig {
-   REDIRECT_URI: string,
 
    auth: {
-      computed: {
-         origin: any,
-
-         pathname: string,
-
-         fullBaseUrl: string,
-      },
-
       isEnabled: boolean,
 
-      session: {
-         enableRefreshPeriodically: boolean,
+      origin: any,
 
-         enableRefreshOnWindowFocus: boolean,
-      },
+      basePath: string,
 
-      globalAppMiddleware: {
-         isEnabled: boolean,
+      trustHost: boolean,
 
+      enableSessionRefreshPeriodically: boolean,
+
+      enableSessionRefreshOnWindowFocus: boolean,
+
+      enableGlobalAppMiddleware: boolean,
+
+      defaultProvider: any,
+
+      addDefaultCallbackUrl: boolean,
+
+      globalMiddlewareOptions: {
          allow404WithoutAuth: boolean,
 
          addDefaultCallbackUrl: boolean,
@@ -64,14 +61,61 @@ declare module 'nuxt/schema' {
       provider: {
          type: string,
 
-         trustHost: boolean,
+         defaultProvider: string,
+
+         addDefaultCallbackUrl: boolean,
+      },
+
+      globalAppMiddleware: {
+         isEnabled: boolean,
+
+         addDefaultCallbackUrl: boolean,
+      },
+
+      isOriginSet: boolean,
+   },
+  }
+  interface PublicRuntimeConfig {
+   REDIRECT_URI: string,
+
+   auth: {
+      isEnabled: boolean,
+
+      origin: any,
+
+      basePath: string,
+
+      trustHost: boolean,
+
+      enableSessionRefreshPeriodically: boolean,
+
+      enableSessionRefreshOnWindowFocus: boolean,
+
+      enableGlobalAppMiddleware: boolean,
+
+      defaultProvider: any,
+
+      addDefaultCallbackUrl: boolean,
+
+      globalMiddlewareOptions: {
+         allow404WithoutAuth: boolean,
+
+         addDefaultCallbackUrl: boolean,
+      },
+
+      provider: {
+         type: string,
 
          defaultProvider: string,
 
          addDefaultCallbackUrl: boolean,
       },
 
-      enableGlobalAppMiddleware: boolean,
+      globalAppMiddleware: {
+         isEnabled: boolean,
+
+         addDefaultCallbackUrl: boolean,
+      },
    },
   }
 }

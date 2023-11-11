@@ -101,8 +101,8 @@ declare global {
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']
   const useAttrs: typeof import('../../node_modules/vue')['useAttrs']
-  const useAuth: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']
-  const useAuthState: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']
+  const useAuth: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']
+  const useAuthState: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']
   const useColorByEstimate: typeof import('../../composables/utils')['useColorByEstimate']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
   const useCssModule: typeof import('../../node_modules/vue')['useCssModule']
@@ -257,8 +257,8 @@ declare module 'vue' {
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
-    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']>
-    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']>
+    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']>
+    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>
@@ -407,8 +407,8 @@ declare module '@vue/runtime-core' {
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
-    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']>
-    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']>
+    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']>
+    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>

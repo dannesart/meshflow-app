@@ -20,7 +20,7 @@
           <div class="flex gap-5">
             <div
               v-if="usersStore.isLoading"
-              class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+              class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
             >
               <UILoader></UILoader>
             </div>
@@ -63,7 +63,7 @@
           <div class="flex gap-5">
             <div
               v-if="isLoading"
-              class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+              class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
             >
               <UILoader></UILoader>
             </div>
@@ -91,7 +91,7 @@
                   ></ModulesCard>
                 </NuxtLink>
               </div>
-              <UIEmpty v-else>
+              <UIEmpty v-else-if="!isLoading">
                 No tasks yet, create one
                 <ModulesAdd
                   @on-add="onAdd"

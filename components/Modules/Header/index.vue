@@ -59,6 +59,7 @@
           <UIList>
             <UIListItem
               v-for="project in projectStore.projects"
+              :key="project.id"
               :class="{ 'justify-between': true }"
               @click="selectProject(project.id)"
             >
