@@ -61,7 +61,7 @@
       @click.prevent="editor.chain().focus().toggleBulletList().run()"
       :class="buttonStyle"
     >
-      <UIIcons name="bullet-list"></UIIcons>
+      <UIIcons name="bullet-list" :size="4"></UIIcons>
     </button>
   </div>
 </template>
