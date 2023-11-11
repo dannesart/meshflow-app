@@ -3,7 +3,7 @@
 
   <editor-content
     :editor="editor"
-    :class="' border rounded-lg shadow-sm bg-white disabled:bg-slate-100 hover:shadow-lg headings'"
+    :class="' border rounded-lg shadow-sm bg-white disabled:bg-slate-100 hover:shadow-lg headings bullet'"
   />
 </template>
 
@@ -63,5 +63,8 @@ const editor = useEditor({
 }
 .headings h4 {
   @apply text-2xl;
+}
+.bullet ul {
+  @apply list-disc pl-10 my-4;
 }
 </style>
