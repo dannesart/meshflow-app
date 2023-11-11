@@ -57,6 +57,12 @@
     >
       i
     </div>
+    <button
+      @click.prevent="editor.chain().focus().toggleBulletList().run()"
+      :class="buttonStyle"
+    >
+      <UIIcons name="bullet-list"></UIIcons>
+    </button>
   </div>
 </template>
 

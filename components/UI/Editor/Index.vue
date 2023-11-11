@@ -13,6 +13,8 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Mention from "@tiptap/extension-mention";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
+import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
 
 const { value, suggestions } = defineProps(["value", "suggestions"]);
 const emits = defineEmits(["valueUpdate"]);
@@ -26,6 +28,8 @@ const editor = useEditor({
       emojis: gitHubEmojis,
       enableEmoticons: true,
     }),
+    BulletList,
+    ListItem,
     Mention.configure({
       HTMLAttributes: {
         class: "mention",
