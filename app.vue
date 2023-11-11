@@ -24,18 +24,15 @@ const { fetchPages } = usePagesStore();
 const { fetchUserMap } = useUsersStore();
 const { fetchBlockModels } = useBlocksStore();
 
-const init = async () => {
-  setLoading(true);
-  await Promise.all([fetchUser(), fetchProjects()]);
-  await Promise.all([
-    fetchUserMap(),
-    fetchSettings(),
-    fetchTasks(),
-    fetchDataModels(),
-    fetchPages(),
-    fetchBlockModels(),
-  ]);
-  setLoading(false);
-};
-init();
+setLoading(true);
+await Promise.all([fetchUser(), fetchProjects()]);
+await Promise.all([
+  fetchUserMap(),
+  fetchSettings(),
+  fetchTasks(),
+  fetchDataModels(),
+  fetchPages(),
+  fetchBlockModels(),
+]);
+setLoading(false);
 </script>
