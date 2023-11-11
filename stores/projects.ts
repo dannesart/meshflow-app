@@ -81,8 +81,10 @@ export const useProjectStore = defineStore("ProjectsStore", {
         this.setActive(
           localStorage.getItem(ACTIVE_PROJET_ID_KEY) || this._projects[0].id
         );
+        return true;
       } catch (error) {
         //TODO: Handle error
+        return false;
       }
     },
   },
