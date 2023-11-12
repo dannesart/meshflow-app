@@ -44,7 +44,13 @@ const editor = useEditor({
         }${node.attrs.label ?? node.attrs.id}</span>`;
       },
       suggestion: {
-        items: suggestions,
+        items: ({ query }) => {
+          return suggestions
+            .filter((item) =>
+              item.toLowerCase().startsWith(query.toLowerCase())
+            )
+            .slice(0, 5);
+        },
       },
     }),
   ],
