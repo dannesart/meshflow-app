@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { useEditor, EditorContent } from "@tiptap/vue-3";
+import { useEditor, EditorContent, VueRenderer } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Mention from "@tiptap/extension-mention";
@@ -54,8 +54,8 @@ const editor = useEditor({
             .slice(0, 5);
         },
         render: () => {
-          let component: any;
-          let popup: any;
+          let component;
+          let popup;
 
           return {
             onStart: (props) => {
