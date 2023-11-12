@@ -16,6 +16,8 @@ import Link from "@tiptap/extension-link";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
+import tippy from "tippy.js";
+import MentionsList from "./Mentions.vue";
 
 const { value, suggestions } = defineProps(["value", "suggestions"]);
 const emits = defineEmits(["valueUpdate"]);
@@ -51,7 +53,64 @@ const editor = useEditor({
             )
             .slice(0, 5);
         },
-        render: () => {},
+        render: () => {
+          let component: any;
+          let popup: any;
+
+          return {
+            onStart: (props) => {
+              component = new VueRenderer(MentionsList, {
+                // using vue 2:
+                // parent: this,
+                // propsData: props,
+                // using vue 3:
+                props,
+                editor: props.editor,
+              });
+
+              if (!props.clientRect) {
+                return;
+              }
+
+              popup = tippy("body", {
+                getReferenceClientRect: props.clientRect,
+                appendTo: () => document.body,
+                content: component.element,
+                showOnCreate: true,
+                interactive: true,
+                trigger: "manual",
+                placement: "bottom-start",
+              });
+            },
+
+            onUpdate(props) {
+              component.updateProps(props);
+
+              if (!props.clientRect) {
+                return;
+              }
+
+              popup[0].setProps({
+                getReferenceClientRect: props.clientRect,
+              });
+            },
+
+            onKeyDown(props) {
+              if (props.event.key === "Escape") {
+                popup[0].hide();
+
+                return true;
+              }
+
+              return component.ref?.onKeyDown(props);
+            },
+
+            onExit() {
+              popup[0].destroy();
+              component.destroy();
+            },
+          };
+        },
       },
     }),
   ],
