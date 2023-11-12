@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex flex-row items-center h-full gap-3 px-6 py-4 lg:px-10 lg:gap-6 lg:justify-between"
+    class="flex flex-row items-center h-full gap-3 px-6 py-4 lg:pr-10 lg:gap-6 lg:justify-between"
   >
     <div class="flex items-center flex-1 h-14">
       <UIButton

@@ -51,6 +51,7 @@ const editor = useEditor({
             )
             .slice(0, 5);
         },
+        render: () => {},
       },
     }),
   ],
