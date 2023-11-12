@@ -38,12 +38,10 @@ const editor = useEditor({
     }),
     Mention.configure({
       HTMLAttributes: {
-        class: "mention",
+        class: "bg-sky-200 text-sky-600 px-1 py-0.5 rounded-md",
       },
       renderLabel({ options, node }) {
-        return `<span class='bg-sky-200 text-sky-600 px-1 py-0.5 rounded-md'>${
-          options.suggestion.char
-        }${node.attrs.label ?? node.attrs.id}</span>`;
+        return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;
       },
       suggestion: {
         items: ({ query }) => {
