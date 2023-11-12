@@ -16,11 +16,12 @@
     </div>
 
     <div
-      class="flex md:gap-6 flex-col overflow-x-scroll pb-4 scroll-smooth snap-x md:flex-row"
+      class="flex flex-col pb-4 overflow-x-scroll md:gap-6 scroll-smooth snap-x md:flex-row"
     >
       <div
-        class="w-96 flex flex-col gap-3 flex-none snap-center relative"
         v-for="status in TASK_STATUSES"
+        :key="status"
+        class="relative flex flex-col flex-none gap-3 w-96 snap-center"
       >
         <UIHeadline
           size="h3"
@@ -42,7 +43,7 @@
           @end="dragEnd($event, status)"
         >
           <template #item="{ element: task }">
-            <NuxtLink :to="'/board/' + task.id" class="flex-1 md:max-w-xl">
+            <NuxtLink :to="'/board/' + task.id" class="md:max-w-xl">
               <ModulesCard
                 :title="task.title"
                 :tags="task.tags"
@@ -53,7 +54,6 @@
                   theme: useColorByEstimate(task.estimate),
                 }"
                 :class="'mb-0'"
-                @favorite="handleFavorite($event, task.title)"
               ></ModulesCard>
             </NuxtLink>
           </template>
@@ -71,22 +71,22 @@ import { useNotificationStore } from "~~/stores/notifications";
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
 const tasksStore = useTasksStore();
-const { addTask } = tasksStore;
+const { addTask, updateTask } = tasksStore;
 const filters = ref({});
 const sorts = ref({});
 
 const dragChange = async (event: any, status: string) => {
   if (event.added) {
     event.added.element.status = status;
-    await this.tasksStore.updateTask(event.added.element, {});
+    await updateTask(event.added.element, {});
   }
 };
 const dragEnd = async (event: any, status: string) => {};
 const filterChange = async (_filters: { [key: string]: any }) => {
-  this.filters = { ...this.filters, ..._filters };
+  filters.value = { ...filters.value, ..._filters };
 };
 const sortChange = async (_sorts: { [key: string]: any }) => {
-  this.sorts = { ...this.sorts, ..._sorts };
+  sorts.value = { ...sorts.value, ..._sorts };
 };
 const onAdd = async (task: Task) => {
   if (await addTask(task)) {
