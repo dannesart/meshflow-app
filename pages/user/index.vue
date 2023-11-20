@@ -22,7 +22,9 @@
       <UIListItem> <strong>ID</strong> {{ user?.user_id }} </UIListItem>
     </UIList>
     <UIHeadline size="h2"> Personal settings </UIHeadline>
-    <section class="flex flex-col gap-6 p-6 bg-white shadow-lg rounded-xl">
+    <section
+      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-indigo-950 rounded-xl"
+    >
       <UIHeadline size="label"> Dark mode </UIHeadline>
       <ModulesInput
         type="switch"
@@ -41,7 +43,9 @@
       </ModulesInput>
     </section>
     <UIHeadline size="h2"> Other </UIHeadline>
-    <section class="flex flex-col gap-6 p-6 bg-white shadow-lg rounded-xl">
+    <section
+      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-indigo-950 rounded-xl"
+    >
       <UIHeadline size="label"> I quit </UIHeadline>
       <p class="text-sm text-gray-400">
         Please remove me as a user from meshflow for ever. <br />

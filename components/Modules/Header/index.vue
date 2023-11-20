@@ -123,6 +123,7 @@
             <UIListItem
               :class="'flex-row'"
               v-for="notification in notifications"
+              :key="notification.title"
             >
               <div
                 class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg text-sky-500"
