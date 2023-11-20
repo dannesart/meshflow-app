@@ -76,10 +76,10 @@ const denyEdit = ($event: Event) => {
 const editableCssClasses =
   "hover:bg-sky-100 cursor-text p-0 appearance-none outline-none bg-transparent w-full";
 const cssClasses: { [key: string]: string } = {
-  h1: `text-5xl leading-10 font-bold text-sky-900 first-letter:capitalize ${
+  h1: `text-5xl leading-10 font-bold text-sky-900 dark:text-pink-300 first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
-  h2: `text-slate-500 text-2xl first-letter:capitalize ${
+  h2: `text-slate-500 dark:text-indigo-800 text-2xl first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
   h3: `text-slate-600 text-xl font-bold mb-4 first-letter:capitalize ${
