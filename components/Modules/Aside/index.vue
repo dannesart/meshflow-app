@@ -33,8 +33,8 @@
             <NuxtLink
               :to="item.route"
               v-if="(item.webOnly && settingsStore.isWeb) || !item.webOnly"
-              class="flex items-center gap-3 py-3 text-2xl text-gray-800 rounded-lg dark:text-emerald-700 md:text-lg md:hover:bg-emerald-100 hover:text-emerald-700 md:px-5"
-              activeClass="font-bold text-emerald-700 md:bg-emerald-100"
+              class="flex items-center gap-3 py-3 text-2xl text-gray-800 rounded-lg dark:text-emerald-500 md:text-lg md:hover:bg-emerald-100 hover:text-emerald-700 md:px-5"
+              activeClass="font-bold text-emerald-700 md:bg-emerald-100 "
               router-link-active="font-bold text-emerald-700 bg-emerald-100"
             >
               <UIIcons

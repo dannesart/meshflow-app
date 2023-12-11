@@ -67,7 +67,8 @@ const classes: ClassType = {
     inverted: "text-fuchsia-600 bg-white px-6 py-3 rounded-lg shadow-lg",
   },
   system: {
-    normal: "bg-white shadow-md text-slate-700 px-6 py-3 rounded-lg",
+    normal:
+      "bg-white dark:bg-indigo-900 dark:text-indigo-100 shadow-md text-slate-700 px-6 py-3 rounded-lg",
     round: "bg-slate-200 text-slate-700 px-3 py-6 rounded-full",
     small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
   },

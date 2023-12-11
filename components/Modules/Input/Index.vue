@@ -18,7 +18,7 @@
       :disabled="disabled"
       :minlength="min"
       :maxlength="max"
-      class="py-3 px-5 border rounded-lg shadow-sm bg-white disabled:bg-slate-100"
+      class="py-3 px-5 border rounded-lg shadow-sm bg-white dark:text-indigo-800 disabled:bg-slate-100"
       :class="{ 'hover:shadow-lg': !disabled }"
       :name="name"
       :placeholder="exampleValue(type)"
@@ -129,7 +129,7 @@
       @focusin="isToggled = true"
       @focusout="handleFocusOut"
       ref="selectRef"
-      class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
+      class="py-3 px-5 border cursor-pointer rounded-lg bg-white dark:bg-indigo-800 shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
     >
       <div class="flex justify-between gap-3 capitalize">
         {{ (valueRef || []).join(", ") || "Select options" }}
@@ -155,7 +155,7 @@
     </div>
 
     <div
-      class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
+      class="py-3 px-5 border cursor-pointer rounded-lg bg-white dark:bg-indigo-800 shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
       v-if="type === 'select'"
       :name="name"
       tabindex="0"

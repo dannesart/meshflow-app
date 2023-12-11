@@ -15,14 +15,14 @@
       }"
     >
       <p
-        class="text-gray-400 capitalize"
+        class="text-gray-400 dark:text-indigo-100 capitalize"
         :class="{ 'text-base': size !== 'small', 'text-sm': size === 'small' }"
         name="user-info-role"
       >
         {{ role || "..." }}
       </p>
       <p
-        class="font-medium text-gray-800"
+        class="font-medium text-gray-800 dark:text-indigo-300"
         :class="{ 'text-lg': size !== 'small', 'text-sm': size === 'small' }"
         name="user-info-name"
       >

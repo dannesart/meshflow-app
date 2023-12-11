@@ -104,6 +104,7 @@ declare global {
   const useAuth: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']
   const useAuthState: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']
   const useColorByEstimate: typeof import('../../composables/utils')['useColorByEstimate']
+  const useColorMode: typeof import('../../node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']
   const useCookie: typeof import('../../node_modules/nuxt/dist/app')['useCookie']
   const useCssModule: typeof import('../../node_modules/vue')['useCssModule']
   const useCssVars: typeof import('../../node_modules/vue')['useCssVars']
@@ -260,6 +261,7 @@ declare module 'vue' {
     readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']>
     readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
+    readonly useColorMode: UnwrapRef<typeof import('../../node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('../../node_modules/vue')['useCssVars']>
@@ -410,6 +412,7 @@ declare module '@vue/runtime-core' {
     readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuth')['default']>
     readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/useAuthState')['default']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
+    readonly useColorMode: UnwrapRef<typeof import('../../node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('../../node_modules/vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('../../node_modules/vue')['useCssVars']>

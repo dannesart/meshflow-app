@@ -82,7 +82,7 @@ const cssClasses: { [key: string]: string } = {
   h2: `text-slate-500 dark:text-indigo-800 text-2xl first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
-  h3: `text-slate-600 text-xl font-bold mb-4 first-letter:capitalize ${
+  h3: `text-slate-600 dark:text-indigo-100 text-xl font-bold mb-4 first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
   h4: `text-slate-600 text-lg font-semibold first-letter:capitalize ${
@@ -91,7 +91,7 @@ const cssClasses: { [key: string]: string } = {
   h5: `text-slate-600 font-semibold first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
-  label: `text-slate-600 first-letter:capitalize ${
+  label: `text-slate-600 dark:text-indigo-100 first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
   p: `text-slate-600 first-letter:capitalize ${

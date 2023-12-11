@@ -45,6 +45,7 @@ declare module '@vue/runtime-core' {
     UIDroppable: typeof import('./components/UI/Droppable/Index.vue')['default']
     UIEditor: typeof import('./components/UI/Editor/Index.vue')['default']
     UIEditorActions: typeof import('./components/UI/Editor/Actions.vue')['default']
+    UIEditorMentions: typeof import('./components/UI/Editor/Mentions.vue')['default']
     UIEmpty: typeof import('./components/UI/Empty/index.vue')['default']
     UIForm: typeof import('./components/UI/Form/Index.vue')['default']
     UIGrid: typeof import('./components/UI/Grid/Index.vue')['default']
