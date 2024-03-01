@@ -5,15 +5,17 @@
     <ModulesAside></ModulesAside>
     <ModulesHeader></ModulesHeader>
     <main
-      class="overscroll-contain py-4 px-6 lg:px-10 pt-8 lg:pt-12 lg:mb-10 lg:mr-10 flex flex-col gap-10 bg-slate-50 dark:bg-black/20 rounded-3xl relative overflow-y-scroll"
+      class="relative flex flex-col gap-10 px-6 py-4 pt-8 overflow-y-scroll overscroll-contain lg:px-10 lg:pt-12 lg:mb-10 lg:mr-10 bg-slate-50 dark:bg-black/20 rounded-3xl"
     >
-      <UIHeadline size="h1">
-        <slot name="header" />
-      </UIHeadline>
-      <div class="flex gap-6">
-        <slot name="filters" />
-        <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
-        <slot name="actions" />
+      <div class="flex flex-col justify-between gap-10 md:flex-row">
+        <UIHeadline size="h1">
+          <slot name="header" />
+        </UIHeadline>
+        <div class="flex gap-6">
+          <slot name="filters" />
+          <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+          <slot name="actions" />
+        </div>
       </div>
       <slot />
     </main>

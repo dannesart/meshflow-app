@@ -37,7 +37,7 @@ declare module 'nuxt/schema' {
    auth: {
       isEnabled: boolean,
 
-      origin: string,
+      origin: any,
 
       basePath: string,
 
@@ -82,7 +82,7 @@ declare module 'nuxt/schema' {
    auth: {
       isEnabled: boolean,
 
-      origin: string,
+      origin: any,
 
       basePath: string,
 

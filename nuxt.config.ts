@@ -4,6 +4,10 @@ export default defineNuxtConfig({
 
   imports: {},
 
+  server: {
+    port: 1111,
+  },
+
   modules: [
     "@sidebase/nuxt-auth",
     "@nuxtjs/tailwindcss",

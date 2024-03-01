@@ -1,11 +1,12 @@
 <template>
-  <NuxtLayout>
-    <UIHeadline size="h1"> Board </UIHeadline>
+  <NuxtLayout name="list">
+    <template #header> Board </template>
 
-    <div class="flex gap-6">
+    <template #filters>
       <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
       </ModulesFilter>
-      <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+    </template>
+    <template #actions>
       <ModulesAdd
         type="task"
         :label="'Add task'"
@@ -13,7 +14,7 @@
         @onCancel="onCancel"
       >
       </ModulesAdd>
-    </div>
+    </template>
 
     <div
       class="flex flex-col pb-4 overflow-x-scroll md:gap-6 scroll-smooth snap-x md:flex-row"
