@@ -54,6 +54,7 @@
       <ModulesInput
         type="checkbox"
         name="required"
+        :value="field.validations.required"
         @value-update="(e) => handleIsRequired(e)"
       >
         Required
@@ -72,7 +73,7 @@
           Limit character count
         </ModulesInput>
         <div
-          class="flex gap-4 items-end"
+          class="flex items-end gap-4"
           v-if="field.validations.minMax.use"
           :class="{ 'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use }"
         >
@@ -109,7 +110,7 @@ const blockTypes = blockModels.value.map((blockModel) => blockModel.name);
 
 const field = ref({ ...value });
 
-const handleIsMain = (e) => {
+const handleIsMain = (e: boolean) => {
   field.value.isMain = e;
   checkValid();
 };

@@ -53,11 +53,11 @@
         >
           <template #item="{ element: field, index }">
             <div
-              class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
+              class="flex gap-6 p-6 py-3 bg-white shadow-xl cursor-pointer rounded-xl hover:shadow-2xl"
             >
-              <div class="flex items-center justify-center relative">
+              <div class="relative flex items-center justify-center">
                 <span
-                  class="text-amber-500 absolute top-1 -left-2 -rotate-45"
+                  class="absolute -rotate-45 text-amber-500 top-1 -left-2"
                   v-if="field.isMain"
                 >
                   <UIIcons name="crown" :size="4"></UIIcons>
@@ -77,7 +77,7 @@
                 </UIHeadline>
                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
               </div>
-              <div class="flex items-center justify-center mr-0 ml-auto">
+              <div class="flex items-center justify-center ml-auto mr-0">
                 <UIButton
                   type="icon"
                   size="round-small"
@@ -92,6 +92,7 @@
                   :value="field"
                   :size="4"
                   button-style="icon"
+                  @on-save="(newValue) => updateBlock(newValue, index)"
                 >
                 </ModulesEdit>
               </div>
@@ -101,7 +102,7 @@
       </div>
       <div
         v-else
-        class="rounded-xl bg-gray-100 p-10 flex gap-6 items-center justify-between"
+        class="flex items-center justify-between gap-6 p-10 bg-gray-100 rounded-xl"
       >
         No fields yet. Create a field
         <ModulesAdd
@@ -142,9 +143,10 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { TTab } from "~~/components/UI/Tabs/tabs.model";
 import { useBlocksStore } from "~~/stores/blocks";
 import { useNotificationStore } from "~~/stores/notifications";
+import type { TTab } from "~~/components/UI/Tabs/tabs.model";
+import type { Model, ModelField } from "~~/models/model";
 
 const notificationsStore = useNotificationStore();
 const { type } = useRoute().params;
@@ -159,7 +161,7 @@ const editingText = ref<string>();
 const nameRef = ref();
 const descriptionRef = ref();
 
-const model = ref<any>(block);
+const model = ref<Model>(block);
 const tabs: TTab[] = [
   {
     name: "model",
@@ -225,6 +227,11 @@ const editText = (field: string) => {
 };
 const stopEditing = () => {
   editingText.value = "";
+};
+
+const updateBlock = (newValue: ModelField, fieldIdx: number) => {
+  if (!model.value?.fields && !model.value?.fields.length) return;
+  model.value.fields[fieldIdx] = newValue;
 };
 
 const save = async () => {

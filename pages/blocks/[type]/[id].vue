@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <template v-if="block">
-      <header class="flex items-center gap-4 justify-between">
+      <header class="flex items-center justify-between gap-4">
         <UIHeadline
           size="h1"
           editable="true"
@@ -9,8 +9,8 @@
         >
           {{ block.properties.title || block.properties.name }}
         </UIHeadline>
-        <div class="flex gap-2 items-center" v-if="block">
-          <label class="text-sm text-slate-500 capitalize">{{
+        <div class="flex items-center gap-2" v-if="block">
+          <label class="text-sm capitalize text-slate-500">{{
             block.status
           }}</label>
           <ModulesInput
@@ -21,13 +21,13 @@
         </div>
       </header>
       <p>
-        <span class="font-bold inline-block text-sky-700">{{
-          model.name
+        <span class="inline-block font-bold text-sky-700">{{
+          model?.name
         }}</span>
         | Updated
-        {{ useTimeAgo(block.updated) }}
+        {{ useTimeAgo(block?.updated.toString()) }}
       </p>
-      <div v-for="(field, idx) of model.fields">
+      <div v-for="(field, idx) of model?.fields" :key="idx">
         <ModulesInput :type="field.type.id" :value="block.properties[field.id]">
           {{ field.name }}
         </ModulesInput>
@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Block } from "~~/models/blocks";
 import { useBlocksStore } from "~~/stores/blocks";
 import { useNotificationStore } from "~~/stores/notifications";
 
@@ -69,14 +70,16 @@ const {
 } = useBlocksStore();
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
-const model = getBlockModelById(type);
+const model = getBlockModelById(type as string);
 const showConfirm = ref(false);
 const router = useRouter();
 
 if (!getBlocksByType(type as string)) fetchBlocks(type as string);
 
 // Fetch data based on id.
-const block = computed(() => getBlockById(type as string, id as string));
+const block = computed(
+  () => getBlockById(type as string, id as string) || ({} as Block)
+);
 
 const handleDeleteBlock = async () => {
   showConfirm.value = true;
@@ -109,7 +112,7 @@ const handleConfirmDelete = async () => {
 };
 
 const handleUpdateBlock = async () => {
-  const updated = await updateBlock(id, type, block.value);
+  const updated = await updateBlock(id as string, type as string, block.value);
   if (updated) {
     setNotification(
       "Status changed!",

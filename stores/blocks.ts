@@ -43,7 +43,7 @@ const getters = {
   getAmountOfBlockModels: (state: State) => state._blockModels.length,
   getBlockModelById: (state: State) => {
     return (id: string) => {
-      return state._blockModels.find((block) => block?.id === id);
+      return state._blockModels.find((block) => block?.id === id) as Model;
     };
   },
 };
