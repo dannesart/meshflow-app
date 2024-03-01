@@ -28,7 +28,7 @@
       <UIHeadline size="label"> Dark mode </UIHeadline>
       <ModulesInput
         type="switch"
-        :value="$colorMode.preference === 'dark'"
+        :value="$colorMode.preference === 'dark' || $colorMode.value === 'dark'"
         @click="
           () => toggleTheme($colorMode.preference === 'dark' ? 'light' : 'dark')
         "
