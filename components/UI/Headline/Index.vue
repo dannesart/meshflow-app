@@ -85,7 +85,7 @@ const cssClasses: { [key: string]: string } = {
   h3: `text-slate-600 dark:text-indigo-100 text-xl font-bold mb-4 first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
-  h4: `text-slate-600 text-lg font-semibold first-letter:capitalize ${
+  h4: `text-slate-600 text-lg dark:text-indigo-200 font-semibold first-letter:capitalize ${
     editable ? editableCssClasses : ""
   }`,
   h5: `text-slate-600 font-semibold first-letter:capitalize ${
