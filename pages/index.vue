@@ -43,7 +43,7 @@
             <UIEmpty v-else> No activity yet </UIEmpty>
           </div>
         </div>
-        <div class="flex items-end justify-end">
+        <div class="flex items-end justify-end dark:text-indigo-300">
           <NuxtLink to="/"> View latest activity </NuxtLink>
         </div>
       </div>
@@ -104,7 +104,7 @@
             </ClientOnly>
           </div>
         </div>
-        <div class="flex items-end justify-end">
+        <div class="flex items-end justify-end dark:text-indigo-300">
           <NuxtLink to="/board"> View all tasks </NuxtLink>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <svg viewBox="0 0 36 36" class="w-28 aspect-square">
     <path
-      class="stroke-gray-200 dark:stroke-black/40"
+      class="stroke-gray-200 dark:stroke-black/30"
       d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
