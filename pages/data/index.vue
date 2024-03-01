@@ -1,22 +1,24 @@
 <template>
-  <NuxtLayout>
-    <UIHeadline size="h1"> Data types </UIHeadline>
-    <div class="flex gap-6">
+  <NuxtLayout name="list">
+    <template #header> Data types </template>
+    <template #filters>
       <ModulesFilter @filterChange="filterChange" @sortChange="sortChange">
       </ModulesFilter>
-      <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+    </template>
+    <template #actions>
       <ModulesAdd type="model" label="Add type" service-type="data">
       </ModulesAdd>
-    </div>
+    </template>
     <ClientOnly>
       <div
-        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
         v-if="dataModels.length"
       >
         <NuxtLink
           :to="'/data/' + item.id"
           class="flex-1"
           v-for="(item, index) in dataModels"
+          :key="index"
         >
           <ModulesCard
             :title="item.name"
@@ -40,7 +42,7 @@
 
     <div
       v-if="loading"
-      class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+      class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
     >
       <UILoader></UILoader>
     </div>
@@ -49,8 +51,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { DataModel } from "~~/models/data";
 import { useDataStore } from "~~/stores/data";
+import type { DataModel } from "~~/models/data";
 import { useNotificationStore } from "~~/stores/notifications";
 
 const notificationsStore = useNotificationStore();

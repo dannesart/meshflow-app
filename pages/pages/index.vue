@@ -1,30 +1,35 @@
 <template>
-  <NuxtLayout>
-    <UIHeadline size="h1">
+  <NuxtLayout name="list">
+    <template #header>
       {{ $t("pages") }}
-    </UIHeadline>
-    <div class="flex gap-6">
+    </template>
+    <template #filters>
       <ModulesFilter
         @filterChange="filterChange"
         @sortChange="sortChange"
       ></ModulesFilter>
-      <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+    </template>
+    <template #actions>
       <ModulesAdd
         label="Add page"
         type="page"
         @onAdd="onAdd"
         @onCancel="onCancel"
       ></ModulesAdd>
-    </div>
+    </template>
     <ClientOnly>
       <div
-        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4"
         v-if="pages.length"
       >
-        <NuxtLink :to="'/pages/' + page.id" v-for="(page, index) in pages">
+        <NuxtLink
+          :to="'/pages/' + page.id"
+          v-for="(page, index) in pages"
+          :key="index"
+        >
           <ModulesCard
             :title="page.title"
-            :body="`Updated ${useTimeAgo(page.updated)}`"
+            :body="`Updated ${useTimeAgo(page.updated.toString())}`"
             :badge="{
               icon: 'check',
               theme: page.status === 'public' ? 'primary' : 'system',
@@ -46,7 +51,7 @@
       </UIEmpty>
       <div
         v-else
-        class="w-full flex items-center justify-center bg-gray-100 rounded-lg p-6"
+        class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
       >
         <UILoader></UILoader>
       </div>
