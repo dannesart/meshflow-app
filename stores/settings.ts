@@ -39,7 +39,7 @@ export const useSettingsStore = defineStore("SettingStore", {
           config.public.REDIRECT_URI + "/api/settings"
         );
         if (response.data) {
-          const { activeServices, useSprints } = response.data;
+          const { activeServices, useSprints } = response.data.settings;
           this.activeServices = activeServices;
           this.useSprints = useSprints;
         }
