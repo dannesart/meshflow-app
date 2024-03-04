@@ -6,7 +6,7 @@
       <UIButton
         type="back"
         @click.prevent="$router.back()"
-        v-if="id || type"
+        v-if="id || type || category"
         class="max-md:hidden"
       >
         <UIIcons name="arrow-left"></UIIcons>
@@ -165,7 +165,7 @@ import { useNotificationStore } from "~~/stores/notifications";
 // Check if route contains Id param.
 // Then we know it's not a "root" page.
 // We can then show back button.
-const { id, type } = useRoute().params;
+const { id, type, category } = useRoute().params;
 const projectStore = useProjectStore();
 const tasksStore = useTasksStore();
 const pagesStore = usePagesStore();
