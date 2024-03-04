@@ -2,22 +2,35 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useRuntimeConfig } from "#app";
 
+export const availableServices = [
+  "Data",
+  "Blocks",
+  "Pages",
+  "Storage",
+  "Rules",
+  "API",
+];
+
+type State = {
+  activeServices: string[];
+  useSprints: boolean;
+};
+
 export const useSettingsStore = defineStore("SettingStore", {
-  state: () => ({ web: false, dark: false, useSprints: false }),
+  state: () => <State>{ activeServices: [], useSprints: false },
   getters: {
-    isWeb: (state) => state.web,
-    isDark: (state) => state.dark,
     isUsingSprints: (state) => state.useSprints,
+    allActiveServices: (state) => state.activeServices,
+    isServiceActive: (state) => {
+      return (service: string) => state.activeServices.indexOf(service) > -1;
+    },
   },
   actions: {
-    setIsWeb(open: boolean) {
-      this.web = open;
-    },
-    setIsDark(dark: boolean) {
-      this.dark = dark;
-    },
     setUseSprints(use: boolean) {
       this.useSprints = use;
+    },
+    setActiveServices(services: string[]) {
+      this.activeServices = [...services];
     },
     async fetchSettings() {
       try {
@@ -25,7 +38,11 @@ export const useSettingsStore = defineStore("SettingStore", {
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/settings"
         );
-        this.web = response.data.web;
+        if (response.data) {
+          const { activeServices, useSprints } = response.data;
+          this.activeServices = activeServices;
+          this.useSprints = useSprints;
+        }
       } catch (error) {
         //TODO: Handle error
       }

@@ -77,7 +77,6 @@
 import { useSettingsStore } from "~~/stores/settings";
 import { TASK_STATUSES } from "~~/models/tasks";
 
-const values = ["Data & model", "Web"];
 const settingsStore = useSettingsStore();
 let taskStatuses = ref([...TASK_STATUSES]);
 

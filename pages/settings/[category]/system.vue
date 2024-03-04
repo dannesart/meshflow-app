@@ -6,22 +6,27 @@
       <label>Allow services</label>
       <ModulesInput
         type="multi-select"
-        :value="value"
-        :values="values"
-        @value-update="updateType"
+        :value="allActiveServices"
+        :values="availableServices"
+        @value-update="setActiveServices"
       ></ModulesInput>
     </div>
+    <footer class="flex gap-4">
+      <UIButton type="add" @click="saveSettings()">Save</UIButton>
+    </footer>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { useSettingsStore } from "~~/stores/settings";
-const values = ["Data", "Blocks", "Pages", "Storage", "Rules", "API"];
-const value = [...values];
-const settingsStore = useSettingsStore();
+import { useSettingsStore, availableServices } from "~~/stores/settings";
+import { useNotificationStore } from "~~/stores/notifications";
+import { storeToRefs } from "pinia";
 
-const updateType = (value: string) => {
-  const isWeb = value.toLowerCase() === "web";
-  settingsStore.setIsWeb(isWeb);
-};
+const settingsStore = useSettingsStore();
+const { setActiveServices } = settingsStore;
+const { allActiveServices } = storeToRefs(settingsStore);
+const notificationsStore = useNotificationStore();
+const { setNotification } = notificationsStore;
+
+const saveSettings = () => {};
 </script>
