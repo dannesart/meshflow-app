@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <header class="flex items-center gap-4 justify-between">
+    <header class="flex items-center justify-between gap-4">
       <UIHeadline
         size="h1"
         :editable="true"
@@ -10,8 +10,8 @@
       >
         {{ page?.title || "Getting page..." }}
       </UIHeadline>
-      <div class="flex gap-2 items-center" v-if="page && page.status">
-        <label class="text-sm text-slate-500 capitalize">{{
+      <div class="flex items-center gap-2" v-if="page && page.status">
+        <label class="text-sm capitalize text-slate-500">{{
           page.status
         }}</label>
         <ModulesInput
@@ -81,12 +81,13 @@
           </ModulesAdd>
         </div>
       </div>
-
-      <footer class="flex gap-3">
-        <UIButton type="add" @click="savePage">Save</UIButton>
-        <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
-      </footer>
     </div>
+
+    <footer class="flex gap-3">
+      <UIButton type="add" @click="savePage">Save</UIButton>
+      <UIButton type="nevermind" @click="handleDeletePage">Delete</UIButton>
+    </footer>
+
     <UIEmpty v-if="!page" class="!justify-center flex">
       <UILoader />
     </UIEmpty>
