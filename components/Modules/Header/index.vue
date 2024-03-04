@@ -162,6 +162,7 @@ import { useTasksStore } from "~~/stores/tasks";
 import { useUiStore } from "~~/stores/ui";
 import { useUsersStore } from "~~/stores/users";
 import { useNotificationStore } from "~~/stores/notifications";
+import { useSettingsStore } from "~/stores/settings";
 // Check if route contains Id param.
 // Then we know it's not a "root" page.
 // We can then show back button.
@@ -171,6 +172,7 @@ const tasksStore = useTasksStore();
 const pagesStore = usePagesStore();
 const blocksStore = useBlocksStore();
 const notificationStore = useNotificationStore();
+const settingsStore = useSettingsStore();
 const uiStore = useUiStore();
 const { setLoading } = uiStore;
 const { status, data, signIn, signOut } = useAuth();
@@ -216,6 +218,7 @@ const selectProject = async (projectId: string) => {
   setLoading(true);
   projectStore.setActive(projectId);
   await Promise.all([
+    settingsStore.fetchSettings(),
     tasksStore.fetchTasks(),
     pagesStore.fetchPages(),
     blocksStore.fetchBlockModels(),
