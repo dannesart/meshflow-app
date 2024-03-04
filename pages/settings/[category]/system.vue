@@ -23,10 +23,8 @@ import { useNotificationStore } from "~~/stores/notifications";
 import { storeToRefs } from "pinia";
 
 const settingsStore = useSettingsStore();
-const { setActiveServices } = settingsStore;
+const { setActiveServices, saveSettings } = settingsStore;
 const { allActiveServices } = storeToRefs(settingsStore);
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
-
-const saveSettings = () => {};
 </script>
