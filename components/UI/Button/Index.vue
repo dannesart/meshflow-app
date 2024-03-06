@@ -1,6 +1,7 @@
 <template>
   <button
-    class="flex items-center gap-3 hover:shadow-lg disabled:opacity-70 text-center justify-center relative overflow-hidden"
+    class="relative flex items-center justify-center gap-3 overflow-hidden text-center hover:shadow-lg disabled:opacity-70"
+    v-wave
     :class="[buttonClasses, buttonLoadingClass]"
     :name="name"
     :disabled="disabled"

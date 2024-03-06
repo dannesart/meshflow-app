@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "v-wave/nuxt",
     "@sidebase/nuxt-auth",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
