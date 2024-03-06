@@ -12,7 +12,7 @@
       ></ModulesInput>
     </div>
     <footer class="flex gap-4">
-      <UIButton type="add" @click="saveSettings()">Save</UIButton>
+      <UIButton type="add" @click="handleSaveSettings">Save</UIButton>
     </footer>
   </NuxtLayout>
 </template>
@@ -27,4 +27,20 @@ const { setActiveServices, saveSettings } = settingsStore;
 const { allActiveServices } = storeToRefs(settingsStore);
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
+
+const handleSaveSettings = async () => {
+  if (await saveSettings()) {
+    setNotification(
+      "Settings updated",
+      "The settings was successfully updated!",
+      "success"
+    );
+  } else {
+    setNotification(
+      "Settings not updated",
+      "The settings could not be updated!",
+      "fail"
+    );
+  }
+};
 </script>
