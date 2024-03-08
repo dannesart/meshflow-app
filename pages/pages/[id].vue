@@ -8,7 +8,7 @@
         :value="page?.title"
         @value-change="(value) => (page.title = value)"
       >
-        {{ page?.title || "Getting page..." }}
+        {{ page?.title || $t("pages.getting_page") }}
       </UIHeadline>
       <div class="flex items-center gap-2" v-if="page && page.status">
         <label class="text-sm capitalize text-slate-500">{{
@@ -22,15 +22,15 @@
       </div>
     </header>
     <p v-if="page?.updated">
-      Updated
+      {{ $t("updated") }}
       {{ useTimeAgo(page.updated) }}
     </p>
     <div class="flex flex-col gap-6" v-if="page">
       <ModulesInput type="text" :value="page.slug" @value-update="updateSlug">
-        Slug
+        {{ $t("slug") }}
       </ModulesInput>
       <div class="flex items-center justify-between">
-        <UIHeadline size="label"> Blocks </UIHeadline>
+        <UIHeadline size="label"> {{ $t("blocks.title") }} </UIHeadline>
         <ModulesAdd
           @on-add="onBlockAdd"
           select="true"
@@ -70,7 +70,7 @@
           v-else
           class="flex items-center justify-between gap-6 p-10 bg-gray-100 rounded-xl"
         >
-          No blocks yet. Create or add existing one
+          {{ $t("blocks.no_blocks_yet") }}
           <ModulesAdd
             button-style="system"
             label="Add block"
@@ -98,8 +98,7 @@
       @on-deny="handleConfirmDeny"
     >
       <p>
-        Do you really want to delete this page? It will not be able to be
-        restored.
+        {{ $t("pages.confirm_delete_message") }}
       </p>
     </ModulesConfirm>
   </NuxtLayout>

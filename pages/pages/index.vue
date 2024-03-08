@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout name="list">
     <template #header>
-      {{ $t("pages") }}
+      {{ $t("pages.title") }}
     </template>
     <template #filters>
       <ModulesFilter
@@ -38,7 +38,7 @@
         </NuxtLink>
       </div>
       <UIEmpty v-else-if="!loading">
-        No pages yet. Go ahead and create your first page!
+        {{ $t("pages.no_pages_yet") }}
 
         <ModulesAdd
           label="Add page"
