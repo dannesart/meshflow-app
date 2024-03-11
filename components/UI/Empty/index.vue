@@ -1,11 +1,13 @@
 <template>
-    <div class="rounded-xl w-full bg-gray-100 p-10 flex gap-6 items-center justify-between">
-        <slot />
-    </div>
+  <div
+    class="flex items-center justify-between w-full gap-6 p-10 bg-gray-100 rounded-xl dark:bg-indigo-950 dark:text-indigo-200"
+  >
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
 export default defineComponent({
-    name: 'Empty'
-})
+  name: "Empty",
+});
 </script>
