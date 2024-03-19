@@ -16,7 +16,6 @@
   "overrides": {
     "vue": "latest"
   },
-  "packageManager": "npm",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@nuxt/test-utils": "^3.0.0",
