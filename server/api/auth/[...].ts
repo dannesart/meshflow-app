@@ -6,7 +6,7 @@ const config = useRuntimeConfig();
 export default NuxtAuthHandler({
   secret: "xRtI8cBYK70cPMXQPIZtS8ffvGtzJkShx9RVlr31SJk=",
   pages: {
-    signIn: "/signin",
+    signIn: "/auth/signin",
   },
   providers: [
     auth0.default({
