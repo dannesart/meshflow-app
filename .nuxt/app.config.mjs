@@ -1,10 +1,10 @@
 
-import { updateAppConfig } from '#app'
-import { defuFn } from 'C:/Web/test/meshflow-app/node_modules/defu/dist/defu.mjs'
+import { updateAppConfig } from '#app/config'
+import { defuFn } from 'defu'
 
 const inlineConfig = {
   "nuxt": {
-    "buildId": "test"
+    "buildId": "8e83f531-9fbb-4988-a756-ef25c8e66696"
   }
 }
 
@@ -17,4 +17,4 @@ if (import.meta.hot) {
 
 
 
-export default /* #__PURE__ */ defuFn(inlineConfig)
+export default /*@__PURE__*/ defuFn(inlineConfig)
