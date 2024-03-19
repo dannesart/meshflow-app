@@ -1,6 +1,6 @@
-import { ProjectModel } from "~~/models/project";
+import { ProjectModel } from "~~/models/project.db";
 import { getServerSession, getToken } from "#auth";
-import { AuthToken } from "~~/models/auth";
+import type { AuthToken } from "~~/models/auth";
 
 export default defineEventHandler(async (e) => {
   const session = await getServerSession(e);
