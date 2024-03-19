@@ -34,48 +34,6 @@ declare module 'nuxt/schema' {
    domain: string,
 
    api: string,
-
-   auth: {
-      isEnabled: boolean,
-
-      origin: string,
-
-      basePath: string,
-
-      trustHost: boolean,
-
-      enableSessionRefreshPeriodically: boolean,
-
-      enableSessionRefreshOnWindowFocus: boolean,
-
-      enableGlobalAppMiddleware: boolean,
-
-      defaultProvider: any,
-
-      addDefaultCallbackUrl: boolean,
-
-      globalMiddlewareOptions: {
-         allow404WithoutAuth: boolean,
-
-         addDefaultCallbackUrl: boolean,
-      },
-
-      provider: {
-         type: string,
-
-         defaultProvider: string,
-
-         addDefaultCallbackUrl: boolean,
-      },
-
-      globalAppMiddleware: {
-         isEnabled: boolean,
-
-         addDefaultCallbackUrl: boolean,
-      },
-
-      isOriginSet: boolean,
-   },
   }
   interface PublicRuntimeConfig {
    REDIRECT_URI: string,
@@ -83,25 +41,25 @@ declare module 'nuxt/schema' {
    vWave: any,
 
    auth: {
+      computed: {
+         origin: any,
+
+         pathname: string,
+
+         fullBaseUrl: string,
+      },
+
       isEnabled: boolean,
 
-      origin: string,
+      session: {
+         enableRefreshPeriodically: boolean,
 
-      basePath: string,
+         enableRefreshOnWindowFocus: boolean,
+      },
 
-      trustHost: boolean,
+      globalAppMiddleware: {
+         isEnabled: boolean,
 
-      enableSessionRefreshPeriodically: boolean,
-
-      enableSessionRefreshOnWindowFocus: boolean,
-
-      enableGlobalAppMiddleware: boolean,
-
-      defaultProvider: any,
-
-      addDefaultCallbackUrl: boolean,
-
-      globalMiddlewareOptions: {
          allow404WithoutAuth: boolean,
 
          addDefaultCallbackUrl: boolean,
@@ -110,16 +68,16 @@ declare module 'nuxt/schema' {
       provider: {
          type: string,
 
+         trustHost: boolean,
+
          defaultProvider: string,
 
          addDefaultCallbackUrl: boolean,
       },
 
-      globalAppMiddleware: {
-         isEnabled: boolean,
+      enableGlobalAppMiddleware: boolean,
 
-         addDefaultCallbackUrl: boolean,
-      },
+      origin: string,
    },
   }
 }
