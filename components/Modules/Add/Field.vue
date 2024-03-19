@@ -135,7 +135,8 @@
 </template>
 
 <script setup lang="ts">
-import { ModelField, ModelFieldSchema, ModelType } from "~~/models/model";
+import type { ModelField, ModelType } from "~~/models/model";
+import { ModelFieldSchema } from "~~/models/model";
 import { ModelTypes } from "~~/constants/model";
 import { storeToRefs } from "pinia";
 import { useBlocksStore } from "~~/stores/blocks";

@@ -43,6 +43,6 @@ const ModelSchema = z.object({
 type Model = z.infer<typeof ModelSchema>;
 
 // Types
-export { ModelType, ModelField, Model };
+export type { ModelType, ModelField, Model };
 // Schemas for validation
 export { ModelTypeSchema, ModelFieldSchema, ModelSchema };

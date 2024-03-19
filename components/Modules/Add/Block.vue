@@ -92,7 +92,8 @@
 
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { Model, ModelSchema } from "~~/models/model";
+import type { Model } from "~~/models/model";
+import { ModelSchema } from "~~/models/model";
 import { useBlocksStore } from "~~/stores/blocks";
 import { useProjectStore } from "~~/stores/projects";
 

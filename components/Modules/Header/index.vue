@@ -153,8 +153,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Project } from "~~/models/project";
 import { storeToRefs } from "pinia";
-import { Project } from "~~/models/project";
 import { useBlocksStore } from "~~/stores/blocks";
 import { usePagesStore } from "~~/stores/pages";
 import { useProjectStore } from "~~/stores/projects";

@@ -19,5 +19,5 @@ const PageSchema = z
   .strict();
 
 type Page = z.infer<typeof PageSchema>;
-
-export { PageSchema, Page, PAGE_STATUSES };
+export type { Page };
+export { PageSchema, PAGE_STATUSES };

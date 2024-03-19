@@ -1,4 +1,4 @@
-import { ProjectModel } from "~~/models/project";
+import { ProjectModel } from "~~/models/project.db";
 import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {

@@ -117,7 +117,7 @@ import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
 import { useUsersStore } from "~~/stores/users";
 import { useCommentsStore } from "~~/stores/comments";
-import { Task } from "~~/models/tasks";
+import type { Task } from "~~/models/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 import { storeToRefs } from "pinia";
 

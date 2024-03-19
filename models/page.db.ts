@@ -1,5 +1,5 @@
 import { model, Model, Schema } from "mongoose";
-import { Page } from "./page";
+import type { Page } from "./page";
 import { BlocksDbModel } from "./blocks.db";
 
 const PageDbSchema: Schema<Page> = new Schema({

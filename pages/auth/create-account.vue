@@ -1,2 +1,4 @@
-<template name="auth">Create account</template>
+<template>
+  <NuxtLayout name="auth"> Create account </NuxtLayout>
+</template>
 <script setup lang="ts"></script>

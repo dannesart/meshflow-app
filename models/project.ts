@@ -21,18 +21,5 @@ const ProjectSchema = z
 // This is the type based on project schema
 type Project = z.infer<typeof ProjectSchema>;
 
-// This is the DB schema. Based on project type
-const ProjectDbSchema: Schema<Project> = new Schema({
-  name: String,
-  status: String,
-  id: { type: String, unique: true },
-  createdBy: String,
-  created: { type: Date, default: Date.now },
-  updatedBy: String,
-  updated: { type: Date, default: Date.now },
-  users: [String],
-});
-
-const ProjectModel: Model<Project> = model("projects", ProjectDbSchema);
-
-export { ProjectSchema, Project, PROJECT_STATUSES, ProjectModel };
+export type { Project };
+export { ProjectSchema, PROJECT_STATUSES };
