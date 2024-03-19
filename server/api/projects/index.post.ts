@@ -1,11 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import {
-  PROJECT_STATUSES,
-  ProjectSchema,
-  ProjectModel,
-} from "~~/models/project";
+import { PROJECT_STATUSES, ProjectSchema } from "~~/models/project";
+import { ProjectModel } from "~~/models/project.db";
 import { getServerSession, getToken } from "#auth";
-import { AuthToken } from "~~/models/auth";
+import type { AuthToken } from "~~/models/auth";
 
 const newProject = (name: string, createdBy: string) => {
   const project = {
