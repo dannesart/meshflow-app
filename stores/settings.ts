@@ -50,7 +50,7 @@ export const useSettingsStore = defineStore("SettingStore", {
         uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.patch(
-          config.public.REDIRECT_URI + "/api/settings/",
+          config.public.BASE_URL + "/api/settings/",
           {
             projectId: activeId.value,
             settings: {
@@ -77,7 +77,7 @@ export const useSettingsStore = defineStore("SettingStore", {
         uiStore.setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.get(
-          config.public.REDIRECT_URI + "/api/settings",
+          config.public.BASE_URL + "/api/settings",
           {
             params: {
               projectId: activeId.value,

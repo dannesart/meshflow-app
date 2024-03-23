@@ -4,10 +4,6 @@ export default defineNuxtConfig({
 
   imports: {},
 
-  server: {
-    port: 1111,
-  },
-
   modules: [
     "v-wave/nuxt",
     "@sidebase/nuxt-auth",
@@ -30,18 +26,20 @@ export default defineNuxtConfig({
   auth: {
     provider: {
       type: "authjs",
-      defaultProvider: "auth0",
-      addDefaultCallbackUrl: true,
     },
-    enableGlobalAppMiddleware: true,
     origin: process.env.ORIGIN,
-    globalAppMiddleware: {
-      isEnabled: true,
-      addDefaultCallbackUrl: true,
+    //baseUrl: process.env.BASE_URL,
+    globalAppMiddleware: true,
+    globalMiddlewareOptions: {
+      addDefaultCallbackUrl: "/",
     },
   },
   runtimeConfig: {
-    REDIRECT_URI: process.env.REDIRECT_URI,
+    REDIRECT_URI: process.env.REDIRECT_URL,
+    BASE_URL: process.env.BASE_URL,
+    ORIGIN: process.env.ORIGIN,
+    google_client_id: process.env.GOOGLE_CLIENT_ID,
+    google_client_secret: process.env.GOOGLE_CLIENT_SECRET,
     mongoUrl: process.env.MONGO_URL,
     nextAuthSecret: process.env.NEXTAUTH_SECRET,
     auth0ClientId: process.env.AUTH0_CLIENT_ID,

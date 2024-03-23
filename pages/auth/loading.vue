@@ -8,14 +8,14 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/",
-  },
-});
-if (process.client) {
-  const { signIn } = useAuth();
-  signIn("auth0");
-}
+// definePageMeta({
+//   auth: {
+//     unauthenticatedOnly: true,
+//     navigateAuthenticatedTo: "/",
+//   },
+// });
+// if (process.client) {
+//   const { signIn } = useAuth();
+//   signIn("auth0");
+// }
 </script>

@@ -21,6 +21,14 @@ declare module 'nuxt/schema' {
 
    REDIRECT_URI: string,
 
+   BASE_URL: string,
+
+   ORIGIN: string,
+
+   google_client_id: string,
+
+   google_client_secret: string,
+
    mongoUrl: string,
 
    nextAuthSecret: string,
@@ -57,13 +65,7 @@ declare module 'nuxt/schema' {
          enableRefreshOnWindowFocus: boolean,
       },
 
-      globalAppMiddleware: {
-         isEnabled: boolean,
-
-         allow404WithoutAuth: boolean,
-
-         addDefaultCallbackUrl: boolean,
-      },
+      globalAppMiddleware: boolean,
 
       provider: {
          type: string,
@@ -75,9 +77,11 @@ declare module 'nuxt/schema' {
          addDefaultCallbackUrl: boolean,
       },
 
-      enableGlobalAppMiddleware: boolean,
-
       origin: string,
+
+      globalMiddlewareOptions: {
+         addDefaultCallbackUrl: string,
+      },
    },
   }
 }

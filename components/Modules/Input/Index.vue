@@ -9,7 +9,8 @@
         type === 'text' ||
         type === 'number' ||
         type === 'email' ||
-        type === 'date'
+        type === 'date' ||
+        type === 'password'
       "
       :required="required"
       :value="value"
