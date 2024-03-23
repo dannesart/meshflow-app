@@ -7,9 +7,9 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email"> Email </ModulesInput>
-        <ModulesInput type="password"> Password </ModulesInput>
-        <UIButton class="float-right mt-5"> Sign in </UIButton>
+        <ModulesInput type="email" disabled> Email </ModulesInput>
+        <ModulesInput type="password" disabled> Password </ModulesInput>
+        <UIButton class="float-right mt-5" disabled> Sign in </UIButton>
       </UIForm>
       <!-- <div class="h-[1px] bg-slate-400"></div> -->
       <div class="justify-center flex">or</div>
