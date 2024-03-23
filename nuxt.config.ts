@@ -28,7 +28,7 @@ export default defineNuxtConfig({
       type: "authjs",
     },
     origin: process.env.ORIGIN,
-    //baseUrl: process.env.BASE_URL,
+    baseUrl: process.env.BASE_URL,
     globalAppMiddleware: true,
     globalMiddlewareOptions: {
       addDefaultCallbackUrl: "/",

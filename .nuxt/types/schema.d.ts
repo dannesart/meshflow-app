@@ -79,6 +79,8 @@ declare module 'nuxt/schema' {
 
       origin: string,
 
+      baseUrl: string,
+
       globalMiddlewareOptions: {
          addDefaultCallbackUrl: string,
       },

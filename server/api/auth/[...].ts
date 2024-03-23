@@ -61,6 +61,7 @@ export default NuxtAuthHandler({
   },
   callbacks: {
     async jwt({ token, user }) {
+      debugger;
       if (user) {
         token = {
           ...token,
@@ -72,6 +73,7 @@ export default NuxtAuthHandler({
     },
 
     async session({ session, token }) {
+      debugger;
       session.user = {
         ...token,
         ...session.user,

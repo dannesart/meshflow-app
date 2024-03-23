@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <template #footer> License </template>
+    <template #footer> {{ status }} </template>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
@@ -40,7 +40,7 @@ definePageMeta({
   },
 });
 
-const { signIn } = useAuth();
+const { signIn, status } = useAuth();
 
 const loginSocial = async (action: string) => {
   await signIn(action, { redirect: false });
