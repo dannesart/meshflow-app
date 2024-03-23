@@ -56,8 +56,15 @@ export default NuxtAuthHandler({
   // ],
 
   // https://next-auth.js.org/configuration/callbacks#session-callback
-  session: {
-    strategy: "jwt",
+  // session: {
+  //   strategy: "jwt",
+  // },
+  callbacks: {
+    // https://next-auth.js.org/configuration/callbacks#session-callback
+    session: async ({ session, token }) => {
+      // @ts-ignore
+      return Promise.resolve(session);
+    },
   },
   // callbacks: {
   //   async jwt({ token, user }) {
