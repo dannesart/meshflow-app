@@ -59,26 +59,26 @@ export default NuxtAuthHandler({
   session: {
     strategy: "jwt",
   },
-  callbacks: {
-    async jwt({ token, user }) {
-      debugger;
-      if (user) {
-        token = {
-          ...token,
-          ...user,
-        };
-      }
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     debugger;
+  //     if (user) {
+  //       token = {
+  //         ...token,
+  //         ...user,
+  //       };
+  //     }
 
-      return token;
-    },
+  //     return token;
+  //   },
 
-    async session({ session, token }) {
-      debugger;
-      session.user = {
-        ...token,
-        ...session.user,
-      };
-      return session;
-    },
-  },
+  //   async session({ session, token }) {
+  //     debugger;
+  //     session.user = {
+  //       ...token,
+  //       ...session.user,
+  //     };
+  //     return session;
+  //   },
+  // },
 });
