@@ -72,7 +72,7 @@ declare module 'nuxt/schema' {
 
          trustHost: boolean,
 
-         defaultProvider: string,
+         defaultProvider: any,
 
          addDefaultCallbackUrl: boolean,
       },
