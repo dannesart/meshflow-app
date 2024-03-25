@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   modules: [
     "v-wave/nuxt",
-    "@sidebase/nuxt-auth",
+    "@nuxtjs/supabase",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
     [
@@ -23,15 +23,10 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
-  auth: {
-    provider: {
-      type: "authjs",
-    },
-    origin: process.env.ORIGIN,
-    baseUrl: process.env.BASE_URL,
-    globalAppMiddleware: true,
-    globalMiddlewareOptions: {
-      addDefaultCallbackUrl: "/",
+  supabase: {
+    redirectOptions: {
+      login: "/auth/log-in",
+      callback: "/",
     },
   },
   runtimeConfig: {

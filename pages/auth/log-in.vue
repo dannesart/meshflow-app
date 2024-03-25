@@ -12,7 +12,7 @@
         <UIButton class="float-right mt-5" disabled> Sign in </UIButton>
       </UIForm>
       <!-- <div class="h-[1px] bg-slate-400"></div> -->
-      <div class="justify-center flex">or</div>
+      <div class="flex justify-center">or</div>
       <div class="flex gap-5">
         <UIButton @click="loginSocial('google')" type="icon" :class="'flex-1'">
           <UIIcons name="google" />Google
@@ -40,9 +40,9 @@ definePageMeta({
   },
 });
 
-const { signIn, status } = useAuth();
+const { auth } = useSupabaseClient();
 
 const loginSocial = async (action: string) => {
-  await signIn(action, { redirect: false });
+  await auth({ provider: action, options: { redirectTo: "/" } });
 };
 </script>
