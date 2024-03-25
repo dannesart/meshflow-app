@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+/*
 import { useSettingsStore } from "~~/stores/settings";
 import { useTasksStore } from "~~/stores/tasks";
 import { useUsersStore } from "~~/stores/users";
@@ -34,5 +35,5 @@ await Promise.all([
   fetchPages(),
   fetchBlockModels(),
 ]);
-setLoading(false);
+setLoading(false);*/
 </script>

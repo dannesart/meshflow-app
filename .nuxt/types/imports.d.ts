@@ -106,8 +106,6 @@ declare global {
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app/config')['useAppConfig']
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']
   const useAttrs: typeof import('../../node_modules/vue')['useAttrs']
-  const useAuth: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']
-  const useAuthState: typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']
   const useAuthStore: typeof import('../../stores/auth')['useAuthStore']
   const useBlocksStore: typeof import('../../stores/blocks')['useBlocksStore']
   const useColorByEstimate: typeof import('../../composables/utils')['useColorByEstimate']
@@ -153,6 +151,8 @@ declare global {
   const useSettingsStore: typeof import('../../stores/settings')['useSettingsStore']
   const useSlots: typeof import('../../node_modules/vue')['useSlots']
   const useState: typeof import('../../node_modules/nuxt/dist/app/composables/state')['useState']
+  const useSupabaseClient: typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient')['useSupabaseClient']
+  const useSupabaseUser: typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser')['useSupabaseUser']
   const useTasksStore: typeof import('../../stores/tasks')['useTasksStore']
   const useTimeAgo: typeof import('../../utils/time')['useTimeAgo']
   const useTransitionState: typeof import('../../node_modules/vue')['useTransitionState']
@@ -287,8 +287,6 @@ declare module 'vue' {
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
-    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']>
-    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']>
     readonly useAuthStore: UnwrapRef<typeof import('../../stores/auth')['useAuthStore']>
     readonly useBlocksStore: UnwrapRef<typeof import('../../stores/blocks')['useBlocksStore']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
@@ -334,6 +332,8 @@ declare module 'vue' {
     readonly useSettingsStore: UnwrapRef<typeof import('../../stores/settings')['useSettingsStore']>
     readonly useSlots: UnwrapRef<typeof import('../../node_modules/vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/state')['useState']>
+    readonly useSupabaseClient: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient')['useSupabaseClient']>
+    readonly useSupabaseUser: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser')['useSupabaseUser']>
     readonly useTasksStore: UnwrapRef<typeof import('../../stores/tasks')['useTasksStore']>
     readonly useTimeAgo: UnwrapRef<typeof import('../../utils/time')['useTimeAgo']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>
@@ -461,8 +461,6 @@ declare module '@vue/runtime-core' {
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
-    readonly useAuth: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth')['useAuth']>
-    readonly useAuthState: UnwrapRef<typeof import('../../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState')['useAuthState']>
     readonly useAuthStore: UnwrapRef<typeof import('../../stores/auth')['useAuthStore']>
     readonly useBlocksStore: UnwrapRef<typeof import('../../stores/blocks')['useBlocksStore']>
     readonly useColorByEstimate: UnwrapRef<typeof import('../../composables/utils')['useColorByEstimate']>
@@ -508,6 +506,8 @@ declare module '@vue/runtime-core' {
     readonly useSettingsStore: UnwrapRef<typeof import('../../stores/settings')['useSettingsStore']>
     readonly useSlots: UnwrapRef<typeof import('../../node_modules/vue')['useSlots']>
     readonly useState: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/state')['useState']>
+    readonly useSupabaseClient: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient')['useSupabaseClient']>
+    readonly useSupabaseUser: UnwrapRef<typeof import('../../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser')['useSupabaseUser']>
     readonly useTasksStore: UnwrapRef<typeof import('../../stores/tasks')['useTasksStore']>
     readonly useTimeAgo: UnwrapRef<typeof import('../../utils/time')['useTimeAgo']>
     readonly useTransitionState: UnwrapRef<typeof import('../../node_modules/vue')['useTransitionState']>

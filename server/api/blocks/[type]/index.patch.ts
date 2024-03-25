@@ -1,18 +1,16 @@
-import { getServerSession, getToken } from "#auth";
 import { AuthToken } from "~~/models/auth";
 import { Model } from "~~/models/model";
 import { ModelDbModel } from "~~/models/model.db";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
 
   const body = await readBody(e);
   const id = e.context.params?.type;
   const { name, description, fields } = body;
-  const token: AuthToken = (await getToken({ event: e })) as AuthToken;
   const updatedObject: Omit<
     Model,
     "createdBy" | "created" | "projectId" | "id" | "serviceType"
@@ -20,7 +18,7 @@ export default defineEventHandler(async (e) => {
     updated: new Date(),
     name,
     description,
-    updatedBy: token.sub,
+    updatedBy: "Missing token",
     fields,
   };
   //   const valid = await PageSchema.safeParse(updatedObject);

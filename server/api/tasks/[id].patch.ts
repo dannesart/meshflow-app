@@ -1,13 +1,12 @@
 import { TaskSchema, Task } from "~~/models/tasks";
 import { TaskModel } from "~~/models/tasks.db";
 import { v4 as uuidv4 } from "uuid";
-import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
 
   const body = await readBody(e);
   const {

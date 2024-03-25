@@ -87,7 +87,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev.json"
+        "./manifest/meta/dev"
       ],
       "#build": [
         "."
@@ -123,7 +123,7 @@
     "../.config/nuxt.*",
     "../**/*",
     "../node_modules/v-wave/nuxt/runtime",
-    "../node_modules/@sidebase/nuxt-auth/runtime",
+    "../node_modules/@nuxtjs/supabase/runtime",
     "../node_modules/@nuxtjs/tailwindcss/runtime",
     "../node_modules/@nuxtjs/color-mode/runtime",
     "../node_modules/@pinia/nuxt/runtime",
@@ -135,7 +135,7 @@
     "../node_modules",
     "../node_modules/nuxt/node_modules",
     "../node_modules/v-wave/nuxt/runtime/server",
-    "../node_modules/@sidebase/nuxt-auth/runtime/server",
+    "../node_modules/@nuxtjs/supabase/runtime/server",
     "../node_modules/@nuxtjs/tailwindcss/runtime/server",
     "../node_modules/@nuxtjs/color-mode/runtime/server",
     "../node_modules/@pinia/nuxt/runtime/server",

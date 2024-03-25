@@ -1,13 +1,12 @@
 import { PageModel } from "~~/models/page.db";
 import { v4 as uuidv4 } from "uuid";
-import { getServerSession } from "#auth";
-import { Page, PageSchema } from "~~/models/page";
+import type { Page } from "~~/models/page";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
 
   const body = await readBody(e);
   const id = e.context.params?.id;

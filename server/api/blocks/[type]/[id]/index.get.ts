@@ -1,11 +1,10 @@
-import { getServerSession } from "#auth";
 import { BlocksDbModel } from "~~/models/blocks.db";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
   const { projectId } = getQuery(e);
   const id = e.context.params?.id;
   const blocks = await BlocksDbModel.find({ projectId: projectId, _id: id });

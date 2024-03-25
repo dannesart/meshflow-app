@@ -33,16 +33,12 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/", // Where the user should be redirected if not logged in
-  },
-});
-
-const { auth } = useSupabaseClient();
+const supabase = useSupabaseClient();
 
 const loginSocial = async (action: string) => {
-  await auth({ provider: action, options: { redirectTo: "/" } });
+  await supabase.auth.signInWithOAuth({
+    provider: action,
+    options: { redirectTo: "/" },
+  });
 };
 </script>

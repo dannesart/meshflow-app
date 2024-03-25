@@ -1,5 +1,4 @@
 import { TUser } from "~~/models/user";
-import { getServerSession, getToken } from "#auth";
 import axios from "axios";
 
 export default defineEventHandler(async (e) => {

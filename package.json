@@ -45,8 +45,6 @@
     "vitest": "^1.4.0"
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^2.0.3",
-    "@auth0/auth0-vue": "^2.0.1",
     "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
     "@nuxtjs/color-mode": "^3.3.2",
     "@pinia/nuxt": "^0.5.1",

@@ -149,3 +149,9 @@ const onAdd = async (task: Task) => {
 
 const onCancel = () => {};
 </script>
+
+<script lang="ts">
+definePageMeta({
+  middleware: "auth",
+});
+</script>

@@ -1,25 +1,22 @@
 import { ProjectModel } from "~~/models/project.db";
-import { getServerSession, getToken } from "#auth";
 import type { AuthToken } from "~~/models/auth";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
+  const email = "dannesart@live.com";
 
-  if (token.sub) {
-    const projects = await ProjectModel.find({
-      users: { $in: token.sub },
-    });
+  const projects = await ProjectModel.find({
+    users: { $in: email },
+  });
 
-    return projects.map((project) => {
-      return {
-        ...project.toJSON(),
-        id: project._id,
-      };
-    });
-  }
-  return [];
+  return projects.map((project) => {
+    return {
+      ...project.toJSON(),
+      id: project._id,
+    };
+  });
 });

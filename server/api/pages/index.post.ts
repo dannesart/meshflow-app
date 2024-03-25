@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { getServerSession, getToken } from "#auth";
 import { AuthToken } from "~~/models/auth";
-import { Page, PageSchema } from "~~/models/page";
+import type { Page } from "~~/models/page";
+import { PageSchema } from "~~/models/page";
 import { PageModel } from "~~/models/page.db";
 
 const newPage = (
@@ -29,16 +29,16 @@ const newPage = (
 };
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
 
   const body = await readBody(e);
   const newPageObject = newPage(
     body.title,
-    token.sub || "",
+    "Missing token",
     body.status,
     body.slug,
     body.tags,

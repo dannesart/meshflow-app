@@ -175,7 +175,7 @@ const notificationStore = useNotificationStore();
 const settingsStore = useSettingsStore();
 const uiStore = useUiStore();
 const { setLoading } = uiStore;
-const { status, data, signIn, signOut } = useAuth();
+const userObject = useSupabaseUser();
 const { activeId, getProject } = storeToRefs(projectStore);
 const { notifications, nonReadNotifications } = storeToRefs(notificationStore);
 

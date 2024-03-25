@@ -30,6 +30,8 @@ export { useActiveMenu, useVisualEditor, useVisualEditorLayer, useSettings, useA
 export { useColorByEstimate } from '../composables/utils';
 export { fieldsToSchema, form } from '../utils/form';
 export { useTimeAgo } from '../utils/time';
+export { useSupabaseClient } from '../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseClient';
+export { useSupabaseUser } from '../node_modules/@nuxtjs/supabase/dist/runtime/composables/useSupabaseUser';
 export { useAuthStore } from '../stores/auth';
 export { useBlocksStore } from '../stores/blocks';
 export { useCommentsStore } from '../stores/comments';
@@ -43,8 +45,6 @@ export { useTasksStore } from '../stores/tasks';
 export { useUiStore } from '../stores/ui';
 export { useUserStore } from '../stores/user';
 export { useUsersStore } from '../stores/users';
-export { useAuth } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuth';
-export { useAuthState } from '../node_modules/@sidebase/nuxt-auth/dist/runtime/composables/authjs/useAuthState';
 export { useColorMode } from '../node_modules/@nuxtjs/color-mode/dist/runtime/composables';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';

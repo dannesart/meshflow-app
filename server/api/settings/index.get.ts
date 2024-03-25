@@ -1,11 +1,10 @@
 import { SettingsModel } from "~~/models/settings.db";
-import { getServerSession } from "#auth";
 
 export default defineEventHandler(async (e) => {
-  const session = await getServerSession(e);
-  if (!session || !session.user) {
-    return { error: "Need to be authenticated" };
-  }
+  // const session = await getServerSession(e);
+  // if (!session || !session.user) {
+  //   return { error: "Need to be authenticated" };
+  // }
   const { projectId } = getQuery(e);
   const settings = await SettingsModel.findOne({ projectId: projectId });
   if (!settings)
