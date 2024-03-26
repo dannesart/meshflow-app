@@ -73,6 +73,12 @@ const classes: ClassType = {
     round: "bg-slate-200 text-slate-700 px-3 py-6 rounded-full",
     small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
   },
+  transparent: {
+    normal:
+      "bg-transparent hover:bg-black/40 text-slate-700 dark:text-indigo-100 px-6 py-3 rounded-lg",
+    small:
+      "bg-transparent hover:bg-black/40 text-slate-700 dark:text-indigo-100 px-4 py-2 rounded-lg",
+  },
   link: {
     normal: "text-sky-700 hover:shadow-none hover:text-sky-500",
   },
