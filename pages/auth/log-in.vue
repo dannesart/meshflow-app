@@ -26,12 +26,7 @@
           <UIIcons name="google" />Google
         </UIButton>
 
-        <UIButton
-          @click="loginSocial('github')"
-          type="icon"
-          disabled
-          :class="'flex-1'"
-        >
+        <UIButton @click="loginSocial('github')" type="icon" :class="'flex-1'">
           <UIIcons name="github" />Github
         </UIButton>
       </div>

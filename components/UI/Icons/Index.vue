@@ -839,7 +839,7 @@
   <svg
     v-if="name === 'github'"
     fill="currentColor"
-    viewBox="0 0 32 32"
+    viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
     :class="getSize(size || 6)"
