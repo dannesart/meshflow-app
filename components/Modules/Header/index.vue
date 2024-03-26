@@ -34,8 +34,8 @@
       </div>
       <UIUserInfo
         @click="openMenu"
-        :name="data?.user?.name"
-        :image="data?.user?.image"
+        :image="userObject?.user_metadata?.picture"
+        :name="userObject?.user_metadata?.name"
         :role="activeProject?.name"
       >
       </UIUserInfo>
@@ -50,8 +50,8 @@
         <div class="flex flex-col gap-4">
           <UIUserInfo
             :class="'self-end hidden md:flex'"
-            :image="data?.user?.image"
-            :name="data?.user?.name"
+            :image="userObject?.user_metadata?.picture"
+            :name="userObject?.user_metadata?.name"
             :role="activeProject?.name"
           >
           </UIUserInfo>
@@ -176,6 +176,8 @@ const settingsStore = useSettingsStore();
 const uiStore = useUiStore();
 const { setLoading } = uiStore;
 const userObject = useSupabaseUser();
+const userClient = useSupbaseClient();
+const router = useRouter();
 const { activeId, getProject } = storeToRefs(projectStore);
 const { notifications, nonReadNotifications } = storeToRefs(notificationStore);
 
@@ -229,13 +231,13 @@ const selectProject = async (projectId: string) => {
 };
 
 const handleLogout = async (e) => {
-  e.preventDefault();
-  document.cookie = "next-auth.csrf-token=; Max-Age=-99999999;";
-  document.cookie = "next-auth.session-token=; Max-Age=-99999999;";
-  //window.location = `https://meshflow.eu.auth0.com/v2/logout?returnTo=${window.location.origin}/signin`;
-  //await signOut();
-
-  await signOut({ callbackUrl: "/signin" });
+  try {
+    const { error } = await userClient.auth.signOut();
+    if (error) throw error;
+    router.push("/auth/log-in");
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 </script>
 
