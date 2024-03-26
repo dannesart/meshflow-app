@@ -17,8 +17,8 @@
         <div class="absolute inset-0 flex items-center">
           <span class="w-full border-t"></span>
         </div>
-        <div class="relative flex justify-cemter text-xs uppercase">
-          <span class="bg-white px-2"> Or continue with </span>
+        <div class="relative flex justify-center text-xs uppercase">
+          <span class="px-2 bg-white"> Or continue with </span>
         </div>
       </div>
       <div class="flex gap-5">
@@ -32,12 +32,12 @@
           disabled
           :class="'flex-1'"
         >
-          <UIIcons name="google" />Github
+          <UIIcons name="github" />Github
         </UIButton>
       </div>
     </div>
 
-    <template #footer> {{ status }} </template>
+    <template #footer></template>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
