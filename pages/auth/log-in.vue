@@ -7,12 +7,20 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email" disabled> Email </ModulesInput>
-        <ModulesInput type="password" disabled> Password </ModulesInput>
+        <ModulesInput type="email" class="mt-3" disabled> Email </ModulesInput>
+        <ModulesInput type="password" class="mt-3" disabled>
+          Password
+        </ModulesInput>
         <UIButton class="float-right mt-5" disabled> Sign in </UIButton>
       </UIForm>
-      <!-- <div class="h-[1px] bg-slate-400"></div> -->
-      <div class="flex justify-center">or</div>
+      <div class="relative my-1">
+        <div class="absolute inset-0 flex items-center">
+          <span class="w-full border-t"></span>
+        </div>
+        <div class="relative flex justify-cemter text-xs uppercase">
+          <span class="bg-white px-2"> Or continue with </span>
+        </div>
+      </div>
       <div class="flex gap-5">
         <UIButton @click="loginSocial('google')" type="icon" :class="'flex-1'">
           <UIIcons name="google" />Google
