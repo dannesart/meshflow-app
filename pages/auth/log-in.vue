@@ -1,7 +1,9 @@
 <template>
   <NuxtLayout name="auth">
-    <div :class="'fixed top-5 right-5'">
-      <UIButton size="small" type="system">Create account</UIButton>
+    <div :class="'fixed top-12 right-8 md:top-5 md:right-5'">
+      <UIButton size="small" type="system" @click="goToRegister"
+        >Create account</UIButton
+      >
     </div>
     <template #header> Log in </template>
 
@@ -36,6 +38,7 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
+const router = useRouter();
 const supabase = useSupabaseClient();
 
 const loginSocial = async (action: string) => {
@@ -43,5 +46,8 @@ const loginSocial = async (action: string) => {
     provider: action,
     options: { redirectTo: "/" },
   });
+};
+const goToRegister = async () => {
+  router.push("/auth/register");
 };
 </script>

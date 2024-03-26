@@ -1,5 +1,10 @@
 <template>
-  <NuxtLayout name="auth"> Create account </NuxtLayout>
+  <NuxtLayout name="auth">
+    <div :class="'fixed top-12 right-8 md:top-5 md:right-5'">
+      <UIButton size="small" type="system" @click="goToLogin">Log in</UIButton>
+    </div>
+    <template #header> Create account </template>
+  </NuxtLayout>
 </template>
 <script setup lang="ts">
 definePageMeta({
@@ -8,4 +13,9 @@ definePageMeta({
     navigateAuthenticatedTo: "/",
   },
 });
+
+const router = useRouter();
+const goToLogin = () => {
+  router.push("/auth/log-in");
+};
 </script>
