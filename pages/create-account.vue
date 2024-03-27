@@ -14,9 +14,3 @@ const goToLogin = () => {
   router.push("/auth/log-in");
 };
 </script>
-
-<script lang="ts">
-definePageMeta({
-  middleware: "auth",
-});
-</script>
