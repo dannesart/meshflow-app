@@ -9,15 +9,14 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-definePageMeta({
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: "/",
-  },
-});
-
 const router = useRouter();
 const goToLogin = () => {
   router.push("/auth/log-in");
 };
+</script>
+
+<script lang="ts">
+definePageMeta({
+  middleware: "auth",
+});
 </script>
