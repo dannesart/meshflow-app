@@ -1,10 +1,5 @@
 <template>
   <NuxtLayout name="auth">
-    <div :class="'fixed top-12 right-8 md:top-5 md:right-5'">
-      <UIButton size="small" type="transparent" @click="goToRegister"
-        >Create account</UIButton
-      >
-    </div>
     <template #header> Log in </template>
 
     <div class="flex flex-col gap-5">
@@ -34,7 +29,12 @@
       </div>
     </div>
 
-    <template #footer></template>
+    <template #footer>
+      <div class="flex justify-center w-full p-3">
+        Don't have an account?
+        <NuxtLink to="/create-account">Create one here</NuxtLink>
+      </div>
+    </template>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
@@ -46,8 +46,5 @@ const loginSocial = async (action: string) => {
     provider: action,
     options: { redirectTo: "/" },
   });
-};
-const goToRegister = async () => {
-  router.push("/create-account");
 };
 </script>
