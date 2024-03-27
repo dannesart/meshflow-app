@@ -48,6 +48,6 @@ const loginSocial = async (action: string) => {
   });
 };
 const goToRegister = async () => {
-  router.push("/auth/register");
+  router.push("/create-account");
 };
 </script>

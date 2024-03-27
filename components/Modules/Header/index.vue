@@ -234,7 +234,7 @@ const handleLogout = async (e) => {
   try {
     const { error } = await userClient.auth.signOut();
     if (error) throw error;
-    router.push("/auth/log-in");
+    router.push("/log-in");
   } catch (error) {
     console.log(error.message);
   }

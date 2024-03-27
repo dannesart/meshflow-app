@@ -11,6 +11,6 @@
 <script setup lang="ts">
 const router = useRouter();
 const goToLogin = () => {
-  router.push("/auth/log-in");
+  router.push("/log-in");
 };
 </script>
