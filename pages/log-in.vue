@@ -8,7 +8,9 @@
         <ModulesInput type="password" class="mt-3" disabled>
           Password
         </ModulesInput>
-        <UIButton class="float-right mt-5" disabled> Sign in </UIButton>
+        <UIButton class="float-right mt-5 w-full md:w-auto" disabled>
+          Sign in
+        </UIButton>
       </UIForm>
       <div class="relative my-1">
         <div class="absolute inset-0 flex items-center">
@@ -18,7 +20,7 @@
           <span class="px-2 bg-white"> Or continue with </span>
         </div>
       </div>
-      <div class="flex gap-5">
+      <div class="flex gap-5 flex-col md:flex-row">
         <UIButton @click="loginSocial('google')" type="icon" :class="'flex-1'">
           <UIIcons name="google" />Google
         </UIButton>

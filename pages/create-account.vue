@@ -33,7 +33,7 @@
       <UIMessage type="error" v-if="errorMsg">{{ errorMsg }}</UIMessage>
       <UIMessage type="success" v-if="successMsg">{{ successMsg }}</UIMessage>
       <UIButton
-        class="float-right mt-5"
+        class="float-right mt-5 w-full md:w-auto"
         :disabled="loading"
         :isLoading="loading"
       >

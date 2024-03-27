@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 text-white bg-emerald-400 rounded-xl">
+  <div class="p-3 text-white bg-blue-950 rounded-xl">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       stroke="currentColor"
