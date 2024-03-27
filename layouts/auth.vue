@@ -2,17 +2,17 @@
   <div class="w-screen h-screen dark:bg-indigo-900">
     <UILoadBar v-if="loading"></UILoadBar>
     <main class="flex flex-col w-full h-full md:flex-row">
-      <div class="md:flex-1 md:h-full p-10 bg-emerald-950">
-        <div class="flex gap-4 items-center">
+      <div class="px-10 py-2 md:flex-1 md:h-full md:py-10 bg-emerald-950">
+        <div class="flex items-center gap-4">
           <UILogo :size="30" />
           <span
-            class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded text-white"
+            class="hidden text-xl font-extrabold text-white md:block lg:text-2xl font-Rounded"
             >meshflow</span
           >
         </div>
       </div>
       <div
-        class="md:flex-1 h-full flex justify-center items-center p-10 bg-white"
+        class="flex items-center justify-center h-full p-10 bg-white md:flex-1"
       >
         <div class="flex flex-col gap-5 flex-1 max-w-[500px]">
           <UIHeadline size="h1">
