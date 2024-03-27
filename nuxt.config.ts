@@ -24,10 +24,11 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   supabase: {
-    redirectOptions: {
-      login: "/log-in",
-      callback: "/",
-    },
+    redirect: false,
+    // redirectOptions: {
+    //   login: "/log-in",
+    //   callback: "/",
+    // },
   },
   runtimeConfig: {
     REDIRECT_URI: process.env.REDIRECT_URL,
