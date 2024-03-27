@@ -30,15 +30,16 @@
     </div>
 
     <template #footer>
-      <div class="flex justify-center w-full p-3">
+      <div class="flex justify-center w-full gap-1 p-3">
         Don't have an account?
-        <NuxtLink to="/create-account">Create one here</NuxtLink>
+        <NuxtLink to="/create-account" class="underline text-sky-950"
+          >Create one here</NuxtLink
+        >
       </div>
     </template>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-const router = useRouter();
 const supabase = useSupabaseClient();
 
 const loginSocial = async (action: string) => {
