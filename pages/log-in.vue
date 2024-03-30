@@ -4,9 +4,9 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email" class="mt-3 text-blue-950" disabled> Email </ModulesInput>
-        <ModulesInput type="password" class="mt-3 text-blue-950" disabled>
-          Password
+        <ModulesInput type="email" class="mt-3" disabled> <span class="text-blue-950">Email</span> </ModulesInput>
+        <ModulesInput type="password" class="mt-3" disabled>
+          <span class="text-blue-950">Password</span>
         </ModulesInput>
         <UIButton class="float-right mt-5 w-full md:w-auto" disabled>
           Sign in
