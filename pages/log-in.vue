@@ -4,8 +4,8 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email" class="mt-3" disabled> Email </ModulesInput>
-        <ModulesInput type="password" class="mt-3" disabled>
+        <ModulesInput type="email" class="mt-3 text-blue-950" disabled> Email </ModulesInput>
+        <ModulesInput type="password" class="mt-3 text-blue-950" disabled>
           Password
         </ModulesInput>
         <UIButton class="float-right mt-5 w-full md:w-auto" disabled>
@@ -17,7 +17,7 @@
           <span class="w-full border-t"></span>
         </div>
         <div class="relative flex justify-center text-xs uppercase">
-          <span class="px-2 bg-white"> Or continue with </span>
+          <span class="px-2 bg-amber-200 md:bg-white"> Or continue with </span>
         </div>
       </div>
       <div class="flex gap-5 flex-col md:flex-row">
