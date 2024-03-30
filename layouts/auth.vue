@@ -12,7 +12,7 @@
         </div>
       </div>
       <div
-        class="flex md:items-center justify-center h-full px-4 py-10 md:px-10 bg-white md:flex-1"
+        class="flex md:items-center justify-center h-full px-4 py-10 md:px-10 bg-amber-200 md:bg-white md:flex-1"
       >
         <div class="flex flex-col gap-5 flex-1 max-w-[500px]">
           <UIHeadline size="h1">
