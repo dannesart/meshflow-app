@@ -2,11 +2,19 @@
   <NuxtLayout :name="layout">
     <template #header> New project </template>
     <div class="flex flex-col gap-5">
-      <ModulesInput type="text" @value-update="updateName">
-        Project name
-      </ModulesInput>
-      <UIButton type="add" @click="createNewProject"> Create </UIButton>
-      <NuxtLink to="/" class="px-6 py-3 text-center text-red-600">
+      <UIForm>
+        <ModulesInput class="mt-3" type="text" @value-update="updateName">
+          Project name
+        </ModulesInput>
+        <UIButton
+          class="float-right w-full mt-5 md:w-auto"
+          type="add"
+          @click="createNewProject"
+        >
+          Create
+        </UIButton>
+      </UIForm>
+      <NuxtLink to="/" class="px-6 py-3 mt-3 text-center text-red-600">
         Nevermind
       </NuxtLink>
     </div>
