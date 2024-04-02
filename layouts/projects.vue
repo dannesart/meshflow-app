@@ -1,22 +1,33 @@
 <template>
-  <div
-    class="md:p-10 h-screen flex flex-col md:gap-12 md:justify-center md:items-center"
-  >
-    <header class="px-10">
-      <slot name="header" />
-    </header>
-    <div
-      class="flex md:gap-12 flex-col md:flex-row justify-evenly items-center max-w-7xl"
-    >
-      <div class="flex-1 flex justify-end">
-        <slot name="left" />
+  <div class="w-screen h-screen dark:bg-indigo-900">
+    <UILoadBar v-if="loading"></UILoadBar>
+    <main class="flex flex-col w-full h-full md:flex-row">
+      <div class="p-4 md:flex-1 md:h-full md:p-10 bg-amber-200">
+        <div class="flex items-center gap-4">
+          <UILogo :size="30" />
+          <span
+            class="hidden text-xl font-extrabold text-blue-950 md:block lg:text-2xl font-Rounded"
+            >meshflow</span
+          >
+        </div>
       </div>
       <div
-        class="py-4 px-4 pt-12 h-full flex flex-col gap-10 justify-center bg-slate-50 rounded-3xl -top-32 md:top-0 relative flex-1"
+        class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-amber-200 md:bg-white md:flex-1"
       >
-        <slot name="right" />
+        <div class="flex flex-col gap-5 flex-1 max-w-[500px]">
+          <UIHeadline size="h1">
+            <slot name="header" />
+          </UIHeadline>
+          <div>
+            <slot />
+          </div>
+          <footer>
+            <slot name="footer" />
+          </footer>
+        </div>
       </div>
-    </div>
+    </main>
+    <ModulesToaster></ModulesToaster>
   </div>
 </template>
 
