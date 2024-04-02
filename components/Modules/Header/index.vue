@@ -35,7 +35,10 @@
       <UIUserInfo
         @click="openMenu"
         :image="userObject?.user_metadata?.picture"
-        :name="userObject?.user_metadata?.name"
+        :name="
+          userObject?.user_metadata?.name ||
+          userObject?.user_metadata?.full_name
+        "
         :role="activeProject?.name"
       >
       </UIUserInfo>
@@ -51,7 +54,10 @@
           <UIUserInfo
             :class="'self-end hidden md:flex'"
             :image="userObject?.user_metadata?.picture"
-            :name="userObject?.user_metadata?.name"
+            :name="
+              userObject?.user_metadata?.name ||
+              userObject?.user_metadata?.full_name
+            "
             :role="activeProject?.name"
           >
           </UIUserInfo>
