@@ -14,6 +14,9 @@
       </UIButton>
     </div>
     <div class="flex gap-3 lg:gap-10">
+      <pre>
+        {{ userObject }}
+      </pre>
       <div
         class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
