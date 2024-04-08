@@ -14,9 +14,6 @@
       </UIButton>
     </div>
     <div class="flex gap-3 lg:gap-10">
-      <pre>
-        {{ userObject }}
-      </pre>
       <div
         class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
@@ -37,10 +34,14 @@
       </div>
       <UIUserInfo
         @click="openMenu"
-        :image="userObject?.user_metadata?.picture"
+        :image="
+          userObject?.user_metadata?.picture ||
+          userObject?.user_metadata?.avatar_url
+        "
         :name="
-          userObject?.user_metadata?.name ||
-          userObject?.user_metadata?.full_name
+          userObject?.user_metadata?.user_name ||
+          userObject?.user_metadata?.name?.split(' ')[0] ||
+          userObject?.user_metadata?.full_name?.split(' ')[0]
         "
         :role="activeProject?.name"
       >
@@ -56,10 +57,14 @@
         <div class="flex flex-col gap-4">
           <UIUserInfo
             :class="'self-end hidden md:flex'"
-            :image="userObject?.user_metadata?.picture"
+            :image="
+              userObject?.user_metadata?.picture ||
+              userObject?.user_metadata?.avatar_url
+            "
             :name="
-              userObject?.user_metadata?.name ||
-              userObject?.user_metadata?.full_name
+              userObject?.user_metadata?.user_name ||
+              userObject?.user_metadata?.name?.split(' ')[0] ||
+              userObject?.user_metadata?.full_name?.split(' ')[0]
             "
             :role="activeProject?.name"
           >
