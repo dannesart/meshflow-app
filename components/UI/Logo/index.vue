@@ -38,10 +38,15 @@
 </template>
 
 <script setup>
-const { animate, size, full, canGoDark } = defineProps(["animate", "size", "full", "canGoDark"]);
+const { animate, size, full, canGoDark } = defineProps([
+  "animate",
+  "size",
+  "full",
+  "canGoDark",
+]);
 const classes = computed(() => ({
-  "dark:text-amber-200": canGoDark
-});
+  "dark:text-amber-200": canGoDark,
+}));
 </script>
 
 <style scoped>
