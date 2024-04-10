@@ -11,6 +11,10 @@ module.exports = {
   ],
   mode: "aot",
   theme: {
+    colors: {
+      primary: colors.blue,
+      secondary: colors.amber
+    },
     extend: {
       fontFamily: {
         Kodchasan: ["'Kodchasan'", "sans-serif"],
