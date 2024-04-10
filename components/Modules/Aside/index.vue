@@ -4,16 +4,15 @@
     v-bind:class="{ 'absolute inset-0 ': menuState }"
   >
     <div
-      class="flex items-center flex-none w-3/4 text-3xl font-bold rounded-full text-emerald-400 md:px-4 h-14"
+      class="flex items-center flex-none w-3/4 text-3xl font-bold rounded-full md:px-4 h-14"
     >
       <NuxtLink to="/" class="flex items-center gap-6">
-        <UILogo :size="30" />
-        <span
-          class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded"
-          >meshflow</span
-        >
+        <UILogo :size="30" :full="true" :can-go-dark="true" />
       </NuxtLink>
-      <button class="px-3 py-3 ml-3 md:hidden" @click="toggleMenu()">
+      <button
+        class="px-3 py-3 ml-3 md:hidden text-emerald-400"
+        @click="toggleMenu()"
+      >
         <UIIcons :name="menuState ? 'close' : 'menu'" :size="8"></UIIcons>
       </button>
     </div>

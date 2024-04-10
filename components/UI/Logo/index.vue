@@ -29,10 +29,19 @@
       </g>
     </svg>
   </div>
+  <span
+    class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded text-blue-950"
+    :class="classes"
+    v-if="full"
+    >meshflow</span
+  >
 </template>
 
 <script setup>
-const { animate, size } = defineProps(["animate", "size"]);
+const { animate, size, full, canGoDark } = defineProps(["animate", "size", "full", "canGoDark"]);
+const classes = computed(() => ({
+  "dark:text-amber-200": canGoDark
+});
 </script>
 
 <style scoped>

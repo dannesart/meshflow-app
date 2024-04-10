@@ -3,11 +3,7 @@
     <main class="flex flex-col w-full h-full md:flex-row">
       <div class="p-4 md:flex-1 md:h-full md:p-10 bg-amber-200">
         <div class="flex items-center gap-4">
-          <UILogo :size="30" />
-          <span
-            class="hidden text-xl font-extrabold text-blue-950 md:block lg:text-2xl font-Rounded"
-            >meshflow</span
-          >
+          <UILogo :size="30" :full="true" :can-go-dark="false" />
         </div>
       </div>
       <div
