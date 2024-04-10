@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center gap-4">
     <div
-      class="flex items-center justify-center p-3 text-xl text-amber-200 bg-primary-950 dark:bg-primary-800 rounded-xl"
+      class="flex items-center justify-center p-3 text-xl text-amber-200 bg-primary-950 dark:bg-primary-900 rounded-xl"
     >
       MF
       <!-- <svg
