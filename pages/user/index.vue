@@ -62,14 +62,13 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "~~/stores/auth";
-import { useUsersStore } from "~~/stores/users";
+
+const userObject = useSupabaseUser();
+const userClient = useSupabaseClient();
+
+const user = computed(()=> userObject?.value.user_metadata);
 
 type Themes = "dark" | "light";
-const { data, signOut } = useAuth();
-const authStore = useAuthStore();
-const usersStore = useUsersStore();
-const user = usersStore.userById(authStore.currentUser.sub || "") || {};
 const userSettings = ref({
   darkmode: false,
   language: "en",
