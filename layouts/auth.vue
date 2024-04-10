@@ -2,9 +2,7 @@
   <div class="w-screen h-screen dark:bg-indigo-900">
     <main class="flex flex-col w-full h-full md:flex-row">
       <div class="p-4 md:flex-1 md:h-full md:p-10 bg-amber-200">
-        <div class="flex items-center gap-4">
-          <UILogo :size="30" :full="true" :can-go-dark="false" />
-        </div>
+        <UILogo :size="30" :full="true" :can-go-dark="false" />
       </div>
       <div
         class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-amber-200 md:bg-white md:flex-1"

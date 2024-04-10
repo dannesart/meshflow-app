@@ -6,11 +6,11 @@
     <div
       class="flex items-center flex-none w-3/4 text-3xl font-bold rounded-full md:px-4 h-14"
     >
-      <NuxtLink to="/" class="flex items-center gap-6">
+      <NuxtLink to="/">
         <UILogo :size="30" :full="true" :can-go-dark="true" />
       </NuxtLink>
       <button
-        class="px-3 py-3 ml-3 md:hidden text-emerald-400"
+        class="px-3 py-3 ml-3 md:hidden text-amber-200"
         @click="toggleMenu()"
       >
         <UIIcons :name="menuState ? 'close' : 'menu'" :size="8"></UIIcons>

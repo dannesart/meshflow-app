@@ -1,6 +1,10 @@
 <template>
-  <div class="p-3 text-white bg-blue-950 rounded-xl">
-    <svg
+  <div class="flex items-center gap-4">
+    <div
+      class="flex items-center justify-center p-3 text-xl text-amber-200 bg-blue-950 rounded-xl"
+    >
+      MF
+      <!-- <svg
       xmlns="http://www.w3.org/2000/svg"
       stroke="currentColor"
       fill="currentColor"
@@ -27,14 +31,15 @@
         <circle id="ball-1" cx="15" cy="63" r="15" />
         <circle id="ball-2" cx="76" cy="74" r="15" />
       </g>
-    </svg>
+    </svg> -->
+    </div>
+    <span
+      class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded text-blue-950"
+      :class="classes"
+      v-if="full"
+      >meshflow</span
+    >
   </div>
-  <span
-    class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded text-blue-950"
-    :class="classes"
-    v-if="full"
-    >meshflow</span
-  >
 </template>
 
 <script setup>
