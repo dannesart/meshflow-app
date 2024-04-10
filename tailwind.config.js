@@ -15,7 +15,14 @@ module.exports = {
   theme: {
     colors: {
       primary: colors.blue,
-      secondary: colors.amber
+      secondary: colors.amber,
+      amber: colors.amber,
+      black: colors.black,
+      white: colors.white,
+      blue: colors.blue,
+      indigo: colors.indigo,
+      pink: colors.pink,
+      sky: colors.sky
     },
     extend: {
       fontFamily: {
