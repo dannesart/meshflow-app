@@ -1,5 +1,5 @@
 <template>
-  <div class="layout dark:bg-indigo-950">
+  <div class="layout dark:bg-blue-950">
     <UILoadBar v-if="loading"></UILoadBar>
 
     <ModulesAside></ModulesAside>
