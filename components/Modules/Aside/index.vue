@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="z-40 flex flex-col h-full gap-8 px-6 py-4 transition-transform bg-white dark:bg-indigo-950 lg:px-10 md:inset-auto md:relative"
+    class="z-40 flex flex-col h-full gap-8 px-6 py-4 transition-transform bg-secondary-50 dark:bg-primary-950 lg:px-10 md:inset-auto md:relative"
     v-bind:class="{ 'absolute inset-0 ': menuState }"
   >
     <div
@@ -10,7 +10,7 @@
         <UILogo :size="30" :full="true" :can-go-dark="true" />
       </NuxtLink>
       <button
-        class="px-3 py-3 ml-3 md:hidden text-amber-200"
+        class="px-3 py-3 ml-3 md:hidden text-primary-950 dark:text-secondary-200"
         @click="toggleMenu()"
       >
         <UIIcons :name="menuState ? 'close' : 'menu'" :size="8"></UIIcons>
