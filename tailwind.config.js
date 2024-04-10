@@ -22,7 +22,9 @@ module.exports = {
       blue: colors.blue,
       indigo: colors.indigo,
       pink: colors.pink,
-      sky: colors.sky
+      sky: colors.sky,
+      gray: colors.gray,
+      slate: colors.slate
     },
     extend: {
       fontFamily: {
