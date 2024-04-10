@@ -3,7 +3,7 @@
     <main class="flex flex-col w-full h-full md:flex-row">
       <div class="p-4 flex justify-between md:flex-1 md:h-full md:p-10 bg-amber-200">
         <UILogo :size="30" :full="true" :can-go-dark="false" />
-<UIHeadline size="h3" class="md:hidden">
+<UIHeadline size="h3" class="md:hidden self-center text-blue-950">
             <slot name="header" />
           </UIHeadline>
       </div>
