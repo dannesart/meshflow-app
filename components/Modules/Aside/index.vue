@@ -23,7 +23,7 @@
       <div v-for="group in Menu" :key="group.label">
         <label
           v-if="group.label"
-          class="block my-3 text-sm text-gray-400 md:px-5"
+          class="block my-3 text-sm text-primary-400 md:px-5"
         >
           {{ group.label }}
         </label>
@@ -36,9 +36,9 @@
                 (item.isService && settingsStore.isServiceActive(item.label))
               "
               v-wave
-              class="flex items-center gap-3 py-3 text-2xl text-gray-800 rounded-lg dark:text-indigo-200 md:text-lg md:hover:bg-emerald-100 md:dark:hover:bg-indigo-800 hover:text-emerald-700 hover:dark:text-indigo-200 md:px-5"
-              activeClass="font-bold text-emerald-700 md:bg-emerald-100 dark:text-indigo-200 md:dark:bg-indigo-800"
-              router-link-active="font-bold text-emerald-700 bg-emerald-100 dark:text-indigo-200 md:dark:bg-indigo-800"
+              class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-800 dark:text-primary-200 md:text-lg md:hover:bg-primary-100 md:dark:hover:bg-primary-800 hover:text-primary-700 hover:dark:text-primary-200 md:px-5"
+              activeClass="font-bold text-primary-700 md:bg-primary-100 dark:text-primary-200 md:dark:bg-primary-800"
+              router-link-active="font-bold text-primary-700 bg-primary-100 dark:text-primary-200 md:dark:bg-primary-800"
             >
               <UIIcons
                 :name="item.icon"
