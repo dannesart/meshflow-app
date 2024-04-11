@@ -7,7 +7,7 @@
       MF
     </div>
     <span
-      class="text-xl font-extrabold lg:text-2xl font-Rounded text-blue-950"
+      class="text-2xl font-extrabold lg:text-2xl font-Rounded text-blue-950"
       :class="classes"
       v-if="full"
       >meshflow</span
