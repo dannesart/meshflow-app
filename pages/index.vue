@@ -20,7 +20,7 @@
           <div class="flex gap-5">
             <div
               v-if="usersStore.isLoading"
-              class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg dark:bg-indigo-950"
+              class="flex items-center justify-center w-full p-6 rounded-lg bg-black/5"
             >
               <UILoader></UILoader>
             </div>
@@ -63,7 +63,7 @@
           <div class="flex gap-5">
             <div
               v-if="isLoading"
-              class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg dark:bg-indigo-950"
+              class="flex items-center justify-center w-full p-6 bg-black/5"
             >
               <UILoader></UILoader>
             </div>
