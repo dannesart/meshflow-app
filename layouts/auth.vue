@@ -1,19 +1,19 @@
 <template>
-  <div class="w-screen h-screen dark:bg-indigo-900">
+  <div class="w-screen h-screen">
     <main class="flex flex-col w-full h-full md:flex-row">
-      <div class="flex gap-4 p-4 md:flex-1 md:h-full md:p-10 bg-amber-200">
+      <div class="flex gap-4 p-4 md:flex-1 md:h-full md:p-10 bg-secondary-200">
         <UILogo
           :size="30"
           :full="true"
           :can-go-dark="false"
           :text-only="true"
         />
-        <UIHeadline size="h4" class="self-center md:hidden text-blue-950">
+        <UIHeadline size="h4" class="self-center md:hidden text-primary-950">
           <slot name="header" />
         </UIHeadline>
       </div>
       <div
-        class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-amber-200 md:bg-white md:flex-1"
+        class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-secondary-200 md:bg-white md:flex-1"
       >
         <div class="flex flex-col gap-5 flex-1 max-w-[500px]">
           <UIHeadline size="h1" class="hidden md:block">
