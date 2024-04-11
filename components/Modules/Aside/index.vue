@@ -37,7 +37,7 @@
               "
               v-wave
               class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-800 dark:text-primary-200 md:text-lg md:hover:bg-primary-100 md:dark:hover:bg-primary-800 hover:text-primary-700 hover:dark:text-primary-200 md:px-5"
-              activeClass="font-bold text-primary-900 md:bg-primary-100 dark:text-primary-200 md:dark:bg-primary-800"
+              activeClass="font-bold text-primary-950 md:bg-primary-100 dark:text-secondary-400 md:dark:bg-primary-900"
               router-link-active="font-bold text-primary-900 bg-primary-100 dark:text-primary-200 md:dark:bg-primary-800"
             >
               <UIIcons
