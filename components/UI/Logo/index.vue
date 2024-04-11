@@ -7,7 +7,7 @@
       MF
     </div>
     <span
-      class="hidden text-xl font-extrabold md:block lg:text-2xl font-Rounded text-blue-950"
+      class="text-xl font-extrabold lg:text-2xl font-Rounded text-blue-950"
       :class="classes"
       v-if="full"
       >meshflow</span
@@ -25,6 +25,7 @@ const { animate, size, full, canGoDark, textOnly } = defineProps([
 ]);
 const classes = computed(() => ({
   "dark:text-amber-200": canGoDark,
+	"hidden md:block": !textOnly
 }));
 </script>
 
