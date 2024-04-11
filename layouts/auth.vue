@@ -8,9 +8,6 @@
           :can-go-dark="false"
           :text-only="true"
         />
-        <UIHeadline size="h4" class="self-center md:hidden text-primary-950">
-          <slot name="header" />
-        </UIHeadline>
       </div>
       <div
         class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-secondary-200 md:bg-white md:flex-1"
