@@ -1,6 +1,6 @@
 <template>
     <svg viewBox="0 0 36 36" class="w-14 aspect-square animated">
-        <path class="stroke-secondary-600" d="M18 2.0845
+        <path class="stroke-secondary-500" d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="4" />
         <path d="M18 2.0845
