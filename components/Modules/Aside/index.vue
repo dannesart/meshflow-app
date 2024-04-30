@@ -36,7 +36,7 @@
                 (item.isService && settingsStore.isServiceActive(item.label))
               "
               v-wave
-              class="flex items-center gap-3 py-3 text-2xl rounded-lg text-secondary-800 dark:text-primary-200 md:text-lg md:hover:bg-secondary-100 md:dark:hover:bg-primary-800 hover:text-secondary-700 hover:dark:text-primary-200 md:px-5"
+              class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-950 dark:text-primary-200 md:text-lg md:hover:bg-secondary-100 md:dark:hover:bg-primary-800 hover:text-secondary-700 hover:dark:text-primary-200 md:px-5"
               activeClass="font-bold text-secondary-700 md:bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
               router-link-active="font-bold text-secondary-700 bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
             >
