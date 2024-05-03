@@ -7,11 +7,11 @@
         <span class="hidden lg:block">Sort</span>
       </UIButton>
       <div
-        class="bg-white dark:bg-indigo-900 dark:text-indigo-100 shadow-lg rounded-lg p-5 absolute top-full w-64 flex flex-col gap-4"
+        class="fixed bottom-0 flex flex-col gap-4 p-5 bg-white rounded-lg shadow-lg dark:bg-indigo-900 dark:text-indigo-100 md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
         name="sort-options"
         v-bind:class="{ hidden: !showingSort }"
       >
-        <label class="flex justify-center gap-2 flex-col">
+        <label class="flex flex-col justify-center gap-2">
           <ModulesInput
             type="select"
             :value="sortTypes[0]"
@@ -21,7 +21,7 @@
             <label>Sort by</label>
           </ModulesInput>
         </label>
-        <label class="flex justify-center gap-2 flex-col">
+        <label class="flex flex-col justify-center gap-2">
           <ModulesInput
             type="select"
             :value="sortDirections[0]"
@@ -43,7 +43,7 @@
       </UIButton>
 
       <div
-        class="bg-white shadow-lg rounded-lg p-5 absolute top-full w-64"
+        class="fixed p-5 bg-white rounded-lg shadow-lg md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
         name="filter-options"
         v-bind:class="{ hidden: !showingFilter }"
       >
@@ -53,7 +53,7 @@
               <input
                 type="checkbox"
                 @change="setFilter('favorites', !filters.favorites)"
-                class="border-gray-300 rounded h-5 w-5"
+                class="w-5 h-5 border-gray-300 rounded"
               />
               Show only favorites
             </label>
@@ -64,13 +64,13 @@
 
     <div
       name="filter-backdrop"
-      class="fixed w-full left-0 top-0 h-full bg-transparent z-10"
+      class="fixed top-0 left-0 z-10 w-full h-full bg-transparent"
       v-if="showingFilter"
       @click="toggleFilterOptions()"
     ></div>
     <div
       name="sort-backdrop"
-      class="fixed w-full left-0 top-0 h-full bg-transparent z-10"
+      class="fixed top-0 left-0 z-10 w-full h-full bg-transparent"
       v-if="showingSort"
       @click="toggleSortOptions()"
     ></div>
