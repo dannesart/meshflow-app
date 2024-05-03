@@ -3,11 +3,11 @@
     name="backdrop-modal"
     v-if="showModal"
     @click="events('onClose')"
-    class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-sky-600/50 backdrop-blur-sm"
+    class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-secondary-950/50 backdrop-blur-sm"
   ></div>
   <div
     name="add-modal"
-    class="right-0 z-50 flex flex-col gap-6 transition-transform -translate-y-1/2 bg-white shadow-lg dark:bg-indigo-900 top-1/2 md:rounded-l-xl"
+    class="right-0 z-50 flex flex-col gap-6 transition-transform -translate-y-1/2 bg-white shadow-lg dark:bg-primary-900 top-1/2 md:rounded-l-xl"
     v-bind:class="{
       'h-0 w-0 overflow-hidden translate-x-full opacity-0 static p-0':
         !showModal,
