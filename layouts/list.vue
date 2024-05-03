@@ -5,7 +5,7 @@
     <ModulesAside></ModulesAside>
     <ModulesHeader></ModulesHeader>
     <main
-      class="relative flex flex-col gap-10 px-6 py-4 pt-8 overflow-y-scroll overscroll-contain lg:px-10 lg:pt-12 lg:mb-10 lg:mr-10 bg-secondary-50 dark:bg-black/20 rounded-3xl"
+      class="relative flex flex-col gap-10 px-6 py-4 pt-8 overflow-y-scroll overscroll-contain lg:px-10 lg:pt-12 lg:mb-10 lg:mr-10 bg-gray-50 dark:bg-black/20 rounded-3xl"
     >
       <div class="flex flex-col justify-between gap-10 md:flex-row">
         <UIHeadline size="h1">
