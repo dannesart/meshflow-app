@@ -47,8 +47,8 @@ const classes: ClassType = {
     inverted: "bg-red-500 text-white px-6 py-3 rounded-lg",
   },
   add: {
-    normal: "bg-sky-950 text-white px-6 py-3 rounded-lg",
-    small: "bg-sky-950 text-white px-4 py-2 rounded-lg",
+    normal: "bg-sky-900 text-white px-6 py-3 rounded-lg",
+    small: "bg-sky-900 text-white px-4 py-2 rounded-lg",
   },
   love: {
     normal: "text-emerald-500 bg-emerald-200 px-6 py-3 rounded-lg",
