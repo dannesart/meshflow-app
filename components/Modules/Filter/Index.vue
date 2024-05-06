@@ -31,6 +31,9 @@
             <label>Direction</label>
           </ModulesInput>
         </label>
+    <UIButton name="sort-close-btn" class="lg:hidden" @click="toggleSortOptions()" type="nevermind">
+        <label>Close</label>
+      </UIButton>
       </div>
     </div>
 
