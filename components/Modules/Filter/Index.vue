@@ -7,7 +7,7 @@
         <span class="hidden lg:block">Sort</span>
       </UIButton>
       <div
-        class="fixed bottom-0 h-5/6 md:h-auto flex flex-col gap-4 p-5 bg-white rounded-lg shadow-lg dark:bg-indigo-900 dark:text-indigo-100 md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
+        class="fixed z-50 bottom-0 h-5/6 md:h-auto flex flex-col gap-4 p-5 bg-white rounded-lg shadow-lg dark:bg-indigo-900 dark:text-indigo-100 md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
         name="sort-options"
         v-bind:class="{ hidden: !showingSort }"
       >
