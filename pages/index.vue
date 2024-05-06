@@ -2,7 +2,7 @@
   <NuxtLayout>
     <UIHeadline size="h1"> Dashboard </UIHeadline>
     <div
-      class="flex pb-3 gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-[8rem]"
+      class="flex pb-3 gap-5 overflow-x-scroll md:overflow-x-visible flex-row scroll-smooth snap-x snap-mandatory min-h-40"
     >
       <ModulesStat
         label="Active tasks"
