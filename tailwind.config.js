@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   content: [
@@ -24,7 +24,7 @@ module.exports = {
       pink: colors.pink,
       sky: colors.sky,
       gray: colors.gray,
-      slate: colors.slate
+      slate: colors.slate,
     },
     extend: {
       fontFamily: {
@@ -39,7 +39,7 @@ module.exports = {
     "safelisted",
     {
       pattern:
-        /bg-(red|emerald|cyan|pink|purple|white|sky|indigo)-(400|300|200|600|800|950)/,
+        /bg-(red|emerald|cyan|pink|purple|white|sky|indigo)-(400|500|300|200|600|800|950)/,
     },
     {
       pattern: /bg-(black)/,

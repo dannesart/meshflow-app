@@ -1,7 +1,10 @@
 <template>
   <div class="flex gap-4">
     <!-- Sort -->
-    <div class="relative z-20">
+    <div
+      class="relative"
+      :class="{ 'z-30': showingSort, 'z-20': !showingSort }"
+    >
       <UIButton name="sort-btn" @click="toggleSortOptions()" type="system">
         <UIIcons name="sort"></UIIcons>
         <span class="hidden lg:block">Sort</span>
@@ -31,14 +34,22 @@
             <label>Direction</label>
           </ModulesInput>
         </label>
-    <UIButton name="sort-close-btn" class="lg:hidden" @click="toggleSortOptions()" type="nevermind">
-        <label>Close</label>
-      </UIButton>
+        <UIButton
+          name="sort-close-btn"
+          class="lg:hidden"
+          @click="toggleSortOptions()"
+          type="nevermind"
+        >
+          <label>Close</label>
+        </UIButton>
       </div>
     </div>
 
     <!-- Filters -->
-    <div class="relative z-20">
+    <div
+      class="relative"
+      :class="{ 'z-30': showingFilter, 'z-20': !showingFilter }"
+    >
       <UIButton name="filter-btn" @click="toggleFilterOptions()" type="system">
         <UIIcons name="filter"></UIIcons>
 
@@ -46,7 +57,7 @@
       </UIButton>
 
       <div
-        class="fixed p-5 bg-white rounded-lg shadow-lg md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
+        class="fixed z-50 bottom-0 h-5/6 md:h-auto flex flex-col gap-4 p-5 bg-white rounded-lg shadow-lg dark:bg-indigo-900 dark:text-indigo-100 md:absolute left-4 right-4 md:left-auto md:right-auto md:bottom-auto md:top-full md:w-64"
         name="filter-options"
         v-bind:class="{ hidden: !showingFilter }"
       >
@@ -62,6 +73,14 @@
             </label>
           </li>
         </ul>
+        <UIButton
+          name="sort-close-btn"
+          class="lg:hidden"
+          @click="toggleSortOptions()"
+          type="nevermind"
+        >
+          <label>Close</label>
+        </UIButton>
       </div>
     </div>
 
