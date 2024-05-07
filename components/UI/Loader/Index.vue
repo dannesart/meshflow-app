@@ -16,7 +16,7 @@
       fill="none"
       r="20"
       stroke-width="7"
-      class="stroke-secondary-500"
+      class="stroke-secondary-300"
       stroke-dasharray="90"
       stroke-linecap="round"
     />
