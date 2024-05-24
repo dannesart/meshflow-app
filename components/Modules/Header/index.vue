@@ -18,7 +18,7 @@
         class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
         :class="{
-          'text-slate-800 bg-slate-100 dark:bg-indigo-600 dark:text-indigo-200':
+          'text-slate-800 bg-slate-100 dark:bg-primary-600 dark:text-primary-200':
             !nonReadNotifications,
           'text-white bg-primary-500 ': nonReadNotifications,
         }"
@@ -48,7 +48,7 @@
       </UIUserInfo>
 
       <div
-        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none dark:bg-indigo-900 w-96 md:px-10 focus-within:translate-x-0"
+        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none dark:bg-primary-900 w-96 md:px-10 focus-within:translate-x-0"
         ref="menuRef"
         tabindex="0"
         @focusin="isMenuActive = true"
@@ -126,7 +126,7 @@
       </div>
 
       <div
-        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none dark:bg-indigo-900 w-96 md:px-10 focus-within:translate-x-0"
+        class="fixed top-0 bottom-0 right-0 z-50 flex flex-col justify-between gap-4 px-6 py-4 transition-transform translate-x-full bg-white shadow-xl outline-none dark:bg-primary-900 w-96 md:px-10 focus-within:translate-x-0"
         ref="notificationMenuRef"
         tabindex="0"
         @focusin="isNotificationMenuActive = true"

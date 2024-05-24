@@ -36,7 +36,7 @@ const newValue = ref(value);
 const tagEdit = ref();
 
 const colors: { [key: string]: string } = {
-  default: "bg-slate-200 text-slate-600 dark:bg-black/60 dark:text-indigo-200",
+  default: "bg-slate-200 text-slate-600 dark:bg-black/60 dark:text-primary-200",
 };
 
 const handleClick = () => {

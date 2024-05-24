@@ -76,7 +76,7 @@
 
         <slot v-if="showModal"></slot>
       </div>
-      <footer class="z-50 flex gap-4 bg-white dark:bg-indigo-900">
+      <footer class="z-50 flex gap-4 bg-white dark:bg-primary-900">
         <ClientOnly>
           <UIButton
             type="add"

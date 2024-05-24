@@ -23,7 +23,7 @@
     </UIList>
     <UIHeadline size="h2"> Personal settings </UIHeadline>
     <section
-      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-indigo-950 dark:text-pink-300 rounded-xl"
+      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-primary-950 dark:text-pink-300 rounded-xl"
     >
       <UIHeadline size="label"> Dark mode </UIHeadline>
       <ModulesInput
@@ -44,7 +44,7 @@
     </section>
     <UIHeadline size="h2"> Other </UIHeadline>
     <section
-      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-indigo-950 dark:text-pink-300 rounded-xl"
+      class="flex flex-col gap-6 p-6 bg-white shadow-lg dark:bg-primary-950 dark:text-pink-300 rounded-xl"
     >
       <UIHeadline size="label"> I quit </UIHeadline>
       <p class="text-sm text-gray-400">
@@ -62,11 +62,10 @@
 </template>
 
 <script setup lang="ts">
-
 const userObject = useSupabaseUser();
 const userClient = useSupabaseClient();
 
-const user = computed(()=> userObject?.value.user_metadata);
+const user = computed(() => userObject?.value.user_metadata);
 
 type Themes = "dark" | "light";
 const userSettings = ref({

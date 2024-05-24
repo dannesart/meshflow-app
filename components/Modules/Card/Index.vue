@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative transition-all bg-white shadow-lg dark:bg-indigo-950 rounded-xl hover:shadow-xl hover:cursor-pointer"
+    class="relative transition-all bg-white shadow-lg dark:bg-primary-950 rounded-xl hover:shadow-xl hover:cursor-pointer"
     :class="{ 'p-6 py-4': size === 'small', 'p-10 py-8': size !== 'small' }"
   >
     <UIHeadline size="h3" data-title :class="{ 'pr-12': true }">
