@@ -1,7 +1,7 @@
-export  type Filters = {
-    favorites: boolean;
-}
+export type Filters = {
+  favorites: boolean;
+};
 
 export type Sort = {
-    type: string;
-}
+  type: string;
+};

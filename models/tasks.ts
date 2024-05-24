@@ -37,5 +37,5 @@ const TaskSchema = z
   .strict();
 
 type Task = z.infer<typeof TaskSchema>;
-
-export { TaskSchema, Task, TASK_STATUSES };
+export type { Task };
+export { TaskSchema, TASK_STATUSES };

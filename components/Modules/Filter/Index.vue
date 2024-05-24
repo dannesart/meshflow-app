@@ -100,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { Filters, Sort } from "./filter.model";
+import type { Filters, Sort } from "./filter.model";
 
 const eventEmit = defineEmits(["filterChange", "sortChange"]);
 const sortTypes = ["Name", "Status", "Updated"];

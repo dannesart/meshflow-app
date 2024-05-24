@@ -17,6 +17,7 @@ module.exports = {
       primary: colors.cyan,
       secondary: colors.amber,
       amber: colors.amber,
+      rose: colors.rose,
       black: colors.black,
       white: colors.white,
       blue: colors.blue,
