@@ -1,10 +1,8 @@
 import { PageModel } from "~~/models/page.db";
+import protectRoute from "~/server/protectedRoute";
 
 export default defineEventHandler(async (e) => {
-  // const session = await getServerSession(e);
-  // if (!session || !session.user) {
-  //   return { error: "Need to be authenticated" };
-  // }
+  await protectRoute(e);
   const { projectId } = getQuery(e);
   const pages = await PageModel.find({ projectId: projectId }).populate(
     "blocks"

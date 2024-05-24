@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { BlockModel } from "~~/models/blocks";
+import { type BlockModel } from "~~/models/blocks";
 import { useBlocksStore } from "~~/stores/blocks";
 import { storeToRefs } from "pinia";
 import { useNotificationStore } from "~~/stores/notifications";

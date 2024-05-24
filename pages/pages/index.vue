@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { Page } from "~~/models/page";
+import type { Page } from "~~/models/page";
 import { usePagesStore } from "~~/stores/pages";
 import { useNotificationStore } from "~~/stores/notifications";
 import { storeToRefs } from "pinia";
