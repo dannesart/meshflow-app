@@ -106,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import { Task, TASK_STATUSES } from "~~/models/tasks";
+import { type Task, TASK_STATUSES } from "~~/models/tasks";
 import { useTasksStore } from "~~/stores/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 import { useUsersStore } from "~/stores/users";

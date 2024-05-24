@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { TaskSchema, Task } from "~~/models/tasks";
 import { TaskModel } from "~~/models/tasks.db";
-import { AuthToken } from "~~/models/auth";
+import protectRoute from "~/server/protectedRoute";
+import { serverSupabaseUser } from "#supabase/server";
 
 const newTask = (
   title: string,
@@ -25,16 +26,13 @@ const newTask = (
 };
 
 export default defineEventHandler(async (e) => {
-  // const session = await getServerSession(e);
-  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  // if (!session || !session.user) {
-  //   return { error: "Need to be authenticated" };
-  // }
+  await protectRoute(e);
+  const user = await serverSupabaseUser(e);
 
   const body = await readBody(e);
   const newTaskObject = newTask(
     body.title,
-    token.sub || "",
+    user.id,
     body.status,
     body.tags,
     body.projectId
