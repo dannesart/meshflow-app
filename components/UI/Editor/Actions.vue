@@ -71,7 +71,7 @@ import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 
 const { editor } = defineProps(["editor"]);
 const buttonStyle =
-  "w-12 h-12 rounded-lg  flex justify-center items-center cursor-pointer group relative bg-white hover:bg-sky-100";
+  "w-12 h-12 rounded-lg  flex justify-center items-center cursor-pointer group relative bg-white hover:bg-primary-100";
 const emojis = [
   {
     emoji: "🚀",

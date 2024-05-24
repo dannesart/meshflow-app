@@ -1,16 +1,11 @@
 import { ProjectModel } from "~~/models/project.db";
-import type { AuthToken } from "~~/models/auth";
+import { serverSupabaseUser } from "#supabase/server";
 
 export default defineEventHandler(async (e) => {
-  // const session = await getServerSession(e);
-  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  // if (!session || !session.user) {
-  //   return { error: "Need to be authenticated" };
-  // }
-  const email = "dannesart@live.com";
+  const user = await serverSupabaseUser(e);
 
   const projects = await ProjectModel.find({
-    users: { $in: email },
+    users: { $in: user.id },
   });
 
   return projects.map((project) => {

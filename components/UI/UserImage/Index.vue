@@ -5,7 +5,7 @@
       'w-20 h-20': size === 'large',
       'w-9 h-9': size === 'small',
     }"
-    class="flex items-center justify-center text-xl text-white uppercase rounded-full bg-sky-600 hover:shadow-xl"
+    class="flex items-center justify-center text-xl text-white uppercase rounded-full bg-primary-600 hover:shadow-xl"
     name="user-info-avatar"
     v-if="name && !image"
   >

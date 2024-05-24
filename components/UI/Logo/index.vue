@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center self-start gap-4">
     <div
-      class="flex items-center justify-center p-3 text-xl text-primary-900 dark:text-secondary-200 bg-secondary-200 dark:bg-primary-900 rounded-xl"
+      class="flex items-center justify-center p-3 text-xl text-primary-950 dark:text-secondary-200 bg-secondary-200 dark:bg-primary-900 rounded-xl"
       v-if="!textOnly"
     >
       MF

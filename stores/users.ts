@@ -104,17 +104,18 @@ export const useUsersStore = defineStore("UsersStore", {
     },
     async fetchUserMap() {
       try {
+        // FIX THIS. Get from api
         // const token = await this.getToken();
         this.loading = true;
         const projectStore = useProjectStore();
         const { activeId, getProject } = projectStore;
         const activeProject = getProject(activeId || "") as Project;
-        if (activeProject) {
-          const userIds = activeProject.users;
-          for (let i = 0; i < userIds.length; i++) {
-            await this.fetchUserById(userIds[i]);
-          }
-        }
+        // if (activeProject) {
+        //   const userIds = activeProject.users;
+        //   for (let i = 0; i < userIds.length; i++) {
+        //     await this.fetchUserById(userIds[i]);
+        //   }
+        // }
         this.loading = false;
 
         // var options = {

@@ -20,7 +20,7 @@
         :class="{
           'text-slate-800 bg-slate-100 dark:bg-indigo-600 dark:text-indigo-200':
             !nonReadNotifications,
-          'text-white bg-sky-500 ': nonReadNotifications,
+          'text-white bg-primary-500 ': nonReadNotifications,
         }"
         name="user-info-avatar"
       >
@@ -87,7 +87,7 @@
 
               <div class="relative">
                 <div
-                  class="absolute right-0 flex items-center justify-center w-10 h-10 text-white border-2 border-white rounded-full -top-2 bg-sky-600"
+                  class="absolute right-0 flex items-center justify-center w-10 h-10 text-white border-2 border-white rounded-full -top-2 bg-primary-600"
                 >
                   D
                 </div>
@@ -101,7 +101,7 @@
           </UIList>
 
           <NuxtLink
-            class="text-right cursor-pointer text-sky-600"
+            class="text-right cursor-pointer text-primary-600"
             to="/projects/create"
             v-if="projectStore.projects.length < MAX_PROJECTS"
           >
@@ -111,7 +111,7 @@
 
         <div class="flex flex-col gap-3">
           <NuxtLink
-            class="px-6 py-3 text-center border rounded-lg cursor-pointer text-sky-600 border-sky-500 hover:shadow-xl"
+            class="px-6 py-3 text-center border rounded-lg cursor-pointer text-primary-600 border-primary-500 hover:shadow-xl"
             to="/user"
           >
             Go to profile
@@ -141,7 +141,7 @@
               :key="notification.title"
             >
               <div
-                class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg text-sky-500"
+                class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg text-primary-500"
               >
                 <UIIcons name="notifications"></UIIcons>
               </div>

@@ -38,7 +38,7 @@ const editor = useEditor({
     }),
     Mention.configure({
       HTMLAttributes: {
-        class: "bg-sky-200 text-sky-600 px-1 py-0.5 rounded-md",
+        class: "bg-primary-200 text-primary-600 px-1 py-0.5 rounded-md",
       },
       renderLabel({ options, node }) {
         return `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`;

@@ -6,7 +6,7 @@
       <UIHeadline size="h4">
         {{ label }}
       </UIHeadline>
-      <p class="text-4xl font-semibold text-sky-800 dark:text-sky-100">
+      <p class="text-4xl font-semibold text-primary-800 dark:text-primary-100">
         {{ number }} <span class="text-sm text-gray-400">/ 10</span>
       </p>
       <div

@@ -17,7 +17,7 @@
         ></UIUserInfo>
       </div>
       <div
-        class="p-3 py-1 rounded-full w-fit text-sky-600 bg-sky-100 inline-block hover:cursor-pointer"
+        class="p-3 py-1 rounded-full w-fit text-primary-600 bg-primary-100 inline-block hover:cursor-pointer"
         data-test="user-tag"
         @mouseenter="hovering = true"
         @mouseleave="hovering = false"

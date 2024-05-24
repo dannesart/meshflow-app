@@ -21,7 +21,7 @@
         </div>
       </header>
       <p>
-        <span class="inline-block font-bold text-sky-700">{{
+        <span class="inline-block font-bold text-primary-700">{{
           model?.name
         }}</span>
         | Updated

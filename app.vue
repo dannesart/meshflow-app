@@ -13,24 +13,30 @@ import { useDataStore } from "~~/stores/data";
 import { usePagesStore } from "./stores/pages";
 import { useBlocksStore } from "./stores/blocks";
 import { useUiStore } from "./stores/ui";
-
+*/
 const { setLoading } = useUiStore();
-
 const { fetchProjects } = useProjectStore();
+const { fetchUser } = useAuthStore();
 const { fetchSettings } = useSettingsStore();
 const { fetchTasks } = useTasksStore();
+const { fetchUserMap } = useUsersStore();
+setLoading(true);
+await Promise.all([fetchUser(), fetchProjects()]);
+await Promise.all([fetchSettings(), fetchTasks(), fetchUserMap()]);
+setLoading(false);
+/*
+
 const { fetchUser } = useAuthStore();
 const { fetchDataModels } = useDataStore();
 const { fetchPages } = usePagesStore();
-const { fetchUserMap } = useUsersStore();
+
 const { fetchBlockModels } = useBlocksStore();
 
-setLoading(true);
+
 await Promise.all([fetchUser(), fetchProjects()]);
 await Promise.all([
-  fetchUserMap(),
+  
   fetchSettings(),
-  fetchTasks(),
   fetchDataModels(),
   fetchPages(),
   fetchBlockModels(),

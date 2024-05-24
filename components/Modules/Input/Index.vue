@@ -86,7 +86,7 @@
     >
       <div
         class="w-6 h-6 rounded-lg cursor-pointer"
-        :class="{ 'bg-sky-400 text-white': value, 'bg-slate-200': !value }"
+        :class="{ 'bg-primary-400 text-white': value, 'bg-slate-200': !value }"
         :name="name"
         :id="id"
       >
@@ -115,7 +115,7 @@
     <div v-if="type === 'radio'" class="flex gap-2 flex-wrap" :name="name">
       <div
         v-for="v of values"
-        :class="{ 'bg-sky-400 text-white': v === value }"
+        :class="{ 'bg-primary-400 text-white': v === value }"
         class="px-3 py-1 rounded-lg bg-slate-100 justify-center items-center flex cursor-pointer"
         @click="updateRadio(v)"
       >

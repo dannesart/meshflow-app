@@ -109,7 +109,7 @@
             class="flex items-end gap-4"
             v-if="field.validations.minMax.use"
             :class="{
-              'bg-sky-50 p-6 rounded-xl': field.validations.minMax.use,
+              'bg-primary-50 p-6 rounded-xl': field.validations.minMax.use,
             }"
           >
             <ModulesInput

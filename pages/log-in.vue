@@ -4,7 +4,9 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email" class="mt-3" disabled> <span class="text-blue-950">Email</span> </ModulesInput>
+        <ModulesInput type="email" class="mt-3" disabled>
+          <span class="text-blue-950">Email</span>
+        </ModulesInput>
         <ModulesInput type="password" class="mt-3" disabled>
           <span class="text-blue-950">Password</span>
         </ModulesInput>
@@ -34,7 +36,7 @@
     <template #footer>
       <div class="flex justify-center w-full gap-1 p-3">
         Don't have an account?
-        <NuxtLink to="/create-account" class="underline text-sky-950"
+        <NuxtLink to="/create-account" class="underline text-primary-950"
           >Create one here</NuxtLink
         >
       </div>

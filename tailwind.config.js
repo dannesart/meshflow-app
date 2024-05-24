@@ -14,7 +14,7 @@ module.exports = {
   mode: "aot",
   theme: {
     colors: {
-      primary: colors.blue,
+      primary: colors.cyan,
       secondary: colors.amber,
       amber: colors.amber,
       black: colors.black,

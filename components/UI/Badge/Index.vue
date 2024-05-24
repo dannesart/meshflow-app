@@ -15,7 +15,7 @@ const { badge } = defineProps(["badge"]);
 const themes = {
   primary: "text-emerald-500 bg-emerald-200",
   error: "text-rose-500 bg-rose-200 ",
-  secondary: "text-sky-500 bg-sky-200 ",
+  secondary: "text-primary-500 bg-primary-200 ",
   warning: "text-orange-500 bg-orange-200",
   system: "text-gray-500 bg-gray-200",
 };

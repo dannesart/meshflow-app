@@ -43,7 +43,9 @@
     <template #footer>
       <div class="flex justify-center w-full p-3">
         Already have an account?
-        <NuxtLink to="/log-in" class="underline text-sky-950">Log in</NuxtLink>
+        <NuxtLink to="/log-in" class="underline text-primary-950"
+          >Log in</NuxtLink
+        >
       </div>
     </template>
   </NuxtLayout>
