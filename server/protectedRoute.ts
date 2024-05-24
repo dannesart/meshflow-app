@@ -1,6 +1,6 @@
 import { serverSupabaseUser } from "#supabase/server";
 
-export default defineEventHandler(async (event) => {
+export default async (event) => {
   const user = await serverSupabaseUser(event);
 
   if (!user) {
@@ -9,4 +9,4 @@ export default defineEventHandler(async (event) => {
       message: "Unauthorized",
     });
   }
-});
+};
