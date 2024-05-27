@@ -3,7 +3,7 @@
     name="backdrop-modal"
     v-if="showModal"
     @click="events('onClose')"
-    class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-secondary-300/30 backdrop-blur-sm"
+    class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-secondary-300/30 dark:bg-primary-300/30 backdrop-blur-sm"
   ></div>
   <div
     name="add-modal"

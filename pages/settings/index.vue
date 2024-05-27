@@ -3,7 +3,9 @@
     <UIHeadline size="h1"> Settings </UIHeadline>
 
     <UIHeadline size="h2"> General </UIHeadline>
-    <section class="flex flex-col gap-6 p-6 bg-white shadow-lg rounded-xl">
+    <section
+      class="flex flex-col gap-6 p-6 bg-white dark:bg-primary-950 shadow-lg rounded-xl"
+    >
       <ModulesExtendedLink
         :label="'System'"
         :sub-label="'Set system as web or data/model'"
@@ -12,7 +14,9 @@
       </ModulesExtendedLink>
     </section>
     <UIHeadline size="h2"> Board </UIHeadline>
-    <section class="flex flex-col gap-6 p-6 bg-white shadow-lg rounded-xl">
+    <section
+      class="flex flex-col gap-6 p-6 bg-white dark:bg-primary-950 shadow-lg rounded-xl"
+    >
       <div class="flex flex-col gap-3">
         <label>Statuses</label>
         <ModulesTagsList color="white" can-add="true" @add="addNewTag">
@@ -47,7 +51,9 @@
       </div>
     </section>
     <UIHeadline size="h2"> Shut down </UIHeadline>
-    <section class="flex flex-col gap-6 p-6 bg-white shadow-lg rounded-xl">
+    <section
+      class="flex flex-col gap-6 p-6 bg-white dark:bg-primary-950 shadow-lg rounded-xl"
+    >
       <div class="flex flex-col gap-3">
         <label>Leave this project</label>
         <p class="text-sm text-gray-400">

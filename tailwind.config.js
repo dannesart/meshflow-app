@@ -23,6 +23,7 @@ module.exports = {
       white: colors.white,
       blue: colors.blue,
       indigo: colors.indigo,
+      purple: colors.purple,
       pink: colors.pink,
       sky: colors.sky,
       gray: colors.gray,
@@ -36,7 +37,10 @@ module.exports = {
     },
   },
   darkMode: "class",
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/container-queries"),
+    "prettier-plugin-tailwindcss",
+  ],
   safelist: [
     "safelisted",
     {

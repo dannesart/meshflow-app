@@ -51,7 +51,7 @@
       </UIEmpty>
       <div
         v-else
-        class="flex items-center justify-center w-full p-6 bg-gray-100 rounded-lg"
+        class="flex items-center justify-center w-full p-6 bg-gray-100 dark:bg-primary-950 rounded-lg"
       >
         <UILoader></UILoader>
       </div>

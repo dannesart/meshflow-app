@@ -20,17 +20,25 @@ const { fetchUser } = useAuthStore();
 const { fetchSettings } = useSettingsStore();
 const { fetchTasks } = useTasksStore();
 const { fetchUserMap } = useUsersStore();
+const { fetchPages } = usePagesStore();
+const { fetchBlockModels } = useBlocksStore();
 setLoading(true);
 await Promise.all([fetchUser(), fetchProjects()]);
-await Promise.all([fetchSettings(), fetchTasks(), fetchUserMap()]);
+await Promise.all([
+  fetchSettings(),
+  fetchTasks(),
+  fetchUserMap(),
+  fetchPages(),
+  fetchBlockModels(),
+]);
 setLoading(false);
 /*
 
 const { fetchUser } = useAuthStore();
 const { fetchDataModels } = useDataStore();
-const { fetchPages } = usePagesStore();
 
-const { fetchBlockModels } = useBlocksStore();
+
+
 
 
 await Promise.all([fetchUser(), fetchProjects()]);
@@ -38,7 +46,7 @@ await Promise.all([
   
   fetchSettings(),
   fetchDataModels(),
-  fetchPages(),
+  
   fetchBlockModels(),
 ]);
 setLoading(false);*/
