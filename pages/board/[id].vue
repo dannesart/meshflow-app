@@ -27,7 +27,9 @@
           <UIButton type="add" @click="save" :is-loading="tasksStore.isLoading">
             Save
           </UIButton>
-          <UIButton type="delete" @click="handleDelete"> Delete task </UIButton>
+          <UIButton type="nevermind" @click="handleDelete">
+            Delete task
+          </UIButton>
         </div>
       </UIForm>
       <aside

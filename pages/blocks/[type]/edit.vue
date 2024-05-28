@@ -77,7 +77,7 @@
                 </UIHeadline>
                 <p class="text-sm text-gray-500">{{ field.type.name }}</p>
               </div>
-              <div class="flex items-center justify-center ml-auto mr-0">
+              <div class="flex items-center justify-center ml-auto mr-0 gap-2">
                 <UIButton
                   type="icon"
                   size="round-small"

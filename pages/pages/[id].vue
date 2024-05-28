@@ -106,7 +106,7 @@
 
 <script setup lang="ts">
 import { usePagesStore } from "~~/stores/pages";
-import { Page } from "~~/models/page";
+import type { Page } from "~~/models/page";
 import { storeToRefs } from "pinia";
 import { useNotificationStore } from "~~/stores/notifications";
 import { useBlocksStore } from "~~/stores/blocks";

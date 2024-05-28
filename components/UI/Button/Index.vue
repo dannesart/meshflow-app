@@ -40,7 +40,7 @@ type ClassType = {
 
 const classes: ClassType = {
   nevermind: {
-    normal: "border border-red-500 text-red-500 px-6 py-3 rounded-lg",
+    normal: "border border-rose-500 text-rose-500 px-6 py-3 rounded-lg",
   },
   delete: {
     normal: "bg-transparent text-red-500 px-6 py-3 rounded-lg",
