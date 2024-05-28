@@ -21,7 +21,7 @@
         />
       </div>
     </header>
-    <p v-if="page?.updated">
+    <p v-if="page?.updated" :class="'dark:text-primary-600'">
       {{ $t("updated") }}
       {{ useTimeAgo(page.updated) }}
     </p>
@@ -68,7 +68,7 @@
 
         <div
           v-else
-          class="flex items-center justify-between gap-6 p-10 bg-gray-100 rounded-xl"
+          class="flex items-center justify-between gap-6 p-10 bg-gray-100 dark:bg-primary-950 dark:text-primary-300 rounded-xl"
         >
           {{ $t("blocks.no_blocks_yet") }}
           <ModulesAdd

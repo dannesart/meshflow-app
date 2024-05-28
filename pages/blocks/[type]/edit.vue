@@ -53,7 +53,7 @@
         >
           <template #item="{ element: field, index }">
             <div
-              class="flex gap-6 p-6 py-3 bg-white shadow-xl cursor-pointer rounded-xl hover:shadow-2xl"
+              class="flex gap-6 p-6 py-3 bg-white dark:bg-primary-950 shadow-xl cursor-pointer rounded-xl hover:shadow-2xl"
             >
               <div class="relative flex items-center justify-center">
                 <span
@@ -64,7 +64,7 @@
                 </span>
                 <UIIcons
                   :name="field.type.icon"
-                  :class="'text-black'"
+                  :class="'text-black dark:text-white'"
                   :size="6"
                 ></UIIcons>
               </div>
@@ -102,7 +102,7 @@
       </div>
       <div
         v-else
-        class="flex items-center justify-between gap-6 p-10 bg-gray-100 rounded-xl"
+        class="flex items-center justify-between gap-6 p-10 bg-gray-100 dark:bg-primary-950 rounded-xl"
       >
         No fields yet. Create a field
         <ModulesAdd

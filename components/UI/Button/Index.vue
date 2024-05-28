@@ -43,11 +43,12 @@ const classes: ClassType = {
     normal: "border border-rose-500 text-rose-500 px-6 py-3 rounded-lg",
   },
   delete: {
-    normal: "bg-transparent text-red-500 px-6 py-3 rounded-lg",
-    inverted: "bg-red-500 text-white px-6 py-3 rounded-lg",
+    normal: "bg-transparent text-rose-500 px-6 py-3 rounded-lg",
+    inverted: "bg-rose-500 text-white px-6 py-3 rounded-lg",
   },
   add: {
-    normal: "bg-primary-900 text-white px-6 py-3 rounded-lg",
+    normal:
+      "bg-primary-900 dark:text-primary-100 text-white px-6 py-3 rounded-lg",
     small: "bg-primary-900 text-white px-4 py-2 rounded-lg",
   },
   love: {
@@ -61,7 +62,7 @@ const classes: ClassType = {
   },
   back: {
     normal:
-      "text-red-400 font-bold px-6 py-3 rounded-lg hover:shadow-none hover:text-red-300",
+      "text-rose-400 font-bold px-6 py-3 rounded-lg hover:shadow-none hover:text-rose-300",
   },
   expand: {
     normal: "bg-fuchsia-500 text-white px-6 py-3 rounded-lg",
@@ -83,10 +84,12 @@ const classes: ClassType = {
     normal: "text-primary-700 hover:shadow-none hover:text-primary-500",
   },
   icon: {
-    normal: "bg-slate-200 text-slate-700 p-3 rounded-lg",
-    round: "bg-slate-200 text-slate-700 p-3 rounded-full",
-    "round-small": "bg-slate-200 text-slate-700 h-10 w-10 rounded-full",
-    "round-small-add": "bg-primary-200 text-primary-700 h-10 w-10 rounded-full",
+    normal: "bg-slate-200 dark:bg-primary-400 text-slate-700 p-3 rounded-lg",
+    round: "bg-slate-200 dark:bg-primary-400 text-slate-700 p-3 rounded-full",
+    "round-small":
+      "bg-slate-200 text-slate-700 h-10 w-10 rounded-full dark:bg-primary-400",
+    "round-small-add":
+      "bg-primary-200 text-primary-700 h-10 w-10 rounded-full dark:bg-primary-400",
   },
 };
 

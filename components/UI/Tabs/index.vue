@@ -4,8 +4,10 @@
       v-for="tab in tabs"
       @click="change(tab)"
       name="tab"
-      class="px-6 py-3 cursor-pointer flex-1 text-center rounded-lg"
-      :class="{ ' bg-white font-semibold': active === tab.name }"
+      class="px-6 py-3 cursor-pointer flex-1 text-center rounded-lg dark:text-primary-500"
+      :class="{
+        ' bg-white dark:bg-primary-800 font-semibold': active === tab.name,
+      }"
     >
       {{ tab.label }}
     </div>
