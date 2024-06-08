@@ -22,7 +22,7 @@
 
     <div
       name="new-block-error"
-      class="flex gap-4 p-4 mt-6 rounded-lg bg-red-50"
+      class="flex gap-4 p-4 mt-6 rounded-lg bg-rose-50"
       v-for="error in errors"
       :key="error.path"
     >

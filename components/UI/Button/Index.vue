@@ -70,7 +70,7 @@ const classes: ClassType = {
   },
   system: {
     normal:
-      "bg-white dark:bg-primary-900 dark:text-primary-100 shadow-md text-slate-700 px-6 py-3 rounded-lg",
+      "bg-white dark:bg-primary-900 dark:text-primary-100 shadow-md disabled:shadow-none disabled:cursor-not-allowed text-slate-700 px-6 py-3 rounded-lg",
     round: "bg-slate-200 text-slate-700 px-3 py-6 rounded-full",
     small: "bg-slate-200 text-slate-700 px-4 py-2 rounded-lg",
   },

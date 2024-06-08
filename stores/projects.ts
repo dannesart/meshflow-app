@@ -1,7 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { Project } from "~~/models/project";
-import { useRuntimeConfig } from "#app";
 
 type License = {
   id: string;

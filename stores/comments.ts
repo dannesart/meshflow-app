@@ -1,7 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import { TComment } from "~~/models/comments";
-import { useRuntimeConfig } from "#app";
 
 type TCommentsState = {
   _comments: TComment[];

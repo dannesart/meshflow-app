@@ -141,7 +141,7 @@
               :key="notification.title"
             >
               <div
-                class="flex items-center justify-center w-10 h-10 bg-red-100 rounded-lg text-primary-500"
+                class="flex items-center justify-center w-10 h-10 bg-rose-100 rounded-lg text-primary-500"
               >
                 <UIIcons name="notifications"></UIIcons>
               </div>

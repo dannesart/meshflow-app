@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import { TUser } from "~~/models/user";
-import { useRuntimeConfig } from "#app";
 
 export const useUserStore = defineStore("UserStore", {
   state: () =>

@@ -63,6 +63,9 @@
     >
       <UIIcons name="bullet-list" :size="4"></UIIcons>
     </button>
+    <button @click.prevent="addImage(editor)" :class="buttonStyle">
+      <UIIcons name="image" :size="4"></UIIcons>
+    </button>
   </div>
 </template>
 
@@ -90,4 +93,11 @@ const emojis = [
     name: "x",
   },
 ];
+
+const addImage = (editor) => {
+  const url = window.prompt("URL");
+  if (url) {
+    editor.chain().focus().setImage({ src: url }).run();
+  }
+};
 </script>

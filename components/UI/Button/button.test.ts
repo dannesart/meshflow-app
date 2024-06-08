@@ -9,7 +9,7 @@ describe("Button", () => {
       },
     });
 
-    expect(component.classes()).toContain("bg-primary-600");
+    expect(component.classes()).toContain("bg-primary-900");
     expect(component.classes()).toContain("text-white");
   });
 
@@ -20,7 +20,7 @@ describe("Button", () => {
       },
     });
 
-    expect(component.classes()).not.toContain("bg-primary-600");
+    expect(component.classes()).not.toContain("bg-primary-900");
   });
 
   it("Should get a full rounded class if size is round", () => {

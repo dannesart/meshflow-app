@@ -10,9 +10,11 @@
 <script setup>
 import { useEditor, EditorContent, VueRenderer } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import Code from "@tiptap/extension-code-block";
 import Underline from "@tiptap/extension-underline";
 import Mention from "@tiptap/extension-mention";
 import Link from "@tiptap/extension-link";
+import Image from "@tiptap/extension-image";
 import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 import BulletList from "@tiptap/extension-bullet-list";
 import ListItem from "@tiptap/extension-list-item";
@@ -32,6 +34,7 @@ const editor = useEditor({
       enableEmoticons: true,
     }),
     BulletList,
+    Image,
     ListItem,
     Link.configure({
       openOnClick: false,

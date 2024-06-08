@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { useRuntimeConfig } from "#app";
 import { useProjectStore } from "./projects";
 import { Project } from "~~/models/project";
 

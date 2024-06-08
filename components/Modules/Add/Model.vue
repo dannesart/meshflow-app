@@ -22,7 +22,7 @@
 
     <div
       name="new-model-error"
-      class="flex gap-4 bg-red-50 p-4 rounded-lg mt-6"
+      class="flex gap-4 bg-rose-50 p-4 rounded-lg mt-6"
       v-for="error in errors"
     >
       <span class="font-bold capitalize">

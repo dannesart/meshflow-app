@@ -15,7 +15,7 @@
       </div>
     </div>
     <div
-      class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-red-600/50 backdrop-blur-sm"
+      class="fixed top-0 left-0 z-40 w-full h-full transition-all bg-rose-600/50 backdrop-blur-sm"
       @click="handleDeny"
     ></div>
   </div>

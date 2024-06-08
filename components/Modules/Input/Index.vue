@@ -19,7 +19,7 @@
       :disabled="disabled"
       :minlength="min"
       :maxlength="max"
-      class="py-3 px-5 border dark:border-primary-700 rounded-lg shadow-sm bg-white dark:bg-primary-950 dark:text-primary-800 disabled:bg-slate-100"
+      class="py-3 px-5 border dark:border-primary-700 rounded-lg shadow-sm disabled:shadow-none disabled:cursor-not-allowed bg-white dark:bg-primary-950 dark:text-primary-800 disabled:bg-slate-100"
       :class="{ 'hover:shadow-lg': !disabled }"
       :name="name"
       :placeholder="exampleValue(type)"
