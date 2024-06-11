@@ -1,6 +1,18 @@
 import { BLOCKS, DATA, PAGES } from "./services";
 
-export const Menu = [
+export type MenuItem = {
+  label: string;
+  icon: string;
+  route: string;
+  isService: boolean;
+};
+
+export type MenuGroup = {
+  label: string;
+  items: Array<MenuItem>;
+};
+
+export const Menu: Array<MenuGroup> = [
   // {
   //   label: "",
   //   items: [

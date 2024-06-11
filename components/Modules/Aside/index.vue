@@ -28,6 +28,13 @@
           {{ group.label }}
         </label>
         <ul class="flex flex-col gap-1">
+          <li v-if="isEmptyGroup(group)">
+            <p
+              class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-950 dark:text-primary-200 md:text-lg md:dark:hover:bg-primary-800 md:px-5"
+            >
+              No services
+            </p>
+          </li>
           <li v-for="item in group.items" :key="item.route">
             <NuxtLink
               :to="item.route"
@@ -54,10 +61,18 @@
 </template>
 
 <script setup lang="ts">
-import { Menu } from "~~/constants";
-import { useSettingsStore } from "~~/stores/settings";
+import { Menu, type MenuGroup } from "@/constants";
+import { useSettingsStore } from "@/stores/settings";
 const settingsStore = useSettingsStore();
 const showIcons = true;
+
+const isEmptyGroup = (group: MenuGroup) => {
+  return (
+    group.items.some(
+      (item) => !item.isService || settingsStore.isServiceActive(item.label)
+    ) === false
+  );
+};
 
 const Notifications = {
   Tasks: 3,

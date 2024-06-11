@@ -55,9 +55,10 @@ const emits = defineEmits(["update"]);
 .items {
   --translate-x: 0;
   --translate-y: 0.5rem;
-  @apply left-0 top-full;
+  @apply left-6 right-6 sm:right-auto sm:left-0 sm:top-full;
+
   @apply min-w-52;
-  @apply p-4 absolute rounded-lg bg-white hidden origin-top z-50 shadow-lg;
+  @apply p-4 fixed sm:absolute rounded-lg bg-white hidden origin-top z-50 shadow-lg;
   translate: var(--translate-x) var(--translate-y);
   animation: hiding 0.5s;
 }
