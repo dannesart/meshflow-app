@@ -16,9 +16,7 @@
         <UILoader></UILoader>
       </div>
     </div>
-    <ClientOnly>
-      <UIDiagram :max="10" :min="0" :value="number"></UIDiagram>
-    </ClientOnly>
+    <UIDiagram :max="10" :min="0" :value="number"></UIDiagram>
     <div class="" v-if="errors">
       <p class="text-red-600 cursor-pointer">{{ errors }} errors</p>
     </div>
@@ -26,7 +24,16 @@
 </template>
 
 <script setup lang="ts">
-const { label, number, errors } = defineProps(["label", "number", "errors"]);
+type Props = {
+  label: string;
+  number: number;
+  errors: string;
+};
+const props = withDefaults(defineProps<Props>(), {
+  label: "",
+  number: 0,
+  errors: "",
+});
 const isLoading = ref(false);
 </script>
 
