@@ -13,14 +13,24 @@
         class="flex items-center gap-3 px-6 py-3 bg-white dark:bg-primary-900 dark:text-white rounded-lg shadow-md hover:shadow-lg text-slate-700"
       >
         <UIIcons name="setting"> </UIIcons>
-        Edit
+        <span class="hidden sm:block">Edit</span>
       </NuxtLink>
       <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+      <ModulesAdd
+        type="data"
+        :service-type="blockType?.name"
+        button-style="icon"
+        icon="add"
+        class="block sm:hidden"
+        @onAdd="onAdd"
+        @onCancel="onCancel"
+      ></ModulesAdd>
       <ModulesAdd
         @on-add="onAdd"
         :type="'data'"
         :service-type="blockType?.name"
         :fields="blockType?.fields"
+        class="hidden sm:block"
         label="Add block"
       >
       </ModulesAdd>
