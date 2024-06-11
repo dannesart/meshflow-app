@@ -79,23 +79,15 @@
       </datalist>
     </div>
 
-    <div
+    <UICheckBox
       v-if="type === 'checkbox' || type === 'boolean'"
-      class="flex w-full gap-3 items-center cursor-pointer"
-      @click="updateCheckbox(!value)"
+      @update="updateCheckbox(!value)"
+      :value="value"
+      :name="name"
+      :id="id"
     >
-      <div
-        class="w-6 h-6 rounded-lg cursor-pointer"
-        :class="{ 'bg-primary-400 text-white': value, 'bg-slate-200': !value }"
-        :name="name"
-        :id="id"
-      >
-        <UIIcons name="check" v-if="value"></UIIcons>
-      </div>
-      <label class="cursor-pointer">
-        <slot />
-      </label>
-    </div>
+      <slot />
+    </UICheckBox>
 
     <div
       v-if="type === 'switch'"

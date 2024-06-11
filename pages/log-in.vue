@@ -4,11 +4,9 @@
 
     <div class="flex flex-col gap-5">
       <UIForm>
-        <ModulesInput type="email" class="mt-3" disabled>
-          <span class="text-primary-950">Email</span>
-        </ModulesInput>
+        <ModulesInput type="email" class="mt-3" disabled> Email </ModulesInput>
         <ModulesInput type="password" class="mt-3" disabled>
-          <span class="text-primary-950">Password</span>
+          Password
         </ModulesInput>
         <UIButton class="float-right mt-5 w-full md:w-auto" disabled>
           Sign in
@@ -16,10 +14,14 @@
       </UIForm>
       <div class="relative my-1">
         <div class="absolute inset-0 flex items-center">
-          <span class="w-full border-t"></span>
+          <span class="w-full border-t dark:border-t-0"></span>
         </div>
         <div class="relative flex justify-center text-xs uppercase">
-          <span class="px-2 bg-amber-200 md:bg-white"> Or continue with </span>
+          <span
+            class="px-2 bg-amber-200 md:bg-white dark:bg-black/0 dark:text-white"
+          >
+            Or continue with
+          </span>
         </div>
       </div>
       <div class="flex gap-5 flex-col md:flex-row">
@@ -34,9 +36,11 @@
     </div>
 
     <template #footer>
-      <div class="flex justify-center w-full gap-1 p-3">
+      <div class="flex justify-center w-full gap-1 p-3 dark:text-white">
         Don't have an account?
-        <NuxtLink to="/create-account" class="underline text-primary-950"
+        <NuxtLink
+          to="/create-account"
+          class="underline text-primary-950 dark:text-primary-200"
           >Create one here</NuxtLink
         >
       </div>

@@ -11,9 +11,9 @@
         <UIHeadline size="h1">
           <slot name="header" />
         </UIHeadline>
-        <div class="flex gap-6">
+        <div class="flex gap-6 justify-between">
           <slot name="filters" />
-          <div class="w-[1px] h-5/6 my-auto bg-slate-300"></div>
+          <div class="w-[1px] h-5/6 my-auto bg-slate-300 hidden sm:block"></div>
           <slot name="actions" />
         </div>
       </div>

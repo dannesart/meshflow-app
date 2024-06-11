@@ -23,8 +23,8 @@
           type === "model"
             ? `${serviceType} type`
             : type === "data"
-            ? `${serviceType}`
-            : type
+              ? `${serviceType}`
+              : type
         }}
       </UIHeadline>
       <div class="flex-1 overflow-y-scroll">
@@ -76,7 +76,9 @@
 
         <slot v-if="showModal"></slot>
       </div>
-      <footer class="z-50 flex gap-4 bg-white dark:bg-primary-900">
+      <footer
+        class="z-50 flex flex-col sm:flex-row gap-4 bg-white dark:bg-primary-900"
+      >
         <ClientOnly>
           <UIButton
             type="add"

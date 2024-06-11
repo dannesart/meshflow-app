@@ -10,8 +10,18 @@
     <template #actions>
       <ModulesAdd
         type="model"
+        service-type="block"
+        button-style="icon"
+        icon="add"
+        class="block sm:hidden"
+        @onAdd="onAdd"
+        @onCancel="onCancel"
+      ></ModulesAdd>
+      <ModulesAdd
+        type="model"
         label="Add type"
         service-type="block"
+        class="hidden sm:block"
         @onAdd="onAdd"
         @onCancel="onCancel"
       ></ModulesAdd>
