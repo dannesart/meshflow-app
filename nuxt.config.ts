@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   imports: {},
 
   modules: [
+    "nuxt-icon",
     "v-wave/nuxt",
     "@nuxtjs/supabase",
     "@nuxtjs/tailwindcss",

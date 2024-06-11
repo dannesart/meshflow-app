@@ -86,6 +86,9 @@
       "vue-demi": [
         "../node_modules/nuxt/dist/app/compat/vue-demi"
       ],
+      "#icon-collections": [
+        "./icon-collections"
+      ],
       "#color-mode-options": [
         "./color-mode-options.mjs"
       ],
@@ -134,6 +137,7 @@
     "./nuxt.d.ts",
     "../.config/nuxt.*",
     "../**/*",
+    "../node_modules/nuxt-icon/runtime",
     "../node_modules/v-wave/nuxt/runtime",
     "../node_modules/@nuxtjs/supabase/runtime",
     "../node_modules/@nuxtjs/tailwindcss/runtime",
@@ -146,6 +150,7 @@
   "exclude": [
     "../node_modules",
     "../node_modules/nuxt/node_modules",
+    "../node_modules/nuxt-icon/runtime/server",
     "../node_modules/v-wave/nuxt/runtime/server",
     "../node_modules/@nuxtjs/supabase/runtime/server",
     "../node_modules/@nuxtjs/tailwindcss/runtime/server",

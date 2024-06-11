@@ -9,7 +9,7 @@
       :name="name"
       :id="id"
     >
-      <UIIcons name="check" v-if="value"></UIIcons>
+      <Icon name="mdi:check" color="white" size="24" v-if="value" />
     </div>
     <label class="cursor-pointer first-letter:capitalize">
       <slot />
