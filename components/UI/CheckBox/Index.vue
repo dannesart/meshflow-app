@@ -1,6 +1,7 @@
 <template>
   <div
     class="flex w-full gap-3 items-center cursor-pointer"
+    data-test="checkbox"
     @click="emits('update', id, !value)"
   >
     <div
