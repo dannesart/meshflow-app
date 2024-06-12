@@ -2,11 +2,12 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { useProjectStore } from "./projects";
 import { Project } from "~~/models/project";
+import { TUser, UserSchema } from "~~/models/user";
 
 type State = {
   token: string | null;
   loading: boolean;
-  users: { [id: string]: any };
+  users: { [id: string]: TUser };
 };
 
 export const useUsersStore = defineStore("UsersStore", {
@@ -63,20 +64,28 @@ export const useUsersStore = defineStore("UsersStore", {
     },
     async fetchUserById(id: string) {
       try {
-        const token = await this.getToken();
+        const config = useRuntimeConfig();
+        const response = await axios.get(
+          config.public.REDIRECT_URI + "/api/user/" + id
+        );
+        if (response.data.error) throw new Error(response.data.error);
+        this.users[UserSchema.data.id] = response.data as Array<TUser>;
 
-        var options = {
-          method: "GET",
-          url: "https://meshflow.eu.auth0.com/api/v2/users/" + id,
-          headers: { authorization: `Bearer ${token}` },
-        };
-        try {
-          const user = (await axios.request(options)) as any;
+        return true;
+        // const token = await this.getToken();
 
-          this.users[user.data.user_id] = user.data;
-        } catch (error) {
-          console.log(error);
-        }
+        // var options = {
+        //   method: "GET",
+        //   url: "https://meshflow.eu.auth0.com/api/v2/users/" + id,
+        //   headers: { authorization: `Bearer ${token}` },
+        // };
+        // try {
+        //   const user = (await axios.request(options)) as any;
+
+        //   this.users[user.data.user_id] = user.data;
+        // } catch (error) {
+        //   console.log(error);
+        // }
       } catch (error) {
         //TODO: Handle error
       }
@@ -109,12 +118,12 @@ export const useUsersStore = defineStore("UsersStore", {
         const projectStore = useProjectStore();
         const { activeId, getProject } = projectStore;
         const activeProject = getProject(activeId || "") as Project;
-        // if (activeProject) {
-        //   const userIds = activeProject.users;
-        //   for (let i = 0; i < userIds.length; i++) {
-        //     await this.fetchUserById(userIds[i]);
-        //   }
-        // }
+        if (activeProject) {
+          const userIds = activeProject.users;
+          for (let i = 0; i < userIds.length; i++) {
+            await this.fetchUserById(userIds[i]);
+          }
+        }
         this.loading = false;
 
         // var options = {

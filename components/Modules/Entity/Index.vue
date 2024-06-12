@@ -19,7 +19,7 @@
         {{ getBlockModelById(block?.type)?.name }}
       </p>
     </div>
-    <div class="flex items-center justify-center mr-0 ml-auto">
+    <div class="flex items-center justify-center mr-0 ml-auto gap-3">
       <UIButton
         type="icon"
         size="round-small"

@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { FiltersData } from "./filter";
+import { FiltersData } from "./filter.data";
 
 const eventEmit = defineEmits(["filterChange", "sortChange"]);
 const sortTypes = ["Name", "Status", "Updated"];

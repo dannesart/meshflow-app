@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TUser } from "~/models/user";
 
 let token: string;
 const getToken = async () => {
@@ -21,18 +22,23 @@ const getToken = async () => {
 };
 
 export default defineEventHandler(async (e) => {
-  const token = await getToken();
-  const body = await readBody(e);
-  var options = {
-    method: "GET",
-    params: { email: body.id },
-    headers: { authorization: `Bearer ${token}` },
+  // const token = await getToken();
+  // const body = await readBody(e);
+  // var options = {
+  //   method: "GET",
+  //   params: { email: body.id },
+  //   headers: { authorization: `Bearer ${token}` },
+  // };
+
+  // const response = await axios(
+  //   "https://meshflow.eu.auth0.com/api/v2/users-by-email",
+  //   options
+  // );
+  const user: TUser = {
+    name: "John Doe",
+    email: "temp@email.com",
+    id: "temp-id",
   };
-
-  const response = await axios(
-    "https://meshflow.eu.auth0.com/api/v2/users-by-email",
-    options
-  );
-
-  return false;
+  return user;
+  // return false;
 });

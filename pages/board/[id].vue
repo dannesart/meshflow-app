@@ -35,7 +35,8 @@
       <aside
         class="flex flex-col gap-4 p-6 bg-white shadow-xl md:w-96 rounded-xl"
       >
-        Assigned to
+        <UIHeadline size="label"> Assigned to </UIHeadline>
+
         <ModulesUserSelect
           :value="task.assignedTo"
           @value-update="(event) => updateAssigned(event)"

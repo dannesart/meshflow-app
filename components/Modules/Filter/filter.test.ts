@@ -1,6 +1,6 @@
 import { DOMWrapper, mount, VueWrapper } from "@vue/test-utils";
 import FilterComponent from "./Index.vue";
-import { FiltersData } from "./filter";
+import { FiltersData } from "./filter.data";
 
 describe("Filter component", async () => {
   const component: VueWrapper = mount(FilterComponent, {
