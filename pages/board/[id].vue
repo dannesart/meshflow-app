@@ -35,13 +35,11 @@
       <aside
         class="flex flex-col gap-4 p-6 bg-white shadow-xl md:w-96 rounded-xl"
       >
-        <ModulesInput
-          type="user"
+        Assigned to
+        <ModulesUserSelect
           :value="task.assignedTo"
           @value-update="(event) => updateAssigned(event)"
-        >
-          Assigned to
-        </ModulesInput>
+        ></ModulesUserSelect>
 
         <ModulesInput
           type="select"

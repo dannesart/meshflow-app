@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-4">
     <!-- Sort -->
-    <UIDropDown icon="sort">
+    <UIDropDown icon="sort" data-test="sort">
       <label class="flex flex-col justify-center gap-2">
         <ModulesInput
           type="select"
@@ -25,12 +25,14 @@
     </UIDropDown>
 
     <!-- Filters -->
-    <UIDropDown icon="filter" :items="filters" @update="setFilter" />
+    <div data-test="filter">
+      <UIDropDown icon="filter" :items="filters" @update="setFilter" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Filters, Sort } from "./filter.model";
+import { FiltersData } from "./filter";
 
 const eventEmit = defineEmits(["filterChange", "sortChange"]);
 const sortTypes = ["Name", "Status", "Updated"];
@@ -42,13 +44,7 @@ const toggleFilterOptions = () => {
   showingSort.value = false;
   showingFilter.value = !showingFilter.value;
 };
-const filters = ref([
-  {
-    label: "show only favorites",
-    checked: false,
-    id: "favorites",
-  },
-]);
+const filters = ref(FiltersData);
 const setFilter = async (key: string, value: boolean) => {
   const idx = filters.value.findIndex((filter) => filter.id === key);
   filters.value[idx].checked = value;

@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     ModulesToaster: typeof import('./components/Modules/Toaster/Index.vue')['default']
     ModulesTodo: typeof import('./components/Modules/Todo/index.vue')['default']
     ModulesUserCard: typeof import('./components/Modules/UserCard/Index.vue')['default']
+    ModulesUserSelect: typeof import('./components/Modules/UserSelect/Index.vue')['default']
     ModulesVisualEditor: typeof import('./components/Modules/VisualEditor/Index.vue')['default']
     ModulesVisualEditorLayer: typeof import('./components/Modules/VisualEditor/Layer.vue')['default']
     ModulesVisualEditorTool: typeof import('./components/Modules/VisualEditor/Tool.vue')['default']
