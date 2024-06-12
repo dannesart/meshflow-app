@@ -32,28 +32,31 @@
             <p
               class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-950 dark:text-primary-200 md:text-lg md:dark:hover:bg-primary-800 md:px-5"
             >
-              No services
+              No services activated
             </p>
           </li>
-          <li v-for="item in group.items" :key="item.route">
-            <NuxtLink
-              :to="item.route"
+          <template v-for="item in group.items" :key="item.route">
+            <li
               v-if="
                 !item.isService ||
                 (item.isService && settingsStore.isServiceActive(item.label))
               "
-              v-wave
-              class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-950 dark:text-primary-200 md:text-lg md:hover:bg-secondary-100 md:dark:hover:bg-primary-800 hover:text-secondary-700 hover:dark:text-primary-200 md:px-5"
-              activeClass="font-bold text-secondary-700 md:bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
-              router-link-active="font-bold text-secondary-700 bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
             >
-              <UIIcons
-                :name="item.icon"
-                v-if="item.icon && showIcons"
-              ></UIIcons>
-              {{ item.label }}
-            </NuxtLink>
-          </li>
+              <NuxtLink
+                :to="item.route"
+                v-wave
+                class="flex items-center gap-3 py-3 text-2xl rounded-lg text-primary-950 dark:text-primary-200 md:text-lg md:hover:bg-secondary-100 md:dark:hover:bg-primary-800 hover:text-secondary-700 hover:dark:text-primary-200 md:px-5"
+                activeClass="font-bold text-secondary-700 md:bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
+                router-link-active="font-bold text-secondary-700 bg-secondary-100 dark:text-primary-200 md:dark:bg-primary-800"
+              >
+                <UIIcons
+                  :name="item.icon"
+                  v-if="item.icon && showIcons"
+                ></UIIcons>
+                {{ item.label }}
+              </NuxtLink>
+            </li>
+          </template>
         </ul>
       </div>
     </nav>
