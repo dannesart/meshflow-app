@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <template v-if="block">
+    <template v-if="block && block.properties">
       <header class="flex items-center justify-between gap-4">
         <UIHeadline
           size="h1"
