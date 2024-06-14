@@ -17,9 +17,7 @@
           <span class="w-full border-t dark:border-t-0"></span>
         </div>
         <div class="relative flex justify-center text-xs uppercase">
-          <span
-            class="px-2 bg-amber-200 md:bg-white dark:bg-black/0 dark:text-white"
-          >
+          <span class="px-2 bg-white dark:bg-black/0 dark:text-white">
             Or continue with
           </span>
         </div>
@@ -36,7 +34,9 @@
     </div>
 
     <template #footer>
-      <div class="flex justify-center w-full gap-1 p-3 dark:text-white">
+      <div
+        class="flex flex-col sm:flex-row justify-center w-full gap-1 p-3 dark:text-white"
+      >
         Don't have an account?
         <NuxtLink
           to="/create-account"

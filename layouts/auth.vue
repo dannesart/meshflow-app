@@ -10,7 +10,7 @@
         />
       </div>
       <div
-        class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 bg-secondary-200 dark:bg-black/20 md:bg-white md:flex-1"
+        class="flex justify-center h-full px-4 py-10 md:items-center md:px-10 dark:bg-black/20 bg-white md:flex-1"
       >
         <div class="flex flex-col gap-5 flex-1 max-w-[500px]">
           <UIHeadline size="h1" class="hidden md:block">
