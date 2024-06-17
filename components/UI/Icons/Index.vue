@@ -850,6 +850,7 @@
       fill="#323232"
     />
   </svg>
+  <Icon name="mdi:sleep" v-if="name === 'sleep'" size="24" />
 </template>
 
 <script setup lang="ts">

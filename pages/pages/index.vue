@@ -31,7 +31,7 @@
             :title="page.title"
             :body="`Updated ${useTimeAgo(page.updated.toString())}`"
             :badge="{
-              icon: 'check',
+              icon: page.status === 'public' ? 'check' : 'sleep',
               theme: page.status === 'public' ? 'primary' : 'system',
             }"
           ></ModulesCard>

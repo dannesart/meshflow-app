@@ -53,7 +53,7 @@
               `${blockType?.name} #${index}`
             "
             :badge="{
-              icon: 'check',
+              icon: block.status === 'public' ? 'check' : 'sleep',
               theme: block.status === 'public' ? 'primary' : 'system',
             }"
             :body="
