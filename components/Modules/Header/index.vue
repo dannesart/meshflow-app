@@ -17,6 +17,7 @@
       <div
         class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
+        v-if="!slim"
         :class="{
           'text-slate-800 bg-slate-100 dark:bg-primary-600 dark:text-primary-200':
             !nonReadNotifications,
@@ -70,8 +71,8 @@
           >
           </UIUserInfo>
 
-          <UIHeadline size="h3"> Projects </UIHeadline>
-          <UIList>
+          <UIHeadline size="h3" v-if="!slim"> Projects </UIHeadline>
+          <UIList v-if="!slim">
             <UIListItem
               v-for="project in projectStore.projects"
               :key="project.id"
@@ -103,7 +104,7 @@
           <NuxtLink
             class="text-right cursor-pointer text-primary-600"
             to="/projects/create"
-            v-if="projectStore.projects.length < MAX_PROJECTS"
+            v-if="projectStore.projects.length < MAX_PROJECTS && !slim"
           >
             Create new project
           </NuxtLink>
@@ -113,6 +114,7 @@
           <NuxtLink
             class="px-6 py-3 text-center border rounded-lg cursor-pointer text-primary-600 border-primary-500 hover:shadow-xl"
             to="/user"
+            v-if="!slim"
           >
             Go to profile
           </NuxtLink>
@@ -194,6 +196,14 @@ const userClient = useSupabaseClient();
 const router = useRouter();
 const { activeId, getProject } = storeToRefs(projectStore);
 const { notifications, nonReadNotifications } = storeToRefs(notificationStore);
+
+type Props = {
+  slim: boolean;
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  slim: false,
+});
 
 const activeProject = computed(() => {
   return getProject.value(activeId.value || "") as Project;

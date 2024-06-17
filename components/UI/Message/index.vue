@@ -5,7 +5,7 @@
     <div
       class="w-10 h-10 rounded-lg flex items-center justify-center"
       :class="{
-        'bg-rose-100 text-red-500': type === 'error',
+        'bg-rose-100 text-rose-500': type === 'error',
         'bg-emerald-100 text-emerald-500': type === 'success',
       }"
     >

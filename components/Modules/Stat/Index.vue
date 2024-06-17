@@ -18,7 +18,7 @@
     </div>
     <UIDiagram :max="10" :min="0" :value="number"></UIDiagram>
     <div class="" v-if="errors">
-      <p class="text-red-600 cursor-pointer">{{ errors }} errors</p>
+      <p class="text-rose-600 cursor-pointer">{{ errors }} errors</p>
     </div>
   </article>
 </template>

@@ -39,7 +39,7 @@ const dasharray = computed(() => {
 });
 
 const getColor = () => {
-  if (percent.value >= 80) return "stroke-red-500";
+  if (percent.value >= 80) return "stroke-rose-500";
   if (percent.value >= 50) return "stroke-orange-500";
   return "stroke-emerald-500";
 };

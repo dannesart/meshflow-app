@@ -15,7 +15,7 @@
         'pr-12': true,
         'text-slate-400': body !== 'public' && body !== 'private',
         'text-emerald-400': body === 'public',
-        'text-red-400': body === 'private',
+        'text-rose-400': body === 'private',
       }"
       data-body
     >

@@ -115,7 +115,7 @@
     <div
       v-else
       name="missing-tool"
-      class="relative inline-flex rounded-xl h-10 bg-white items-center justify-center px-3 text-red-400"
+      class="relative inline-flex rounded-xl h-10 bg-white items-center justify-center px-3 text-rose-400"
     >
       [Missing tool: {{ type }}]
     </div>

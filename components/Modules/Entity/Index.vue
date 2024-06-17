@@ -9,7 +9,7 @@
           class="text-sm"
           :class="{
             'text-emerald-400': block.status === 'public',
-            'text-red-400': block.status === 'private',
+            'text-rose-400': block.status === 'private',
           }"
         >
           {{ block.status }}

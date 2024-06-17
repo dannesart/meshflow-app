@@ -14,7 +14,11 @@
           Create
         </UIButton>
       </UIForm>
-      <NuxtLink to="/" class="px-6 py-3 mt-3 text-center text-red-600">
+      <NuxtLink
+        to="/"
+        v-if="projectStore.projects.length"
+        class="px-6 py-3 mt-3 text-center text-rose-600 hover:bg-rose-50 transition-all rounded-lg"
+      >
         Nevermind
       </NuxtLink>
     </div>

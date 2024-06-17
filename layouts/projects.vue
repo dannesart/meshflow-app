@@ -1,6 +1,9 @@
 <template>
   <div class="w-screen h-screen">
     <UILoadBar v-if="loading"></UILoadBar>
+    <div class="fixed top-0 right-0 z-50">
+      <ModulesHeader :slim="!projectStore.projects.length"></ModulesHeader>
+    </div>
     <main class="flex flex-col w-full h-full md:flex-row">
       <div class="flex gap-4 p-4 md:flex-1 md:h-full md:p-10 bg-secondary-200">
         <UILogo
@@ -34,5 +37,8 @@
 </template>
 
 <script setup>
+import { useProjectStore } from "~~/stores/projects";
+
+const projectStore = useProjectStore();
 const loading = false;
 </script>
