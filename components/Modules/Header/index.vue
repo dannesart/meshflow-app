@@ -15,7 +15,7 @@
     </div>
     <div class="flex gap-3 lg:gap-10">
       <div
-        class="relative flex items-center justify-center text-xl rounded-full cursor-pointer w-14 h-14 hover:shadow-xl"
+        class="relative flex items-center justify-center text-xl rounded-full cursor-pointer flex-none w-14 h-14 hover:shadow-xl"
         @click="openNotificationMenu"
         v-if="!slim"
         :class="{

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex cursor-pointer"
+    class="flex cursor-pointer flex-none"
     :class="{
       'flex-row-reverse': direction === 'right',
       'gap-5': size !== 'small',

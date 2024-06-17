@@ -33,6 +33,7 @@ module.exports = {
       fontFamily: {
         Kodchasan: ["'Kodchasan'", "sans-serif"],
         Rounded: ["'M PLUS Rounded 1c'", "sans-serif"],
+        Oswald: ["'Oswald'", "sans-serif"],
       },
     },
   },

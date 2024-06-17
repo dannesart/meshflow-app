@@ -25,10 +25,11 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   supabase: {
-    // redirect: false,
+    //redirect: false,
     redirectOptions: {
       login: "/log-in",
       callback: "/",
+      exclude: ["/", "/create-account"],
     },
   },
   runtimeConfig: {

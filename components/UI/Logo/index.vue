@@ -1,10 +1,10 @@
 <template>
-  <div class="flex items-center self-start gap-4">
+  <div class="flex items-center self-start gap-4 group">
     <div
-      class="flex items-center justify-center p-3 text-xl text-primary-950 dark:text-secondary-200 bg-secondary-200 dark:bg-primary-900 rounded-xl"
+      class="flex font-Oswald font-bold items-center h-14 aspect-square justify-center text-4xl text-secondary-950/60 dark:text-secondary-200 bg-secondary-200 dark:bg-primary-900 rounded-xl"
       v-if="!textOnly"
     >
-      MF
+      <div class="group-hover:scale-75 transition-transform">MF</div>
     </div>
     <span
       class="text-2xl font-extrabold lg:text-2xl font-Rounded text-primary-950"
