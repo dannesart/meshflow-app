@@ -41,6 +41,11 @@ export const useProjectStore = defineStore("ProjectsStore", {
         return {};
       };
     },
+    activeProject: (state) => {
+      return state._projects.find(
+        (project) => project.id === state._activeProjectId
+      );
+    },
   },
   actions: {
     initProject(id: string) {},
@@ -66,7 +71,10 @@ export const useProjectStore = defineStore("ProjectsStore", {
       }
     },
     async fetchProjects() {
+      const uiStore = useUiStore();
+      const { setLoading } = uiStore;
       try {
+        setLoading(true);
         const config = useRuntimeConfig();
         const response = await axios.get(
           config.public.REDIRECT_URI + "/api/projects"
@@ -77,13 +85,18 @@ export const useProjectStore = defineStore("ProjectsStore", {
         if (!this._projects || !this._projects.length) {
           return useRouter().push("/projects/create");
         }
-        this.setActive(
-          localStorage.getItem(ACTIVE_PROJET_ID_KEY) || this._projects[0].id
-        );
+        let currentActiveId = localStorage.getItem(ACTIVE_PROJET_ID_KEY);
+        const currentActiveProject = this.getProject(currentActiveId);
+        if (!currentActiveProject) {
+          currentActiveId = this._projects[0].id;
+        }
+        this.setActive(currentActiveId);
         return true;
       } catch (error) {
         //TODO: Handle error
         return false;
+      } finally {
+        setLoading(false);
       }
     },
   },

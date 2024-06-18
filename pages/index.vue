@@ -8,9 +8,17 @@
         label="Active tasks"
         :number="amountActiveTasks"
       ></ModulesStat>
-      <ModulesStat label="Pages" :number="pages.length"></ModulesStat>
+      <ModulesStat
+        label="Pages"
+        :number="pages.length"
+        v-if="isServiceActive('Pages')"
+      ></ModulesStat>
       <ModulesStat label="Users" :number="usersAmount"></ModulesStat>
-      <ModulesStat label="Rules" :number="rules"></ModulesStat>
+      <ModulesStat
+        label="Rules"
+        :number="rules"
+        v-if="isServiceActive('Rules')"
+      ></ModulesStat>
     </div>
 
     <div class="flex flex-col gap-5 md:flex-row">
@@ -117,6 +125,7 @@ import { useTasksStore } from "~~/stores/tasks";
 import { usePagesStore } from "~~/stores/pages";
 import { useUsersStore } from "~~/stores/users";
 import { useCommentsStore } from "~~/stores/comments";
+import { useSettingsStore } from "~~/stores/settings";
 import type { Task } from "~~/models/tasks";
 import { useNotificationStore } from "~~/stores/notifications";
 import { storeToRefs } from "pinia";
@@ -124,6 +133,7 @@ import { storeToRefs } from "pinia";
 const notificationsStore = useNotificationStore();
 const { setNotification } = notificationsStore;
 const { comments } = storeToRefs(useCommentsStore());
+const { isServiceActive } = storeToRefs(useSettingsStore());
 const tasksStore = useTasksStore();
 const { addTask } = tasksStore;
 const { latest, allTasks, amountActiveTasks, isLoading } =

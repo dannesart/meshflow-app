@@ -24,7 +24,7 @@
         <ModulesInput
           type="checkbox"
           :value="todo.done"
-          @click="setToDone(todo)"
+          @click="setToDone(todo, index)"
         ></ModulesInput>
         <UIHeadline
           size="p"
@@ -80,7 +80,7 @@ const add = ($event: Event) => {
   emits("onAdd", todos.value);
 };
 
-const setToDone = (todo: TTodo) => {
+const setToDone = (todo: TTodo, index: number) => {
   todo.done = !todo.done;
   emits("onDone", todo, todos.value);
 };
