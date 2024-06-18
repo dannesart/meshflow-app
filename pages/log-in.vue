@@ -8,7 +8,7 @@
         <ModulesInput type="password" class="mt-3" disabled>
           Password
         </ModulesInput>
-        <UIButton class="float-right mt-5 w-full md:w-auto" disabled>
+        <UIButton class="float-right mt-5 w-full md:w-auto" disabled type="add">
           Sign in
         </UIButton>
       </UIForm>
