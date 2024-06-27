@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex gap-6 rounded-xl bg-white p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
+    class="flex gap-6 rounded-xl bg-white dark:bg-primary-800 p-6 py-3 shadow-xl hover:shadow-2xl cursor-pointer"
   >
     <div class="flex flex-col gap-1">
       <UIHeadline size="h4" :class="'flex gap-3 items-center'">
@@ -15,7 +15,7 @@
           {{ block.status }}
         </span>
       </UIHeadline>
-      <p class="text-sm text-gray-500">
+      <p class="text-sm text-gray-500 dark:text-primary-500">
         {{ getBlockModelById(block?.type)?.name }}
       </p>
     </div>
@@ -28,7 +28,13 @@
       >
         <UIIcons name="close"></UIIcons>
       </UIButton>
-      <ModulesEdit type="block" icon="dots" :size="4" button-style="icon">
+      <ModulesEdit
+        type="block"
+        icon="dots"
+        :size="4"
+        button-style="icon"
+        :value="data"
+      >
       </ModulesEdit>
     </div>
   </div>

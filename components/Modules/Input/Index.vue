@@ -162,7 +162,7 @@
       </div>
       <div
         v-if="isToggled"
-        class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20"
+        class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white dark:bg-primary-800 py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20"
       >
         <div
           v-for="option in values"

@@ -5,7 +5,7 @@
     @click="emits('update', id, !value)"
   >
     <div
-      class="w-6 h-6 rounded-lg cursor-pointer"
+      class="w-6 h-6 rounded-lg cursor-pointer flex items-center justify-center dark:bg-primary-900"
       :class="{ 'bg-primary-400 text-white': value, 'bg-slate-200': !value }"
       :name="name"
       :id="id"
@@ -19,15 +19,12 @@
 </template>
 
 <script setup lang="ts">
-type Props = {
-  value?: any;
-  name?: string;
-  id?: string;
-};
+import type { Checkbox } from "./checkbox.model";
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Checkbox>(), {
   name: "",
   id: "",
+  value: false,
 });
 
 const emits = defineEmits(["update"]);

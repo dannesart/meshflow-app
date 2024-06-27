@@ -27,13 +27,13 @@
           <UIButton type="add" @click="save" :is-loading="tasksStore.isLoading">
             Save
           </UIButton>
-          <UIButton type="nevermind" @click="handleDelete">
+          <UIButton type="nevermind" @click.prevent="handleDelete">
             Delete task
           </UIButton>
         </div>
       </UIForm>
       <aside
-        class="flex flex-col gap-4 p-6 bg-white shadow-xl md:w-96 rounded-xl"
+        class="flex flex-col gap-4 p-6 bg-white dark:bg-primary-950 shadow-xl md:w-96 rounded-xl"
       >
         <UIHeadline size="label"> Assigned to </UIHeadline>
 
@@ -103,6 +103,16 @@
         </div>
       </aside>
     </div>
+    <ModulesConfirm
+      :show="showConfirm"
+      @on-confirm="handleConfirmDelete"
+      @on-deny="handleConfirmDeny"
+    >
+      <p>
+        Do you really want to delete this task? It will not be able to be
+        restored.
+      </p>
+    </ModulesConfirm>
   </NuxtLayout>
 </template>
 
@@ -121,6 +131,7 @@ const usersStore = useUsersStore();
 const { usersToList } = storeToRefs(usersStore);
 const { id } = useRoute().params;
 const task = ref<Task>(taskById(id as string) as Task);
+const showConfirm = ref(false);
 
 const editorUpdate = (value: string) => {
   console.log("Update, ", value);
@@ -162,23 +173,29 @@ const removeTag = (e: Event, idx: number) => {
   task.value.tags.splice(idx, 1);
 };
 
-const handleDelete = async (e: Event) => {
-  e.preventDefault();
-  if (confirm("Are you sure you want to delete this task?")) {
-    if (await deleteTask(task.value)) {
-      useRouter().push("/board");
-      setNotification(
-        "Task deleted",
-        "The task was successfully deleted!",
-        "success"
-      );
-    } else {
-      setNotification(
-        "Task not deleted",
-        "The task could not be deleted!",
-        "fail"
-      );
-    }
+const handleDelete = async () => {
+  showConfirm.value = true;
+};
+const handleConfirmDeny = async () => {
+  showConfirm.value = false;
+};
+
+const handleConfirmDelete = async () => {
+  showConfirm.value = false;
+  const deleted = await deleteTask(task.value);
+  if (deleted) {
+    setNotification(
+      "Task deleted!",
+      "The task was successfully deleted",
+      "success"
+    );
+    useRouter().push("/board");
+  } else {
+    setNotification(
+      "Task not deleted",
+      "The task could not be deleted",
+      "fail"
+    );
   }
 };
 

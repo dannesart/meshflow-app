@@ -4,7 +4,7 @@
     @focusin="isToggled = true"
     @focusout="handleFocusOut"
     ref="userSelectRef"
-    class="py-3 px-5 border cursor-pointer rounded-lg bg-white shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
+    class="py-3 px-5 border cursor-pointer rounded-lg bg-white dark:bg-primary-800 shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
   >
     <div class="flex justify-between gap-3 capitalize h-6 items-center">
       <div v-if="selectedUser" class="flex justify-between items-center gap-1">
@@ -31,7 +31,7 @@
 
     <div
       v-if="isToggled"
-      class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20"
+      class="pt-1 absolute top-full m-[-1px] left-0 right-0 bg-white dark:bg-primary-800 py-3 px-5 border border-t-0 rounded-b-lg shadow-sm hover:shadow-lg z-20"
     >
       <div v-if="!usersStore.allUsers.length" class="py-1 capitalize">
         No users available

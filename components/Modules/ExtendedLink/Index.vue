@@ -28,7 +28,7 @@
     </div>
     <div class="" :class="{ 'absolute top-0 right-0': style === 'small' }">
       <button
-        class="w-8 h-8 bg-primary-600 flex justify-center items-center rounded-full text-white"
+        class="w-8 h-8 bg-primary-950 flex justify-center items-center rounded-full text-white"
       >
         <UIIcons name="arrow-right"></UIIcons>
       </button>

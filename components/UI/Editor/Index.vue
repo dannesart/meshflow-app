@@ -3,7 +3,7 @@
 
   <editor-content
     :editor="editor"
-    :class="' border rounded-lg shadow-sm bg-white disabled:bg-slate-100 hover:shadow-lg headings bullet'"
+    :class="' border rounded-lg shadow-sm bg-white dark:bg-primary-950 dark:border-primary-800 disabled:bg-slate-100 hover:shadow-lg headings bullet'"
   />
 </template>
 

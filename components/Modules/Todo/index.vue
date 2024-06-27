@@ -17,7 +17,7 @@
       leave-to-class="transform scale-50 opacity-0"
     >
       <div
-        class="px-4 py-4 rounded-lg bg-white flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
+        class="px-4 py-4 rounded-lg bg-white dark:bg-primary-800 flex gap-3 items-center shadow-lg hover:shadow-xl cursor-pointer"
         v-for="(todo, index) in todos"
         :key="index"
       >
@@ -29,7 +29,7 @@
         <UIHeadline
           size="p"
           editable="true"
-          :class="'!flex-1'"
+          :class="'!flex-1 dark:text-primary-500'"
           :value="todo?.title"
           @value-change="(e) => (todo.title = e)"
         >

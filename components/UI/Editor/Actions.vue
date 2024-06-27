@@ -3,7 +3,7 @@
     <div :class="buttonStyle">
       <div>H</div>
       <div
-        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white rounded-lg shadow-lg group-hover:flex top-full"
+        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white dark:bg-primary-950 rounded-lg shadow-lg group-hover:flex top-full"
       >
         <button
           v-for="index in 6"
@@ -21,7 +21,7 @@
     <div :class="buttonStyle">
       <div>😀</div>
       <div
-        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white rounded-lg shadow-lg group-hover:flex top-full"
+        class="absolute left-0 z-50 hidden gap-2 p-2 bg-white dark:bg-primary-950 rounded-lg shadow-lg group-hover:flex top-full"
       >
         <button
           :class="buttonStyle"
@@ -74,7 +74,7 @@ import Emoji, { gitHubEmojis } from "@tiptap-pro/extension-emoji";
 
 const { editor } = defineProps(["editor"]);
 const buttonStyle =
-  "w-12 h-12 rounded-lg  flex justify-center items-center cursor-pointer group relative bg-white hover:bg-primary-100";
+  "w-12 h-12 rounded-lg  flex justify-center items-center cursor-pointer group relative bg-white dark:bg-primary-950 dark:text-primary-500 hover:bg-primary-100";
 const emojis = [
   {
     emoji: "🚀",
