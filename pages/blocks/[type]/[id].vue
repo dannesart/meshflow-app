@@ -11,7 +11,7 @@
         </UIHeadline>
         <div class="flex items-center gap-2" v-if="block">
           <label class="text-sm capitalize text-slate-500">{{
-            block.status
+            block.status || "private"
           }}</label>
           <ModulesInput
             type="switch"
@@ -132,7 +132,11 @@ const handleUpdateBlock = async () => {
 };
 
 const changeStatus = async () => {
-  block.value.status = block.value.status === "private" ? "public" : "private";
+  const isPrivate =
+    block.value.status === "private" ||
+    !block.value.status ||
+    block.value.status === "";
+  block.value.status = isPrivate ? "public" : "private";
   const updatedBlock = await handleUpdateBlock();
   if (!updatedBlock) {
     block.value.status =

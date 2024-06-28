@@ -27,7 +27,6 @@ export default defineEventHandler(async (e) => {
   const user = await serverSupabaseUser(e);
 
   const body = await readBody(e);
-  debugger;
   if (ModelSchema.safeParse(body)) {
     const { name, projectId, description, fields } = body;
     const newDoc = new ModelDbModel({
