@@ -241,8 +241,10 @@ const closeNotificationMenu = (e: Event) => {
 };
 
 const selectProject = async (projectId: string) => {
+  router.push("/");
   setLoading(true);
   projectStore.setActive(projectId);
+
   await Promise.all([
     settingsStore.fetchSettings(),
     tasksStore.fetchTasks(),

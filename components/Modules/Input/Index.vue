@@ -148,12 +148,13 @@
     </div>
 
     <div
-      class="py-3 px-5 border cursor-pointer rounded-lg bg-white dark:bg-primary-800 shadow-sm hover:shadow-lg relative focus-within:border-b-transparent focus-within:rounded-b-none"
+      class="py-3 px-5 border cursor-pointer rounded-lg bg-white dark:bg-primary-800 shadow-sm hover:shadow-lg relative focus-within:border-b-transparent"
       v-if="type === 'select'"
       :name="name"
       tabindex="0"
-      @focusin="isToggled = true"
+      @click="isToggled = true"
       @focusout="handleFocusOut"
+      :class="{ 'rounded-b-none': isToggled }"
       ref="selectRef"
     >
       <div class="flex justify-between gap-3 capitalize">
@@ -247,7 +248,7 @@ const selectOption = (e: Event, option: string) => {
   isToggled.value = false;
   if (selectRef.value) {
     console.log("Trigger blur");
-    selectRef.value.blur();
+    //selectRef.value.blur();
   }
 };
 

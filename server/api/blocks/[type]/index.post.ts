@@ -2,20 +2,18 @@ import { AuthToken } from "~~/models/auth";
 import { v4 as uuidv4 } from "uuid";
 import { BlockSchema } from "~~/models/blocks";
 import { BlocksDbModel } from "~~/models/blocks.db";
+import { serverSupabaseUser } from "#supabase/server";
+import protectRoute from "~/server/protectedRoute";
 
 export default defineEventHandler(async (e) => {
-  // const session = await getServerSession(e);
-  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  // if (!session || !session.user) {
-  //   return { error: "Need to be authenticated" };
-  // }
-  // newBlockModel(name, session.user.email || '', projectId, description )
+  await protectRoute(e);
+  const user = await serverSupabaseUser(e);
   const body = await readBody(e);
   if (BlockSchema.safeParse(body)) {
     const { projectId, properties, type } = body;
     const newDoc = new BlocksDbModel({
-      createdBy: "Missing token",
-      updatedBy: "Missing token",
+      createdBy: user.id,
+      updatedBy: user.id,
       projectId,
       properties: properties || {},
       id: uuidv4(),

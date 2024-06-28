@@ -17,9 +17,10 @@
     <UIHeadline size="h2"> Info </UIHeadline>
     <UIList>
       <UIListItem>
-        <strong>Last login</strong> {{ user?.last_login }}
+        <strong>Last login</strong>
+        {{ useTimeAgo(userObject?.last_sign_in_at) }}
       </UIListItem>
-      <UIListItem> <strong>ID</strong> {{ user?.user_id }} </UIListItem>
+      <UIListItem> <strong>ID</strong> {{ userObject?.id }} </UIListItem>
     </UIList>
     <UIHeadline size="h2"> Personal settings </UIHeadline>
     <section

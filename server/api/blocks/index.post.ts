@@ -1,7 +1,8 @@
 import { Model, ModelSchema } from "~~/models/model";
-import { AuthToken } from "~~/models/auth";
 import { v4 as uuidv4 } from "uuid";
 import { ModelDbModel } from "~~/models/model.db";
+import { serverSupabaseUser } from "#supabase/server";
+import protectRoute from "~/server/protectedRoute";
 
 const newBlockModel = (
   name: string,
@@ -22,19 +23,17 @@ const newBlockModel = (
 };
 
 export default defineEventHandler(async (e) => {
-  // const session = await getServerSession(e);
-  // const token: AuthToken = (await getToken({ event: e })) as AuthToken;
-  // if (!session || !session.user) {
-  //   return { error: "Need to be authenticated" };
-  // }
-  // newBlockModel(name, session.user.email || '', projectId, description )
+  await protectRoute(e);
+  const user = await serverSupabaseUser(e);
+
   const body = await readBody(e);
+  debugger;
   if (ModelSchema.safeParse(body)) {
     const { name, projectId, description, fields } = body;
     const newDoc = new ModelDbModel({
       name,
-      createdBy: "missing token",
-      updatedBy: "missing token",
+      createdBy: user.id,
+      updatedBy: user.id,
       projectId,
       description,
       fields: fields || [],
